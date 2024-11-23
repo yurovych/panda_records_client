@@ -1,14 +1,21 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './App.module.scss';
+import { HidenMenu } from './modules/HidenMenu/components';
 
 export const App = () => {
+  const navigate = useNavigate();
+
+  const handleLogInButton = () => {
+    navigate('./login');
+  };
+
   return (
-    <>
-      <header className={styles.header}>Header</header>
+    <div className={styles.app}>
+      {false && <HidenMenu />}
 
-      <Outlet />
-
-      <footer>Footer</footer>
-    </>
+      <div>
+        <Outlet />
+      </div>
+    </div>
   );
 };

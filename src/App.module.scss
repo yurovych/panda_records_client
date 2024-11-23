@@ -1,3 +1,7 @@
-.app {
-  background-color: blue;
+@import './modules/shared/main';
+
+.header {
+  &__loginButton {
+    border: 1px solid black;
+  }
 }

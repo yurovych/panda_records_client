@@ -1,0 +1,11 @@
+@import './../../shared/main';
+
+.hidenMenu {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+}
+
+.hidenMenu:has(:target) {
+  overflow: hidden;
+}
