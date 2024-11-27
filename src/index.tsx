@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { HomePage } from './modules/HomePage/component/HomePage';
 import { AdminPage } from './modules/AdminPage/component/AdminPage';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, HashRouter as Router, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { NotFoundPage } from './modules/NotFoundPage/component/NotFoundPage';
