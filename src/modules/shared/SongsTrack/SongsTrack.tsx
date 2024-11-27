@@ -72,9 +72,7 @@ export const SongTrack = ({ track }: SongTrackProps) => {
 
         <img
           className={`${styles.item__button} ${isPlaying && styles.rotate} `}
-          src={
-            isPlaying ? './icons/stop-audio-ico.svg' : './icons/play-ico.svg'
-          }
+          src={isPlaying ? '/icons/stop-audio-ico.svg' : '/icons/play-ico.svg'}
           alt='play'
         />
       </div>

@@ -42,14 +42,14 @@ export const Header = () => {
             target='_blank'
             to='https://www.instagram.com/panda._.record?igsh=a2J0ajlmbXptNGd4'
           >
-            <img src='./icons/instagram-ico.svg' alt='instagram_ico' />
+            <img src='/icons/instagram-ico.svg' alt='instagram_ico' />
           </Link>
 
           <Button text='Contact Us' />
         </div>
 
         <div className={styles.header__burgerMenu}>
-          <img src='./icons/burger-menu-ico.svg' alt='menu' />
+          <img src='/icons/burger-menu-ico.svg' alt='menu' />
         </div>
       </div>
     </div>
