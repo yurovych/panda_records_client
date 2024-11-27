@@ -17,7 +17,7 @@ export const HomePage = () => {
 
           <img
             className={styles.top__photo}
-            src='/images/top-photo.png'
+            src='./images/top-photo.png'
             alt='foto'
           />
 
@@ -42,7 +42,7 @@ export const HomePage = () => {
 
           <img
             className={styles.aboutUs__photo}
-            src='/images/about-us-photo.png'
+            src='./images/about-us-photo.png'
             alt='foto'
           />
 
@@ -56,12 +56,12 @@ export const HomePage = () => {
             className={`${styles.aboutUs__advantages} ${styles.aboutUs__advantages_block1}`}
           >
             <div className={styles.aboutUs__advantage}>
-              <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />
+              <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />
               <p>High-Quality recording</p>
             </div>
 
             <div className={styles.aboutUs__advantage}>
-              <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
+              <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
               <p>Professional approach</p>
             </div>
           </div>
@@ -70,12 +70,12 @@ export const HomePage = () => {
             className={`${styles.aboutUs__advantages} ${styles.aboutUs__advantages_block2}`}
           >
             <div className={styles.aboutUs__advantage}>
-              <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
+              <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
               <p>Acoustically prepared space</p>
             </div>
 
             <div className={styles.aboutUs__advantage}>
-              <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
+              <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
               <p>Access to modern technologies</p>
             </div>
           </div>
@@ -108,7 +108,7 @@ export const HomePage = () => {
 
           <img
             className={styles.ourWorks__photo}
-            src='/images/songs-photo.png'
+            src='./images/songs-photo.png'
             alt='foto'
           />
 

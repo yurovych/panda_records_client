@@ -18,7 +18,7 @@ export const Button: React.FC<ButtonType> = ({ text }) => {
 
         <img
           className={styles.button__hidenArrow}
-          src='/icons/arrows-corner-up-right-ico.svg'
+          src='./icons/arrows-corner-up-right-ico.svg'
           alt='arrow'
         />
       </div>
