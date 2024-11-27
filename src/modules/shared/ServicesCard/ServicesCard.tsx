@@ -9,12 +9,7 @@ type ServiceCardProps = {
 export const ServicesCard = ({ card }: ServiceCardProps) => {
   return (
     <article className={styles.card}>
-      {/* <img className={styles.card__photo} src={card.photo} alt='foto' /> */}
-      <img
-        className={styles.card__photo}
-        src='./images/section-songs/tobi.png'
-        alt='foto'
-      />
+      <img className={styles.card__photo} src={card.photo} alt='foto' />
 
       <div className={styles.card__textContent}>
         <p className={styles.card__title}>{card.title}</p>
