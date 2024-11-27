@@ -12,8 +12,8 @@ export const AdminPage: React.FC = () => {
 
   async function checkAuth() {
     try {
-      const { accessToken }: TokensType = await authService.refresh();
-      accessTokenService.save(accessToken);
+      const { access_token }: TokensType = await authService.refresh();
+      accessTokenService.save(access_token);
       setIsAuthenticated(true);
     } catch (error) {
       console.log('User is not authenticated');
@@ -22,9 +22,7 @@ export const AdminPage: React.FC = () => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      checkAuth();
-    }, 1000);
+    checkAuth();
   }, []);
 
   return (

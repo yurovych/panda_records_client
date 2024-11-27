@@ -1,4 +1,4 @@
-const key = 'accessToken';
+const key = 'access_token';
 
 function get() {
   return localStorage.getItem(key);

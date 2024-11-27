@@ -8,10 +8,10 @@ httpClient.interceptors.request.use(onRequest);
 httpClient.interceptors.response.use(onResponseSuccess, onResponseError);
 
 function onRequest(request) {
-  const accessToken = localStorage.getItem('accessToken');
+  const access_token = localStorage.getItem('access_token');
 
-  if (accessToken) {
-    request.headers['Authorization'] = `Bearer ${accessToken}`;
+  if (access_token) {
+    request.headers['Authorization'] = `Bearer ${access_token}`;
   }
 
   return request;
@@ -29,13 +29,13 @@ async function onResponseError(error) {
   }
 
   try {
-    const { accessToken } = await authService.refresh();
+    const { access_token } = await authService.refresh();
 
-    if (!accessToken) {
+    if (!access_token) {
       throw new Error('Access token is missing or invalid');
     }
 
-    accessTokenService.save(accessToken);
+    accessTokenService.save(access_token);
 
     return httpClient.request(originalRequest);
   } catch (error) {

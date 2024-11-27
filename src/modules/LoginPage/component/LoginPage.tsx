@@ -40,12 +40,12 @@ export const LoginPage = () => {
   const [error, setError] = useState('');
 
   async function login({ email, password }: LoginParams): Promise<void> {
-    const { accessToken }: TokensType = await authService.login({
+    const { access_token }: TokensType = await authService.login({
       email,
       password,
     });
 
-    accessTokenService.save(accessToken);
+    accessTokenService.save(access_token);
   }
 
   return (

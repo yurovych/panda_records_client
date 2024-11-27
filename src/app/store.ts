@@ -1,7 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import booleanReducer from './../slices/booleanSlice';
+import songsReducer from './../slices/songsSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    boolean: booleanReducer,
+    songs: songsReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

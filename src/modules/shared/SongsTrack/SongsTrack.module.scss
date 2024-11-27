@@ -1,0 +1,136 @@
+@import './../main';
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  height: 73px;
+  padding: 12px;
+  box-shadow: 0 4px 8px 0 #00000011;
+
+  @include on-tablet {
+    height: 112px;
+    padding: 16px;
+  }
+
+  &__content {
+    display: flex;
+    gap: 16px;
+
+    @include on-tablet {
+      gap: 24px;
+    }
+  }
+
+  &__photo {
+    clip-path: $cut-photo-xs;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $color-text-black;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 24p x;
+    }
+  }
+
+  &__artist {
+    color: $color-text-grey;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 18px;
+    }
+  }
+
+  &__buttonWrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__button {
+    height: 75%;
+    transition: all $effect-duration ease;
+  }
+}
+
+.rotate {
+  transform: scale(0.8) rotate(180deg);
+}
+
+@keyframes firstBar {
+  0% {
+    transform: scaleY(30%);
+  }
+
+  100% {
+    transform: scaleY(100%);
+  }
+}
+
+@keyframes secondBar {
+  0% {
+    transform: scaleY(100%);
+  }
+
+  100% {
+    transform: scaleY(30%);
+  }
+}
+
+@keyframes thirdBar {
+  0% {
+    transform: scaleY(30%);
+  }
+
+  50% {
+    transform: scaleY(100%);
+  }
+
+  100% {
+    transform: scaleY(30%);
+  }
+}
+
+.songAnimation {
+  display: flex;
+  gap: 2px;
+
+  &__bar {
+    width: 4px;
+    height: 12px;
+    background-color: $color-primary-pink1;
+    border-radius: 2px;
+    transform-origin: bottom;
+
+    @include on-tablet {
+      width: 5px;
+      height: 15px;
+    }
+
+    &_1 {
+      animation: firstBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+
+    &_2 {
+      animation: secondBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+
+    &_3 {
+      animation: thirdBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+  }
+}

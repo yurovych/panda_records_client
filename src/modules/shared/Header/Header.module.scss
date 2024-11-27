@@ -1,17 +1,126 @@
+@import './../main';
+
+.headerWrapper {
+  z-index: 100;
+  top: 0;
+  position: sticky;
+  height: 86px;
+  background: linear-gradient(to right, rgba(13, 8, 4, 1), rgba(5, 8, 69, 0.5));
+
+  @include on-desktop {
+    height: 102px;
+  }
+
+  @include content-padding-inline;
+  @include page-grid;
+}
+
 .header {
-  height: 100vh;
-  width: 100vw;
-  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column: 1 / -1;
 
-  &__content {
+  @include on-tablet {
+    top: 24px;
+  }
+
+  @include on-desktop {
+    top: 46px;
+  }
+
+  &__burgerMenu {
+    @include on-desktop {
+      display: none;
+    }
+  }
+
+  &__right {
+    display: none;
+
+    @include on-desktop {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      height: 100%;
+    }
+  }
+
+  &__inst {
+    display: none;
+
+    @include on-tablet {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__button {
+    position: relative;
+    height: 100%;
+    width: 130;
+    background-color: $color-primary-pink1;
+    padding: 1.5px;
+
+    &_whiteField {
+      width: 80px;
+      height: 100%;
+      background-color: $color-bg-white;
+      margin-right: 44px;
+    }
+
+    &_text {
+      position: absolute;
+      width: max-content;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $color-basic-black;
+      font-weight: 500;
+      font-size: 16px;
+    }
+  }
+}
+
+.navigation {
+  display: none;
+
+  @include on-desktop {
     display: flex;
-    justify-content: space-between;
+    gap: 68px;
+  }
 
-    &_right {
-      height: 300px;
-      width: 300px;
-      background-color: blue;
-      clip-path: polygon(0 0, 70% 0, 100% 20%, 100% 100%, 0 100%);
+  &__link {
+    color: $color-basic-white;
+    font-weight: 400;
+    font-size: 18px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+
+    &_top {
+      font-family: Instrument Sans, sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 24px;
+      color: $color-text-white;
+    }
+
+    &_bottom {
+      font-family: Joan, sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      color: $color-primary-pink1;
     }
   }
 }

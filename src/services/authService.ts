@@ -8,13 +8,15 @@ type LoginParams = {
 
 function login({ email, password }: LoginParams): Promise<TokensType> {
   return authClient.post(
-    'https://100f-185-110-133-10.ngrok-free.app/api/users/login/',
+    'https://457b-185-110-133-10.ngrok-free.app/api/users/login/',
     { email, password }
   );
 }
 
 function refresh(): Promise<TokensType> {
-  return authClient.get('/refresh');
+  return authClient.get(
+    'https://457b-185-110-133-10.ngrok-free.app/api/users/refresh/'
+  );
 }
 
 export const authService = {

@@ -1,0 +1,59 @@
+@import './../main';
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  @include on-tablet {
+    grid-column: span 2;
+  }
+
+  @include on-desktop {
+    grid-column: span 4;
+  }
+
+  &__photo {
+    clip-path: $cut-photo-s;
+    object-fit: cover;
+    width: 100%;
+
+    @include on-tablet {
+      max-height: 227px;
+    }
+
+    @include on-desktop {
+      max-height: 475px;
+    }
+  }
+
+  &__textContent {
+    height: 120px;
+    padding: 16px;
+    background-color: $color-basic-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include on-tablet {
+      height: 140px;
+      padding: 24px;
+    }
+  }
+
+  &__title {
+    color: $color-text-black;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 130%;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  &__detailsLink {
+    color: $color-primary-pink3;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    text-align: right;
+  }
+}

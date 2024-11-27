@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "title": "Чого у сні",
+    "artist": "Твій зайчик пише",
+    "photo": "./images/section_songs/choho_u_sni.png",
+    "soundtrack": "./songs/choho_u_sni.wav"
+  },
+  {
+    "id": "2",
+    "title": "Тобі",
+    "artist": "Польовий",
+    "photo": "./images/section_songs/tobi.png",
+    "soundtrack": "./songs/tobi.wav"
+  }
+]
