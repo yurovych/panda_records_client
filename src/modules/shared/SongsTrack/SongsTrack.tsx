@@ -47,7 +47,11 @@ export const SongTrack = ({ track }: SongTrackProps) => {
       <audio ref={audioElem} src={track.soundtrack}></audio>
 
       <div className={styles.item__content}>
-        <img className={styles.item__photo} src={track.photo} alt='foto' />
+        <img
+          className={styles.item__photo}
+          src='./images/section_songs/tobi.png'
+          alt='foto'
+        />
 
         <div className={styles.item__info}>
           <h4 className={styles.item__title}>{track.title}</h4>
