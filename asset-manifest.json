@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.30cef749.css",
-    "main.js": "./static/js/main.67fbe965.js",
+    "main.js": "./static/js/main.979b777f.js",
     "static/media/disc-bg.png": "./static/media/disc-bg.f93fe61614bdf2cd2af6.png",
     "static/media/services-bg.png": "./static/media/services-bg.634e8f5548dc1df3abdc.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "./static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -11,10 +11,10 @@
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "./static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "index.html": "./index.html",
     "main.30cef749.css.map": "./static/css/main.30cef749.css.map",
-    "main.67fbe965.js.map": "./static/js/main.67fbe965.js.map"
+    "main.979b777f.js.map": "./static/js/main.979b777f.js.map"
   },
   "entrypoints": [
     "static/css/main.30cef749.css",
-    "static/js/main.67fbe965.js"
+    "static/js/main.979b777f.js"
   ]
 }
