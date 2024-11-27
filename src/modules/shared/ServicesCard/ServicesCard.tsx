@@ -12,7 +12,7 @@ export const ServicesCard = ({ card }: ServiceCardProps) => {
       {/* <img className={styles.card__photo} src={card.photo} alt='foto' /> */}
       <img
         className={styles.card__photo}
-        src='./images/section_songs/tobi.png'
+        src='./images/section-songs/tobi.png'
         alt='foto'
       />
 

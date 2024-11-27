@@ -3,36 +3,36 @@
     "id": "1",
     "title": "Turnkey tracks",
     "details": "Detailes about Turnkey tracks card",
-    "photo": "./images/section_services/turnkey-tracks.png"
+    "photo": "./images/section-services/turnkey-tracks.png"
   },
   {
     "id": "2",
     "title": "Recording vocals, instruments",
     "details": "Detailes about Recording vocals, instruments card",
-    "photo": "./images/section_services/recording.png"
+    "photo": "./images/section-services/recording.png"
   },
   {
     "id": "3",
     "title": "Create instrumentals, beats, arrangements",
     "details": "Detailes about Create instrumentals, beats, arrangements card",
-    "photo": "./images/section_services/instrumentals.png"
+    "photo": "./images/section-services/instrumentals.png"
   },
   {
     "id": "4",
     "title": "Recording and mixing of a cover song",
     "details": "Detailes about Recording and mixing of a cover song card",
-    "photo": "./images/section_services/recording-covers.png"
+    "photo": "./images/section-services/recording-covers.png"
   },
   {
     "id": "5",
     "title": "Mixing and mastering",
     "details": "Detailes about Mixing and mastering card",
-    "photo": "./images/section_services/mastering.png"
+    "photo": "./images/section-services/mastering.png"
   },
   {
     "id": "6",
     "title": "Recording of advertisements, audiobooks",
     "details": "Detailes about Recording of advertisements, audiobooks card",
-    "photo": "./images/section_services/recording-audiobooks.png"
+    "photo": "./images/section-services/recording-audiobooks.png"
   }
 ]

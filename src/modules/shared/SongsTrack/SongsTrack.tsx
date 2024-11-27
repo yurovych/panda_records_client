@@ -49,7 +49,7 @@ export const SongTrack = ({ track }: SongTrackProps) => {
       <div className={styles.item__content}>
         <img
           className={styles.item__photo}
-          src='./images/section_songs/tobi.png'
+          src='./images/section-songs/tobi.png'
           alt='foto'
         />
 
