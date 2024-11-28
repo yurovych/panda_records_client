@@ -16,9 +16,14 @@
     width: 100%;
     height: 100%;
     background-color: $color-bg-white;
-    color: $color-basic-black;
+    color: $color-text-black;
     font-weight: 400;
     font-size: 18px;
+
+    &:hover {
+      color: $color-bg-white;
+      background-color: $color-text-black;
+    }
 
     @include on-tablet {
       font-size: 18px;

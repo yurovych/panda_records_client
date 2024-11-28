@@ -124,6 +124,7 @@
 }
 
 .aboutUs {
+  background-color: $color-bg-white;
   grid-auto-rows: min-content;
 
   @include content-padding-inline;
@@ -346,6 +347,7 @@
 }
 
 .ourWorks {
+  background-color: $color-bg-white;
   grid-auto-rows: min-content;
 
   @include content-padding-inline;
@@ -547,6 +549,8 @@
 }
 
 .lessons {
+  background-color: $color-bg-white;
+
   @include content-padding-inline;
   @include page-grid;
   @include section-padding-block;
