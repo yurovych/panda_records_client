@@ -1,6 +1,27 @@
 @import './../main';
 
+.cardWrapper {
+  min-height: $height-card-phone;
+  max-height: $height-card-phone;
+
+  @include on-tablet {
+    grid-column: span 2;
+    min-height: $height-card-tablet;
+    max-height: $height-card-tablet;
+  }
+
+  @include on-desktop {
+    grid-column: span 4;
+    min-height: $height-card-desctop;
+    max-height: $height-card-desctop;
+  }
+}
+
 .card {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
@@ -15,45 +36,93 @@
   &__photo {
     clip-path: $cut-photo-s;
     object-fit: cover;
-    width: 100%;
+    min-height: 300px;
+    max-height: 300px;
 
     @include on-tablet {
-      max-height: 227px;
+      min-height: 230px;
+      max-height: 230px;
     }
 
     @include on-desktop {
-      max-height: 475px;
+      min-height: 470px;
+      max-height: 470px;
     }
   }
 
   &__textContent {
     height: 120px;
+    max-height: 120px;
+    min-height: 120px;
     padding: 16px;
     background-color: $color-basic-white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
 
     @include on-tablet {
       height: 140px;
+      max-height: 140px;
+      min-height: 140px;
       padding: 24px;
     }
   }
 
   &__title {
     color: $color-text-black;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
     line-height: 130%;
     text-align: left;
     margin-bottom: 8px;
   }
+}
 
-  &__detailsLink {
-    color: $color-primary-pink3;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 130%;
-    text-align: right;
+.details {
+  min-height: $height-card-phone;
+  max-height: $height-card-phone;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  clip-path: $cut-photo-s;
+  background-color: $color-basic-white;
+  padding: 16px;
+
+  @include on-tablet {
+    padding: 24px;
+    min-height: $height-card-tablet;
+    max-height: $height-card-tablet;
   }
+
+  @include on-desktop {
+    padding: 24px;
+    min-height: $height-card-desctop;
+    max-height: $height-card-desctop;
+  }
+}
+
+.detailsLink {
+  cursor: pointer;
+  color: $color-primary-pink3;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 130%;
+  align-self: flex-end;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: $color-primary-pink3;
+  }
+}
+
+.swingCard {
+  transform: rotateY(360deg);
 }

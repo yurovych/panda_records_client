@@ -10,6 +10,9 @@ import { NotFoundPage } from './modules/NotFoundPage/component/NotFoundPage';
 import { LoginPage } from './modules/LoginPage/component';
 import 'bulma/css/bulma.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import { AboutUs } from './modules/AboutUs/component';
+import { Services } from './modules/Services';
+import { Portfolio } from './modules/Portfolio';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,6 +24,9 @@ root.render(
         <Routes>
           <Route path='/' element={<App />}>
             <Route index element={<HomePage />} />
+            <Route path='about' element={<AboutUs />} />
+            <Route path='services' element={<Services />} />
+            <Route path='portfolio' element={<Portfolio />} />
           </Route>
 
           <Route path='/login' element={<LoginPage />} />

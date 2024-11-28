@@ -2,7 +2,7 @@ import styles from './SongsTrack.module.scss';
 import { SongTrackType } from './../../../types/SongTrack';
 import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setCurrentSongId } from '../../../slices/songsSlice';
+import { setCurrentSongId } from '../../../slices/current';
 
 type SongTrackProps = {
   track: SongTrackType;
@@ -12,7 +12,7 @@ export const SongTrack = ({ track }: SongTrackProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioElem = useRef<HTMLAudioElement | null>(null);
   const dispatch = useAppDispatch();
-  const currentSongId = useAppSelector((state) => state.songs.currentSongId);
+  const currentSongId = useAppSelector((state) => state.current.currentSongId);
 
   const playPauseTrack = () => {
     dispatch(setCurrentSongId(track.id));

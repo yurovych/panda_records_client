@@ -5,7 +5,7 @@
   top: 0;
   position: sticky;
   height: 86px;
-  background: linear-gradient(to right, rgba(13, 8, 4, 1), rgba(5, 8, 69, 0.5));
+  background: $gradient;
 
   @include on-desktop {
     height: 102px;
@@ -94,7 +94,15 @@
     color: $color-basic-white;
     font-weight: 400;
     font-size: 18px;
+
+    &:hover {
+      color: $color-primary-pink1;
+    }
   }
+}
+
+.linkIsActive {
+  color: $color-primary-pink1;
 }
 
 .logo {

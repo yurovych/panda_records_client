@@ -1,10 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { Button } from '../Button';
 import { scrollPageUpSmooth } from '../../../services/scrollPageUp';
 
 export const Header = () => {
+  const navPaths = {
+    aboutUs: '/about',
+    services: '/services',
+    portfolio: '/portfolio',
+  };
+
+  const location = useLocation();
+
   const handleLogoClick = () => {
     scrollPageUpSmooth();
   };
@@ -22,17 +30,31 @@ export const Header = () => {
         </Link>
 
         <nav className={styles.navigation}>
-          <Link className={styles.navigation__link} to={''}>
+          <Link
+            className={`${styles.navigation__link} ${
+              navPaths.aboutUs === location.pathname && styles.linkIsActive
+            }`}
+            to={'/about'}
+          >
             About us
           </Link>
-          <Link className={styles.navigation__link} to={''}>
+
+          <Link
+            className={`${styles.navigation__link} ${
+              navPaths.services === location.pathname && styles.linkIsActive
+            }`}
+            to={'/services'}
+          >
             Services
           </Link>
-          <Link className={styles.navigation__link} to={''}>
+
+          <Link
+            className={`${styles.navigation__link} ${
+              navPaths.portfolio === location.pathname && styles.linkIsActive
+            }`}
+            to={'/portfolio'}
+          >
             Portfolio
-          </Link>
-          <Link className={styles.navigation__link} to={''}>
-            Schedule
           </Link>
         </nav>
 

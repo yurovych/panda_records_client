@@ -7,6 +7,7 @@ import cards from './../../../data/servicesCards.json';
 import tracks from './../../../data/songsTracks.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
+import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
   return (
@@ -80,9 +81,9 @@ export const HomePage = () => {
             </div>
           </div>
 
-          <div className={styles.aboutUs__button}>
+          <Link to='./about' className={styles.aboutUs__button}>
             <Button text='More About Us' />
-          </div>
+          </Link>
         </section>
 
         <section className={styles.services}>
@@ -100,7 +101,9 @@ export const HomePage = () => {
             <ServicesList cards={cards} />
           </div>
 
-          <h5 className={styles.services__viewAll}> View all services</h5>
+          <Link to='./services' className={styles.services__viewAll}>
+            View all services
+          </Link>
         </section>
 
         <section className={styles.ourWorks}>
@@ -116,9 +119,30 @@ export const HomePage = () => {
             <SongsList tracks={tracks} />
           </div>
 
-          <div className={styles.ourWorks__button}>
+          <Link to='./portfolio' className={styles.ourWorks__button}>
             <Button text='View Portfolio' />
-          </div>
+          </Link>
+        </section>
+
+        <section className={styles.banner}>
+          <img
+            className={styles.banner__star}
+            src='./images/baner-star.png'
+            alt='image-star'
+          />
+
+          <h2 className={`${styles.banner__text} ${styles.banner__text_1}`}>
+            Thinking of learning
+          </h2>
+          <h2 className={`${styles.banner__text} ${styles.banner__text_2}`}>
+            to play guitar?
+          </h2>
+          <h2 className={`${styles.banner__text} ${styles.banner__text_3}`}>
+            Today is the best day
+          </h2>
+          <h2 className={`${styles.banner__text} ${styles.banner__text_4}`}>
+            to start.
+          </h2>
         </section>
 
         <Footer />

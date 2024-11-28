@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import booleanReducer from './../slices/booleanSlice';
-import songsReducer from './../slices/songsSlice';
+import currentReducer from '../slices/current';
 
 export const store = configureStore({
   reducer: {
     boolean: booleanReducer,
-    songs: songsReducer,
+    current: currentReducer,
   },
 });
 
