@@ -1,7 +1,7 @@
 export type SongTrackType = {
-  id: string;
+  id: number;
   title: string;
   artist: string;
   photo: string;
-  soundtrack: string;
+  audio_file: string;
 };

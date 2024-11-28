@@ -44,7 +44,7 @@ export const SongTrack = ({ track }: SongTrackProps) => {
 
   return (
     <div className={styles.item}>
-      <audio ref={audioElem} src={track.soundtrack}></audio>
+      <audio ref={audioElem} src={track.audio_file}></audio>
 
       <div className={styles.item__content}>
         <img className={styles.item__photo} src={track.photo} alt='foto' />
