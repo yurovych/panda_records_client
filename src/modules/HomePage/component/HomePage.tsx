@@ -3,11 +3,15 @@ import styles from './HomePage.module.scss';
 import { Footer } from '../../shared/Footer';
 import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
-import cards from './../../../data/servicesCards.json';
+import equipment from './../../../data/equipmentCards.json';
+import services from './../../../data/servicesCards.json';
 import tracks from './../../../data/songsTracks.json';
+import videos from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
 import { Link } from 'react-router-dom';
+import { EquipmentList } from '../../shared/EquipmentList';
+import { EquipmentSwiper } from '../../shared/EquipmentSwiper/EquipmentSwiper';
 
 export const HomePage = () => {
   return (
@@ -90,15 +94,15 @@ export const HomePage = () => {
           <h2 className={styles.services__title}>Our studio services</h2>
 
           <div className={styles.services__cardsPhone}>
-            <ServicesSwiper cards={cards} />
+            <ServicesSwiper cards={services} />
           </div>
 
           <div className={styles.services__cardsTablet}>
-            <ServicesList cards={cards.slice(0, 4)} />
+            <ServicesList cards={services.slice(0, 4)} />
           </div>
 
           <div className={styles.services__cardsDesktop}>
-            <ServicesList cards={cards} />
+            <ServicesList cards={services} />
           </div>
 
           <Link to='./services' className={styles.services__viewAll}>
@@ -146,32 +150,61 @@ export const HomePage = () => {
         </section>
 
         <section className={styles.lessons}>
-          <h2 className={styles.lessons__title}>Anton Poliovyi</h2>
+          <h2 className={styles.lessons__title}>{videos[0].title}</h2>
 
           <video className={styles.lessons__video} controls>
-            <source src='./videos/guitar-lessons-video.mp4' type='video/mp4' />
+            <source src={videos[0].video_file} type='video/mp4' />
             Your browser does not support the video tag.
           </video>
 
           <h5
             className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
           >
-            I play classical, acoustic, electric guitar, bass, ukulele, and
-            drums. I have more than four years of teaching experience, more than
-            100 students.
+            {videos[0].description_blok1}
           </h5>
 
           <h5
             className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
           >
-            I teach both from scratch, giving the basics of hand placement,
-            sound production, the basics of musical literacy, and guitarists
-            with experience, adjusting and improving their technical and
-            theoretical skills.
+            {videos[0].description_blok2}
           </h5>
 
           <div className={styles.lessons__button}>
             <Button text='Contact the teacher' />
+          </div>
+        </section>
+
+        <section className={styles.equipment}>
+          <img
+            className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
+            src='./images/equipment-white-star.png'
+            alt='image-star'
+          />
+
+          <img
+            className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
+            src='./images/equipment-white-star.png'
+            alt='image-star'
+          />
+
+          <h2 className={styles.equipment__title}>Our equipment</h2>
+
+          <div className={styles.equipment__cardsPhone}>
+            <EquipmentList cards={equipment.slice(0, 2)} />
+          </div>
+
+          <div className={styles.equipment__cardsTablet}>
+            <EquipmentSwiper cards={equipment} />
+          </div>
+
+          <div className={styles.equipment__cardsDesktop}>
+            <EquipmentList cards={equipment.slice(0, 4)} />
+          </div>
+
+          <div className={styles.equipment__viewAllWrapper}>
+            <Link to='./services' className={styles.equipment__viewAll}>
+              View All Equipment
+            </Link>
           </div>
         </section>
 

@@ -1,7 +1,6 @@
-export type EquipmentType = {
+export type EquipmentCardType = {
   id: number;
   name: string;
-  type: string;
-  model_name: string;
+  model: string;
   image: string;
 };

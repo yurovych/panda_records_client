@@ -36,3 +36,15 @@
     padding-inline: 64px;
   }
 }
+
+@mixin section-padding-block {
+  padding-block: 100px;
+
+  @include on-tablet {
+    padding-block: 130px;
+  }
+
+  @include on-desktop {
+    padding-block: 150px;
+  }
+}

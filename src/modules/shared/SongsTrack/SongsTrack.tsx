@@ -8,7 +8,7 @@ type SongTrackProps = {
   track: SongTrackType;
 };
 
-export const SongTrack = ({ track }: SongTrackProps) => {
+export const SongTrack: React.FC<SongTrackProps> = ({ track }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioElem = useRef<HTMLAudioElement | null>(null);
   const dispatch = useAppDispatch();

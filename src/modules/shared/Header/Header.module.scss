@@ -1,11 +1,11 @@
 @import './../main';
 
 .headerWrapper {
-  z-index: 100;
+  z-index: 1000;
   top: 0;
   position: sticky;
   height: 86px;
-  background: $gradient;
+  background: $gradient-black-pink;
 
   @include on-desktop {
     height: 102px;

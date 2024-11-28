@@ -1,5 +1,5 @@
 export type ServiceCardType = {
-  id: string;
+  id: number;
   title: string;
   details: string;
   photo: string;

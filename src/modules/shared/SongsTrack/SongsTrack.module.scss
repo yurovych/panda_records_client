@@ -6,7 +6,7 @@
   overflow: hidden;
   height: 73px;
   padding: 12px;
-  box-shadow: 0 4px 8px 0 #00000011;
+  box-shadow: $shadow;
 
   @include on-tablet {
     height: 112px;

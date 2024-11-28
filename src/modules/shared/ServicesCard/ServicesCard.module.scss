@@ -107,6 +107,7 @@
 }
 
 .detailsLink {
+  position: relative;
   cursor: pointer;
   color: $color-primary-pink3;
   font-size: 18px;
@@ -117,10 +118,17 @@
   &::after {
     content: '';
     display: block;
+    position: absolute;
     height: 1px;
     width: 100%;
     background-color: $color-primary-pink3;
+    transition: all $effect-duration ease;
+    transform: scaleX(0);
   }
+}
+
+.cardWrapper:hover .detailsLink::after {
+  transform: scaleX(100%);
 }
 
 .swingCard {

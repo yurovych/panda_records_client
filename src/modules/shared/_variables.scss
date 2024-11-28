@@ -19,8 +19,21 @@ $color-bg-white: #ebe9eb;
 $color-text-green: #4de188;
 $color-text-grey: #989899;
 $color-text-darkGrey: #6e6e6f;
+$color-text4: #5e5e5f;
 
-$gradient: linear-gradient(to right, rgba(13, 8, 4, 1), rgba(5, 8, 69, 0.8));
+$gradient-black-pink: linear-gradient(
+  to right,
+  rgba(13, 8, 4, 1),
+  rgba(5, 8, 69, 0.9)
+);
+
+$gradient-grey-white: linear-gradient(
+  to right,
+  rgba(185, 184, 185, 1),
+  rgba(238, 242, 243, 1)
+);
+
+$shadow: 0 4px 8px 0 #00000012;
 
 $height-card-phone: 420px;
 $height-card-tablet: 370px;

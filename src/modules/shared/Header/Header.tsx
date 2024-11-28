@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { Button } from '../Button';
-import { scrollPageUpSmooth } from '../../../services/scrollPageUp';
+import { scrollPageUpSmooth } from '../../../helpers/scrollPageUp';
 
 export const Header = () => {
   const navPaths = {

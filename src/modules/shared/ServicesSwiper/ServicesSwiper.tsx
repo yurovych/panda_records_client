@@ -21,6 +21,7 @@ export const ServicesSwiper = ({ cards }: ServicesSwoperProps) => {
           clickable: true,
         }}
         navigation
+        spaceBetween={16}
       >
         {cards.map((card) => (
           <SwiperSlide key={card.id}>

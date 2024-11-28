@@ -1,5 +1,3 @@
-// import styles from './ServicesList.module.scss';
-
 import { ServicesCard } from '../ServicesCard';
 import { ServiceCardType } from './../../../types/ServiceCard';
 
@@ -10,7 +8,7 @@ type ServicesListProps = {
 export const ServicesList = ({ cards }: ServicesListProps) => {
   return (
     <>
-      {cards.map((card: ServiceCardType) => (
+      {cards.map((card) => (
         <ServicesCard card={card} key={card.id} />
       ))}
     </>

@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type CurrentType = {
   currentSongId: number | null;
-  currentServiceId: string | null;
+  currentServiceId: number | null;
 };
 
 const initialState: CurrentType = {
@@ -18,7 +18,7 @@ const currentSlice = createSlice({
     setCurrentSongId: (state, action: PayloadAction<number | null>) => {
       state.currentSongId = action.payload;
     },
-    setCurrentServiceId: (state, action: PayloadAction<string | null>) => {
+    setCurrentServiceId: (state, action: PayloadAction<number | null>) => {
       state.currentServiceId = action.payload;
     },
   },
