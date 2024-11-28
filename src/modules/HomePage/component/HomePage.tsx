@@ -135,7 +135,7 @@ export const HomePage = () => {
             Thinking of learning
           </h2>
           <h2 className={`${styles.banner__text} ${styles.banner__text_2}`}>
-            to play guitar?
+            to play the guitar?
           </h2>
           <h2 className={`${styles.banner__text} ${styles.banner__text_3}`}>
             Today is the best day
@@ -143,6 +143,39 @@ export const HomePage = () => {
           <h2 className={`${styles.banner__text} ${styles.banner__text_4}`}>
             to start.
           </h2>
+        </section>
+
+        <section className={styles.lessons}>
+          <h2 className={styles.lessons__title}>Anton Poliovyi</h2>
+
+          <video
+            className={styles.lessons__video}
+            controls
+            src='./videos/guitar-lessons-video.mp4'
+          >
+            Your browser does not support the video tag.
+          </video>
+
+          <h5
+            className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
+          >
+            I play classical, acoustic, electric guitar, bass, ukulele, and
+            drums. I have more than four years of teaching experience, more than
+            100 students.
+          </h5>
+
+          <h5
+            className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
+          >
+            I teach both from scratch, giving the basics of hand placement,
+            sound production, the basics of musical literacy, and guitarists
+            with experience, adjusting and improving their technical and
+            theoretical skills.
+          </h5>
+
+          <div className={styles.lessons__button}>
+            <Button text='Contact the teacher' />
+          </div>
         </section>
 
         <Footer />

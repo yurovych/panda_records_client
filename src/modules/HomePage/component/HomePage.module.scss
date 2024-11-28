@@ -528,7 +528,7 @@
       }
 
       @include on-desktop {
-        left: 800px;
+        left: 700px;
         top: 100px;
       }
     }
@@ -565,6 +565,87 @@
         top: 190px;
         left: 980px;
       }
+    }
+  }
+}
+
+.lessons {
+  padding-block: 100px;
+
+  @include content-padding-inline;
+  @include page-grid;
+
+  @include on-tablet {
+    padding-block: 130px;
+  }
+
+  @include on-desktop {
+    padding-block: 150px;
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: $color-text-black;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 100%;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      font-size: 56px;
+      line-height: 130%;
+      margin-bottom: 40px;
+    }
+
+    @include on-desktop {
+      text-align: left;
+      grid-column: 7 / -1;
+    }
+  }
+
+  &__video {
+    background: $gradient;
+    grid-column: 1 / -1;
+    width: 100%;
+    max-height: 340px;
+    min-height: 340px;
+
+    @include on-tablet {
+      max-height: 570px;
+      min-height: 570px;
+    }
+
+    @include on-desktop {
+      grid-column: 1 / 6;
+    }
+  }
+
+  &__desctiption {
+    grid-column: 1 / -1;
+    color: $color-text-darkGrey;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    text-align: left;
+
+    @include on-tablet {
+    }
+
+    @include on-desktop {
+      grid-column: 7 / -1;
+    }
+  }
+
+  &__button {
+    grid-column: 1 / -1;
+
+    @include on-tablet {
+      grid-column: 2 / 4;
+    }
+
+    @include on-desktop {
+      grid-column: 7 / 10;
     }
   }
 }
