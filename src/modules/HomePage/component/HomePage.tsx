@@ -148,11 +148,8 @@ export const HomePage = () => {
         <section className={styles.lessons}>
           <h2 className={styles.lessons__title}>Anton Poliovyi</h2>
 
-          <video
-            className={styles.lessons__video}
-            controls
-            src='./videos/guitar-lessons-video.mp4'
-          >
+          <video className={styles.lessons__video} controls>
+            <source src='./videos/guitar-lessons-video.mp4' type='video/mp4' />
             Your browser does not support the video tag.
           </video>
 

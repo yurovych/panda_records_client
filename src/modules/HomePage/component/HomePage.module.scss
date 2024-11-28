@@ -605,6 +605,7 @@
   }
 
   &__video {
+    clip-path: $cut-photo-s;
     background: $gradient;
     grid-column: 1 / -1;
     width: 100%;
@@ -612,6 +613,7 @@
     min-height: 340px;
 
     @include on-tablet {
+      clip-path: $cut-photo-m;
       max-height: 570px;
       min-height: 570px;
     }
