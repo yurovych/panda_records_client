@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.1f0e168a.css",
-    "main.js": "./static/js/main.fd5cc35f.js",
+    "main.css": "./static/css/main.715a8e8b.css",
+    "main.js": "./static/js/main.aaa362a6.js",
     "static/media/disc-bg.png": "./static/media/disc-bg.f93fe61614bdf2cd2af6.png",
     "static/media/services-bg.png": "./static/media/services-bg.634e8f5548dc1df3abdc.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "./static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -10,11 +10,11 @@
     "static/media/fontawesome-webfont.woff?v=4.7.0": "./static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "./static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "index.html": "./index.html",
-    "main.1f0e168a.css.map": "./static/css/main.1f0e168a.css.map",
-    "main.fd5cc35f.js.map": "./static/js/main.fd5cc35f.js.map"
+    "main.715a8e8b.css.map": "./static/css/main.715a8e8b.css.map",
+    "main.aaa362a6.js.map": "./static/js/main.aaa362a6.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f0e168a.css",
-    "static/js/main.fd5cc35f.js"
+    "static/css/main.715a8e8b.css",
+    "static/js/main.aaa362a6.js"
   ]
 }
