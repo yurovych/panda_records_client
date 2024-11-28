@@ -105,9 +105,11 @@ export const HomePage = () => {
             <ServicesList cards={services} />
           </div>
 
-          <Link to='./services' className={styles.services__viewAll}>
-            View all services
-          </Link>
+          <div className={styles.services__viewAll}>
+            <Link className={styles.services__viewAll_link} to='./services'>
+              View all services
+            </Link>
+          </div>
         </section>
 
         <section className={styles.ourWorks}>
@@ -205,6 +207,129 @@ export const HomePage = () => {
             <Link to='./services' className={styles.equipment__viewAll}>
               View All Equipment
             </Link>
+          </div>
+        </section>
+
+        <section className={styles.testimonials}>
+          <h2 className={styles.testimonials__title}>Testimonials</h2>
+
+          <div className={styles.testimonials__blocksWrapper}>
+            <div
+              className={`${styles.testimonials__block} ${styles.testimonials__block_block1}`}
+            >
+              <img
+                className={`${styles.testimonials__imageQuotes} ${styles.testimonials__imageQuotes_block1}`}
+                src='./icons/white-quotes-ico.svg'
+                alt='image-quotes'
+              />
+
+              <div className={styles.testimonials__textContent}>
+                <h4
+                  className={`${styles.testimonials__message} ${styles.testimonials__message_block1}`}
+                >
+                  Panda Records - modern equipment, good recording quality,
+                  friendly staff.
+                </h4>
+
+                <div>
+                  <h4
+                    className={`${styles.testimonials__name} ${styles.testimonials__name_block1}`}
+                  >
+                    Vlad Boichuk
+                  </h4>
+
+                  <h5
+                    className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block1}`}
+                  >
+                    guitar player
+                  </h5>
+                </div>
+              </div>
+
+              <img
+                className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block1}`}
+                src='./images/section-testimonials/photo-block1.png'
+                alt='photo-persone'
+              />
+            </div>
+
+            <div
+              className={`${styles.testimonials__block} ${styles.testimonials__block_block2}`}
+            >
+              <img
+                className={`${styles.testimonials__imageQuotes} ${styles.testimonials__imageQuotes_block2}`}
+                src='./icons/pink-quotes-ico.svg'
+                alt='image-quotes'
+              />
+
+              <div className={styles.testimonials__textContent}>
+                <h4
+                  className={`${styles.testimonials__message} ${styles.testimonials__message_block2}`}
+                >
+                  I am very pleased with the recording! The sound is clear,
+                  without noise, and the mix sounds professional.
+                </h4>
+
+                <div>
+                  <h4
+                    className={`${styles.testimonials__name} ${styles.testimonials__name_block2}`}
+                  >
+                    Vlad Boichuk
+                  </h4>
+
+                  <h5
+                    className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block2}`}
+                  >
+                    guitar player
+                  </h5>
+                </div>
+              </div>
+
+              <img
+                className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block2}`}
+                src='./images/section-testimonials/photo-block2.png'
+                alt='photo-persone'
+              />
+            </div>
+
+            <div
+              className={`${styles.testimonials__block} ${styles.testimonials__block_block3}`}
+            >
+              <img
+                className={`${styles.testimonials__imageQuotes} ${styles.testimonials__imageQuotes_block3}`}
+                src='./icons/black-quotes-ico.svg'
+                alt='image-quotes'
+              />
+
+              <div className={styles.testimonials__textContent}>
+                <h4
+                  className={`${styles.testimonials__message} ${styles.testimonials__message_block3}`}
+                >
+                  The studio team is very attentive to details. They helped to
+                  adapt the sound to my style!
+                </h4>
+
+                <div>
+                  <h4
+                    className={`${styles.testimonials__name} ${styles.testimonials__name_block3}`}
+                  >
+                    Vlad Boichuk
+                  </h4>
+
+                  <h5
+                    className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block3}`}
+                  >
+                    guitar player
+                  </h5>
+                </div>
+              </div>
+
+              <img
+                className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block3}`}
+                src='./images/section-testimonials/photo-block3.png'
+                alt='photo-persone'
+              />
+            </div>
           </div>
         </section>
 

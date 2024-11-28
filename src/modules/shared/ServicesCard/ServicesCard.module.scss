@@ -82,9 +82,6 @@
 .details {
   min-height: $height-card-phone;
   max-height: $height-card-phone;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -103,6 +100,26 @@
     padding: 24px;
     min-height: $height-card-desctop;
     max-height: $height-card-desctop;
+  }
+
+  &__title {
+    color: $color-text-black;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 130%;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    color: $color-text-darkGrey;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    text-align: left;
   }
 }
 
@@ -131,6 +148,6 @@
   transform: scaleX(100%);
 }
 
-.swingCard {
+.spinCard {
   transform: rotateY(360deg);
 }

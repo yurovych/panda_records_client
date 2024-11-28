@@ -33,7 +33,7 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card }) => {
   };
 
   return (
-    <article className={`${styles.cardWrapper} ${isShown && styles.swingCard}`}>
+    <article className={`${styles.cardWrapper} ${isShown && styles.spinCard}`}>
       {isShown ? (
         <div onClick={handleMoreDetails} className={`${styles.card} `}>
           <img className={styles.card__photo} src={card.photo} alt='foto' />
@@ -45,13 +45,13 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card }) => {
           </div>
         </div>
       ) : (
-        <div onClick={handleLessDetails} className={`${styles.details}`}>
+        <div onClick={handleLessDetails} className={styles.details}>
           <div className={styles.details__content}>
-            <p>{card.details}</p>
-            <p>{card.details}</p>
-            <p>{card.details}</p>
-            <p>{card.details}</p>
-            <p>{card.details}</p>
+            <h3 className={styles.details__title}>{card.title}</h3>
+            <div className={styles.details__description}>
+              <h5>{card.details_block1}</h5>
+              <h5>{card.details_block2}</h5>
+            </div>
           </div>
 
           <p className={styles.detailsLink}>Close</p>

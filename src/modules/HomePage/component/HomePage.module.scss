@@ -329,19 +329,22 @@
     width: 100%;
     display: flex;
     justify-content: end;
-    color: $color-primary-pink3;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 130%;
-
-    @include on-tablet {
-      font-size: 20px;
-    }
 
     @include on-desktop {
       margin-bottom: 75px;
       align-items: center;
       grid-row: 1 / 2;
+    }
+
+    &_link {
+      color: $color-primary-pink3;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 130%;
+
+      @include on-tablet {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -777,6 +780,236 @@
     &_star2 {
       bottom: 300px;
       right: 140px;
+    }
+  }
+}
+
+.testimonials {
+  background-color: $color-bg-white;
+  row-gap: 24px;
+
+  @include content-padding-inline;
+  @include page-grid;
+  @include section-padding-block;
+
+  &__blocksWrapper {
+    grid-column: 1 / -1;
+    row-gap: 24px;
+
+    @include page-grid;
+
+    @include on-tablet {
+      row-gap: 32px;
+    }
+
+    @include on-desktop {
+      row-gap: 0px;
+    }
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: $color-text-black;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 100%;
+    margin-bottom: 32px;
+
+    @include on-tablet {
+      font-size: 56px;
+      line-height: 130%;
+      margin-bottom: 40px;
+    }
+
+    @include on-desktop {
+      margin-bottom: 72px;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    grid-column: 1 / -1;
+    box-shadow: $shadow;
+    padding: 16px;
+    position: relative;
+    min-height: 300px;
+    max-height: 300px;
+
+    @include on-tablet {
+      min-height: 450px;
+      max-height: 450px;
+      padding: 40px;
+    }
+
+    @include on-desktop {
+      min-height: 480px;
+      max-height: 480px;
+      grid-column: span 4;
+      row-gap: 0;
+      column-gap: 24px;
+      padding: 32px;
+    }
+
+    &_block1 {
+      background-color: $color-text-black;
+    }
+
+    &_block2 {
+      background-color: $color-basic-white;
+    }
+
+    &_block3 {
+      background-color: $color-primary-pink4;
+    }
+  }
+
+  &__imageQuotes {
+    height: 32px;
+    width: 32px;
+    margin-bottom: 32px;
+
+    &_block2 {
+      @include on-tablet {
+        margin-left: 200px;
+      }
+
+      @include on-desktop {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__textContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__message {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 130%;
+    max-width: 80%;
+
+    @include on-tablet {
+      max-width: 60%;
+      font-size: 24px;
+    }
+
+    @include on-desktop {
+      max-width: 100%;
+    }
+
+    &_block1 {
+      color: $color-basic-white;
+    }
+
+    &_block2 {
+      color: $color-text-black;
+
+      @include on-tablet {
+        margin-left: 200px;
+      }
+
+      @include on-desktop {
+        margin-left: 0;
+      }
+    }
+
+    &_block3 {
+      color: $color-text-black;
+    }
+  }
+
+  &__name {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 130%;
+    margin-bottom: 8px;
+
+    &_block1 {
+      color: $color-text-grey;
+    }
+
+    &_block2 {
+      color: $color-text-black;
+
+      @include on-tablet {
+        text-align: right;
+      }
+
+      @include on-desktop {
+        text-align: left;
+      }
+    }
+
+    &_block3 {
+      color: $color-text-black;
+    }
+  }
+
+  &__activitie {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+
+    &_block1 {
+      color: $color-text-grey;
+    }
+
+    &_block2 {
+      color: $color-text-black;
+
+      @include on-tablet {
+        text-align: right;
+        margin-right: 25px;
+      }
+
+      @include on-desktop {
+        text-align: left;
+        margin-right: 0;
+      }
+    }
+
+    &_block3 {
+      color: $color-text-black;
+    }
+  }
+
+  &__personPhoto {
+    position: absolute;
+    transform: scale(0.7);
+    right: -70px;
+    bottom: -50px;
+
+    @include on-tablet {
+      transform: scale(1.6);
+      right: 10px;
+      bottom: 20px;
+    }
+
+    @include on-desktop {
+      transform: scale(1);
+      bottom: 0;
+    }
+
+    &_block2 {
+      @include on-tablet {
+        right: auto;
+        left: 30px;
+      }
+
+      @include on-desktop {
+        left: auto;
+        right: 0;
+      }
     }
   }
 }
