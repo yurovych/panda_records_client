@@ -1,20 +1,28 @@
 {
   "files": {
-    "main.css": "./static/css/main.d4ceb435.css",
-    "main.js": "./static/js/main.a02c18d8.js",
+    "main.css": "./static/css/main.d9ab122b.css",
+    "main.js": "./static/js/main.fdbad366.js",
     "static/media/disc-bg.png": "./static/media/disc-bg.f93fe61614bdf2cd2af6.png",
     "static/media/services-bg.png": "./static/media/services-bg.634e8f5548dc1df3abdc.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "./static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fa-solid-900.ttf": "./static/media/fa-solid-900.ad1782c70927ebc5bc87.ttf",
+    "static/media/fa-brands-400.ttf": "./static/media/fa-brands-400.26b80c8830bebf340211.ttf",
     "static/media/fontawesome-webfont.eot": "./static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "./static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fa-solid-900.woff2": "./static/media/fa-solid-900.83a538a018a9e44b023a.woff2",
+    "static/media/fa-brands-400.woff2": "./static/media/fa-brands-400.fdbb558523a380307689.woff2",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "./static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "./static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/fa-regular-400.ttf": "./static/media/fa-regular-400.05fdd87be89f7f8f0a1e.ttf",
+    "static/media/fa-regular-400.woff2": "./static/media/fa-regular-400.4f6a2dabee9c092d09b9.woff2",
+    "static/media/fa-v4compatibility.ttf": "./static/media/fa-v4compatibility.fa86b3c85e77abbd2ebd.ttf",
+    "static/media/fa-v4compatibility.woff2": "./static/media/fa-v4compatibility.c3ea317a0f10f201597f.woff2",
     "index.html": "./index.html",
-    "main.d4ceb435.css.map": "./static/css/main.d4ceb435.css.map",
-    "main.a02c18d8.js.map": "./static/js/main.a02c18d8.js.map"
+    "main.d9ab122b.css.map": "./static/css/main.d9ab122b.css.map",
+    "main.fdbad366.js.map": "./static/js/main.fdbad366.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4ceb435.css",
-    "static/js/main.a02c18d8.js"
+    "static/css/main.d9ab122b.css",
+    "static/js/main.fdbad366.js"
   ]
 }
