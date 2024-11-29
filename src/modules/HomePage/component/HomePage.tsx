@@ -12,6 +12,7 @@ import { ServicesSwiper } from '../../shared/ServicesSwiper';
 import { Link } from 'react-router-dom';
 import { EquipmentList } from '../../shared/EquipmentList';
 import { EquipmentSwiper } from '../../shared/EquipmentSwiper/EquipmentSwiper';
+import { ContactForm } from '../../shared/ContactForm';
 
 export const HomePage = () => {
   return (
@@ -330,6 +331,83 @@ export const HomePage = () => {
                 alt='photo-persone'
               />
             </div>
+          </div>
+        </section>
+
+        <section className={styles.contactUs}>
+          <h2 className={styles.contactUs__title}>Contact us</h2>
+
+          <img
+            className={styles.contactUs__image}
+            src='./images/section-contactUs/contactUs_image.png'
+            alt='contactUs-image'
+          />
+
+          <div
+            className={`${styles.contactUs__inTouch} ${styles.contactUs__infoBlock}`}
+          >
+            <h3 className={styles.contactUs__infoBlock_title}>
+              Get in touch via
+            </h3>
+
+            <h5
+              className={`${styles.contactUs__inTouch_email} ${styles.contactUs__infoBlock_text}`}
+            >
+              hello@gmail.com
+            </h5>
+
+            <h5 className={styles.contactUs__infoBlock_text}>+380687166092</h5>
+          </div>
+
+          <div
+            className={`${styles.contactUs__visit} ${styles.contactUs__infoBlock}`}
+          >
+            <h3 className={styles.contactUs__infoBlock_title}>Visit Studio</h3>
+
+            <h5 className={styles.contactUs__infoBlock_text}>
+              79000 Ukraine <br /> Lviv, str. Kozelnytska 17
+            </h5>
+          </div>
+
+          <div
+            className={`${styles.contactUs__follow} ${styles.contactUs__infoBlock}`}
+          >
+            <h3
+              className={`${styles.contactUs__infoBlock_title} ${styles.contactUs__follow_title}`}
+            >
+              Follow Us
+            </h3>
+
+            <div className={styles.contactUs__icons}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://www.instagram.com/panda._.record?igsh=a2J0ajlmbXptNGd4'
+              >
+                <img
+                  src='./icons/instagram-color-ico.svg'
+                  alt='instagram-ico'
+                />
+              </a>
+
+              <a target='_blank' rel='noreferrer' href='http://youtube.com'>
+                <img src='./icons/youtube-color-ico.svg' alt='youtube-ico' />
+              </a>
+
+              <a target='_blank' rel='noreferrer' href='http://spotify.com'>
+                <img src='./icons/spotify-color-ico.svg' alt='spotify-ico' />
+              </a>
+            </div>
+          </div>
+
+          <h3 className={styles.contactUs__formTitle}>
+            Do you have any questions?
+            <br />
+            Write to us!
+          </h3>
+
+          <div className={styles.contactUs__form}>
+            <ContactForm />
           </div>
         </section>
 

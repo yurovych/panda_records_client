@@ -59,13 +59,14 @@ export const Header = () => {
         </nav>
 
         <div className={styles.header__right}>
-          <Link
+          <a
             className={styles.header__inst}
+            href='https://www.instagram.com/panda._.record?igsh=a2J0ajlmbXptNGd4'
             target='_blank'
-            to='https://www.instagram.com/panda._.record?igsh=a2J0ajlmbXptNGd4'
+            rel='noreferrer'
           >
             <img src='./icons/instagram-ico.svg' alt='instagram_ico' />
-          </Link>
+          </a>
 
           <Button text='Contact Us' />
         </div>

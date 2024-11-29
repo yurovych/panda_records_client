@@ -80,8 +80,9 @@
 }
 
 .details {
-  min-height: $height-card-phone;
+  box-sizing: border-box;
   max-height: $height-card-phone;
+  min-height: $height-card-phone;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -109,6 +110,7 @@
     line-height: 130%;
     text-align: left;
     margin-bottom: 16px;
+    margin-right: 30px;
   }
 
   &__description {
