@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { Button } from '../Button';
 import { scrollPageUpSmooth } from '../../../helpers/scrollPageUp';
 
 export const Header = () => {
@@ -11,10 +10,18 @@ export const Header = () => {
     portfolio: '/portfolio',
   };
 
+  const navigate = useNavigate();
+
   const location = useLocation();
 
   const handleLogoClick = () => {
     scrollPageUpSmooth();
+  };
+
+  const handleContactUsClick = async () => {
+    await navigate('/');
+    const element = document.getElementById('contactUs');
+    element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -68,7 +75,12 @@ export const Header = () => {
             <img src='./icons/instagram-ico.svg' alt='instagram_ico' />
           </a>
 
-          <Button text='Contact Us' />
+          <h3
+            onClick={handleContactUsClick}
+            className={`${styles.navigation__link} ${styles.navigation__link_contactUs}`}
+          >
+            Contact Us
+          </h3>
         </div>
 
         <div className={styles.header__burgerMenu}>

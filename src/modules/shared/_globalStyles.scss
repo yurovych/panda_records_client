@@ -5,3 +5,7 @@
   transition: all $effect-duration ease;
   font-family: Kumbh Sans, sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}

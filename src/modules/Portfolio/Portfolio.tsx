@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { userService } from '../../services/userService';
 import { SongTrackType } from './../../types/SongTrack';
+import { SongsList } from '../shared/SongsList';
 // import songsLocal from './../../data/songsTracks.json';
 
 export const Portfolio = () => {
@@ -25,9 +26,7 @@ export const Portfolio = () => {
     <div>
       <p>It is "Portfolio component"</p>
       <div>
-        {songsList.map((song) => {
-          return <p>{song.title}</p>;
-        })}
+        <SongsList tracks={songsList} />
       </div>
     </div>
   );

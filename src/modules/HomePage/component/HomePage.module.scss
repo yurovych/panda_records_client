@@ -594,8 +594,8 @@
     @include on-tablet {
       grid-row: 3 / 4;
       clip-path: $cut-photo-m;
-      max-height: 570px;
-      min-height: 570px;
+      max-height: 470px;
+      min-height: 470px;
     }
 
     @include on-desktop {
@@ -1072,6 +1072,7 @@
     @include on-desktop {
       grid-column: 1 / 7;
       margin-bottom: 64px;
+      height: 660px;
     }
   }
 

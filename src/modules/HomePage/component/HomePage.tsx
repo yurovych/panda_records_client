@@ -334,7 +334,7 @@ export const HomePage = () => {
           </div>
         </section>
 
-        <section className={styles.contactUs}>
+        <section id='contactUs' className={styles.contactUs}>
           <h2 className={styles.contactUs__title}>Contact us</h2>
 
           <img
