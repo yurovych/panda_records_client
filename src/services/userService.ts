@@ -16,8 +16,8 @@ function getSevices(): Promise<ServiceCardType[]> {
   return userClient.get('url............');
 }
 
-function sendForm({ name, email, phoneNumber, message }: FormDataType) {
-  return userClient.post('/form-sent', { name, email, phoneNumber, message });
+function sendForm({ name, email, phone_number, message }: FormDataType) {
+  return userClient.post('/form-sent', { name, email, phone_number, message });
 }
 
 export const userService = {

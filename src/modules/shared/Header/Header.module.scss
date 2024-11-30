@@ -2,10 +2,10 @@
 
 .headerWrapper {
   z-index: 1000;
+  background: $gradient-black-pink;
   top: 0;
   position: sticky;
   height: 86px;
-  background: $gradient-black-pink;
 
   @include on-desktop {
     height: 102px;
@@ -55,6 +55,17 @@
     }
   }
 
+  &__link {
+    cursor: pointer;
+    color: $color-navigation-white;
+    font-weight: 400;
+    font-size: 18px;
+
+    &:hover {
+      color: $color-primary-pink1;
+    }
+  }
+
   &__button {
     position: relative;
     height: 100%;
@@ -82,53 +93,11 @@
   }
 }
 
-.navigation {
+.navigationWrapper {
   display: none;
 
   @include on-desktop {
     display: flex;
     gap: 68px;
-  }
-
-  &__link {
-    color: $color-basic-white;
-    font-weight: 400;
-    font-size: 18px;
-
-    &:hover {
-      color: $color-primary-pink1;
-    }
-  }
-}
-
-.linkIsActive {
-  color: $color-primary-pink1;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 54px;
-
-  &__text {
-    display: flex;
-    flex-direction: column;
-
-    &_top {
-      font-family: Instrument Sans, sans-serif;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 24px;
-      color: $color-text-white;
-    }
-
-    &_bottom {
-      font-family: Joan, sans-serif;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 26px;
-      color: $color-primary-pink1;
-    }
   }
 }

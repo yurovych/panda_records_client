@@ -1,0 +1,85 @@
+@import './../main';
+
+.footer {
+  background: $gradient-black-pink;
+  padding-block: 24px;
+  display: flex;
+  flex-direction: column;
+
+  @include content-padding-inline;
+
+  @include on-tablet {
+    padding-block: 40px;
+  }
+
+  @include on-tablet {
+    padding-block: 64px;
+  }
+
+  &__main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      margin-bottom: 42px;
+      flex-direction: column;
+    }
+
+    @include on-desktop {
+      margin-bottom: 56px;
+      flex-direction: row;
+    }
+  }
+
+  &__logo {
+    @include on-tablet {
+      align-self: start;
+      margin-bottom: 20px;
+    }
+
+    @include on-desktop {
+      align-self: normal;
+      margin-bottom: 0;
+    }
+  }
+
+  &__navigationWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include on-tablet {
+      align-self: end;
+      flex-direction: row;
+      gap: 24px;
+    }
+
+    @include on-desktop {
+      gap: 68px;
+      align-self: normal;
+      align-items: center;
+    }
+  }
+
+  &__line {
+    height: 1px;
+    width: 100%;
+    background-color: $color-text-darkGrey;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      margin-bottom: 42px;
+    }
+
+    @include on-tablet {
+      margin-bottom: 56px;
+    }
+  }
+
+  &__bottom {
+    text-align: center;
+  }
+}

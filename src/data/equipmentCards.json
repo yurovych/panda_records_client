@@ -3,24 +3,24 @@
     "id": 1,
     "name": "Electro guitar ",
     "model": "Yamaha Pasifica 012",
-    "image": "./images/section-equipment/card-1.png"
+    "photo": "./images/section-equipment/card-1.png"
   },
   {
     "id": 2,
     "name": "Electro-acoustic guitar ",
     "model": "LAC GLA-T118 DCE BLK Tramontane",
-    "image": "./images/section-equipment/card-2.png"
+    "photo": "./images/section-equipment/card-2.png"
   },
   {
     "id": 3,
     "name": "Microphone ",
     "model": "Rode NT2000",
-    "image": "./images/section-equipment/card-3.png"
+    "photo": "./images/section-equipment/card-3.png"
   },
   {
     "id": 4,
     "name": "Sound Card ",
     "model": "RME BabyFace Pro Fs",
-    "image": "./images/section-equipment/card-4.png"
+    "photo": "./images/section-equipment/card-4.png"
   }
 ]

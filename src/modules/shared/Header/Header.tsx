@@ -1,21 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { scrollPageUpSmooth } from '../../../helpers/scrollPageUp';
+import { scrollPageUp } from '../../../helpers/scrollPageUp';
+import { Logo } from '../Logo/Logo';
+import { Navigation } from '../Navigation';
 
 export const Header = () => {
-  const navPaths = {
-    aboutUs: '/about',
-    services: '/services',
-    portfolio: '/portfolio',
-  };
-
   const navigate = useNavigate();
 
-  const location = useLocation();
-
   const handleLogoClick = () => {
-    scrollPageUpSmooth();
+    scrollPageUp();
   };
 
   const handleContactUsClick = async () => {
@@ -27,42 +21,12 @@ export const Header = () => {
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
-        <Link onClick={handleLogoClick} to='/' className={styles.logo}>
-          <img src='./icons/logo_panda52x52.svg' alt='logo-ico' />
+        <div onClick={handleLogoClick}>
+          <Logo />
+        </div>
 
-          <div className={styles.logo__text}>
-            <p className={styles.logo__text_top}>PANDA</p>
-            <p className={styles.logo__text_bottom}>RECORDS</p>
-          </div>
-        </Link>
-
-        <nav className={styles.navigation}>
-          <Link
-            className={`${styles.navigation__link} ${
-              navPaths.aboutUs === location.pathname && styles.linkIsActive
-            }`}
-            to={'/about'}
-          >
-            About us
-          </Link>
-
-          <Link
-            className={`${styles.navigation__link} ${
-              navPaths.services === location.pathname && styles.linkIsActive
-            }`}
-            to={'/services'}
-          >
-            Services
-          </Link>
-
-          <Link
-            className={`${styles.navigation__link} ${
-              navPaths.portfolio === location.pathname && styles.linkIsActive
-            }`}
-            to={'/portfolio'}
-          >
-            Portfolio
-          </Link>
+        <nav className={styles.navigationWrapper}>
+          <Navigation />
         </nav>
 
         <div className={styles.header__right}>
@@ -75,10 +39,7 @@ export const Header = () => {
             <img src='./icons/instagram-ico.svg' alt='instagram_ico' />
           </a>
 
-          <h3
-            onClick={handleContactUsClick}
-            className={`${styles.navigation__link} ${styles.navigation__link_contactUs}`}
-          >
+          <h3 onClick={handleContactUsClick} className={styles.header__link}>
             Contact Us
           </h3>
         </div>

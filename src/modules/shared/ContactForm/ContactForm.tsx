@@ -5,9 +5,11 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Button } from '../Button';
 import styles from './ContactForm.module.scss';
 import { userService } from '../../../services/userService';
+// import { FormDataType } from './../../../types/FormDataType';
 
 export const ContactForm = () => {
   const [error, setError] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   function validateName(value: string) {
     if (!value) {
@@ -52,31 +54,89 @@ export const ContactForm = () => {
     }
   }
 
+  // const requestObj = {
+  //   name: '',
+  //   email: '',
+  //   phoneNumber: '',
+  //   message: '',
+  // };
+
+  // const sendFormDemo = ({
+  //   name,
+  //   email,
+  //   phoneNumber,
+  //   message,
+  // }: FormDataType) => {
+  //   const formPromise = new Promise((resolve, reject) => {
+  //     requestObj.name = name;
+  //     requestObj.email = email;
+  //     requestObj.phoneNumber = phoneNumber;
+  //     requestObj.message = message;
+
+  //     const success = false;
+
+  //     setTimeout(() => {
+  //       if (success) {
+  //         resolve(requestObj);
+  //       } else {
+  //         reject('Помилка при отриманні даних.');
+  //       }
+  //     }, 2000);
+  //   });
+
+  //   return formPromise;
+  // };
+
+  const manageShowSuccess = () => {
+    setShowSuccess(true);
+
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 5000);
+  };
+
+  const manageShowError = (error: string) => {
+    setError(error);
+
+    setTimeout(() => {
+      setError('');
+    }, 10000);
+  };
+
   return (
     <>
       <Formik
         initialValues={{
           name: '',
           email: '',
-          phoneNumber: '',
+          phone_number: '',
           message: '',
         }}
         validateOnMount={true}
-        onSubmit={({ name, email, phoneNumber, message }, formikHelpers) => {
+        onSubmit={({ name, email, phone_number, message }, formikHelpers) => {
           formikHelpers.setSubmitting(true);
 
+          // sendFormDemo({ name, email, phone_number, message })
+          //   .then(() => {
+          //     formikHelpers.resetForm();
+          //     manageShowSuccess();
+          //     setError('');
+          //   })
+
           userService
-            .sendForm({ name, email, phoneNumber, message })
+            .sendForm({ name, email, phone_number, message })
             .then(() => {
               formikHelpers.resetForm();
+              manageShowSuccess();
               setError('');
             })
             .catch((error) => {
               if (error.message) {
-                setError(error.message);
+                manageShowError(error.message);
               }
 
-              if (!error.response.data) {
+              if (!error.response?.data) {
+                manageShowError('Unnown error');
                 return;
               }
 
@@ -88,7 +148,7 @@ export const ContactForm = () => {
               formikHelpers.setFieldError('message', errors?.message);
 
               if (message) {
-                setError(message);
+                manageShowError(message);
               }
             })
             .finally(() => {
@@ -105,6 +165,7 @@ export const ContactForm = () => {
 
               <div className='control has-icons-left has-icons-right'>
                 <Field
+                  disabled={isSubmitting}
                   validate={validateName}
                   maxLength={20}
                   required
@@ -142,6 +203,7 @@ export const ContactForm = () => {
 
               <div className='control has-icons-left has-icons-right'>
                 <Field
+                  disabled={isSubmitting}
                   validate={validateEmail}
                   maxLength={50}
                   required
@@ -177,14 +239,15 @@ export const ContactForm = () => {
 
               <div className='control has-icons-left has-icons-right'>
                 <Field
+                  disabled={isSubmitting}
                   validate={validatePhoneNumber}
                   maxLength={10}
-                  name='phoneNumber'
+                  name='phone_number'
                   type='tel'
-                  id='phoneNumber'
+                  id='phone_number'
                   placeholder='0987654321'
                   className={`${cn('input', {
-                    'is-danger': touched.phoneNumber && errors.phoneNumber,
+                    'is-danger': touched.phone_number && errors.phone_number,
                   })} ${styles.form__field}`}
                 />
 
@@ -194,15 +257,15 @@ export const ContactForm = () => {
                   <i className='fa fa-phone'></i>
                 </span>
 
-                {touched.phoneNumber && errors.phoneNumber && (
+                {touched.phone_number && errors.phone_number && (
                   <span className='icon is-small is-right has-text-danger'>
                     <i className='fas fa-exclamation-triangle'></i>
                   </span>
                 )}
               </div>
 
-              {touched.phoneNumber && errors.phoneNumber && (
-                <p className='help is-danger'>{errors.phoneNumber}</p>
+              {touched.phone_number && errors.phone_number && (
+                <p className='help is-danger'>{errors.phone_number}</p>
               )}
             </div>
 
@@ -213,6 +276,7 @@ export const ContactForm = () => {
 
               <div className='control has-icons-left has-icons-right'>
                 <Field
+                  disabled={isSubmitting}
                   validate={validateMessage}
                   required
                   maxLength={200}
@@ -252,15 +316,23 @@ export const ContactForm = () => {
                 type='submit'
                 disabled={isSubmitting || !isValid}
               >
-                <Button text='Submit' />
+                <Button text={`${isSubmitting ? 'Sending' : 'Send'}`} />
               </button>
             </div>
 
             {error && (
               <p
-                className={`${styles.form__error} notification is-danger is-light`}
+                className={`${styles.form__resultMessage} notification is-danger is-light`}
               >
                 {error}
+              </p>
+            )}
+
+            {showSuccess && (
+              <p
+                className={`${styles.form__resultMessage} notification is-success is-light`}
+              >
+                Successfully sent
               </p>
             )}
           </Form>
