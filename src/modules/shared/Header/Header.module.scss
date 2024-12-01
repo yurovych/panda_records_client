@@ -5,11 +5,7 @@
   background: $gradient-black-pink;
   top: 0;
   position: sticky;
-  height: 86px;
-
-  @include on-desktop {
-    height: 102px;
-  }
+  height: 80px;
 
   @include content-padding-inline;
   @include page-grid;

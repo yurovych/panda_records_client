@@ -275,13 +275,13 @@ export const HomePage = () => {
                   <h4
                     className={`${styles.testimonials__name} ${styles.testimonials__name_block2}`}
                   >
-                    Vlad Boichuk
+                    Olena Galun
                   </h4>
 
                   <h5
                     className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block2}`}
                   >
-                    guitar player
+                    singer
                   </h5>
                 </div>
               </div>
@@ -314,13 +314,13 @@ export const HomePage = () => {
                   <h4
                     className={`${styles.testimonials__name} ${styles.testimonials__name_block3}`}
                   >
-                    Vlad Boichuk
+                    Beata Bango
                   </h4>
 
                   <h5
                     className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block3}`}
                   >
-                    guitar player
+                    singer
                   </h5>
                 </div>
               </div>
@@ -350,13 +350,19 @@ export const HomePage = () => {
               Get in touch via
             </h3>
 
-            <h5
+            <a
+              href='mailto:hello@gmail.com'
               className={`${styles.contactUs__inTouch_email} ${styles.contactUs__infoBlock_text}`}
             >
               hello@gmail.com
-            </h5>
+            </a>
 
-            <h5 className={styles.contactUs__infoBlock_text}>+380687166092</h5>
+            <a
+              href='tel:+380687166092'
+              className={styles.contactUs__infoBlock_text}
+            >
+              +380687166092
+            </a>
           </div>
 
           <div
@@ -364,9 +370,14 @@ export const HomePage = () => {
           >
             <h3 className={styles.contactUs__infoBlock_title}>Visit Studio</h3>
 
-            <h5 className={styles.contactUs__infoBlock_text}>
+            <a
+              target='_blank'
+              href={`https://www.google.com/maps/place/Kozelnytska+St,+17,+L'viv,+L'vivs'ka+oblast,+Ukraine,+79000/@49.811592,24.02527,487m/data=!3m2!1e3!4b1!4m6!3m5!1s0x473ae7edcefb9f0f:0x583f612b2e5fa5d0!8m2!3d49.811592!4d24.02527!16s%2Fg%2F11hbr7jmxw?entry=ttu&g_ep=EgoyMDI0MTEyNC4xIKXMDSoASAFQAw%3D%3D`}
+              className={styles.contactUs__infoBlock_text}
+              rel='noreferrer'
+            >
               79000 Ukraine <br /> Lviv, str. Kozelnytska 17
-            </h5>
+            </a>
           </div>
 
           <div

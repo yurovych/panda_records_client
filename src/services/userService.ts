@@ -9,7 +9,9 @@ function getSongs(): Promise<SongTrackType[]> {
 }
 
 function getEquipment(): Promise<EquipmentCardType[]> {
-  return userClient.get('url............');
+  return userClient.get(
+    'https://panda-records-api.onrender.com/api/equipment/'
+  );
 }
 
 function getSevices(): Promise<ServiceCardType[]> {

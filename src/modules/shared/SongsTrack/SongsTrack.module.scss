@@ -4,13 +4,13 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  height: 73px;
   padding: 12px;
   box-shadow: $shadow;
+  height: 75px;
 
   @include on-tablet {
-    height: 112px;
     padding: 16px;
+    height: 120px;
   }
 
   &__content {
@@ -24,6 +24,9 @@
 
   &__photo {
     clip-path: $cut-photo-xs;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
   }
 
   &__info {
