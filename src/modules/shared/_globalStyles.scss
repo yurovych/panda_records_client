@@ -9,3 +9,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+.hidenMenuHeightNoScroll {
+  height: 100vh;
+  overflow: hidden;
+}

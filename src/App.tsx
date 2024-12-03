@@ -12,7 +12,7 @@ export const App = () => {
 
   return (
     <div className={styles.app}>
-      {false && <HidenMenu />}
+      <HidenMenu />
 
       <Header />
 

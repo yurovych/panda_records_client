@@ -433,7 +433,7 @@
 
 .banner {
   position: relative;
-  background: $gradient-black-pink;
+  background: $gradient-black-violet;
   height: 370px;
 
   @include on-tablet {
@@ -579,7 +579,7 @@
 
   &__video {
     clip-path: $cut-photo-s;
-    background: $gradient-black-pink;
+    background: $gradient-black-violet;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
     width: 100%;

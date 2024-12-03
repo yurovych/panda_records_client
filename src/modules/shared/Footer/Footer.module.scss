@@ -1,7 +1,7 @@
 @import './../main';
 
 .footer {
-  background: $gradient-black-pink;
+  background: $gradient-black-violet;
   padding-block: 24px;
   display: flex;
   flex-direction: column;
@@ -47,6 +47,7 @@
   }
 
   &__navigationWrapper {
+    font-size: 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -58,6 +59,7 @@
     }
 
     @include on-desktop {
+      font-size: 18px;
       gap: 68px;
       align-self: normal;
       align-items: center;

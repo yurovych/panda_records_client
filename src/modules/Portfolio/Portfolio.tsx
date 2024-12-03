@@ -1,26 +1,8 @@
-import { useEffect, useState } from 'react';
-import { userService } from '../../services/userService';
-import { SongTrackType } from './../../types/SongTrack';
 import { SongsList } from '../shared/SongsList';
-// import songsLocal from './../../data/songsTracks.json';
+import { useAppSelector } from '../../app/hooks';
 
 export const Portfolio = () => {
-  const [songsList, setSongsList] = useState<SongTrackType[]>([]);
-
-  async function fetchSongs() {
-    try {
-      const result: SongTrackType[] = await userService.getSongs();
-
-      // const result = songsLocal;
-      setSongsList(result);
-    } catch (error) {
-      return error;
-    }
-  }
-
-  useEffect(() => {
-    fetchSongs();
-  }, []);
+  const songsList = useAppSelector((state) => state.songs.objects);
 
   return (
     <div>

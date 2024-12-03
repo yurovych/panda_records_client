@@ -1,11 +1,94 @@
 @import './../../shared/main';
 
 .hidenMenu {
-  z-index: 10;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1001;
+  position: fixed;
+  height: calc(100vh - 80px);
   width: 100%;
+  top: 80px;
+  background: $gradient-black-violet;
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 76px;
+    color: $color-text-white;
+
+    @include on-tablet {
+      margin-bottom: 52px;
+    }
+
+    &_title {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 130%;
+      color: $color-navigation-white;
+    }
+
+    &_number {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 130%;
+      color: $color-navigation-white;
+    }
+
+    &_adressWrapper {
+      position: relative;
+    }
+
+    &_locationIco {
+      position: absolute;
+      left: -30px;
+    }
+
+    &_adress {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 130%;
+      color: $color-navigation-white;
+      text-align: center;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+
+    &_icon {
+      transition: all $effect-duration ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+    }
+  }
 }
 
 .hidenMenu:has(:target) {
   overflow: hidden;
+}
+
+.showHidenMenu {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hideHidenMenu {
+  opacity: 0;
+  transform: translateX(-100vw);
 }

@@ -3,10 +3,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type BooleanType = {
   isAuthenticated: boolean;
+  isHidenMenu: boolean;
 };
 
 const initialState: BooleanType = {
   isAuthenticated: false,
+  isHidenMenu: false,
 };
 
 const booleanSlice = createSlice({
@@ -16,8 +18,12 @@ const booleanSlice = createSlice({
     setIsAuthenticated: (state, action: PayloadAction<boolean>) => {
       state.isAuthenticated = action.payload;
     },
+
+    setIsHidenMenu: (state, action: PayloadAction<boolean>) => {
+      state.isHidenMenu = action.payload;
+    },
   },
 });
 
 export default booleanSlice.reducer;
-export const { setIsAuthenticated } = booleanSlice.actions;
+export const { setIsAuthenticated, setIsHidenMenu } = booleanSlice.actions;

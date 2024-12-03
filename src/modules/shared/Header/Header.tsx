@@ -4,19 +4,45 @@ import styles from './Header.module.scss';
 import { scrollPageUp } from '../../../helpers/scrollPageUp';
 import { Logo } from '../Logo/Logo';
 import { Navigation } from '../Navigation';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { setIsHidenMenu } from '../../../slices/booleanSlice';
+import { useEffect } from 'react';
+import './../_main.scss';
 
 export const Header = () => {
+  const isHidenMenu = useAppSelector((state) => state.boolean.isHidenMenu);
+
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const handleLogoClick = () => {
+  function handleLogoClick() {
+    dispatch(setIsHidenMenu(false));
     scrollPageUp();
-  };
+  }
 
-  const handleContactUsClick = async () => {
+  async function handleContactUsClick() {
     await navigate('/');
     const element = document.getElementById('contactUs');
     element?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  const handleMenuButtonClick = () => {
+    dispatch(setIsHidenMenu(isHidenMenu ? false : true));
   };
+
+  window.addEventListener('resize', () => dispatch(setIsHidenMenu(false)));
+
+  useEffect(() => {
+    if (isHidenMenu) {
+      document.body.classList.add('hidenMenuHeightNoScroll');
+    } else {
+      document.body.classList.remove('hidenMenuHeightNoScroll');
+    }
+
+    return () => {
+      document.body.classList.remove('hidenMenuHeightNoScroll');
+    };
+  }, [isHidenMenu]);
 
   return (
     <div className={styles.headerWrapper}>
@@ -25,7 +51,7 @@ export const Header = () => {
           <Logo />
         </div>
 
-        <nav className={styles.navigationWrapper}>
+        <nav style={{ fontSize: '18px' }} className={styles.navigationWrapper}>
           <Navigation />
         </nav>
 
@@ -44,8 +70,18 @@ export const Header = () => {
           </h3>
         </div>
 
-        <div className={styles.header__burgerMenu}>
-          <img src='./icons/burger-menu-ico.svg' alt='menu' />
+        <div
+          onClick={handleMenuButtonClick}
+          className={styles.header__burgerMenu}
+        >
+          <img
+            src={
+              isHidenMenu
+                ? './icons/close-ico.svg'
+                : './icons/burger-menu-ico.svg'
+            }
+            alt='menu'
+          />
         </div>
       </div>
     </div>

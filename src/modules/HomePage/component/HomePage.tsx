@@ -5,7 +5,7 @@ import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
 import equipment from './../../../data/equipmentCards.json';
 import services from './../../../data/servicesCards.json';
-import tracks from './../../../data/songsTracks.json';
+// import tracks from './../../../data/songsTracks.json';
 import videos from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
@@ -13,8 +13,29 @@ import { Link } from 'react-router-dom';
 import { EquipmentList } from '../../shared/EquipmentList';
 import { EquipmentSwiper } from '../../shared/EquipmentSwiper/EquipmentSwiper';
 import { ContactForm } from '../../shared/ContactForm';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { fetchSongsAsync } from '../../../slices/fetchSongs';
+import { useEffect } from 'react';
+import { fetchServicesAsync } from '../../../slices/fetchServices';
+import { fetchEquipmentAsync } from '../../../slices/fetchEquipment';
+import { fetchVideosAsync } from '../../../slices/fetchVideos';
 
 export const HomePage = () => {
+  const songsList = useAppSelector((state) => state.songs.objects);
+  const servicesList = useAppSelector((state) => state.sevrices.objects);
+  const equipmentList = useAppSelector((state) => state.equipment.objects);
+  const videosList = useAppSelector((state) => state.videos.objects);
+  const dispatch = useAppDispatch();
+
+  console.log(videosList);
+
+  useEffect(() => {
+    dispatch(fetchSongsAsync());
+    dispatch(fetchServicesAsync());
+    dispatch(fetchEquipmentAsync());
+    dispatch(fetchVideosAsync());
+  }, []);
+
   return (
     <>
       <div className={styles.home}>
@@ -40,7 +61,6 @@ export const HomePage = () => {
             <Button text='Book a studio' />
           </div>
         </section>
-
         <section className={styles.aboutUs}>
           <h2 className={styles.aboutUs__title}>
             Place where sound becomes art.
@@ -90,7 +110,6 @@ export const HomePage = () => {
             <Button text='More About Us' />
           </Link>
         </section>
-
         <section className={styles.services}>
           <h2 className={styles.services__title}>Our studio services</h2>
 
@@ -112,7 +131,6 @@ export const HomePage = () => {
             </Link>
           </div>
         </section>
-
         <section className={styles.ourWorks}>
           <h2 className={styles.ourWorks__title}>Our most popular works</h2>
 
@@ -123,14 +141,13 @@ export const HomePage = () => {
           />
 
           <div className={styles.ourWorks__list}>
-            <SongsList tracks={tracks} />
+            <SongsList tracks={songsList?.slice(0, 2)} />
           </div>
 
           <Link to='./portfolio' className={styles.ourWorks__button}>
             <Button text='View Portfolio' />
           </Link>
         </section>
-
         <section className={styles.banner}>
           <img
             className={styles.banner__star}
@@ -151,32 +168,30 @@ export const HomePage = () => {
             to start.
           </h2>
         </section>
-
         <section className={styles.lessons}>
-          <h2 className={styles.lessons__title}>{videos[0].title}</h2>
+          <h2 className={styles.lessons__title}>{videosList[0]?.title}</h2>
 
           <video className={styles.lessons__video} controls>
-            <source src={videos[0].video_file} type='video/mp4' />
+            <source src={videosList[0]?.video_file} type='video/mp4' />
             Your browser does not support the video tag.
           </video>
 
           <h5
             className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
           >
-            {videos[0].description_blok1}
+            {videosList[0]?.description_blok1}
           </h5>
 
           <h5
             className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
           >
-            {videos[0].description_blok2}
+            {videosList[0]?.description_blok2}
           </h5>
 
           <div className={styles.lessons__button}>
             <Button text='Contact the teacher' />
           </div>
         </section>
-
         <section className={styles.equipment}>
           <img
             className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
@@ -210,7 +225,7 @@ export const HomePage = () => {
             </Link>
           </div>
         </section>
-
+        d
         <section className={styles.testimonials}>
           <h2 className={styles.testimonials__title}>Testimonials</h2>
 
@@ -333,7 +348,6 @@ export const HomePage = () => {
             </div>
           </div>
         </section>
-
         <section id='contactUs' className={styles.contactUs}>
           <h2 className={styles.contactUs__title}>Contact us</h2>
 
@@ -421,7 +435,6 @@ export const HomePage = () => {
             <ContactForm />
           </div>
         </section>
-
         <Footer />
       </div>
     </>

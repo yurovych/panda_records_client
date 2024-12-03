@@ -1,5 +1,5 @@
 import styles from './ServicesCard.module.scss';
-import { ServiceCardType } from './../../../types/ServiceCard';
+import { ServiceCardType } from '../../../types/Service';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setCurrentServiceId } from '../../../slices/current';
 import { useEffect, useState } from 'react';

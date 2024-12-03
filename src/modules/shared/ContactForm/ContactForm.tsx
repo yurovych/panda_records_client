@@ -4,7 +4,7 @@ import { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Button } from '../Button';
 import styles from './ContactForm.module.scss';
-import { userService } from '../../../services/userService';
+import { clientService } from '../../../services/clientService';
 // import { FormDataType } from './../../../types/FormDataType';
 
 export const ContactForm = () => {
@@ -123,7 +123,7 @@ export const ContactForm = () => {
           //     setError('');
           //   })
 
-          userService
+          clientService
             .sendForm({ name, email, phone_number, message })
             .then(() => {
               formikHelpers.resetForm();

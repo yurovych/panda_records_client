@@ -3,11 +3,6 @@
 .link {
   color: $color-navigation-white;
   font-weight: 400;
-  font-size: 16px;
-
-  @include on-desktop {
-    font-size: 18px;
-  }
 
   &:hover {
     color: $color-primary-pink1;

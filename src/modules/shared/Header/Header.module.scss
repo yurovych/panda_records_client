@@ -1,8 +1,13 @@
 @import './../main';
 
+.hidenMenuHeightNoScroll {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .headerWrapper {
   z-index: 1000;
-  background: $gradient-black-pink;
+  background: $gradient-black-violet;
   top: 0;
   position: sticky;
   height: 80px;
@@ -26,6 +31,13 @@
   }
 
   &__burgerMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+
     @include on-desktop {
       display: none;
     }
@@ -59,32 +71,6 @@
 
     &:hover {
       color: $color-primary-pink1;
-    }
-  }
-
-  &__button {
-    position: relative;
-    height: 100%;
-    width: 130;
-    background-color: $color-primary-pink1;
-    padding: 1.5px;
-
-    &_whiteField {
-      width: 80px;
-      height: 100%;
-      background-color: $color-bg-white;
-      margin-right: 44px;
-    }
-
-    &_text {
-      position: absolute;
-      width: max-content;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: $color-basic-black;
-      font-weight: 500;
-      font-size: 16px;
     }
   }
 }

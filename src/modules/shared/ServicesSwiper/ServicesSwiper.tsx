@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ServiceCardType } from './../../../types/ServiceCard';
+import { ServiceCardType } from '../../../types/Service';
 import { ServicesCard } from '../ServicesCard';
 import styles from './ServicesSwiper.module.scss';
 import 'swiper/css';

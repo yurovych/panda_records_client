@@ -1,11 +1,19 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import booleanReducer from './../slices/booleanSlice';
 import currentReducer from '../slices/current';
+import songsReduser from './../slices/fetchSongs';
+import servicesReduser from './../slices/fetchServices';
+import equipmentReducer from './../slices/fetchEquipment';
+import videosReducer from './../slices/fetchVideos';
 
 export const store = configureStore({
   reducer: {
     boolean: booleanReducer,
     current: currentReducer,
+    songs: songsReduser,
+    sevrices: servicesReduser,
+    equipment: equipmentReducer,
+    videos: videosReducer,
   },
 });
 
