@@ -3,10 +3,10 @@ import styles from './HomePage.module.scss';
 import { Footer } from '../../shared/Footer';
 import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
-import equipment from './../../../data/equipmentCards.json';
-import services from './../../../data/servicesCards.json';
+// import equipment from './../../../data/equipmentCards.json';
+// import services from './../../../data/servicesCards.json';
 // import tracks from './../../../data/songsTracks.json';
-import videos from './../../../data/videos.json';
+// import videos from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
 import { Link } from 'react-router-dom';
@@ -110,44 +110,50 @@ export const HomePage = () => {
             <Button text='More About Us' />
           </Link>
         </section>
-        <section className={styles.services}>
-          <h2 className={styles.services__title}>Our studio services</h2>
 
-          <div className={styles.services__cardsPhone}>
-            <ServicesSwiper cards={services} />
-          </div>
+        {servicesList.length > 0 && (
+          <section className={styles.services}>
+            <h2 className={styles.services__title}>Our studio services</h2>
 
-          <div className={styles.services__cardsTablet}>
-            <ServicesList cards={services.slice(0, 4)} />
-          </div>
+            <div className={styles.services__cardsPhone}>
+              <ServicesSwiper cards={servicesList} />
+            </div>
 
-          <div className={styles.services__cardsDesktop}>
-            <ServicesList cards={services} />
-          </div>
+            <div className={styles.services__cardsTablet}>
+              <ServicesList cards={servicesList.slice(0, 4)} />
+            </div>
 
-          <div className={styles.services__viewAll}>
-            <Link className={styles.services__viewAll_link} to='./services'>
-              View all services
+            <div className={styles.services__cardsDesktop}>
+              <ServicesList cards={servicesList} />
+            </div>
+
+            <div className={styles.services__viewAll}>
+              <Link className={styles.services__viewAll_link} to='./services'>
+                View all services
+              </Link>
+            </div>
+          </section>
+        )}
+
+        {songsList.length > 0 && (
+          <section className={styles.ourWorks}>
+            <h2 className={styles.ourWorks__title}>Our most popular works</h2>
+
+            <img
+              className={styles.ourWorks__photo}
+              src='./images/songs-photo.png'
+              alt='foto'
+            />
+
+            <div className={styles.ourWorks__list}>
+              <SongsList tracks={songsList?.slice(0, 2)} />
+            </div>
+
+            <Link to='./portfolio' className={styles.ourWorks__button}>
+              <Button text='View Portfolio' />
             </Link>
-          </div>
-        </section>
-        <section className={styles.ourWorks}>
-          <h2 className={styles.ourWorks__title}>Our most popular works</h2>
-
-          <img
-            className={styles.ourWorks__photo}
-            src='./images/songs-photo.png'
-            alt='foto'
-          />
-
-          <div className={styles.ourWorks__list}>
-            <SongsList tracks={songsList?.slice(0, 2)} />
-          </div>
-
-          <Link to='./portfolio' className={styles.ourWorks__button}>
-            <Button text='View Portfolio' />
-          </Link>
-        </section>
+          </section>
+        )}
         <section className={styles.banner}>
           <img
             className={styles.banner__star}
@@ -189,43 +195,46 @@ export const HomePage = () => {
           </h5>
 
           <div className={styles.lessons__button}>
-            <Button text='Contact the teacher' />
+            <Button text='Text the teacher' />
           </div>
         </section>
-        <section className={styles.equipment}>
-          <img
-            className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
-            src='./images/equipment-white-star.png'
-            alt='image-star'
-          />
 
-          <img
-            className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
-            src='./images/equipment-white-star.png'
-            alt='image-star'
-          />
+        {equipmentList.length > 0 && (
+          <section className={styles.equipment}>
+            <img
+              className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
+              src='./images/equipment-white-star.png'
+              alt='image-star'
+            />
 
-          <h2 className={styles.equipment__title}>Our equipment</h2>
+            <img
+              className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
+              src='./images/equipment-white-star.png'
+              alt='image-star'
+            />
 
-          <div className={styles.equipment__cardsPhone}>
-            <EquipmentList cards={equipment.slice(0, 2)} />
-          </div>
+            <h2 className={styles.equipment__title}>Our equipment</h2>
 
-          <div className={styles.equipment__cardsTablet}>
-            <EquipmentSwiper cards={equipment} />
-          </div>
+            <div className={styles.equipment__cardsPhone}>
+              <EquipmentList cards={equipmentList.slice(0, 2)} />
+            </div>
 
-          <div className={styles.equipment__cardsDesktop}>
-            <EquipmentList cards={equipment.slice(0, 4)} />
-          </div>
+            <div className={styles.equipment__cardsTablet}>
+              <EquipmentSwiper cards={equipmentList} />
+            </div>
 
-          <div className={styles.equipment__viewAllWrapper}>
-            <Link to='./services' className={styles.equipment__viewAll}>
-              View All Equipment
-            </Link>
-          </div>
-        </section>
-        d
+            <div className={styles.equipment__cardsDesktop}>
+              <EquipmentList cards={equipmentList.slice(0, 4)} />
+            </div>
+
+            <div className={styles.equipment__viewAllWrapper}>
+              <Link to='./services' className={styles.equipment__viewAll}>
+                View All Equipment
+              </Link>
+            </div>
+          </section>
+        )}
+
         <section className={styles.testimonials}>
           <h2 className={styles.testimonials__title}>Testimonials</h2>
 

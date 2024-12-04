@@ -44,23 +44,25 @@
   }
 
   &__right {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 36px;
 
-    @include on-desktop {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-      height: 100%;
+    &_desktop {
+      display: none;
+
+      @include on-desktop {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        height: 100%;
+      }
     }
   }
 
   &__inst {
-    display: none;
-
-    @include on-tablet {
-      display: flex;
-      align-items: center;
-    }
+    display: flex;
+    align-items: center;
   }
 
   &__link {
@@ -72,6 +74,11 @@
     &:hover {
       color: $color-primary-pink1;
     }
+
+    &_contactUs {
+      border: 1px solid $color-basic-white;
+      padding-inline: 24px;
+    }
   }
 }
 
@@ -82,4 +89,21 @@
     display: flex;
     gap: 68px;
   }
+}
+
+.languageButton {
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  &__img {
+    transform: scale(1.4);
+  }
+}
+
+.languageChanging {
+  transform: scale(1.4) rotate(360deg);
 }

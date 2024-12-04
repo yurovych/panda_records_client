@@ -1,14 +1,16 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navigation.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const Navigation = () => {
+  const { t } = useTranslation();
+  const location = useLocation();
+
   const navPaths = {
     aboutUs: '/about',
     services: '/services',
     portfolio: '/portfolio',
   };
-
-  const location = useLocation();
 
   return (
     <>
@@ -18,7 +20,7 @@ export const Navigation = () => {
         }`}
         to={'/about'}
       >
-        About us
+        {t('about_us')}
       </Link>
 
       <Link
@@ -27,7 +29,7 @@ export const Navigation = () => {
         }`}
         to={'/services'}
       >
-        Services
+        {t('services')}
       </Link>
 
       <Link
@@ -36,7 +38,7 @@ export const Navigation = () => {
         }`}
         to={'/portfolio'}
       >
-        Portfolio
+        {t('portfolio')}
       </Link>
     </>
   );

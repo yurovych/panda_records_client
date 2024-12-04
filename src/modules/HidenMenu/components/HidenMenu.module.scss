@@ -71,10 +71,6 @@
     &_icon {
       transition: all $effect-duration ease;
       cursor: pointer;
-
-      &:hover {
-        transform: translateY(-10px);
-      }
     }
   }
 }

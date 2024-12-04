@@ -44,12 +44,17 @@
   }
 
   &__field {
-    background-color: $color-basic-white;
+    background-color: $color-basic-white !important;
     height: 55px !important;
     padding-left: 35px !important;
+    border: 1px solid $color-navigation-white !important;
 
     &:focus {
       border: 1px solid $color-primary-pink1 !important;
+    }
+
+    &::placeholder {
+      color: $color-navigation-white !important;
     }
   }
 

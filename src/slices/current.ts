@@ -1,28 +1,35 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { SongTrackType } from './../types/SongTrack';
 
 type CurrentType = {
-  currentSongId: number | null;
+  currentSong: SongTrackType | null;
   currentServiceId: number | null;
+  currentLanguage: string;
 };
 
 const initialState: CurrentType = {
-  currentSongId: null,
+  currentSong: null,
   currentServiceId: null,
+  currentLanguage: 'ua',
 };
 
 const currentSlice = createSlice({
   name: 'songs',
   initialState,
   reducers: {
-    setCurrentSongId: (state, action: PayloadAction<number | null>) => {
-      state.currentSongId = action.payload;
+    setCurrentSong: (state, action: PayloadAction<SongTrackType | null>) => {
+      state.currentSong = action.payload;
     },
     setCurrentServiceId: (state, action: PayloadAction<number | null>) => {
       state.currentServiceId = action.payload;
+    },
+    setCurrentLanguage: (state, action: PayloadAction<string>) => {
+      state.currentLanguage = action.payload;
     },
   },
 });
 
 export default currentSlice.reducer;
-export const { setCurrentSongId, setCurrentServiceId } = currentSlice.actions;
+export const { setCurrentSong, setCurrentServiceId, setCurrentLanguage } =
+  currentSlice.actions;

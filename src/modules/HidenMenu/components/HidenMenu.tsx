@@ -4,10 +4,12 @@ import { Navigation } from '../../shared/Navigation';
 import styles from './HidenMenu.module.scss';
 import React from 'react';
 import { setIsHidenMenu } from '../../../slices/booleanSlice';
+import { useTranslation } from 'react-i18next';
 
 export const HidenMenu: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const isHidenMenu = useAppSelector((state) => state.boolean.isHidenMenu);
 
@@ -34,7 +36,7 @@ export const HidenMenu: React.FC = () => {
       </div>
 
       <div className={styles.hidenMenu__contacts}>
-        <h3 className={styles.hidenMenu__contacts_title}>Contact Us:</h3>
+        <h3 className={styles.hidenMenu__contacts_title}>{t('contact_us')}:</h3>
 
         <a
           className={styles.hidenMenu__contacts_number}
@@ -56,7 +58,9 @@ export const HidenMenu: React.FC = () => {
             className={styles.hidenMenu__contacts_adress}
             rel='noreferrer'
           >
-            Ukraine 79000 <br /> Kozelnytska 17, Lviv
+            {t('adress_1')}
+            <br />
+            {t('adress_2')}
           </a>
         </div>
       </div>
