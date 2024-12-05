@@ -1,16 +1,21 @@
 @import './../main';
 
 .item {
+  background-color: $color-basic-white;
+  opacity: 0.9;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
   padding: 12px;
   box-shadow: $shadow;
-  height: 75px;
+  min-height: 75px;
+  max-height: 75px;
+  width: 100%;
 
   @include on-tablet {
     padding: 16px;
-    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
   }
 
   &__content {
@@ -91,7 +96,8 @@
   }
 
   &__button {
-    height: 75%;
+    height: 48px;
+    width: 48px;
     transition: all $effect-duration ease;
   }
 }

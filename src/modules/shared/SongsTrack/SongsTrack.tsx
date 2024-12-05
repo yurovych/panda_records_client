@@ -17,9 +17,16 @@ export const SongTrack: React.FC<SongTrackProps> = ({ track }) => {
   const audio = audioElem.current;
 
   const playPauseTrack = () => {
-    dispatch(setCurrentSong(track));
+    const audio = audioElem.current;
+    audio?.load();
 
-    setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      dispatch(setCurrentSong(null));
+      setIsPlaying(false);
+    } else {
+      dispatch(setCurrentSong(track));
+      setIsPlaying(true);
+    }
   };
 
   const onPlaying = () => {
@@ -37,15 +44,20 @@ export const SongTrack: React.FC<SongTrackProps> = ({ track }) => {
     }
   };
 
+  const handleEnded = () => {
+    setIsPlaying(false);
+    dispatch(setCurrentSong(null));
+  };
+
   useEffect(() => {
     if (!audio) return;
 
-    audio.addEventListener('ended', () => setIsPlaying(false));
+    audio.addEventListener('ended', handleEnded);
 
     return () => {
-      audio.removeEventListener('ended', () => setIsPlaying(false));
+      audio.removeEventListener('ended', handleEnded);
     };
-  }, []);
+  }, [audio]);
 
   useEffect(() => {
     if (track.id !== currentSong?.id) {
@@ -56,8 +68,15 @@ export const SongTrack: React.FC<SongTrackProps> = ({ track }) => {
 
     if (!audio) return;
 
-    isPlaying && track.id === currentSong?.id ? audio.play() : audio.load();
-  }, [isPlaying, currentSong?.id, track.id, audio]);
+    if (isPlaying && track.id === currentSong?.id) {
+      audio
+        .play()
+        .catch((error) => console.error('Помилка відтворення:', error));
+    } else {
+      audio.pause();
+      audio.load();
+    }
+  }, [isPlaying, currentSong?.id, track.id]);
 
   const dragRunner = (event: React.MouseEvent<HTMLDivElement>) => {
     let position = searchBarElement.current?.clientWidth;

@@ -1,0 +1,170 @@
+@import './../main';
+
+.item {
+  background-color: $color-basic-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid $color-text-white;
+  box-shadow: $shadow;
+  gap: 16px;
+
+  @include on-tablet {
+    gap: 24px;
+  }
+
+  @include on-desktop {
+    padding: 24px;
+  }
+
+  &__photo {
+    height: 100%;
+    max-height: 70%;
+    width: 100%;
+    clip-path: $cut-photo-s;
+    object-fit: cover;
+  }
+
+  &__bottomBlock {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__info {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $color-text-black;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 24px;
+    }
+  }
+
+  &__searchBar {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 6px;
+    width: 100%;
+    background-color: $color-basic-black;
+
+    &_runner {
+      height: 6px;
+      background-color: $color-primary-pink2;
+    }
+  }
+
+  &__artist {
+    color: $color-text-grey;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 18px;
+    }
+  }
+
+  &__time {
+    display: flex;
+    justify-content: space-between;
+
+    &_element {
+      font-size: 12px;
+      color: $color-text-grey;
+    }
+  }
+
+  &__buttonWrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: end;
+    gap: 20px;
+  }
+
+  &__button {
+    height: 48px;
+    width: 48px;
+    transition: all $effect-duration ease;
+  }
+}
+
+.rotate {
+  transform: scale(0.8) rotate(180deg);
+}
+
+@keyframes firstBar {
+  0% {
+    transform: scaleY(30%);
+  }
+
+  100% {
+    transform: scaleY(100%);
+  }
+}
+
+@keyframes secondBar {
+  0% {
+    transform: scaleY(100%);
+  }
+
+  100% {
+    transform: scaleY(30%);
+  }
+}
+
+@keyframes thirdBar {
+  0% {
+    transform: scaleY(30%);
+  }
+
+  50% {
+    transform: scaleY(100%);
+  }
+
+  100% {
+    transform: scaleY(30%);
+  }
+}
+
+.songAnimation {
+  display: flex;
+  gap: 2px;
+
+  &__bar {
+    width: 4px;
+    height: 12px;
+    background-color: $color-primary-pink1;
+    border-radius: 2px;
+    transform-origin: bottom;
+
+    @include on-tablet {
+      width: 5px;
+      height: 15px;
+    }
+
+    &_1 {
+      animation: firstBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+
+    &_2 {
+      animation: secondBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+
+    &_3 {
+      animation: thirdBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "id": 8,
+    "title": "Чого у сні",
+    "artist": "Твій зайчик пише",
+    "photo": "./images/section-songs/choho_u_sni.png",
+    "audio_file": "./songs/choho_u_sni.wav"
+  },
+  {
+    "id": 9,
+    "title": "Тобі",
+    "artist": "Польовий",
+    "photo": "./images/section-songs/tobi.png",
+    "audio_file": "./songs/tobi.wav"
+  },
+  {
+    "id": 10,
+    "title": "Двір",
+    "artist": "Паліндром",
+    "photo": "./images/section-songs/tobi.png",
+    "audio_file": "./songs/dvir_palindrom.m4a"
+  },
+  {
+    "id": 11,
+    "title": "Коси",
+    "artist": "BALSAM",
+    "photo": "./images/section-songs/tobi.png",
+    "audio_file": "./songs/BALSAM_kosy.mp3"
+  },
+  {
+    "id": 12,
+    "title": "Двір",
+    "artist": "Паліндром",
+    "photo": "./images/section-songs/tobi.png",
+    "audio_file": "./songs/dvir_palindrom.m4a"
+  },
+  {
+    "id": 13,
+    "title": "Тобі",
+    "artist": "Польовий",
+    "photo": "./images/section-songs/tobi.png",
+    "audio_file": "./songs/tobi.wav"
+  },
+  {
+    "id": 14,
+    "title": "Двір",
+    "artist": "Паліндром",
+    "photo": "./images/section-songs/tobi.png",
+    "audio_file": "./songs/dvir_palindrom.m4a"
+  }
+]
