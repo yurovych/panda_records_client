@@ -22,14 +22,6 @@
   align-items: center;
   grid-column: 1 / -1;
 
-  @include on-tablet {
-    top: 24px;
-  }
-
-  @include on-desktop {
-    top: 46px;
-  }
-
   &__burgerMenu {
     display: flex;
     justify-content: center;

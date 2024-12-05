@@ -3,7 +3,6 @@
 .home {
   display: flex;
   flex-direction: column;
-  margin-top: -80px;
 }
 
 .top {
@@ -12,19 +11,19 @@
   background-repeat: no-repeat;
   background-size: cover;
   grid-auto-rows: min-content;
-  padding-top: 102px;
+  padding-top: 24px;
   padding-bottom: 100px;
 
   @include content-padding-inline;
   @include page-grid;
 
   @include on-tablet {
-    padding-top: 112px;
+    padding-top: 32px;
     padding-bottom: 130px;
   }
 
   @include on-desktop {
-    padding-top: 144px;
+    padding-top: 64px;
     padding-bottom: 150px;
   }
 
@@ -35,7 +34,7 @@
     font-size: 20px;
     font-weight: 400;
     line-height: 130%;
-    margin-bottom: 24px;
+    margin-bottom: 36px;
 
     @include on-tablet {
       font-size: 24px;

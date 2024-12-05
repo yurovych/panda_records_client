@@ -5,6 +5,7 @@ import songsReduser from './../slices/fetchSongs';
 import servicesReduser from './../slices/fetchServices';
 import equipmentReducer from './../slices/fetchEquipment';
 import videosReducer from './../slices/fetchVideos';
+import playerReducer from './../slices/playerSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     sevrices: servicesReduser,
     equipment: equipmentReducer,
     videos: videosReducer,
+    player: playerReducer,
   },
 });
 

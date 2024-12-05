@@ -13,28 +13,15 @@ import { Link } from 'react-router-dom';
 import { EquipmentList } from '../../shared/EquipmentList';
 import { EquipmentSwiper } from '../../shared/EquipmentSwiper/EquipmentSwiper';
 import { ContactForm } from '../../shared/ContactForm';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { fetchSongsAsync } from '../../../slices/fetchSongs';
-import { useEffect } from 'react';
-import { fetchServicesAsync } from '../../../slices/fetchServices';
-import { fetchEquipmentAsync } from '../../../slices/fetchEquipment';
-import { fetchVideosAsync } from '../../../slices/fetchVideos';
+import { useAppSelector } from '../../../app/hooks';
 
 export const HomePage = () => {
   const songsList = useAppSelector((state) => state.songs.objects);
   const servicesList = useAppSelector((state) => state.sevrices.objects);
   const equipmentList = useAppSelector((state) => state.equipment.objects);
   const videosList = useAppSelector((state) => state.videos.objects);
-  const dispatch = useAppDispatch();
 
   console.log(videosList);
-
-  useEffect(() => {
-    dispatch(fetchSongsAsync());
-    dispatch(fetchServicesAsync());
-    dispatch(fetchEquipmentAsync());
-    dispatch(fetchVideosAsync());
-  }, []);
 
   return (
     <>

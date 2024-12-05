@@ -1,33 +1,24 @@
 import styles from './SongCard.module.scss';
 import { SongTrackType } from './../../../types/SongTrack';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setCurrentSong } from '../../../slices/current';
+import {
+  setCurrentSong,
+  setIsPlaying,
+  toggleTrack,
+} from '../../../slices/playerSlice';
 
 type SongTrackProps = {
   track: SongTrackType;
 };
 
 export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const audioElem = useRef<HTMLAudioElement | null>(null);
   const searchBarElement = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
-  const currentSong = useAppSelector((state) => state.current.currentSong);
+  const currentSong = useAppSelector((state) => state.player.currentSong);
+  const isPlaying = useAppSelector((state) => state.player.isPlaying);
   const audio = audioElem.current;
-
-  const playPauseTrack = () => {
-    const audio = audioElem.current;
-    audio?.load();
-
-    if (isPlaying) {
-      dispatch(setCurrentSong(null));
-      setIsPlaying(false);
-    } else {
-      dispatch(setCurrentSong(track));
-      setIsPlaying(true);
-    }
-  };
 
   const onPlaying = () => {
     const duration = audio?.duration;
@@ -44,12 +35,12 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
     }
   };
 
-  const handleEnded = () => {
-    setIsPlaying(false);
-    dispatch(setCurrentSong(null));
-  };
-
   useEffect(() => {
+    const handleEnded = () => {
+      dispatch(setIsPlaying(false));
+      dispatch(setCurrentSong(null));
+    };
+
     if (!audio) return;
 
     audio.addEventListener('ended', handleEnded);
@@ -57,21 +48,23 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
     return () => {
       audio.removeEventListener('ended', handleEnded);
     };
-  }, [audio]);
+  }, []);
 
   useEffect(() => {
-    if (track.id !== currentSong?.id) {
-      setIsPlaying(false);
-    }
-
     const audio = audioElem.current;
-
     if (!audio) return;
 
-    isPlaying && track.id === currentSong?.id ? audio.play() : audio.load();
-  }, [isPlaying, currentSong?.id, track.id, audio]);
+    if (isPlaying && track.id === currentSong?.id) {
+      audio
+        .play()
+        .catch((error) => console.error('Помилка відтворення:', error));
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }, [isPlaying, currentSong?.id, track.id]);
 
-  const dragRunner = (event: React.MouseEvent<HTMLDivElement>) => {
+  function dragRunner(event: React.MouseEvent<HTMLDivElement>) {
     let position = searchBarElement.current?.clientWidth;
     const offset = event.nativeEvent.offsetX;
 
@@ -90,9 +83,9 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
       audioElem.current.currentTime =
         (songProgress / 100) * currentSong.song_length;
     }
-  };
+  }
 
-  const shownProgress = () => {
+  function shownProgress() {
     if (track.id !== currentSong?.id) {
       return '0:00';
     }
@@ -106,9 +99,9 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
     }
 
     return '0:00';
-  };
+  }
 
-  const shownDuration = () => {
+  function shownDuration() {
     if (audio) {
       const minutes = Math.trunc(audio.duration / 60);
       const seconds = Math.floor(audio.duration % 60)
@@ -118,7 +111,7 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
     }
 
     return '0:00';
-  };
+  }
 
   return (
     <div className={styles.item}>
@@ -154,9 +147,8 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
             <div
               style={{
                 width: `${
-                  isPlaying
-                    ? track.id === currentSong?.id &&
-                      currentSong?.progress + '%'
+                  isPlaying && track.id === currentSong?.id
+                    ? currentSong?.progress + '%'
                     : 0
                 }`,
               }}
@@ -165,8 +157,11 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
           </div>
         </div>
 
-        <div onClick={playPauseTrack} className={styles.item__buttonWrapper}>
-          {isPlaying && (
+        <div
+          onClick={() => dispatch(toggleTrack(track))}
+          className={styles.item__buttonWrapper}
+        >
+          {isPlaying && isPlaying && currentSong?.id === track.id && (
             <div className={styles.songAnimation}>
               <div
                 className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
@@ -181,9 +176,16 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
           )}
 
           <img
-            className={`${styles.item__button} ${isPlaying && styles.rotate} `}
+            className={`${styles.item__button} ${
+              isPlaying &&
+              isPlaying &&
+              currentSong?.id === track.id &&
+              styles.rotate
+            } `}
             src={
-              isPlaying ? './icons/stop-audio-ico.svg' : './icons/play-ico.svg'
+              isPlaying && isPlaying && currentSong?.id === track.id
+                ? './icons/stop-audio-ico.svg'
+                : './icons/play-ico.svg'
             }
             alt='play'
           />

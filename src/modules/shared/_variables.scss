@@ -2,6 +2,13 @@ $tablet-min-width: 640px;
 $desktop-min-width: 1200px;
 $effect-duration: 0.4s;
 $cut-photo-m: polygon(0 0, calc(100% - 100px) 0, 100% 100px, 100% 100%, 0 100%);
+$cut-photo-reverse-m: polygon(
+  0 0,
+  100% 0,
+  100% 100%,
+  calc(100px) 100%,
+  0 calc(100% - 100px)
+);
 $cut-photo-s: polygon(0 0, calc(100% - 60px) 0, 100% 60px, 100% 100%, 0 100%);
 $cut-photo-xs: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
 

@@ -10,7 +10,7 @@ import { useAppSelector } from '../../app/hooks';
 export const Portfolio = () => {
   // const songsList = useAppSelector((state) => state.songs.objects);
   const { t } = useTranslation();
-  const currentSong = useAppSelector((state) => state.current.currentSong);
+  const currentSong = useAppSelector((state) => state.player.currentSong);
 
   return (
     <div className={styles.portfolio}>
@@ -79,5 +79,3 @@ export const Portfolio = () => {
     </div>
   );
 };
-
-// The play() request was interrupted by a new load request. https://goo.gl/LdLk22

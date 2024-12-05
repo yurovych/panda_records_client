@@ -6,4 +6,5 @@ export type SongTrackType = {
   audio_file: string;
   progress?: number | undefined;
   song_length?: number | undefined;
+  top?: boolean;
 };

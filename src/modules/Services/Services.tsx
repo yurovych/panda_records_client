@@ -8,12 +8,14 @@ export const Services = () => {
   const equipmentList = useAppSelector((state) => state.equipment.objects);
   const songsList = useAppSelector((state) => state.songs.objects);
 
+  const topSongs = songsList.filter((song) => song.top);
+
   return (
     <div>
       <div>
-        <SongsList tracks={songsList} />
-        <ServicesList cards={servicesList} />
-        <EquipmentList cards={equipmentList} />
+        <SongsList tracks={topSongs} />
+        {/* <ServicesList cards={servicesList} />
+        <EquipmentList cards={equipmentList} /> */}
       </div>
     </div>
   );
