@@ -1,0 +1,215 @@
+@import './../main';
+
+.contactUs {
+  background-image: url('./../../../../public/images/disc-bg.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 25%;
+  background-color: $color-basic-white;
+
+  @include content-padding-inline;
+  @include page-grid;
+  @include section-padding-block;
+
+  @include on-tablet {
+    background-size: 100% 35%;
+  }
+
+  @include on-desktop {
+    background-size: 100% 50%;
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    text-align: center;
+    color: $color-basic-white;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 100%;
+    margin-bottom: 32px;
+
+    @include on-tablet {
+      font-size: 56px;
+      line-height: 130%;
+      margin-bottom: 40px;
+    }
+
+    @include on-desktop {
+      text-align: left;
+      margin-bottom: 60px;
+    }
+  }
+
+  &__image {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    clip-path: $cut-photo-s;
+    object-fit: cover;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      grid-row: 2 / 3;
+      margin-bottom: 40px;
+    }
+
+    @include on-desktop {
+      grid-column: 1 / 7;
+      height: 100%;
+      padding-bottom: 64px;
+    }
+  }
+
+  &__infoBlock {
+    grid-column: 1 / -1;
+    background-color: $color-basic-white;
+    box-shadow: $shadow;
+    padding: 16px;
+
+    @include on-tablet {
+      padding: 24px;
+    }
+
+    @include on-desktop {
+      grid-column: span 4;
+    }
+
+    &_title {
+      text-align: left;
+      color: $color-text-black;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 130%;
+      margin-bottom: 16px;
+
+      @include on-tablet {
+        margin-bottom: 24px;
+      }
+    }
+
+    &_text {
+      text-align: left;
+      color: $color-text-darkGrey;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 130%;
+    }
+  }
+
+  &__inTouch {
+    grid-row: 3 / 4;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+
+    @include on-tablet {
+      grid-column: span 2;
+      margin-bottom: 32px;
+    }
+
+    @include on-desktop {
+      grid-column: span 4;
+      margin-bottom: 0;
+    }
+
+    &_email {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__visit {
+    grid-row: 4 / 5;
+    margin-bottom: 16px;
+
+    @include on-tablet {
+      grid-column: span 2;
+      grid-row: 3 / 4;
+      margin-bottom: 32px;
+    }
+
+    @include on-desktop {
+      grid-column: span 4;
+      margin-bottom: 0;
+    }
+  }
+
+  &__follow {
+    grid-row: 5 / 6;
+    margin-bottom: 40px;
+
+    @include on-tablet {
+      grid-row: 6 / 7;
+      box-shadow: none;
+    }
+
+    @include on-desktop {
+      grid-row: 3 / 4;
+      box-shadow: $shadow;
+      margin-bottom: 0;
+    }
+
+    &_title {
+      @include on-tablet {
+        text-align: center;
+      }
+
+      @include on-desktop {
+        text-align: left;
+      }
+    }
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+
+    @include on-tablet {
+      justify-content: center;
+      gap: 32px;
+    }
+
+    @include on-desktop {
+      justify-content: left;
+      gap: 32px;
+    }
+  }
+
+  &__formTitle {
+    grid-column: 1 / -1;
+    grid-row: 6 / 7;
+    text-align: left;
+    color: $color-text-black;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 130%;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      text-align: center;
+      grid-row: 4 / 5;
+    }
+
+    @include on-desktop {
+      display: none;
+    }
+  }
+
+  &__form {
+    box-shadow: $shadow;
+    grid-column: 1 / -1;
+    grid-row: 7 / 8;
+
+    @include on-tablet {
+      grid-row: 5 / 6;
+      margin-bottom: 32px;
+    }
+
+    @include on-desktop {
+      grid-column: 8 / -1;
+      grid-row: 2 / 3;
+      margin-bottom: 64px;
+    }
+  }
+}

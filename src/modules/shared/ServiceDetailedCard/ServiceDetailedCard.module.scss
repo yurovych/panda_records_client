@@ -1,0 +1,28 @@
+@import './../main';
+
+.serDetCard {
+  background-color: $color-basic-white;
+
+  &__priceBlock {
+    display: flex;
+    align-items: center;
+  }
+
+  &__priceBlockText {
+    color: $color-text-black;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  &__clockIco {
+    width: 16px;
+    height: 16px;
+    margin-inline: 5px;
+  }
+}

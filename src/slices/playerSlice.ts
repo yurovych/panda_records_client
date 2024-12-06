@@ -26,7 +26,12 @@ const playerSlice = createSlice({
 
     toggleTrack: (state, action: PayloadAction<SongTrackType>) => {
       if (state.currentSong?.id === action.payload.id) {
-        state.isPlaying ? (state.isPlaying = false) : (state.isPlaying = true);
+        if (state.isPlaying) {
+          state.isPlaying = false;
+          state.currentSong = null;
+        } else {
+          state.isPlaying = true;
+        }
       } else {
         state.currentSong = action.payload;
         state.isPlaying = true;

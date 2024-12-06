@@ -4,4 +4,5 @@ export type ServiceCardType = {
   details_block1: string;
   details_block2: string;
   photo: string;
+  price: number;
 };

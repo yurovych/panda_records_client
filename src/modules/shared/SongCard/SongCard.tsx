@@ -10,9 +10,10 @@ import {
 
 type SongTrackProps = {
   track: SongTrackType;
+  visual: 'card' | 'strip';
 };
 
-export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
+export const SongCard: React.FC<SongTrackProps> = ({ track, visual }) => {
   const audioElem = useRef<HTMLAudioElement | null>(null);
   const searchBarElement = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
@@ -48,7 +49,7 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
     return () => {
       audio.removeEventListener('ended', handleEnded);
     };
-  }, []);
+  }, [audio]);
 
   useEffect(() => {
     const audio = audioElem.current;
@@ -114,83 +115,166 @@ export const SongCard: React.FC<SongTrackProps> = ({ track }) => {
   }
 
   return (
-    <div className={styles.item}>
-      <audio
-        onTimeUpdate={onPlaying}
-        ref={audioElem}
-        src={track.audio_file}
-      ></audio>
+    <>
+      {visual === 'card' ? (
+        <div className={styles.card}>
+          <audio
+            onTimeUpdate={onPlaying}
+            ref={audioElem}
+            src={track.audio_file}
+          ></audio>
 
-      <img className={styles.item__photo} src={track.photo} alt='foto' />
+          <img className={styles.card__photo} src={track.photo} alt='foto' />
 
-      <div className={styles.item__bottomBlock}>
-        <div className={styles.item__info}>
-          <h4 className={styles.item__title}>{track.title}</h4>
+          <div className={styles.card__bottomBlock}>
+            <div className={styles.card__info}>
+              <h4 className={styles.card__title}>{track.title}</h4>
 
-          <h5 className={styles.item__artist}>{track.artist}</h5>
+              <h5 className={styles.card__artist}>{track.artist}</h5>
 
-          <div className={styles.item__time}>
-            <p className={styles.item__time_element}>
-              {isPlaying ? shownProgress() : '0:00'}
-            </p>
+              <div className={styles.card__time}>
+                <p className={styles.card__time_element}>
+                  {isPlaying ? shownProgress() : '0:00'}
+                </p>
 
-            <p className={styles.item__time_element}>
-              {shownDuration() || '0:00'}
-            </p>
+                <p className={styles.card__time_element}>
+                  {shownDuration() || '0:00'}
+                </p>
+              </div>
+
+              <div
+                ref={searchBarElement}
+                onClick={dragRunner}
+                className={styles.card__searchBar}
+              >
+                <div
+                  style={{
+                    width: `${
+                      isPlaying && track.id === currentSong?.id
+                        ? currentSong?.progress + '%'
+                        : 0
+                    }`,
+                  }}
+                  className={styles.card__searchBar_runner}
+                ></div>
+              </div>
+            </div>
+
+            <div
+              onClick={() => dispatch(toggleTrack(track))}
+              className={styles.card__buttonWrapper}
+            >
+              {isPlaying && isPlaying && currentSong?.id === track.id && (
+                <div className={styles.songAnimation}>
+                  <div
+                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
+                  ></div>
+                  <div
+                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
+                  ></div>
+                  <div
+                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
+                  ></div>
+                </div>
+              )}
+
+              <img
+                className={`${styles.card__button} ${
+                  isPlaying &&
+                  isPlaying &&
+                  currentSong?.id === track.id &&
+                  styles.rotate
+                } `}
+                src={
+                  isPlaying && isPlaying && currentSong?.id === track.id
+                    ? './icons/stop-audio-ico.svg'
+                    : './icons/play-ico.svg'
+                }
+                alt='play'
+              />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.strip}>
+          <audio
+            onTimeUpdate={onPlaying}
+            ref={audioElem}
+            src={track.audio_file}
+          ></audio>
+
+          <div className={styles.strip__content}>
+            <img className={styles.strip__photo} src={track.photo} alt='foto' />
+
+            <div className={styles.strip__info}>
+              <h4 className={styles.strip__title}>{track.title}</h4>
+
+              <h5 className={styles.strip__artist}>{track.artist}</h5>
+
+              <div className={styles.strip__time}>
+                <p className={styles.strip__time_element}>
+                  {isPlaying ? shownProgress() : '0:00'}
+                </p>
+
+                <p className={styles.strip__time_element}>
+                  {shownDuration() || '0:00'}
+                </p>
+              </div>
+
+              <div
+                ref={searchBarElement}
+                onClick={dragRunner}
+                className={styles.strip__searchBar}
+              >
+                <div
+                  style={{
+                    width: `${
+                      isPlaying && track.id === currentSong?.id
+                        ? currentSong?.progress + '%'
+                        : 0
+                    }`,
+                  }}
+                  className={styles.strip__searchBar_runner}
+                ></div>
+              </div>
+            </div>
           </div>
 
           <div
-            ref={searchBarElement}
-            onClick={dragRunner}
-            className={styles.item__searchBar}
+            onClick={() => dispatch(toggleTrack(track))}
+            className={styles.strip__buttonWrapper}
           >
-            <div
-              style={{
-                width: `${
-                  isPlaying && track.id === currentSong?.id
-                    ? currentSong?.progress + '%'
-                    : 0
-                }`,
-              }}
-              className={styles.item__searchBar_runner}
-            ></div>
+            {isPlaying && currentSong?.id === track.id && (
+              <div className={styles.songAnimation}>
+                <div
+                  className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
+                ></div>
+                <div
+                  className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
+                ></div>
+                <div
+                  className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
+                ></div>
+              </div>
+            )}
+
+            <img
+              className={`${styles.strip__button} ${
+                isPlaying &&
+                isPlaying &&
+                currentSong?.id === track.id &&
+                styles.rotate
+              } `}
+              src={
+                isPlaying && currentSong?.id === track.id
+                  ? './icons/stop-audio-ico.svg'
+                  : './icons/play-ico.svg'
+              }
+              alt='play'
+            />
           </div>
         </div>
-
-        <div
-          onClick={() => dispatch(toggleTrack(track))}
-          className={styles.item__buttonWrapper}
-        >
-          {isPlaying && isPlaying && currentSong?.id === track.id && (
-            <div className={styles.songAnimation}>
-              <div
-                className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
-              ></div>
-              <div
-                className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
-              ></div>
-              <div
-                className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
-              ></div>
-            </div>
-          )}
-
-          <img
-            className={`${styles.item__button} ${
-              isPlaying &&
-              isPlaying &&
-              currentSong?.id === track.id &&
-              styles.rotate
-            } `}
-            src={
-              isPlaying && isPlaying && currentSong?.id === track.id
-                ? './icons/stop-audio-ico.svg'
-                : './icons/play-ico.svg'
-            }
-            alt='play'
-          />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };

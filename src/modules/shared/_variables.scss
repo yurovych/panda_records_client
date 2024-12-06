@@ -22,7 +22,7 @@ $color-text-black: #19191a;
 $color-light-grey: #e1e1e3;
 $color-text-white: #e2e2e3;
 $color-basic-white: #fff;
-$color-bg-white: #ebe9eb;
+$color-bg-white: #ebebeb;
 $color-text-green: #4de188;
 $color-text-grey: #989899;
 $color-text-darkGrey: #6e6e6f;
@@ -33,6 +33,22 @@ $gradient-black-violet: linear-gradient(
   to right,
   rgba(13, 8, 4, 1),
   rgba(5, 8, 69, 1)
+);
+
+$gradient-white-toRigth: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 1),
+  rgba(255, 255, 255, 1),
+  rgba(255, 255, 255, 0.54),
+  rgba(255, 255, 255, 0)
+);
+
+$gradient-white-toBottomRigth: linear-gradient(
+  to bottom right,
+  rgba(255, 255, 255, 1),
+  rgba(255, 255, 255, 1),
+  rgba(255, 255, 255, 0.54),
+  rgba(255, 255, 255, 0)
 );
 
 $gradient-grey-white: linear-gradient(

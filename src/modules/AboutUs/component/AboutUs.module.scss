@@ -148,3 +148,420 @@
     }
   }
 }
+
+.staff {
+  background-color: $color-basic-white;
+  grid-auto-rows: min-content;
+
+  @include page-grid;
+  @include content-padding-inline;
+  @include section-padding-block;
+
+  &__title {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 110%;
+    color: $color-text-black;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      font-size: 56px;
+      line-height: 130%;
+      margin-bottom: 40px;
+    }
+
+    @include on-desktop {
+      grid-column: 1 / 8;
+      text-align: left;
+      margin-bottom: 48px;
+    }
+  }
+
+  &__media {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    aspect-ratio: 1;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      grid-row: 3 / 4;
+    }
+
+    @include on-desktop {
+      grid-column: 8 / -1;
+      grid-row: 1 / 5;
+      margin-bottom: 0;
+    }
+  }
+
+  &__mediaItself {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__text {
+    grid-column: 1 / -1;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    color: $color-text-darkGrey;
+    text-align: left;
+
+    @include on-tablet {
+      font-size: 20px;
+    }
+
+    @include on-desktop {
+      grid-column: 1 / 8;
+    }
+
+    &_text1 {
+      grid-row: 3 / 4;
+      margin-bottom: 24px;
+
+      @include on-tablet {
+        grid-row: 2 / 3;
+      }
+    }
+
+    &_text2 {
+      grid-row: 4 / 5;
+
+      @include on-desktop {
+        grid-row: 3 / 4;
+      }
+    }
+  }
+}
+
+.history {
+  grid-auto-rows: min-content;
+  background: $gradient-black-violet;
+  row-gap: 32px;
+
+  @include page-grid;
+  @include content-padding-inline;
+  @include section-padding-block;
+
+  &__title {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 110%;
+    color: $color-basic-white;
+    margin-bottom: 40px;
+
+    @include on-tablet {
+      font-size: 56px;
+      line-height: 130%;
+      margin-bottom: 78px;
+    }
+
+    @include on-desktop {
+      margin-bottom: 72px;
+    }
+  }
+
+  &__article1 {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    overflow: hidden;
+    min-height: 300px;
+    max-height: 300px;
+    background: $gradient-white-toBottomRigth,
+      url(./../../../../public/images/about-us-history-article1.png);
+    background-position: center;
+    background-size: cover;
+
+    @include on-tablet {
+      min-height: 380px;
+      max-height: 380 px;
+      background: $gradient-white-toRigth,
+        url(./../../../../public/images/about-us-history-article1.png);
+      background-position: center;
+      background-size: cover;
+      min-height: 420px;
+      max-height: 420px;
+    }
+
+    @include on-desktop {
+      grid-column: 1 / 9;
+    }
+  }
+
+  &__art1Text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    color: $color-text-black;
+    text-align: left;
+    margin-left: 24px;
+    margin-top: 52px;
+    width: 60%;
+
+    @include on-tablet {
+      font-size: 24px;
+      margin-left: 32px;
+      margin-top: 100px;
+      width: 50%;
+    }
+
+    @include on-desktop {
+      font-size: 32px;
+      margin-top: 72px;
+      width: 60%;
+    }
+  }
+
+  &__article2 {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+    overflow: hidden;
+    min-height: 280px;
+    max-height: 280px;
+    padding: 24px;
+    background-color: $color-bg-white;
+
+    @include on-tablet {
+      grid-column: 1 / 4;
+      min-height: 330px;
+      max-height: 330px;
+    }
+
+    @include on-desktop {
+      grid-column: 9 / -1;
+      grid-row: 2 / 3;
+      min-height: 420px;
+      max-height: 420px;
+      padding: 32px;
+    }
+  }
+
+  &__art2rectangel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-primary-pink1;
+    width: 100%;
+    height: 54px;
+    margin-bottom: 16px;
+
+    @include on-tablet {
+      height: 64px;
+    }
+
+    @include on-desktop {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__art2RectangelText {
+    color: $color-basic-white;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 24px;
+    }
+  }
+
+  &__art2Text {
+    color: $color-text-black;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 18px;
+    }
+
+    @include on-desktop {
+      font-size: 20px;
+    }
+
+    &_text1 {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__article3 {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid $color-basic-white;
+    min-height: 245px;
+    max-height: 245px;
+    padding-inline: 20px;
+    padding-block: 42px;
+
+    @include on-tablet {
+      padding-inline: 32px;
+      padding-block: 50px;
+      min-height: 255px;
+      max-height: 255px;
+    }
+
+    @include on-desktop {
+      grid-row: 3 / 4;
+      padding-inline: 110px;
+      padding-block: 72px;
+      min-height: 330px;
+      max-height: 330px;
+    }
+  }
+
+  &__art3Text {
+    text-align: center;
+    color: $color-basic-white;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 24px;
+    }
+
+    @include on-desktop {
+      font-size: 32px;
+    }
+  }
+
+  &__article4 {
+    grid-column: 1 / -1;
+    grid-row: 5 / 6;
+    overflow: hidden;
+    background-color: $color-primary-pink2;
+    min-height: 280px;
+    max-height: 280px;
+    padding: 24px;
+
+    @include on-tablet {
+      grid-column: 2 / -1;
+      min-height: 330px;
+      max-height: 330px;
+    }
+
+    @include on-desktop {
+      grid-column: 1 / 5;
+      grid-row: 4 / 5;
+      min-height: 420px;
+      max-height: 420px;
+      padding: 32px;
+    }
+  }
+
+  &__art4rectangel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-basic-white;
+    width: 100%;
+    height: 54px;
+    margin-bottom: 16px;
+
+    @include on-tablet {
+      height: 64px;
+    }
+
+    @include on-desktop {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__art4RectangelText {
+    color: $color-primary-pink1;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 24px;
+    }
+  }
+
+  &__art4Text {
+    color: $color-basic-white;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 18px;
+    }
+
+    @include on-desktop {
+      font-size: 20px;
+    }
+
+    &_text1 {
+      margin-bottom: 16px;
+    }
+
+    &_text2 {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__article5 {
+    grid-column: 1 / -1;
+    grid-row: 6 / 7;
+    overflow: hidden;
+    min-height: 300px;
+    max-height: 300px;
+    background: $gradient-white-toBottomRigth,
+      url(./../../../../public/images/about-us-history-article5.png);
+    background-position: center;
+    background-size: cover;
+
+    @include on-tablet {
+      min-height: 380px;
+      max-height: 380 px;
+      background: $gradient-white-toRigth,
+        url(./../../../../public/images/about-us-history-article5.png);
+      background-position: center;
+      background-size: cover;
+      min-height: 420px;
+      max-height: 420px;
+    }
+
+    @include on-desktop {
+      grid-column: 5 / -1;
+      grid-row: 4 / 5;
+    }
+  }
+
+  &__art5Text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    color: $color-text-black;
+    text-align: left;
+    margin-left: 24px;
+    margin-top: 52px;
+    width: 60%;
+
+    @include on-tablet {
+      font-size: 24px;
+      margin-left: 32px;
+      margin-top: 100px;
+      width: 50%;
+    }
+
+    @include on-desktop {
+      font-size: 32px;
+      margin-top: 72px;
+      width: 60%;
+    }
+  }
+}

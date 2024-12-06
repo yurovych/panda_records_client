@@ -70,7 +70,7 @@ export const Portfolio = () => {
           />
 
           <div className={styles.allSongs__list}>
-            <SongsList tracks={songsAll} />
+            <SongsList tracks={songsAll} visual='strip' />
           </div>
         </div>
       </section>

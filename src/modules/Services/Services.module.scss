@@ -1,1 +1,10 @@
 @import './../shared/main';
+
+.services {
+  display: flex;
+  flex-direction: column;
+}
+
+.variety {
+  @include content-padding-inline;
+}

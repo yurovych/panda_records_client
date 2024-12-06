@@ -30,7 +30,7 @@ export const TopTracksSwiper = ({ tracks }: ServicesSwoperProps) => {
       >
         {tracks.map((track) => (
           <SwiperSlide key={track.id}>
-            <SongCard track={track} />
+            <SongCard track={track} visual='card' />
           </SwiperSlide>
         ))}
       </Swiper>
