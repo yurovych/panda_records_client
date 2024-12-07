@@ -3,9 +3,10 @@ import styles from './Portfolio.module.scss';
 import songsAll from './../../data/songsTracks.json';
 import songsTop from './../../data/songsCards.json';
 import { useTranslation } from 'react-i18next';
-import { TopTracksSwiper } from '../shared/TopTracksSwiper';
 import { Footer } from '../shared/Footer';
 import { useAppSelector } from '../../app/hooks';
+import { ServicesSwiper } from '../shared/ServicesSwiper';
+import { SongCard } from '../shared/SongCard';
 
 export const Portfolio = () => {
   // const songsList = useAppSelector((state) => state.songs.objects);
@@ -38,7 +39,11 @@ export const Portfolio = () => {
         <h2 className={styles.topSongs__title}> Our Top Works</h2>
 
         <div className={styles.topSongs__swiper}>
-          <TopTracksSwiper tracks={songsTop} />
+          <ServicesSwiper
+            type='type1'
+            songsCards={songsTop}
+            SongToRender={SongCard}
+          />
         </div>
       </section>
 

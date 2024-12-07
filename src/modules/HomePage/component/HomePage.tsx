@@ -103,6 +103,7 @@ export const HomePage = () => {
 
             <div className={styles.services__cardsPhone}>
               <ServicesSwiper
+                type='type1'
                 servicesCards={servicesList}
                 ServiceToRender={ServicesCard}
               />
@@ -210,6 +211,7 @@ export const HomePage = () => {
 
             <div className={styles.equipment__cardsTablet}>
               <ServicesSwiper
+                type='type2'
                 equipmentCadrs={equipmentList}
                 EquipmentToRender={EquipmentCard}
               />

@@ -3,8 +3,51 @@
 .services {
   display: flex;
   flex-direction: column;
+  background-color: $color-basic-white;
 }
 
 .variety {
+  margin-bottom: 100px;
+
   @include content-padding-inline;
+  @include on-tablet {
+    margin-bottom: 130px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 150px;
+  }
+}
+
+.process {
+  margin-bottom: 100px;
+
+  @include on-tablet {
+    margin-bottom: 130px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 150px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 110%;
+    text-align: center;
+    color: $color-text-black;
+    margin-bottom: 24px;
+
+    @include content-padding-inline;
+
+    @include on-tablet {
+      font-size: 56px;
+      line-height: 120%;
+      margin-bottom: 72px;
+    }
+
+    @include on-desktop {
+      text-align: left;
+    }
+  }
 }

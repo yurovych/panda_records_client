@@ -12,6 +12,7 @@
   border: 1px solid $color-text-white;
   box-shadow: $shadow;
   gap: 16px;
+  margin-bottom: 32px;
 
   @include on-tablet {
     gap: 24px;

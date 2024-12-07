@@ -1,4 +1,3 @@
-import { ContactForm } from '../../shared/ContactForm';
 import { ContactUs } from '../../shared/ContactUs';
 import { Footer } from '../../shared/Footer';
 import styles from './AboutUs.module.scss';
@@ -72,6 +71,14 @@ export const AboutUs = () => {
         </article>
 
         <article className={styles.history__article2}>
+          <div className={styles.history__art2Thorn}>
+            <img
+              className={styles.history__art2ThornItself}
+              src='./icons/thorn-green-ico.svg'
+              alt='thorn-image'
+            />
+          </div>
+
           <div className={styles.history__art2rectangel}>
             <p className={styles.history__art2RectangelText}>
               Idea and first steps
@@ -119,6 +126,14 @@ export const AboutUs = () => {
         </article>
 
         <article className={styles.history__article5}>
+          <div className={styles.history__art5Thorn}>
+            <img
+              className={styles.history__art2ThornItself}
+              src='./icons/thorn-blue-ico.svg'
+              alt='thorn-image'
+            />
+          </div>
+
           <p className={styles.history__art5Text}>
             I love music and I want to inspire and help musicians reach their
             true potential. I love music and I want to inspire

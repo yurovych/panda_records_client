@@ -3,6 +3,7 @@
 .aboutUs {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .top {
@@ -319,9 +320,9 @@
   }
 
   &__article2 {
+    position: relative;
     grid-column: 1 / -1;
     grid-row: 3 / 4;
-    overflow: hidden;
     min-height: 280px;
     max-height: 280px;
     padding: 24px;
@@ -339,6 +340,26 @@
       min-height: 420px;
       max-height: 420px;
       padding: 32px;
+    }
+  }
+
+  &__art2Thorn {
+    position: absolute;
+    height: 220px;
+    width: 220px;
+    bottom: -90px;
+    right: -130px;
+
+    @include on-tablet {
+      height: 260px;
+      width: 260px;
+      right: -180px;
+    }
+
+    @include on-desktop {
+      height: 280px;
+      width: 280px;
+      right: -50px;
     }
   }
 
@@ -516,7 +537,7 @@
   &__article5 {
     grid-column: 1 / -1;
     grid-row: 6 / 7;
-    overflow: hidden;
+    position: relative;
     min-height: 300px;
     max-height: 300px;
     background: $gradient-white-toBottomRigth,
@@ -538,6 +559,22 @@
     @include on-desktop {
       grid-column: 5 / -1;
       grid-row: 4 / 5;
+    }
+  }
+
+  &__art5Thorn {
+    position: absolute;
+    height: 160px;
+    width: 160px;
+    top: -90px;
+    left: -100px;
+
+    @include on-tablet {
+      left: 0;
+    }
+
+    @include on-desktop {
+      display: none;
     }
   }
 
