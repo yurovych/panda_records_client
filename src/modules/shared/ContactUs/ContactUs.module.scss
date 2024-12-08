@@ -42,24 +42,33 @@
   }
 
   &__image {
+    min-height: $home-page-photo-phone;
+    max-height: $home-page-photo-phone;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
-    width: 100%;
-    aspect-ratio: 4 / 3;
     clip-path: $clip-top-right;
-    object-fit: cover;
     margin-bottom: 24px;
 
     @include on-tablet {
+      min-height: $home-page-photo-tablet;
+      max-height: $home-page-photo-tablet;
       grid-row: 2 / 3;
       margin-bottom: 40px;
     }
 
     @include on-desktop {
+      min-height: none;
+      max-height: none;
       grid-column: 1 / 7;
       height: 100%;
       padding-bottom: 64px;
     }
+  }
+
+  &__imageItsels {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__infoBlock {

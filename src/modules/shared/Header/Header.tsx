@@ -91,10 +91,7 @@ export const Header = () => {
           </div>
 
           <div className={styles.header__right_desktop}>
-            <h3
-              onClick={handleContactUsClick}
-              className={`${styles.header__link} ${styles.header__link_contactUs}`}
-            >
+            <h3 className={styles.header__link} onClick={handleContactUsClick}>
               {t('contact_us')}
             </h3>
 

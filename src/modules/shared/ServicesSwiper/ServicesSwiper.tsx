@@ -39,10 +39,10 @@ export const ServicesSwiper = ({
         style={type === 'type2' ? { paddingInline: '32px' } : undefined}
         modules={[Navigation, Pagination, FreeMode]}
         pagination={{ clickable: true }}
-        // pagination={type !== 'type2' ? { clickable: true } : undefined}
         navigation
         spaceBetween={type === 'type2' ? 24 : 16}
         freeMode={type === 'type2' && true}
+        slidesPerView={1}
         breakpoints={
           type === 'type1'
             ? {

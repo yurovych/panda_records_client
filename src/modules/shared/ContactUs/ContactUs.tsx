@@ -6,11 +6,13 @@ export const ContactUs = () => {
     <section id='contactUs' className={styles.contactUs}>
       <h2 className={styles.contactUs__title}>Contact us</h2>
 
-      <img
-        className={styles.contactUs__image}
-        src='./images/section-contactUs/contactUs_image.png'
-        alt='contactUs-image'
-      />
+      <div className={styles.contactUs__image}>
+        <img
+          className={styles.contactUs__imageItsels}
+          src='./images/contactUs_image.jpg'
+          alt='contactUs-image'
+        />
+      </div>
 
       <div
         className={`${styles.contactUs__inTouch} ${styles.contactUs__infoBlock}`}

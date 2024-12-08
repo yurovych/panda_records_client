@@ -3,10 +3,10 @@ import styles from './HomePage.module.scss';
 import { Footer } from '../../shared/Footer';
 import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
-// import equipment from './../../../data/equipmentCards.json';
-// import services from './../../../data/servicesCards.json';
-// import tracks from './../../../data/songsTracks.json';
-// import videos from './../../../data/videos.json';
+import equipmentList from './../../../data/equipmentCards.json';
+import servicesList from './../../../data/servicesCards.json';
+import songsList from './../../../data/songsTracks.json';
+import videosList from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
 import { Link } from 'react-router-dom';
@@ -18,47 +18,53 @@ import { EquipmentCard } from '../../shared/EquipmentCard';
 import { Loader } from '../../Loader';
 
 export const HomePage = () => {
-  const songsList = useAppSelector((state) => state.songs.objects);
-  const servicesList = useAppSelector((state) => state.sevrices.objects);
-  const equipmentList = useAppSelector((state) => state.equipment.objects);
-  const videosList = useAppSelector((state) => state.videos.objects);
+  // const songsList = useAppSelector((state) => state.songs.objects);
+  // const servicesList = useAppSelector((state) => state.sevrices.objects);
+  // const equipmentList = useAppSelector((state) => state.equipment.objects);
+  // const videosList = useAppSelector((state) => state.videos.objects);
 
   return (
     <>
       <div className={styles.home}>
-        <section className={styles.top}>
-          <h3 className={styles.top__newSong}>New sound available</h3>
+        <div className={styles.topWrapper}>
+          <section className={styles.top}>
+            <h3 className={styles.top__newSong}>New sound available</h3>
 
-          <img
-            className={styles.top__photo}
-            src='./images/top-photo.png'
-            alt='foto'
-          />
+            <div className={styles.top__photo}>
+              <img
+                className={styles.top__photoItself}
+                src='./images/top-photo.jpg'
+                alt='foto'
+              />
+            </div>
 
-          <h1 className={styles.top__title}>
-            Make Sound that changes the world
-          </h1>
+            <h1 className={styles.top__title}>
+              Make Sound that changes the world
+            </h1>
 
-          <h3 className={styles.top__text}>
-            Your recording studio is a modern space for creating music that
-            combines professional equipment and a cozy atmosphere.
-          </h3>
+            <h3 className={styles.top__text}>
+              Your recording studio is a modern space for creating music that
+              combines professional equipment and a cozy atmosphere.
+            </h3>
 
-          <div className={styles.top__button}>
-            <Button text='Book a studio' />
-          </div>
-        </section>
+            <div className={styles.top__button}>
+              <Button text='Book a studio' />
+            </div>
+          </section>
+        </div>
 
         <section className={styles.aboutUs}>
           <h2 className={styles.aboutUs__title}>
             Place where sound becomes art.
           </h2>
 
-          <img
-            className={styles.aboutUs__photo}
-            src='./images/about-us-photo.png'
-            alt='foto'
-          />
+          <div className={styles.aboutUs__photo}>
+            <img
+              className={styles.aboutUs__photoItself}
+              src='./images/about-us-photo.jpg'
+              alt='foto'
+            />
+          </div>
 
           <p className={styles.aboutUs__text}>
             We are a team of professionals in love with sound. Our studio brings
@@ -136,15 +142,17 @@ export const HomePage = () => {
         <section className={styles.ourWorks}>
           <h2 className={styles.ourWorks__title}>Our most popular works</h2>
 
-          <img
-            className={styles.ourWorks__photo}
-            src='./images/songs-photo.png'
-            alt='foto'
-          />
+          <div className={styles.ourWorks__photo}>
+            <img
+              className={styles.ourWorks__photoItself}
+              src='./images/songs-photo.jpg'
+              alt='foto'
+            />
+          </div>
 
           {songsList ? (
             <div className={styles.ourWorks__list}>
-              <SongsList tracks={songsList?.slice(0, 2)} visual='strip' />
+              <SongsList tracks={songsList?.slice(0, 3)} visual='strip' />
             </div>
           ) : (
             <div className={styles.ourWorks__list}>
@@ -183,10 +191,12 @@ export const HomePage = () => {
             <>
               <h2 className={styles.lessons__title}>{videosList[0]?.title}</h2>
 
-              <video className={styles.lessons__video} controls>
-                <source src={videosList[0]?.video_file} type='video/mp4' />
-                Your browser does not support the video tag.
-              </video>
+              <div className={styles.lessons__video}>
+                <video className={styles.lessons__videoItself} controls>
+                  <source src={videosList[0]?.video_file} type='video/mp4' />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
 
               <h5
                 className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
@@ -226,7 +236,11 @@ export const HomePage = () => {
 
           <div className={styles.equipment__cardsPhone}>
             {equipmentList ? (
-              <EquipmentList cards={equipmentList.slice(0, 2)} />
+              <ServicesSwiper
+                type='type1'
+                equipmentCadrs={equipmentList}
+                EquipmentToRender={EquipmentCard}
+              />
             ) : (
               <Loader />
             )}
@@ -250,12 +264,6 @@ export const HomePage = () => {
             ) : (
               <Loader />
             )}
-          </div>
-
-          <div className={styles.equipment__viewAllWrapper}>
-            <Link to='./services' className={styles.equipment__viewAll}>
-              View All Equipment
-            </Link>
           </div>
         </section>
 

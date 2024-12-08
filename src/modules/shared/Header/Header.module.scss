@@ -62,14 +62,12 @@
     color: $color-white2;
     font-weight: 400;
     font-size: 18px;
+    text-align: center;
+    width: 150px;
+    border: 1px solid $color-white1;
 
     &:hover {
       color: $color-pink1;
-    }
-
-    &_contactUs {
-      border: 1px solid $color-white1;
-      padding-inline: 24px;
     }
   }
 }

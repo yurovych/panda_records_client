@@ -18,7 +18,7 @@ export const AboutUs = () => {
         <div className={`${styles.top__photo} ${styles.top__photo_photo1}`}>
           <img
             className={styles.top__photoItself}
-            src='./images/about-us-top2.png'
+            src='./images/about-us-page/about-us-top2.jpg'
             alt='foto'
           />
         </div>
@@ -30,7 +30,7 @@ export const AboutUs = () => {
         <div className={`${styles.top__photo} ${styles.top__photo_photo2}`}>
           <img
             className={styles.top__photoItself}
-            src='./images/about-us-top1.png'
+            src='./images/about-us-page/about-us-top1.jpg'
             alt='foto'
           />
         </div>
@@ -47,7 +47,7 @@ export const AboutUs = () => {
         <div className={styles.staff__media}>
           <img
             className={styles.staff__mediaItself}
-            src='./images/founder-photo.png'
+            src='./images/about-us-page/founder-photo.jpg'
             alt='media-content'
           />
         </div>
@@ -154,7 +154,7 @@ export const AboutUs = () => {
         <div className={styles.staff__media}>
           <img
             className={styles.staff__mediaItself}
-            src='./images/teacher-photo.png'
+            src='./images/about-us-page/teacher-photo.jpg'
             alt='media-content'
           />
         </div>
