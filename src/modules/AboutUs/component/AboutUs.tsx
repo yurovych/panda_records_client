@@ -6,6 +6,13 @@ export const AboutUs = () => {
   return (
     <div className={styles.aboutUs}>
       <section className={styles.top}>
+        <div className={styles.top__thornImg}>
+          <img
+            className={styles.top__thornImgItself}
+            src='./icons/thorn-empty-ico.svg'
+            alt='thorn_image'
+          />
+        </div>
         <h3 className={styles.top__greanTitle}>New sound available</h3>
 
         <div className={`${styles.top__photo} ${styles.top__photo_photo1}`}>

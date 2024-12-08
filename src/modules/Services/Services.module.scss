@@ -3,39 +3,22 @@
 .services {
   display: flex;
   flex-direction: column;
-  background-color: $color-basic-white;
+  background-color: $color-white1;
 }
 
 .variety {
-  margin-bottom: 100px;
-
   @include content-padding-inline;
-  @include on-tablet {
-    margin-bottom: 130px;
-  }
-
-  @include on-desktop {
-    margin-bottom: 150px;
-  }
 }
 
 .process {
-  margin-bottom: 100px;
-
-  @include on-tablet {
-    margin-bottom: 130px;
-  }
-
-  @include on-desktop {
-    margin-bottom: 150px;
-  }
+  @include section-padding-block;
 
   &__title {
     font-size: 32px;
     font-weight: 500;
     line-height: 110%;
     text-align: center;
-    color: $color-text-black;
+    color: $color-black2;
     margin-bottom: 24px;
 
     @include content-padding-inline;

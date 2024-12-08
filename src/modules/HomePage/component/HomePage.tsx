@@ -15,6 +15,7 @@ import { useAppSelector } from '../../../app/hooks';
 import { ContactUs } from '../../shared/ContactUs';
 import { ServicesCard } from '../../shared/ServicesCard';
 import { EquipmentCard } from '../../shared/EquipmentCard';
+import { Loader } from '../../Loader';
 
 export const HomePage = () => {
   const songsList = useAppSelector((state) => state.songs.objects);
@@ -47,6 +48,7 @@ export const HomePage = () => {
             <Button text='Book a studio' />
           </div>
         </section>
+
         <section className={styles.aboutUs}>
           <h2 className={styles.aboutUs__title}>
             Place where sound becomes art.
@@ -97,53 +99,64 @@ export const HomePage = () => {
           </Link>
         </section>
 
-        {servicesList.length > 0 && (
-          <section className={styles.services}>
-            <h2 className={styles.services__title}>Our studio services</h2>
+        <section className={styles.services}>
+          <h2 className={styles.services__title}>Our studio services</h2>
 
-            <div className={styles.services__cardsPhone}>
+          <div className={styles.services__cardsPhone}>
+            {servicesList ? (
               <ServicesSwiper
                 type='type1'
                 servicesCards={servicesList}
                 ServiceToRender={ServicesCard}
               />
-            </div>
+            ) : (
+              <Loader />
+            )}
+          </div>
 
-            <div className={styles.services__cardsTablet}>
+          <div className={styles.services__cardsTablet}>
+            {servicesList ? (
               <ServicesList cards={servicesList.slice(0, 4)} />
-            </div>
+            ) : (
+              <Loader />
+            )}
+          </div>
 
-            <div className={styles.services__cardsDesktop}>
-              <ServicesList cards={servicesList} />
-            </div>
+          <div className={styles.services__cardsDesktop}>
+            {servicesList ? <ServicesList cards={servicesList} /> : <Loader />}
+          </div>
 
-            <div className={styles.services__viewAll}>
-              <Link className={styles.services__viewAll_link} to='./services'>
-                View all services
-              </Link>
-            </div>
-          </section>
-        )}
+          <div className={styles.services__viewAll}>
+            <Link className={styles.services__viewAll_link} to='./services'>
+              View all services
+            </Link>
+          </div>
+        </section>
 
-        {songsList.length > 0 && (
-          <section className={styles.ourWorks}>
-            <h2 className={styles.ourWorks__title}>Our most popular works</h2>
+        <section className={styles.ourWorks}>
+          <h2 className={styles.ourWorks__title}>Our most popular works</h2>
 
-            <img
-              className={styles.ourWorks__photo}
-              src='./images/songs-photo.png'
-              alt='foto'
-            />
+          <img
+            className={styles.ourWorks__photo}
+            src='./images/songs-photo.png'
+            alt='foto'
+          />
 
+          {songsList ? (
             <div className={styles.ourWorks__list}>
               <SongsList tracks={songsList?.slice(0, 2)} visual='strip' />
             </div>
+          ) : (
+            <div className={styles.ourWorks__list}>
+              <Loader />
+            </div>
+          )}
 
-            <Link to='./portfolio' className={styles.ourWorks__button}>
-              <Button text='View Portfolio' />
-            </Link>
-          </section>
-        )}
+          <Link to='./portfolio' className={styles.ourWorks__button}>
+            <Button text='View Portfolio' />
+          </Link>
+        </section>
+
         <section className={styles.banner}>
           <img
             className={styles.banner__star}
@@ -164,70 +177,87 @@ export const HomePage = () => {
             to start.
           </h2>
         </section>
+
         <section className={styles.lessons}>
-          <h2 className={styles.lessons__title}>{videosList[0]?.title}</h2>
+          {videosList ? (
+            <>
+              <h2 className={styles.lessons__title}>{videosList[0]?.title}</h2>
 
-          <video className={styles.lessons__video} controls>
-            <source src={videosList[0]?.video_file} type='video/mp4' />
-            Your browser does not support the video tag.
-          </video>
+              <video className={styles.lessons__video} controls>
+                <source src={videosList[0]?.video_file} type='video/mp4' />
+                Your browser does not support the video tag.
+              </video>
 
-          <h5
-            className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
-          >
-            {videosList[0]?.description_blok1}
-          </h5>
+              <h5
+                className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
+              >
+                {videosList[0]?.description_blok1}
+              </h5>
 
-          <h5
-            className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
-          >
-            {videosList[0]?.description_blok2}
-          </h5>
+              <h5
+                className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
+              >
+                {videosList[0]?.description_blok2}
+              </h5>
 
-          <div className={styles.lessons__button}>
-            <Button text='Text the teacher' />
-          </div>
+              <div className={styles.lessons__button}>
+                <Button text='Text the teacher' />
+              </div>
+            </>
+          ) : (
+            <Loader />
+          )}
         </section>
 
-        {equipmentList.length > 0 && (
-          <section className={styles.equipment}>
-            <img
-              className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
-              src='./images/equipment-white-star.png'
-              alt='image-star'
-            />
+        <section className={styles.equipment}>
+          <img
+            className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
+            src='./images/equipment-white-star.png'
+            alt='image-star'
+          />
 
-            <img
-              className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
-              src='./images/equipment-white-star.png'
-              alt='image-star'
-            />
+          <img
+            className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
+            src='./images/equipment-white-star.png'
+            alt='image-star'
+          />
 
-            <h2 className={styles.equipment__title}>Our equipment</h2>
+          <h2 className={styles.equipment__title}>Our equipment</h2>
 
-            <div className={styles.equipment__cardsPhone}>
+          <div className={styles.equipment__cardsPhone}>
+            {equipmentList ? (
               <EquipmentList cards={equipmentList.slice(0, 2)} />
-            </div>
+            ) : (
+              <Loader />
+            )}
+          </div>
 
-            <div className={styles.equipment__cardsTablet}>
+          <div className={styles.equipment__cardsTablet}>
+            {equipmentList ? (
               <ServicesSwiper
                 type='type2'
                 equipmentCadrs={equipmentList}
                 EquipmentToRender={EquipmentCard}
               />
-            </div>
+            ) : (
+              <Loader />
+            )}
+          </div>
 
-            <div className={styles.equipment__cardsDesktop}>
+          <div className={styles.equipment__cardsDesktop}>
+            {equipmentList ? (
               <EquipmentList cards={equipmentList.slice(0, 4)} />
-            </div>
+            ) : (
+              <Loader />
+            )}
+          </div>
 
-            <div className={styles.equipment__viewAllWrapper}>
-              <Link to='./services' className={styles.equipment__viewAll}>
-                View All Equipment
-              </Link>
-            </div>
-          </section>
-        )}
+          <div className={styles.equipment__viewAllWrapper}>
+            <Link to='./services' className={styles.equipment__viewAll}>
+              View All Equipment
+            </Link>
+          </div>
+        </section>
 
         <section className={styles.testimonials}>
           <h2 className={styles.testimonials__title}>Testimonials</h2>

@@ -13,6 +13,7 @@
   background-size: cover;
   grid-auto-rows: min-content;
   overflow: hidden;
+  position: relative;
   padding-top: 24px;
   padding-bottom: 100px;
 
@@ -29,10 +30,29 @@
     padding-bottom: 150px;
   }
 
+  &__thornImg {
+    display: none;
+
+    @include on-tablet {
+      display: block;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+      bottom: 20%;
+      scale: 0.7;
+    }
+
+    @include on-desktop {
+      scale: 1;
+      bottom: 0;
+      left: 2%;
+    }
+  }
+
   &__greanTitle {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
-    color: $color-text-green;
+    color: $color-green;
     text-align: center;
     font-size: 20px;
     font-weight: 400;
@@ -53,10 +73,11 @@
   }
 
   &__title {
+    z-index: 3;
     text-align: center;
     grid-column: 1 / -1;
     grid-row: 3 / 4;
-    color: $color-basic-white;
+    color: $color-white1;
     font-size: 42px;
     font-weight: 500;
     line-height: 130%;
@@ -64,9 +85,10 @@
 
     @include on-tablet {
       grid-row: 4 / 5;
+      text-align: right;
       font-size: 56px;
       margin-bottom: 56px;
-      padding-inline: 15%;
+      padding-left: 25%;
     }
 
     @include on-desktop {
@@ -80,6 +102,7 @@
   }
 
   &__photo {
+    z-index: 2;
     grid-column: 1 / -1;
     width: 100%;
     height: min-content;
@@ -87,7 +110,6 @@
     &_photo1 {
       grid-row: 2 / 3;
       margin-bottom: 32px;
-      // clip-path: $cut-photo-reverse-m;
 
       @include on-tablet {
         grid-column: 1 / 3;
@@ -105,7 +127,6 @@
     &_photo2 {
       grid-row: 4 / 5;
       margin-bottom: 40px;
-      // clip-path: $cut-photo-m;
 
       @include on-tablet {
         grid-column: 3 / -1;
@@ -128,9 +149,10 @@
   }
 
   &__text {
+    z-index: 3;
     grid-column: 1 / -1;
     grid-row: 5 / 6;
-    color: $color-navigation-white;
+    color: $color-white2;
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;
@@ -151,7 +173,7 @@
 }
 
 .staff {
-  background-color: $color-basic-white;
+  background-color: $color-white1;
   grid-auto-rows: min-content;
 
   @include page-grid;
@@ -165,7 +187,7 @@
     font-size: 32px;
     font-weight: 500;
     line-height: 110%;
-    color: $color-text-black;
+    color: $color-black2;
     margin-bottom: 24px;
 
     @include on-tablet {
@@ -209,7 +231,7 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;
-    color: $color-text-darkGrey;
+    color: $color-grey2;
     text-align: left;
 
     @include on-tablet {
@@ -254,7 +276,7 @@
     font-size: 32px;
     font-weight: 500;
     line-height: 110%;
-    color: $color-basic-white;
+    color: $color-white1;
     margin-bottom: 40px;
 
     @include on-tablet {
@@ -299,7 +321,7 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;
-    color: $color-text-black;
+    color: $color-black2;
     text-align: left;
     margin-left: 24px;
     margin-top: 52px;
@@ -326,7 +348,7 @@
     min-height: 280px;
     max-height: 280px;
     padding: 24px;
-    background-color: $color-bg-white;
+    background-color: $color-white3;
 
     @include on-tablet {
       grid-column: 1 / 4;
@@ -367,7 +389,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $color-primary-pink1;
+    background-color: $color-pink1;
     width: 100%;
     height: 54px;
     margin-bottom: 16px;
@@ -382,7 +404,7 @@
   }
 
   &__art2RectangelText {
-    color: $color-basic-white;
+    color: $color-white1;
     font-size: 16px;
     font-weight: 500;
     line-height: 130%;
@@ -393,7 +415,7 @@
   }
 
   &__art2Text {
-    color: $color-text-black;
+    color: $color-black2;
     text-align: left;
     font-size: 16px;
     font-weight: 400;
@@ -419,7 +441,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    border: 2px solid $color-basic-white;
+    border: 2px solid $color-white1;
     min-height: 245px;
     max-height: 245px;
     padding-inline: 20px;
@@ -443,7 +465,7 @@
 
   &__art3Text {
     text-align: center;
-    color: $color-basic-white;
+    color: $color-white1;
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;
@@ -461,7 +483,7 @@
     grid-column: 1 / -1;
     grid-row: 5 / 6;
     overflow: hidden;
-    background-color: $color-primary-pink2;
+    background-color: $color-pink2;
     min-height: 280px;
     max-height: 280px;
     padding: 24px;
@@ -485,7 +507,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $color-basic-white;
+    background-color: $color-white1;
     width: 100%;
     height: 54px;
     margin-bottom: 16px;
@@ -500,7 +522,7 @@
   }
 
   &__art4RectangelText {
-    color: $color-primary-pink1;
+    color: $color-pink1;
     font-size: 16px;
     font-weight: 500;
     line-height: 130%;
@@ -511,7 +533,7 @@
   }
 
   &__art4Text {
-    color: $color-basic-white;
+    color: $color-white1;
     text-align: left;
     font-size: 16px;
     font-weight: 400;
@@ -582,7 +604,7 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;
-    color: $color-text-black;
+    color: $color-black2;
     text-align: left;
     margin-left: 24px;
     margin-top: 52px;

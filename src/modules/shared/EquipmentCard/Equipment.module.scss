@@ -19,20 +19,20 @@
   box-shadow: $shadow;
 
   &__image {
-    clip-path: $cut-photo-s;
+    clip-path: $clip-top-right;
     object-fit: cover;
     min-height: 300px;
     max-height: 300px;
 
     @include on-tablet {
-      clip-path: $cut-photo-m;
+      clip-path: $clip-top-right;
       min-height: 475px;
       max-height: 475px;
     }
   }
 
   &__textContent {
-    background-color: $color-basic-white;
+    background-color: $color-white1;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@
   }
 
   &__title {
-    color: $color-text-black;
+    color: $color-black2;
     font-size: 24px;
     font-weight: 500;
     line-height: 130%;
@@ -53,7 +53,7 @@
   }
 
   &__model {
-    color: $color-text4;
+    color: $color-grey3;
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;

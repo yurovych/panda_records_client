@@ -7,6 +7,7 @@ import { Footer } from '../shared/Footer';
 import { useAppSelector } from '../../app/hooks';
 import { ServicesSwiper } from '../shared/ServicesSwiper';
 import { SongCard } from '../shared/SongCard';
+import { Loader } from '../Loader';
 
 export const Portfolio = () => {
   // const songsList = useAppSelector((state) => state.songs.objects);
@@ -38,13 +39,19 @@ export const Portfolio = () => {
       <section className={styles.topSongs}>
         <h2 className={styles.topSongs__title}> Our Top Works</h2>
 
-        <div className={styles.topSongs__swiper}>
-          <ServicesSwiper
-            type='type1'
-            songsCards={songsTop}
-            SongToRender={SongCard}
-          />
-        </div>
+        {songsTop ? (
+          <div className={styles.topSongs__swiper}>
+            <ServicesSwiper
+              type='type1'
+              songsCards={songsTop}
+              SongToRender={SongCard}
+            />
+          </div>
+        ) : (
+          <div className={styles.topSongs__swiper}>
+            <Loader />
+          </div>
+        )}
       </section>
 
       <section className={styles.allSongs}>
@@ -75,7 +82,11 @@ export const Portfolio = () => {
           />
 
           <div className={styles.allSongs__list}>
-            <SongsList tracks={songsAll} visual='strip' />
+            {songsAll ? (
+              <SongsList tracks={songsAll} visual='strip' />
+            ) : (
+              <Loader />
+            )}
           </div>
         </div>
       </section>

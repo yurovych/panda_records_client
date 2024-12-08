@@ -1,7 +1,7 @@
 @import './../main';
 
 .serDetCard {
-  background-color: $color-basic-white;
+  background-color: $color-white1;
   margin-bottom: 32px;
 
   &__priceBlock {
@@ -10,7 +10,7 @@
   }
 
   &__priceBlockText {
-    color: $color-text-black;
+    color: $color-black2;
     font-weight: 500;
     font-size: 16px;
     line-height: 130%;

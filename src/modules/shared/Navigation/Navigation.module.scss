@@ -1,14 +1,14 @@
 @import './../main';
 
 .link {
-  color: $color-navigation-white;
+  color: $color-white2;
   font-weight: 400;
 
   &:hover {
-    color: $color-primary-pink1;
+    color: $color-pink1;
   }
 }
 
 .linkIsActive {
-  color: $color-primary-pink1;
+  color: $color-pink1;
 }

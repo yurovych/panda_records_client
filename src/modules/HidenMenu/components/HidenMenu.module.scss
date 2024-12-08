@@ -25,7 +25,7 @@
     align-items: center;
     gap: 16px;
     margin-bottom: 76px;
-    color: $color-text-white;
+    color: $color-white2;
 
     @include on-tablet {
       margin-bottom: 52px;
@@ -35,14 +35,14 @@
       font-size: 24px;
       font-weight: 500;
       line-height: 130%;
-      color: $color-navigation-white;
+      color: $color-white2;
     }
 
     &_number {
       font-size: 20px;
       font-weight: 400;
       line-height: 130%;
-      color: $color-navigation-white;
+      color: $color-white2;
     }
 
     &_adressWrapper {
@@ -58,7 +58,7 @@
       font-size: 20px;
       font-weight: 400;
       line-height: 130%;
-      color: $color-navigation-white;
+      color: $color-white2;
       text-align: center;
     }
   }

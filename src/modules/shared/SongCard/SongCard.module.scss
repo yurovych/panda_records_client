@@ -1,7 +1,7 @@
 @import './../main';
 
 .card {
-  background-color: $color-basic-white;
+  background-color: $color-white1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   height: 100%;
   width: 100%;
   padding: 16px;
-  border: 1px solid $color-text-white;
+  border: 1px solid $color-white2;
   box-shadow: $shadow;
   gap: 16px;
   margin-bottom: 32px;
@@ -26,7 +26,7 @@
     height: 100%;
     max-height: 70%;
     width: 100%;
-    clip-path: $cut-photo-s;
+    clip-path: $clip-top-right;
     object-fit: cover;
   }
 
@@ -43,7 +43,7 @@
   }
 
   &__title {
-    color: $color-text-black;
+    color: $color-black2;
     font-size: 16px;
     font-weight: 500;
     line-height: 130%;
@@ -59,16 +59,16 @@
     align-items: center;
     height: 6px;
     width: 100%;
-    background-color: $color-basic-black;
+    background-color: $color-black1;
 
     &_runner {
       height: 6px;
-      background-color: $color-primary-pink2;
+      background-color: $color-pink2;
     }
   }
 
   &__artist {
-    color: $color-text-grey;
+    color: $color-grey1;
     font-size: 14px;
     font-weight: 300;
     line-height: 130%;
@@ -84,7 +84,7 @@
 
     &_element {
       font-size: 12px;
-      color: $color-text-grey;
+      color: $color-grey1;
     }
   }
 
@@ -103,7 +103,7 @@
 }
 
 .strip {
-  background-color: $color-basic-white;
+  background-color: $color-white1;
   opacity: 0.9;
   display: flex;
   justify-content: space-between;
@@ -131,7 +131,7 @@
   }
 
   &__photo {
-    clip-path: $cut-photo-xs;
+    clip-path: $clip-top-right;
     height: 100%;
     aspect-ratio: 1;
     object-fit: cover;
@@ -145,7 +145,7 @@
   }
 
   &__title {
-    color: $color-text-black;
+    color: $color-black2;
     font-size: 16px;
     font-weight: 500;
     line-height: 130%;
@@ -161,16 +161,16 @@
     align-items: center;
     height: 6px;
     width: 100%;
-    background-color: $color-basic-black;
+    background-color: $color-black1;
 
     &_runner {
       height: 6px;
-      background-color: $color-primary-pink2;
+      background-color: $color-pink2;
     }
   }
 
   &__artist {
-    color: $color-text-grey;
+    color: $color-grey1;
     font-size: 14px;
     font-weight: 300;
     line-height: 130%;
@@ -186,7 +186,7 @@
 
     &_element {
       font-size: 12px;
-      color: $color-text-grey;
+      color: $color-grey1;
     }
   }
 
@@ -249,7 +249,7 @@
   &__bar {
     width: 4px;
     height: 12px;
-    background-color: $color-primary-pink1;
+    background-color: $color-pink1;
     border-radius: 2px;
     transform-origin: bottom;
 

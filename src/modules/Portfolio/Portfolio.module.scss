@@ -1,7 +1,7 @@
 @import './../shared/main';
 
 .portfolio {
-  background-color: $color-basic-white;
+  background-color: $color-white1;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -10,7 +10,7 @@
     margin-top: calc(100px - 80px);
     z-index: 10;
     width: 100%;
-    color: $color-text-black;
+    color: $color-black2;
     text-align: center;
     font-size: 32px;
     font-weight: 500;
@@ -48,7 +48,7 @@
   &__title {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
-    color: $color-primary-pink1;
+    color: $color-pink1;
     text-align: left;
     font-size: 32px;
     font-weight: 500;
@@ -89,7 +89,7 @@
 
   @include on-desktop {
     background: none;
-    background-color: $color-text-white;
+    background-color: $color-white2;
   }
 
   @include page-grid;
@@ -99,7 +99,7 @@
   &__title {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
-    color: $color-text-black;
+    color: $color-black2;
     text-align: left;
     font-size: 32px;
     font-weight: 500;

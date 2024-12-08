@@ -1,38 +1,35 @@
 $tablet-min-width: 640px;
 $desktop-min-width: 1200px;
 $effect-duration: 0.4s;
-$cut-photo-m: polygon(0 0, calc(100% - 100px) 0, 100% 100px, 100% 100%, 0 100%);
-$cut-photo-reverse-m: polygon(
-  0 0,
-  100% 0,
-  100% 100%,
-  calc(100px) 100%,
-  0 calc(100% - 100px)
-);
-$cut-photo-s: polygon(0 0, calc(100% - 60px) 0, 100% 60px, 100% 100%, 0 100%);
-$cut-photo-xs: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+$clip-top-right: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
+$clip-top-left: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 20%);
+$clip-bottom-right: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+$clip-bottom-left: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 0 80%);
 
-$color-primary-pink1: #d428ff;
-$color-primary-pink2: #9708bb;
-$color-primary-pink3: #e168ff;
-$color-primary-pink4: #eea9ff;
-$color-primary-pink5: #fae9ff;
-$color-basic-black: #000;
-$color-text-black: #19191a;
-$color-light-grey: #e1e1e3;
-$color-text-white: #e2e2e3;
-$color-basic-white: #fff;
-$color-bg-white: #ebebeb;
-$color-text-green: #4de188;
-$color-text-grey: #989899;
-$color-text-darkGrey: #6e6e6f;
-$color-text4: #5e5e5f;
-$color-navigation-white: #e2e2e3;
+$color-pink1: #d428ff;
+$color-pink2: #9708bb;
+$color-pink3: #e168ff;
+$color-pink4: #eea9ff;
+$color-black1: #000;
+$color-black2: #19191a;
+$color-green: #4de188;
+$color-white1: #fff;
+$color-white2: #e2e2e3;
+$color-white3: #ebebeb;
+$color-grey1: #989899;
+$color-grey2: #6e6e6f;
+$color-grey3: #5e5e5f;
 
 $gradient-black-violet: linear-gradient(
   to right,
   rgba(13, 8, 4, 1),
   rgba(5, 8, 69, 1)
+);
+
+$gradient-grey-white: linear-gradient(
+  to right,
+  rgba(185, 184, 185, 1),
+  rgba(238, 242, 243, 1)
 );
 
 $gradient-white-toRigth: linear-gradient(
@@ -49,12 +46,6 @@ $gradient-white-toBottomRigth: linear-gradient(
   rgba(255, 255, 255, 1),
   rgba(255, 255, 255, 0.54),
   rgba(255, 255, 255, 0)
-);
-
-$gradient-grey-white: linear-gradient(
-  to right,
-  rgba(185, 184, 185, 1),
-  rgba(238, 242, 243, 1)
 );
 
 $shadow: 0 4px 8px 0 #00000012;

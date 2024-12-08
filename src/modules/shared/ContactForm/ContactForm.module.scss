@@ -1,7 +1,7 @@
 @import './../main';
 
 .form {
-  background-color: $color-basic-white;
+  background-color: $color-white1;
   padding: 32px 24px 40px;
   display: flex;
   flex-direction: column;
@@ -35,8 +35,8 @@
     position: absolute;
     left: 20px;
     top: -15px;
-    background-color: $color-basic-white;
-    color: $color-text-grey;
+    background-color: $color-white1;
+    color: $color-grey1;
     font-size: 16px;
     font-weight: 400;
     line-height: 130%;
@@ -44,17 +44,17 @@
   }
 
   &__field {
-    background-color: $color-basic-white !important;
+    background-color: $color-white1 !important;
     height: 55px !important;
     padding-left: 35px !important;
-    border: 1px solid $color-navigation-white !important;
+    border: 1px solid $color-white2 !important;
 
     &:focus {
-      border: 1px solid $color-primary-pink1 !important;
+      border: 1px solid $color-pink1 !important;
     }
 
     &::placeholder {
-      color: $color-navigation-white !important;
+      color: $color-white2 !important;
     }
   }
 
