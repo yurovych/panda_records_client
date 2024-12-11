@@ -1,12 +1,14 @@
 {
   "files": {
-    "main.css": "./static/css/main.cc1a858f.css",
-    "main.js": "./static/js/main.8f6380e1.js",
+    "main.css": "./static/css/main.a502f300.css",
+    "main.js": "./static/js/main.24ed853f.js",
     "static/js/38.fa60f527.chunk.js": "./static/js/38.fa60f527.chunk.js",
     "static/media/about-us-history-article1.jpg": "./static/media/about-us-history-article1.04c2003bb5324f352e62.jpg",
     "static/media/disc-bg.png": "./static/media/disc-bg.f93fe61614bdf2cd2af6.png",
+    "static/media/contactUs_image.jpg": "./static/media/contactUs_image.00c824ba8705db882e66.jpg",
     "static/media/about-us-history-article5.jpg": "./static/media/about-us-history-article5.beb9d44fb6e0228edce5.jpg",
     "static/media/services-bg.png": "./static/media/services-bg.634e8f5548dc1df3abdc.png",
+    "static/media/big-logo.png": "./static/media/big-logo.377de8073578db162938.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "./static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fa-solid-900.ttf": "./static/media/fa-solid-900.ad1782c70927ebc5bc87.ttf",
     "static/media/fa-brands-400.ttf": "./static/media/fa-brands-400.26b80c8830bebf340211.ttf",
@@ -21,12 +23,12 @@
     "static/media/fa-v4compatibility.ttf": "./static/media/fa-v4compatibility.fa86b3c85e77abbd2ebd.ttf",
     "static/media/fa-v4compatibility.woff2": "./static/media/fa-v4compatibility.c3ea317a0f10f201597f.woff2",
     "index.html": "./index.html",
-    "main.cc1a858f.css.map": "./static/css/main.cc1a858f.css.map",
-    "main.8f6380e1.js.map": "./static/js/main.8f6380e1.js.map",
+    "main.a502f300.css.map": "./static/css/main.a502f300.css.map",
+    "main.24ed853f.js.map": "./static/js/main.24ed853f.js.map",
     "38.fa60f527.chunk.js.map": "./static/js/38.fa60f527.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc1a858f.css",
-    "static/js/main.8f6380e1.js"
+    "static/css/main.a502f300.css",
+    "static/js/main.24ed853f.js"
   ]
 }
