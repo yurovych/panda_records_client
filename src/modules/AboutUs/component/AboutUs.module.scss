@@ -6,11 +6,16 @@
   overflow: hidden;
 }
 
-.top {
+.topWrapper {
   background-image: url('./../../../../public/images/disc-bg.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.top {
+  max-width: $max-content-width;
+  margin-inline: auto;
   grid-auto-rows: min-content;
   overflow: hidden;
   position: relative;
@@ -26,7 +31,7 @@
   }
 
   @include on-desktop {
-    padding-top: 64px;
+    padding-top: 34px;
     padding-bottom: 150px;
   }
 
@@ -174,8 +179,13 @@
   }
 }
 
-.staff {
+.staffWrapper {
   background-color: $color-white1;
+}
+
+.staff {
+  margin-inline: auto;
+  max-width: $max-content-width;
   grid-auto-rows: min-content;
 
   @include page-grid;
@@ -264,9 +274,14 @@
   }
 }
 
-.history {
-  grid-auto-rows: min-content;
+.historyWrapper {
   background: $gradient-black-violet;
+}
+
+.history {
+  margin-inline: auto;
+  max-width: $max-content-width;
+  grid-auto-rows: min-content;
   row-gap: 32px;
 
   @include page-grid;

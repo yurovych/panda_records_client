@@ -50,7 +50,7 @@ export const ServicesSwiper = ({
                   slidesPerView: 2,
                 },
                 1200: {
-                  slidesPerView: 3,
+                  slidesPerView: 4,
                 },
               }
             : { 340: { slidesPerView: 1.3 }, 1200: { slidesPerView: 3 } }

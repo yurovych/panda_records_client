@@ -14,7 +14,7 @@
 
 .top {
   margin-inline: auto;
-  // max-width: 1800px;
+  max-width: $max-content-width;
   grid-auto-rows: min-content;
   padding-top: 24px;
   padding-bottom: 100px;
@@ -28,8 +28,8 @@
   }
 
   @include on-desktop {
-    padding-top: 64px;
-    padding-bottom: 150px;
+    padding-top: 34px;
+    padding-bottom: 120px;
   }
 
   &__newSong {
@@ -55,19 +55,15 @@
   &__photo {
     clip-path: $clip-top-right;
     grid-column: 1 / -1;
-    min-height: $home-page-photo-phone;
-    max-height: $home-page-photo-phone;
+    aspect-ratio: 1;
+    align-self: center;
     margin-bottom: 24px;
 
     @include on-tablet {
-      min-height: $home-page-photo-tablet;
-      max-height: $home-page-photo-tablet;
       margin-bottom: 40px;
     }
 
     @include on-desktop {
-      min-height: $home-page-photo-desktop;
-      max-height: $home-page-photo-desktop;
       grid-column: 8 / -1;
       grid-row: 1 / 6;
       margin-bottom: 0;
@@ -132,10 +128,14 @@
   }
 }
 
-.aboutUs {
+.aboutUsWrapper {
   background-color: $color-white3;
-  grid-auto-rows: min-content;
+}
 
+.aboutUs {
+  grid-auto-rows: min-content;
+  margin-inline: auto;
+  max-width: $max-content-width;
   @include content-padding-inline;
   @include page-grid;
   @include section-padding-block;
@@ -168,19 +168,15 @@
     grid-column: 1 / -1;
     grid-row: 2 / 3;
     margin-bottom: 26px;
-    min-height: $home-page-photo-phone;
-    max-height: $home-page-photo-phone;
+    aspect-ratio: 1;
+    align-self: center;
 
     @include on-tablet {
       grid-row: 3 / 4;
       margin-bottom: 24px;
-      min-height: $home-page-photo-tablet;
-      max-height: $home-page-photo-tablet;
     }
 
     @include on-desktop {
-      min-height: $home-page-photo-desktop;
-      max-height: $home-page-photo-desktop;
       grid-column: 1 / 6;
       grid-row: 1 / 6;
       margin-bottom: 0;
@@ -270,12 +266,17 @@
   }
 }
 
-.services {
-  grid-auto-rows: min-content;
+.servicesWrapper {
   background-image: url('./../../../../public/images/services-bg.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.services {
+  grid-auto-rows: min-content;
+  margin-inline: auto;
+  max-width: $max-content-width;
 
   @include content-padding-inline;
   @include page-grid;
@@ -364,9 +365,14 @@
   }
 }
 
-.ourWorks {
+.ourWorksWrapper {
   background-color: $color-white3;
+}
+
+.ourWorks {
   grid-auto-rows: min-content;
+  margin-inline: auto;
+  max-width: $max-content-width;
 
   @include content-padding-inline;
   @include page-grid;
@@ -397,19 +403,15 @@
     clip-path: $clip-top-right;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
-    min-height: $home-page-photo-phone;
-    max-height: $home-page-photo-phone;
     margin-bottom: 32px;
+    aspect-ratio: 1;
+    align-self: center;
 
     @include on-tablet {
-      min-height: $home-page-photo-tablet;
-      max-height: $home-page-photo-tablet;
       margin-bottom: 40px;
     }
 
     @include on-desktop {
-      min-height: $home-page-photo-desktop;
-      max-height: $home-page-photo-desktop;
       grid-column: 8 / -1;
       grid-row: 2 / 6;
       margin-bottom: 0;
@@ -423,16 +425,21 @@
   }
 
   &__list {
+    padding: 16px;
+    background-color: $color-white2;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     gap: 24px;
     grid-column: 1 / -1;
     grid-row: 3 / 4;
     margin-bottom: 40px;
     width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow-y: scroll;
 
     @include on-tablet {
-      gap: 40px;
+      padding: 24px;
     }
 
     @include on-desktop {
@@ -456,9 +463,14 @@
   }
 }
 
-.banner {
-  position: relative;
+.bannerWrapper {
   background: $gradient-black-violet;
+}
+
+.banner {
+  margin-inline: auto;
+  max-width: $max-content-width;
+  position: relative;
   height: 370px;
 
   @include on-tablet {
@@ -572,8 +584,13 @@
   }
 }
 
-.lessons {
+.lessonsWrapper {
   background-color: $color-white3;
+}
+
+.lessons {
+  margin-inline: auto;
+  max-width: $max-content-width;
 
   @include content-padding-inline;
   @include page-grid;
@@ -607,10 +624,8 @@
     background: $gradient-black-violet;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
-    width: 100%;
-    max-height: 50vh;
-    min-height: 50vh;
     margin-bottom: 24px;
+    aspect-ratio: 1;
 
     @include on-tablet {
       grid-row: 3 / 4;
@@ -618,8 +633,6 @@
     }
 
     @include on-desktop {
-      max-height: 70vh;
-      min-height: 70vh;
       grid-column: 1 / 6;
       grid-row: 1 / 6;
       margin-bottom: 0;
@@ -679,9 +692,15 @@
     }
   }
 }
+
+.equipmentWrapper {
+  background: $gradient-grey-white;
+}
+
 .equipment {
   position: relative;
-  background: $gradient-grey-white;
+  margin-inline: auto;
+  max-width: $max-content-width;
   grid-auto-rows: min-content;
 
   @include section-padding-block;
@@ -771,9 +790,14 @@
   }
 }
 
-.testimonials {
+.testimonialsWrapper {
   background-color: $color-white3;
+}
+
+.testimonials {
   row-gap: 24px;
+  margin-inline: auto;
+  max-width: $max-content-width;
 
   @include content-padding-inline;
   @include page-grid;

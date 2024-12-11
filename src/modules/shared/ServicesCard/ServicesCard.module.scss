@@ -1,19 +1,16 @@
 @import './../main';
 
 .cardWrapper {
-  min-height: $height-card-phone;
-  max-height: $height-card-phone;
+  clip-path: $clip-top-right;
+  aspect-ratio: 1;
+  margin-bottom: 32px;
 
   @include on-tablet {
     grid-column: span 2;
-    min-height: $height-card-tablet;
-    max-height: $height-card-tablet;
   }
 
   @include on-desktop {
     grid-column: span 4;
-    min-height: $height-card-desctop;
-    max-height: $height-card-desctop;
   }
 }
 
@@ -34,73 +31,63 @@
   }
 
   &__photo {
-    clip-path: $clip-top-right;
+    height: 65%;
+  }
+
+  &__photoItself {
     object-fit: cover;
-    min-height: 300px;
-    max-height: 300px;
-
-    @include on-tablet {
-      min-height: 230px;
-      max-height: 230px;
-    }
-
-    @include on-desktop {
-      min-height: 470px;
-      max-height: 470px;
-    }
+    height: 100%;
+    width: 100%;
   }
 
   &__textContent {
-    height: 120px;
-    max-height: 120px;
-    min-height: 120px;
-    padding: 16px;
+    height: 35%;
+    padding-block: 16px;
     background-color: $color-white1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
+    // overflow: hidden;
 
     @include on-tablet {
-      height: 140px;
-      max-height: 140px;
-      min-height: 140px;
-      padding: 24px;
+      // padding-block: 24px;
     }
   }
 
   &__title {
+    overflow: hidden;
     color: $color-black2;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 130%;
+    line-height: 120%;
     text-align: left;
-    margin-bottom: 8px;
+    margin-inline: 16px;
+  }
+
+  &__details {
+    margin-right: 40px;
   }
 }
 
 .details {
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
-  max-height: $height-card-phone;
-  min-height: $height-card-phone;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   clip-path: $clip-top-right;
   background-color: $color-white1;
-  padding: 16px;
+  padding-inline: 40px;
+  padding-block: 16px;
 
   @include on-tablet {
     padding: 24px;
-    min-height: $height-card-tablet;
-    max-height: $height-card-tablet;
   }
 
   @include on-desktop {
     padding: 24px;
-    min-height: $height-card-desctop;
-    max-height: $height-card-desctop;
   }
 
   &__title {
@@ -129,9 +116,9 @@
   position: relative;
   cursor: pointer;
   color: $color-pink3;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 130%;
+  line-height: 100%;
   align-self: flex-end;
 
   &::after {

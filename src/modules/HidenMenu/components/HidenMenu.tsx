@@ -85,6 +85,15 @@ export const HidenMenu: React.FC = () => {
         >
           <img src='./icons/instagram-pink-ico.svg' alt='instagram_ico' />
         </a>
+
+        <a
+          className={styles.hidenMenu__icons_icon}
+          href='https://www.tiktok.com/@panda._.record?_t=8s3ITFWiSVK&_r=1'
+          target='_blank'
+          rel='noreferrer'
+        >
+          <img src='./icons/instagram-pink-ico.svg' alt='tiktok_ico' />
+        </a>
       </div>
     </div>
   );

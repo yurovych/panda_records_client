@@ -46,6 +46,8 @@
     }
 
     &_adressWrapper {
+      display: flex;
+      align-items: center;
       position: relative;
     }
 
@@ -69,6 +71,8 @@
     gap: 48px;
 
     &_icon {
+      height: 36px;
+      width: 36px;
       transition: all $effect-duration ease;
       cursor: pointer;
     }

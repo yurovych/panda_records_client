@@ -76,16 +76,16 @@ export const Header = () => {
                 className={`${styles.languageButton__img} ${
                   currentLanguage === 'ua' && styles.languageChanging
                 }`}
-                src='./icons/en-flag-ico.svg'
-                alt='en-flag'
+                src='./icons/ua-flag-ico.svg'
+                alt='ua-flag'
               />
             ) : (
               <img
                 className={`${styles.languageButton__img} ${
                   currentLanguage === 'ua' && styles.languageChanging
                 }`}
-                src='./icons/ua-flag-ico.svg'
-                alt='ua-flag'
+                src='./icons/en-flag-ico.svg'
+                alt='en-flag'
               />
             )}
           </div>
@@ -102,6 +102,15 @@ export const Header = () => {
               rel='noreferrer'
             >
               <img src='./icons/instagram-ico.svg' alt='instagram_ico' />
+            </a>
+
+            <a
+              className={styles.header__inst}
+              href='https://www.tiktok.com/@panda._.record?_t=8s3ITFWiSVK&_r=1'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <img src='./icons/instagram-ico.svg' alt='tiktok_ico' />
             </a>
           </div>
 

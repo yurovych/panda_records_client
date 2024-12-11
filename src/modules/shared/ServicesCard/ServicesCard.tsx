@@ -36,12 +36,20 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card }) => {
     <article className={`${styles.cardWrapper} ${isShown && styles.spinCard}`}>
       {isShown ? (
         <div onClick={handleMoreDetails} className={`${styles.card} `}>
-          <img className={styles.card__photo} src={card.photo} alt='foto' />
+          <div className={styles.card__photo}>
+            <img
+              className={styles.card__photoItself}
+              src={card.photo}
+              alt='foto'
+            />
+          </div>
 
           <div className={styles.card__textContent}>
             <p className={styles.card__title}>{card.title}</p>
 
-            <p className={styles.detailsLink}>Details</p>
+            <p className={`${styles.detailsLink} ${styles.card__details}`}>
+              Details
+            </p>
           </div>
         </div>
       ) : (

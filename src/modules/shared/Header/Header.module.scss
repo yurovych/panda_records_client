@@ -10,17 +10,18 @@
   background: $gradient-black-violet;
   top: 0;
   position: sticky;
-  height: 80px;
-
-  @include content-padding-inline;
-  @include page-grid;
 }
 
 .header {
+  margin-inline: auto;
+  max-width: $max-content-width;
   display: flex;
   justify-content: space-between;
   align-items: center;
   grid-column: 1 / -1;
+  height: 80px;
+
+  @include content-padding-inline;
 
   &__burgerMenu {
     display: flex;
@@ -46,7 +47,7 @@
       @include on-desktop {
         display: flex;
         align-items: center;
-        gap: 36px;
+        gap: 12px;
         height: 100%;
       }
     }
@@ -82,6 +83,7 @@
 }
 
 .languageButton {
+  cursor: pointer;
   border-radius: 100%;
   overflow: hidden;
   display: flex;

@@ -1,6 +1,10 @@
 @import './../main';
 
 .cardWrapper {
+  border-left: 2px solid $color-grey1;
+  border-bottom: 2px solid $color-grey1;
+  margin-bottom: 32px;
+
   @include on-desktop {
     grid-column: span 4;
 
@@ -11,24 +15,20 @@
 }
 
 .card {
+  clip-path: $clip-top-right;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
-  box-shadow: $shadow;
+
+  @include on-desktop {
+    margin-bottom: 0;
+  }
 
   &__image {
-    clip-path: $clip-top-right;
     object-fit: cover;
-    min-height: 300px;
-    max-height: 300px;
-
-    @include on-tablet {
-      clip-path: $clip-top-right;
-      min-height: 475px;
-      max-height: 475px;
-    }
+    height: 65%;
   }
 
   &__textContent {
@@ -36,10 +36,11 @@
     padding: 16px;
     display: flex;
     flex-direction: column;
-    height: 125px;
+    justify-content: space-between;
+    height: 35%;
 
     @include on-tablet {
-      height: 140px;
+      padding: 24px;
     }
   }
 
@@ -50,6 +51,10 @@
     line-height: 130%;
     margin-bottom: 16px;
     text-align: left;
+
+    @include on-tablet {
+      font-size: 32px;
+    }
   }
 
   &__model {
@@ -58,5 +63,9 @@
     font-weight: 400;
     line-height: 130%;
     text-align: left;
+
+    @include on-tablet {
+      font-size: 24px;
+    }
   }
 }

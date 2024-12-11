@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 import { useTranslation } from 'react-i18next';
+import { scrollPageUp } from './../../../helpers/scrollPageUp';
 
 export const Navigation = () => {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ export const Navigation = () => {
   return (
     <>
       <Link
+        onClick={scrollPageUp}
         className={`${styles.link} ${
           navPaths.aboutUs === location.pathname && styles.linkIsActive
         }`}
@@ -24,6 +26,7 @@ export const Navigation = () => {
       </Link>
 
       <Link
+        onClick={scrollPageUp}
         className={`${styles.link} ${
           navPaths.services === location.pathname && styles.linkIsActive
         }`}
@@ -33,6 +36,7 @@ export const Navigation = () => {
       </Link>
 
       <Link
+        onClick={scrollPageUp}
         className={`${styles.link} ${
           navPaths.portfolio === location.pathname && styles.linkIsActive
         }`}

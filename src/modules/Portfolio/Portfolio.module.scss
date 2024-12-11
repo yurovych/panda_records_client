@@ -5,32 +5,24 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-top: 24px;
 
-  &__title {
-    margin-top: calc(100px - 80px);
-    z-index: 10;
-    width: 100%;
-    color: $color-black2;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 100%;
-    margin-bottom: 32px;
+  @include on-tablet {
+    padding-top: 32px;
+  }
 
-    @include on-tablet {
-      font-size: 56px;
-      margin-bottom: 56px;
-      line-height: 130%;
-    }
-
-    @include on-desktop {
-      font-size: 72px;
-      margin-bottom: 72px;
-    }
+  @include on-desktop {
+    padding-top: 34px;
   }
 }
 
+.topSongsWrapper {
+  background-color: $color-white1;
+}
+
 .topSongs {
+  margin-inline: auto;
+  max-width: $max-content-width;
   position: relative;
   grid-auto-rows: min-content;
   margin-bottom: 100px;
@@ -42,10 +34,11 @@
     margin-bottom: 130px;
   }
   @include on-desktop {
-    margin-bottom: 150px;
+    margin-bottom: 90px;
   }
 
   &__title {
+    z-index: 1;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     color: $color-pink1;
@@ -83,20 +76,26 @@
   }
 }
 
-.allSongs {
-  position: relative;
+.allSongsWrapper {
   background: $gradient-grey-white;
 
   @include on-desktop {
     background: none;
     background-color: $color-white2;
   }
+}
+
+.allSongs {
+  margin-inline: auto;
+  max-width: $max-content-width;
+  position: relative;
 
   @include page-grid;
   @include content-padding-inline;
   @include section-padding-block;
 
   &__title {
+    z-index: 1;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     color: $color-black2;
@@ -113,6 +112,7 @@
     }
 
     @include on-desktop {
+      grid-column: 1 / 7;
       margin-bottom: 72px;
       line-height: 130%;
     }
@@ -128,34 +128,46 @@
     display: none;
 
     @include on-desktop {
-      background: $gradient-black-violet;
+      box-shadow: 0 4px 8px 0 #000000;
       display: block;
       grid-column: 1 / 6;
-      width: 100%;
-      height: 600px;
+      height: 100%;
       aspect-ratio: 1;
-      object-fit: contain;
     }
   }
 
+  &__imageItself {
+    background-image: url('./../../../public/images/big-logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+
   &__list {
+    background-color: $color-white3;
     grid-column: 1 / -1;
-    padding-inline: 16px;
+    padding: 16px;
     height: 60vh;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    z-index: 1;
+    width: 100%;
 
     @include on-tablet {
+      padding: 24px;
       grid-column: 2 / -1;
-      gap: 16px;
+      gap: 24p x;
     }
 
     @include on-desktop {
-      height: 600px;
+      height: auto;
+      aspect-ratio: 6 / 5;
       grid-column: 7 / -1;
-      gap: 24px;
     }
   }
 }
@@ -168,77 +180,104 @@
   top: 0;
 
   &__star {
+    opacity: 0.8;
     position: absolute;
 
     &_star1 {
-      top: -50%;
+      top: -150%;
       right: 0;
 
       @include on-desktop {
-        top: 0;
-        right: 0;
+        top: -100%;
+        right: 5%;
       }
     }
 
     &_star2 {
-      top: 50%;
+      top: -30%;
       right: 30%;
 
       @include on-desktop {
-        top: 100%;
-        right: 10%;
+        top: -30%;
+        right: 30%;
       }
     }
 
     &_star3 {
-      display: none;
+      top: -30%;
+      right: 20%;
 
       @include on-tablet {
         display: block;
-        top: 120%;
-        right: 20%;
+        top: -20%;
+        right: 15%;
       }
 
       @include on-desktop {
-        top: 200%;
-        right: 7%;
+        top: -20%;
+        right: 15%;
       }
     }
   }
 }
 
 .stars2 {
-  display: none;
-
   @include on-tablet {
     display: block;
-    height: 100%;
-    width: 100%;
     position: absolute;
+    width: 100%;
+    height: 100%;
     right: 0;
     top: 0;
   }
 
-  @include on-desktop {
-    display: none;
-  }
-
   &__star {
+    opacity: 0.8;
     position: absolute;
 
     &_star1 {
-      top: 20%;
-      left: 10%;
+      top: -10%;
+      right: -20%;
+
+      @include on-tablet {
+        top: 20%;
+        left: 10%;
+      }
+
+      @include on-desktop {
+        top: -5%;
+        left: 55%;
+      }
     }
 
     &_star2 {
-      top: 45%;
-      left: 0%;
+      top: 5%;
+      right: 50%;
+
+      @include on-tablet {
+        top: 45%;
+        left: 0%;
+      }
+
+      @include on-desktop {
+        top: 5%;
+        left: 75%;
+      }
     }
 
     &_star3 {
-      top: 65%;
-      left: 15%;
+      top: 0;
+      right: 30%;
+
+      @include on-tablet {
+        top: 65%;
+        left: 15%;
+      }
+
+      @include on-desktop {
+        top: 20%;
+        left: 70%;
+      }
     }
   }
 }
