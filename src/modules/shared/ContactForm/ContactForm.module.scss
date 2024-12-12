@@ -77,10 +77,15 @@
   }
 
   &__resultMessage {
+    display: flex;
+    opacity: 0.95;
+    overflow: hidden;
+    z-index: 1000;
     position: absolute !important;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+    height: max-content;
     margin-bottom: 0 !important;
   }
 }

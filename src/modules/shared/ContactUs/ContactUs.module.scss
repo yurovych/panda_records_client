@@ -183,6 +183,7 @@
 
   &__icons {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 16px;
 
@@ -193,6 +194,21 @@
 
     @include on-desktop {
       justify-content: left;
+    }
+  }
+
+  &__icon {
+    height: 42px;
+    width: 42px;
+
+    @include on-tablet {
+      height: 48px;
+      width: 48px;
+    }
+
+    @include on-desktop {
+      height: 36px;
+      width: 36px;
     }
   }
 

@@ -9,6 +9,7 @@ import { ServiceCardType } from '../../../types/Service';
 import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
 import { SongTrackType } from '../../../types/SongTrack';
+import { useAppSelector } from '../../../app/hooks';
 
 type ServicesSwiperProps = {
   type: 'type1' | 'type2';
@@ -33,6 +34,8 @@ export const ServicesSwiper = ({
   VideoToRender,
   SongToRender,
 }: ServicesSwiperProps) => {
+  const currentSong = useAppSelector((state) => state.player.currentSong);
+
   return (
     <div className={styles.swiperContainer}>
       <Swiper

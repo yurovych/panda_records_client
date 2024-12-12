@@ -22,7 +22,7 @@ export const Navigation = () => {
         }`}
         to={'/about'}
       >
-        {t('about_us')}
+        {t('nav_about_us')}
       </Link>
 
       <Link
@@ -32,7 +32,7 @@ export const Navigation = () => {
         }`}
         to={'/services'}
       >
-        {t('services')}
+        {t('nav_services')}
       </Link>
 
       <Link
@@ -42,7 +42,7 @@ export const Navigation = () => {
         }`}
         to={'/portfolio'}
       >
-        {t('portfolio')}
+        {t('nav_portfolio')}
       </Link>
     </>
   );

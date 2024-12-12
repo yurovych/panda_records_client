@@ -9,6 +9,7 @@ import { fetchServicesAsync } from './slices/fetchServices';
 import { fetchEquipmentAsync } from './slices/fetchEquipment';
 import { fetchVideosAsync } from './slices/fetchVideos';
 import { useAppDispatch } from './app/hooks';
+import { Player } from './modules/shared/Player';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,8 @@ export const App = () => {
 
   return (
     <div className={styles.app}>
+      <Player />
+
       <HidenMenu />
 
       <Header />

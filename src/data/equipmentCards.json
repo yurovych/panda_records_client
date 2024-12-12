@@ -1,25 +1,29 @@
 [
   {
     "id": 1,
-    "name": "Electro guitar ",
+    "name_uk": "Електрогітара",
+    "name_en": "Electro guitar ",
     "model": "Yamaha Pasifica 012",
     "photo": "./images/section-equipment/card-1.jpg"
   },
   {
     "id": 2,
-    "name": "Electro-acoustic guitar ",
+    "name_uk": "Електро-акустична гітара",
+    "name_en": "Electro-acoustic guitar ",
     "model": "LAC GLA-T118 DCE BLK Tramontane",
     "photo": "./images/section-equipment/card-2.jpg"
   },
   {
     "id": 3,
-    "name": "Microphone ",
+    "name_uk": "Мікрофон",
+    "name_en": "Microphone ",
     "model": "Rode NT2000",
     "photo": "./images/section-equipment/card-3.jpg"
   },
   {
     "id": 4,
-    "name": "Sound Card ",
+    "name_uk": "Звукова карта",
+    "name_en": "Sound Card",
     "model": "RME BabyFace Pro Fs",
     "photo": "./images/section-equipment/card-4.jpg"
   }

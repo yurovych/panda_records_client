@@ -1,0 +1,178 @@
+@import './../main';
+
+.player {
+  z-index: 99999;
+  background-image: url('./../../../../public/images/disc-bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 90px;
+  height: 60px;
+  width: max-content;
+  max-width: 80vw;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px;
+  overflow: hidden;
+  transition: all $effect-duration ease;
+
+  @include on-tablet {
+    max-width: 50vw;
+  }
+
+  @include on-desktop {
+    max-width: 30vw;
+  }
+
+  &__photo {
+    clip-path: $clip-top-right;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  &__right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__info {
+    display: grid;
+    height: 100%;
+    min-width: 100px;
+    width: max-content;
+  }
+
+  &__title {
+    color: $color-white2;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__artist {
+    color: $color-grey1;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+    align-self: flex-end;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.rotate {
+  transform: scale(0.8) rotate(180deg);
+}
+
+@keyframes firstBar {
+  0% {
+    transform: scaleY(30%);
+  }
+
+  100% {
+    transform: scaleY(100%);
+  }
+}
+
+@keyframes secondBar {
+  0% {
+    transform: scaleY(100%);
+  }
+
+  100% {
+    transform: scaleY(30%);
+  }
+}
+
+@keyframes thirdBar {
+  0% {
+    transform: scaleY(30%);
+  }
+
+  50% {
+    transform: scaleY(100%);
+  }
+
+  100% {
+    transform: scaleY(30%);
+  }
+}
+
+.stopButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  aspect-ratio: 1;
+  background-color: $color-pink2;
+  border-radius: 50%;
+}
+
+.songAnimation {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  aspect-ratio: 1;
+  gap: 2px;
+
+  &__bar {
+    width: 3px;
+    height: 12px;
+    background-color: $color-pink1;
+    border-radius: 2px;
+    transform-origin: bottom;
+
+    @include on-tablet {
+      width: 4px;
+      height: 15px;
+    }
+
+    &_1 {
+      animation: firstBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+
+    &_2 {
+      animation: secondBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+
+    &_3 {
+      animation: thirdBar 0.8s infinite ease-in-out alternate-reverse;
+    }
+  }
+}
+
+.showPlayer {
+  opacity: 0.9;
+  transform: translate(-16px, 0) scale(1);
+
+  @include on-tablet {
+    transform: translate(-32px, 0) scale(1);
+  }
+
+  @include on-desktop {
+    transform: translate(-64px, 0) scale(1);
+  }
+}
+
+.hidePlayer {
+  opacity: 0;
+  transform: translate(30vw, 50vh) scale(0);
+
+  @include on-desktop {
+    transform: translate(300px, 50vh) scale(0);
+  }
+}

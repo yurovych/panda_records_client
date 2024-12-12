@@ -13,6 +13,8 @@ export const Portfolio = () => {
   const { t } = useTranslation();
   const currentSong = useAppSelector((state) => state.player.currentSong);
 
+  const topSongs = songsAll.filter((song) => song.top);
+
   return (
     <div className={styles.portfolio}>
       <div className={styles.topSongsWrapper}>
@@ -40,7 +42,7 @@ export const Portfolio = () => {
             <div className={styles.topSongs__swiper}>
               <ServicesSwiper
                 type='type1'
-                songsCards={songsAll}
+                songsCards={topSongs}
                 SongToRender={SongCard}
               />
             </div>

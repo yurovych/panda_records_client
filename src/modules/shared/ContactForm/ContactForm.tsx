@@ -321,11 +321,11 @@ export const ContactForm = () => {
             </div>
 
             {error && (
-              <p
+              <div
                 className={`${styles.form__resultMessage} notification is-danger is-light`}
               >
-                {error}
-              </p>
+                <p>{error}</p>
+              </div>
             )}
 
             {showSuccess && (

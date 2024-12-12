@@ -45,13 +45,15 @@
       color: $color-white2;
     }
 
-    &_adressWrapper {
+    &_contactWrapper {
       display: flex;
       align-items: center;
       position: relative;
     }
 
-    &_locationIco {
+    &_ico {
+      height: 24px;
+      width: 24px;
       position: absolute;
       left: -30px;
     }

@@ -1,7 +1,10 @@
 export type VideoFileType = {
   id: number;
-  title: string;
   video_file: string;
-  description_blok1: string;
-  description_blok2: string;
+  title_uk?: string;
+  title_en?: string;
+  description_blok1_uk?: string;
+  description_blok1_en?: string;
+  description_blok2_uk?: string;
+  description_blok2_en?: string;
 };

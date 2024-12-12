@@ -46,7 +46,7 @@
 
   &__title {
     color: $color-black2;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 130%;
     margin-bottom: 16px;
@@ -54,6 +54,10 @@
 
     @include on-tablet {
       font-size: 32px;
+    }
+
+    @include on-desktop {
+      font-size: 24px;
     }
   }
 
@@ -66,6 +70,10 @@
 
     @include on-tablet {
       font-size: 24px;
+    }
+
+    @include on-desktop {
+      font-size: 20px;
     }
   }
 }

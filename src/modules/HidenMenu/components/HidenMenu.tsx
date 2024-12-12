@@ -38,16 +38,24 @@ export const HidenMenu: React.FC = () => {
       <div className={styles.hidenMenu__contacts}>
         <h3 className={styles.hidenMenu__contacts_title}>{t('contact_us')}:</h3>
 
-        <a
-          className={styles.hidenMenu__contacts_number}
-          href='tel:+380687166092'
-        >
-          +380687166092
-        </a>
-
-        <div className={styles.hidenMenu__contacts_adressWrapper}>
+        <div className={styles.hidenMenu__contacts_contactWrapper}>
           <img
-            className={styles.hidenMenu__contacts_locationIco}
+            className={styles.hidenMenu__contacts_ico}
+            src='./icons/phone-ico.svg'
+            alt='phone'
+          />
+
+          <a
+            className={styles.hidenMenu__contacts_number}
+            href='tel:+380687166092'
+          >
+            +380687166092
+          </a>
+        </div>
+
+        <div className={styles.hidenMenu__contacts_contactWrapper}>
+          <img
+            className={styles.hidenMenu__contacts_ico}
             src='./icons/location-ico.svg'
             alt='location_ico'
           />
@@ -67,13 +75,13 @@ export const HidenMenu: React.FC = () => {
 
       <div className={styles.hidenMenu__icons}>
         <a className={styles.hidenMenu__icons_icon} href='tel:+380687166092'>
-          <img src='./icons/phone-pink-ico.svg' alt='phone-ico' />
+          <img src='./icons/phone-ico.svg' alt='phone-ico' />
         </a>
 
         <img
           className={styles.hidenMenu__icons_icon}
           onClick={handleContactUsClick}
-          src='./icons/envelope-pink-ico.svg'
+          src='./icons/envelope-ico.svg'
           alt='envelop_ico'
         />
 
@@ -83,7 +91,11 @@ export const HidenMenu: React.FC = () => {
           target='_blank'
           rel='noreferrer'
         >
-          <img src='./icons/instagram-pink-ico.svg' alt='instagram_ico' />
+          <img
+            className={styles.hidenMenu__icons_icon}
+            src='./icons/instagram-ico.svg'
+            alt='instagram_ico'
+          />
         </a>
 
         <a
@@ -92,7 +104,11 @@ export const HidenMenu: React.FC = () => {
           target='_blank'
           rel='noreferrer'
         >
-          <img src='./icons/instagram-pink-ico.svg' alt='tiktok_ico' />
+          <img
+            className={styles.hidenMenu__icons_icon}
+            src='./icons/tiktok-white-ico.svg'
+            alt='tiktok_ico'
+          />
         </a>
       </div>
     </div>

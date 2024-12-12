@@ -1,8 +1,8 @@
 {
-  "about_us": "Про нас",
-  "services": "Сервіси",
-  "portfolio": "Портфоліо",
-  "contact_us": "Контакти",
+  "nav_about_us": "Про нас",
+  "nav_services": "Сервіси",
+  "nav_portfolio": "Портфоліо",
+  "header_contact_us": "Контакти",
   "adress_1": "Україна 79000",
-  "adress_2": "Козельницька 17, Львів"
+  "adress_2": "Львів,  Козельницька 17"
 }

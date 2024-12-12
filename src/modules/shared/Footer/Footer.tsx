@@ -44,9 +44,9 @@ export const Footer = () => {
             </p>
 
             <p className={styles.footer__adressTabletDesktop} rel='noreferrer'>
-              {t('adress_2')}
-              &nbsp;,&nbsp;
               {t('adress_1')}
+              ,&nbsp;&nbsp;
+              {t('adress_2')}
             </p>
           </a>
           <a href='tel:+380687166092' className={styles.footer__phone}>

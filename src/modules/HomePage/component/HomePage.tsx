@@ -9,19 +9,35 @@ import songsList from './../../../data/songsCards.json';
 import videosList from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { EquipmentList } from '../../shared/EquipmentList';
 import { ContactUs } from '../../shared/ContactUs';
 import { ServicesCard } from '../../shared/ServicesCard';
 import { EquipmentCard } from '../../shared/EquipmentCard';
 import { Loader } from '../../Loader';
 import { SongTrackType } from '../../../types/SongTrack';
+import { scrollPageUp } from '../../../helpers/scrollPageUp';
+import { useAppSelector } from '../../../app/hooks';
+import { useEffect, useState } from 'react';
 
 export const HomePage = () => {
   // const songsList = useAppSelector((state) => state.songs.objects);
   // const servicesList = useAppSelector((state) => state.sevrices.objects);
   // const equipmentList = useAppSelector((state) => state.equipment.objects);
   // const videosList = useAppSelector((state) => state.videos.objects);
+
+  const navigate = useNavigate();
+  const currentSong = useAppSelector((state) => state.player.currentSong);
+
+  const neededVideo = videosList.find((video) => video.title_en);
+
+  async function handleTextMeClick() {
+    await navigate('/');
+    const element = document.getElementById('contactUs');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
   const shuffleSongs = (songs: SongTrackType[]) => {
     for (let i = songs.length - 1; i > 0; i--) {
@@ -30,8 +46,14 @@ export const HomePage = () => {
       [songs[i], songs[j]] = [songs[j], songs[i]];
     }
 
-    return songs;
+    return songs.slice(0, 5);
   };
+
+  useEffect(() => {
+    if (songsList) {
+      setShuffledSongs(shuffleSongs(songsList));
+    }
+  }, []);
 
   return (
     <>
@@ -57,8 +79,8 @@ export const HomePage = () => {
               combines professional equipment and a cozy atmosphere.
             </h3>
 
-            <div className={styles.top__button}>
-              <Button text='Book a studio' />
+            <div onClick={handleTextMeClick} className={styles.top__button}>
+              <Button text='Text me' />
             </div>
           </section>
         </div>
@@ -111,7 +133,11 @@ export const HomePage = () => {
               </div>
             </div>
 
-            <Link to='./about' className={styles.aboutUs__button}>
+            <Link
+              onClick={scrollPageUp}
+              to='./about'
+              className={styles.aboutUs__button}
+            >
               <Button text='More About Us' />
             </Link>
           </section>
@@ -150,7 +176,11 @@ export const HomePage = () => {
             </div>
 
             <div className={styles.services__viewAll}>
-              <Link className={styles.services__viewAll_link} to='./services'>
+              <Link
+                onClick={scrollPageUp}
+                className={styles.services__viewAll_link}
+                to='./services'
+              >
                 View all services
               </Link>
             </div>
@@ -164,17 +194,14 @@ export const HomePage = () => {
             <div className={styles.ourWorks__photo}>
               <img
                 className={styles.ourWorks__photoItself}
-                src='./images/songs-photo.jpg'
+                src={currentSong?.photo || './images/songs-photo.jpg'}
                 alt='foto'
               />
             </div>
 
             {songsList ? (
               <div className={styles.ourWorks__list}>
-                <SongsList
-                  tracks={shuffleSongs(songsList).slice(0, 5)}
-                  visual='strip'
-                />
+                <SongsList tracks={shuffledSongs} visual='strip' />
               </div>
             ) : (
               <div className={styles.ourWorks__list}>
@@ -182,7 +209,11 @@ export const HomePage = () => {
               </div>
             )}
 
-            <Link to='./portfolio' className={styles.ourWorks__button}>
+            <Link
+              onClick={scrollPageUp}
+              to='./portfolio'
+              className={styles.ourWorks__button}
+            >
               <Button text='View Portfolio' />
             </Link>
           </section>
@@ -216,12 +247,12 @@ export const HomePage = () => {
             {videosList ? (
               <>
                 <h2 className={styles.lessons__title}>
-                  {videosList[0]?.title}
+                  {neededVideo?.title_en}
                 </h2>
 
                 <div className={styles.lessons__video}>
                   <video className={styles.lessons__videoItself} controls>
-                    <source src={videosList[0]?.video_file} type='video/mp4' />
+                    <source src={neededVideo?.video_file} type='video/mp4' />
                     Your browser does not support the video tag.
                   </video>
                 </div>
@@ -229,16 +260,19 @@ export const HomePage = () => {
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
                 >
-                  {videosList[0]?.description_blok1}
+                  {neededVideo?.description_blok1_en}
                 </h5>
 
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
                 >
-                  {videosList[0]?.description_blok2}
+                  {neededVideo?.description_blok2_en}
                 </h5>
 
-                <div className={styles.lessons__button}>
+                <div
+                  onClick={handleTextMeClick}
+                  className={styles.lessons__button}
+                >
                   <Button text='Text the teacher' />
                 </div>
               </>

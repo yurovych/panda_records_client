@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import './../_main.scss';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
+import { FixedSong } from '../FixedSong';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -61,6 +62,8 @@ export const Header = () => {
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
+        <FixedSong />
+
         <div onClick={handleLogoClick}>
           <Logo />
         </div>
@@ -92,11 +95,11 @@ export const Header = () => {
 
           <div className={styles.header__right_desktop}>
             <h3 className={styles.header__link} onClick={handleContactUsClick}>
-              {t('contact_us')}
+              {t('header_contact_us')}
             </h3>
 
             <a
-              className={styles.header__inst}
+              className={styles.header__socialIco}
               href='https://www.instagram.com/panda._.record?igsh=a2J0ajlmbXptNGd4'
               target='_blank'
               rel='noreferrer'
@@ -105,12 +108,12 @@ export const Header = () => {
             </a>
 
             <a
-              className={styles.header__inst}
+              className={styles.header__socialIco}
               href='https://www.tiktok.com/@panda._.record?_t=8s3ITFWiSVK&_r=1'
               target='_blank'
               rel='noreferrer'
             >
-              <img src='./icons/instagram-ico.svg' alt='tiktok_ico' />
+              <img src='./icons/tiktok-white-ico.svg' alt='tiktok_ico' />
             </a>
           </div>
 

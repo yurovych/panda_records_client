@@ -5,11 +5,13 @@ import { SongTrackType } from '../types/SongTrack';
 type PlayerType = {
   isPlaying: boolean;
   currentSong: SongTrackType | null;
+  currentProgress: number | null;
 };
 
 const initialState: PlayerType = {
   isPlaying: false,
   currentSong: null,
+  currentProgress: null,
 };
 
 const playerSlice = createSlice({
@@ -24,22 +26,12 @@ const playerSlice = createSlice({
       state.currentSong = action.payload;
     },
 
-    toggleTrack: (state, action: PayloadAction<SongTrackType>) => {
-      if (state.currentSong?.id === action.payload.id) {
-        if (state.isPlaying) {
-          state.isPlaying = false;
-          state.currentSong = null;
-        } else {
-          state.isPlaying = true;
-        }
-      } else {
-        state.currentSong = action.payload;
-        state.isPlaying = true;
-      }
+    setCurrentProgress: (state, action: PayloadAction<number | null>) => {
+      state.currentProgress = action.payload;
     },
   },
 });
 
 export default playerSlice.reducer;
-export const { setIsPlaying, setCurrentSong, toggleTrack } =
+export const { setIsPlaying, setCurrentSong, setCurrentProgress } =
   playerSlice.actions;
