@@ -9,15 +9,18 @@ import { ServiceCardType } from '../../../types/Service';
 import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
 import { SongTrackType } from '../../../types/SongTrack';
-import { useAppSelector } from '../../../app/hooks';
 
 type ServicesSwiperProps = {
   type: 'type1' | 'type2';
   equipmentCadrs?: EquipmentCardType[];
   servicesCards?: ServiceCardType[];
+  servicesWideCards?: ServiceCardType[];
   videoCards?: VideoFileType[];
   songsCards?: SongTrackType[];
-  ServiceToRender?: React.FC<{ card: ServiceCardType }>;
+  ServiceToRender?: React.FC<{
+    card: ServiceCardType;
+    visual: 'brief' | 'wide';
+  }>;
   EquipmentToRender?: React.FC<{ card: EquipmentCardType }>;
   VideoToRender?: React.FC<{ card: VideoFileType }>;
   SongToRender?: React.FC<{ track: SongTrackType; visual: 'card' | 'strip' }>;
@@ -27,6 +30,7 @@ export const ServicesSwiper = ({
   type,
   equipmentCadrs,
   servicesCards,
+  servicesWideCards,
   videoCards,
   songsCards,
   ServiceToRender,
@@ -34,8 +38,6 @@ export const ServicesSwiper = ({
   VideoToRender,
   SongToRender,
 }: ServicesSwiperProps) => {
-  const currentSong = useAppSelector((state) => state.player.currentSong);
-
   return (
     <div className={styles.swiperContainer}>
       <Swiper
@@ -63,7 +65,14 @@ export const ServicesSwiper = ({
           servicesCards &&
           servicesCards.map((card) => (
             <SwiperSlide key={card.id}>
-              <ServiceToRender card={card} />
+              <ServiceToRender card={card} visual='brief' />
+            </SwiperSlide>
+          ))}
+        {ServiceToRender &&
+          servicesWideCards &&
+          servicesWideCards.map((card) => (
+            <SwiperSlide key={card.id}>
+              <ServiceToRender card={card} visual='wide' />
             </SwiperSlide>
           ))}
         {EquipmentToRender &&

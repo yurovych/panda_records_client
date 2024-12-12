@@ -3,7 +3,7 @@
     "id": 1,
     "title_uk": "Уроки гри на гітарі",
     "title_en": "Guitar lessons",
-    "video_file": "url",
+    "video_file": "./videos/guitar-lessons-video.MP4",
     "description_blok1_uk": "Хочете навчитися грати на гітарі чи вдосконалити свої навички? Ми пропоную професійне навчання гри на акустичній, електрогітарі та бас-гітарі як для початківців так і для тих хто хоче вдосконалити свої навички.",
     "description_blok2_uk": "Наш підхід – індивідуальний. Ми працюємо у вашому темпі, з урахуванням ваших цілей і вподобань. Ви навчитеся правильній техніці, розвиватимете музичний слух, вивчите улюблені композиції й отримаєте натхнення для створення власної музики. Заняття – це не просто уроки, це шлях до вашої музичної мрії.",
     "description_blok1_en": "Want to learn to play the guitar or improve your skills? We offer professional lessons on acoustic guitar, electric guitar, and bass guitar for both beginners and those looking to refine their abilities.",

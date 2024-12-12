@@ -3,13 +3,14 @@ import { ServiceCardType } from '../../../types/Service';
 
 type ServicesListProps = {
   cards: ServiceCardType[];
+  visual: 'brief' | 'wide';
 };
 
-export const ServicesList = ({ cards }: ServicesListProps) => {
+export const ServicesList = ({ cards, visual }: ServicesListProps) => {
   return (
     <>
       {cards.map((card) => (
-        <ServicesCard card={card} key={card.id} />
+        <ServicesCard card={card} visual={visual} key={card.id} />
       ))}
     </>
   );

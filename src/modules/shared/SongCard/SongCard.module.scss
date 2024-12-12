@@ -1,14 +1,16 @@
 @import './../main';
 
 .card {
+  background-color: $color-black2;
+  // background-color: $color-white1;
   z-index: 1;
-  background-color: $color-white1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   width: 100%;
   padding: 16px;
-  border: 1px solid $color-white2;
+  border: 1px solid $color-pink2;
+  // border: 1px solid $color-white2;
   box-shadow: $shadow;
   margin-bottom: 32px;
 
@@ -39,7 +41,8 @@
   }
 
   &__title {
-    color: $color-black2;
+    color: $color-white2;
+    // color: $color-black2;
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;
@@ -105,7 +108,8 @@
     align-items: center;
     height: 3px;
     background-color: $color-grey2;
-    border: 3px solid $color-white1;
+    border: 3px solid $color-black2;
+    // border: 3px solid $color-white1;
 
     &_runner {
       position: relative;
@@ -155,7 +159,8 @@
 
 .strip {
   z-index: 1;
-  background-color: $color-white1;
+  background-color: $color-black2;
+  // background-color: $color-white1;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -172,7 +177,6 @@
 
   &__photo {
     clip-path: $clip-top-right;
-    height: 100%;
     aspect-ratio: 1;
     object-fit: cover;
     margin-right: 24px;
@@ -180,13 +184,15 @@
 
   &__info {
     display: grid;
+    grid-auto-rows: min-content;
     height: 100%;
-
+    width: 100%;
     margin-right: 24px;
   }
 
   &__title {
-    color: $color-black2;
+    color: $color-white2;
+    // color: $color-black2;
     font-size: 18px;
     font-weight: 400;
     line-height: 130%;
@@ -195,7 +201,7 @@
     text-overflow: ellipsis;
 
     @include on-tablet {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 500;
     }
   }
@@ -217,18 +223,16 @@
 
   &__time {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-
-    @include on-tablet {
-      margin-bottom: 16px;
-    }
+    gap: 10px;
+    justify-content: end;
+    // align-items: center;
+    margin-bottom: 4px;
 
     &_element {
       color: $color-grey2;
       font-size: 16px;
       font-weight: 400;
-      line-height: 130%;
+      line-height: 100%;
     }
   }
 
@@ -239,7 +243,8 @@
     align-items: center;
     height: 3px;
     background-color: $color-grey2;
-    border: 3px solid $color-white1;
+    // border: 3px solid $color-white1;
+    border: 3px solid $color-black2;
 
     &_runner {
       position: relative;
@@ -272,6 +277,8 @@
   }
 
   &__button {
+    border-radius: 50%;
+    // background-color: $color-pink2;
     width: 54px;
     aspect-ratio: 1;
     transition: all $effect-duration ease;

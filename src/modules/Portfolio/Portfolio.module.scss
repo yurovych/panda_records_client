@@ -1,7 +1,11 @@
 @import './../shared/main';
 
 .portfolio {
-  background-color: $color-white1;
+  // background-color: $color-white1;
+  background-image: url('./../../../public/images/dynamic.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -17,7 +21,7 @@
 }
 
 .topSongsWrapper {
-  background-color: $color-white1;
+  // background-color: $color-white1;
 }
 
 .topSongs {
@@ -77,11 +81,11 @@
 }
 
 .allSongsWrapper {
-  background: $gradient-grey-white;
+  // background: $gradient-grey-white;
 
   @include on-desktop {
     background: none;
-    background-color: $color-white2;
+    // background-color: $color-white2;
   }
 }
 
@@ -98,7 +102,8 @@
     z-index: 1;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
-    color: $color-black2;
+    // color: $color-black2;
+    color: $color-pink1;
     text-align: left;
     font-size: 32px;
     font-weight: 500;
@@ -112,7 +117,6 @@
     }
 
     @include on-desktop {
-      grid-column: 1 / 7;
       margin-bottom: 72px;
       line-height: 130%;
     }
@@ -147,9 +151,10 @@
   }
 
   &__list {
-    background-color: $color-white3;
+    background-color: $color-black1;
+    // background-color: $color-white3;
     grid-column: 1 / -1;
-    padding: 16px;
+    padding-block: 16px;
     height: 60vh;
     overflow-y: scroll;
     display: flex;
@@ -159,7 +164,7 @@
     width: 100%;
 
     @include on-tablet {
-      padding: 24px;
+      padding-block: 24px;
       grid-column: 2 / -1;
       gap: 24p x;
     }

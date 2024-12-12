@@ -215,7 +215,7 @@
   &__formTitle {
     grid-column: 1 / -1;
     grid-row: 6 / 7;
-    text-align: left;
+    text-align: center;
     color: $color-black2;
     font-size: 24px;
     font-weight: 500;
@@ -223,7 +223,6 @@
     margin-bottom: 24px;
 
     @include on-tablet {
-      text-align: center;
       grid-row: 4 / 5;
     }
 

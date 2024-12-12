@@ -276,6 +276,7 @@
 .services {
   grid-auto-rows: min-content;
   margin-inline: auto;
+
   max-width: $max-content-width;
 
   @include content-padding-inline;
@@ -350,7 +351,7 @@
       margin-bottom: 75px;
       align-items: center;
       grid-row: 1 / 2;
-      grid-column: -1 / -1;
+      grid-column: 8 / -1;
     }
 
     &_link {
@@ -427,7 +428,6 @@
 
   &__list {
     padding: 16px;
-    background-color: $color-white2;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -437,7 +437,6 @@
     margin-bottom: 40px;
     width: 100%;
     aspect-ratio: 3 / 2;
-    overflow-y: scroll;
 
     @include on-tablet {
       padding: 24px;
@@ -502,6 +501,7 @@
   }
 
   &__text {
+    white-space: nowrap;
     z-index: 10;
     position: absolute;
     color: $color-white1;
@@ -561,25 +561,25 @@
 
       @include on-desktop {
         font-size: 48px;
-        left: 500px;
+        left: 350px;
       }
     }
 
     &_4 {
       color: $color-pink3;
-      left: 240px;
+      left: 120px;
       top: 240px;
       font-weight: 600;
 
       @include on-tablet {
-        left: 450px;
+        left: 250px;
         top: 240px;
       }
 
       @include on-desktop {
         font-size: 48px;
         top: 190px;
-        left: 980px;
+        left: 850px;
       }
     }
   }

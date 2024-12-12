@@ -19,6 +19,7 @@ import { SongTrackType } from '../../../types/SongTrack';
 import { scrollPageUp } from '../../../helpers/scrollPageUp';
 import { useAppSelector } from '../../../app/hooks';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const HomePage = () => {
   // const songsList = useAppSelector((state) => state.songs.objects);
@@ -28,8 +29,11 @@ export const HomePage = () => {
 
   const navigate = useNavigate();
   const currentSong = useAppSelector((state) => state.player.currentSong);
-
+  const currenLanguage = useAppSelector(
+    (state) => state.current.currentLanguage
+  );
   const neededVideo = videosList.find((video) => video.title_en);
+  const { t } = useTranslation();
 
   async function handleTextMeClick() {
     await navigate('/');
@@ -60,7 +64,7 @@ export const HomePage = () => {
       <div className={styles.home}>
         <div className={styles.topWrapper}>
           <section className={styles.top}>
-            <h3 className={styles.top__newSong}>New sound available</h3>
+            <h3 className={styles.top__newSong}>{t('home_green_text')} </h3>
 
             <div className={styles.top__photo}>
               <img
@@ -70,26 +74,19 @@ export const HomePage = () => {
               />
             </div>
 
-            <h1 className={styles.top__title}>
-              Make Sound that changes the world
-            </h1>
+            <h1 className={styles.top__title}>{t('home_top_title')}</h1>
 
-            <h3 className={styles.top__text}>
-              Your recording studio is a modern space for creating music that
-              combines professional equipment and a cozy atmosphere.
-            </h3>
+            <h3 className={styles.top__text}>{t('home_top_text')}</h3>
 
             <div onClick={handleTextMeClick} className={styles.top__button}>
-              <Button text='Text me' />
+              <Button text={t('home_top_button')} />
             </div>
           </section>
         </div>
 
         <div className={styles.aboutUsWrapper}>
           <section className={styles.aboutUs}>
-            <h2 className={styles.aboutUs__title}>
-              Place where sound becomes art.
-            </h2>
+            <h2 className={styles.aboutUs__title}>{t('home_about_title')}</h2>
 
             <div className={styles.aboutUs__photo}>
               <img
@@ -99,23 +96,19 @@ export const HomePage = () => {
               />
             </div>
 
-            <p className={styles.aboutUs__text}>
-              We are a team of professionals in love with sound. Our studio
-              brings together talented engineers, producers and musicians who
-              turn ideas into masterpieces.
-            </p>
+            <p className={styles.aboutUs__text}>{t('home_about_text')}</p>
 
             <div
               className={`${styles.aboutUs__advantages} ${styles.aboutUs__advantages_block1}`}
             >
               <div className={styles.aboutUs__advantage}>
                 <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />
-                <p>High-Quality recording</p>
+                <p>{t('home_about_marker1')}</p>
               </div>
 
               <div className={styles.aboutUs__advantage}>
                 <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
-                <p>Professional approach</p>
+                <p>{t('home_about_marker2')}</p>
               </div>
             </div>
 
@@ -124,12 +117,12 @@ export const HomePage = () => {
             >
               <div className={styles.aboutUs__advantage}>
                 <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
-                <p>Acoustically prepared space</p>
+                <p>{t('home_about_marker3')}</p>
               </div>
 
               <div className={styles.aboutUs__advantage}>
                 <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
-                <p>Access to modern technologies</p>
+                <p>{t('home_about_marker4')}</p>
               </div>
             </div>
 
@@ -138,14 +131,16 @@ export const HomePage = () => {
               to='./about'
               className={styles.aboutUs__button}
             >
-              <Button text='More About Us' />
+              <Button text={t('home_about_button')} />
             </Link>
           </section>
         </div>
 
         <div className={styles.servicesWrapper}>
           <section className={styles.services}>
-            <h2 className={styles.services__title}>Our studio services</h2>
+            <h2 className={styles.services__title}>
+              {t('home_services_title')}
+            </h2>
 
             <div className={styles.services__cardsPhone}>
               {servicesList ? (
@@ -161,7 +156,7 @@ export const HomePage = () => {
 
             <div className={styles.services__cardsTablet}>
               {servicesList ? (
-                <ServicesList cards={servicesList.slice(0, 4)} />
+                <ServicesList cards={servicesList.slice(0, 4)} visual='brief' />
               ) : (
                 <Loader />
               )}
@@ -169,7 +164,7 @@ export const HomePage = () => {
 
             <div className={styles.services__cardsDesktop}>
               {servicesList ? (
-                <ServicesList cards={servicesList} />
+                <ServicesList cards={servicesList} visual='brief' />
               ) : (
                 <Loader />
               )}
@@ -181,7 +176,7 @@ export const HomePage = () => {
                 className={styles.services__viewAll_link}
                 to='./services'
               >
-                View all services
+                {t('home_services_view_all')}
               </Link>
             </div>
           </section>
@@ -189,7 +184,7 @@ export const HomePage = () => {
 
         <div className={styles.ourWorksWrapper}>
           <section className={styles.ourWorks}>
-            <h2 className={styles.ourWorks__title}>Our popular works</h2>
+            <h2 className={styles.ourWorks__title}>{t('home_works_title')}</h2>
 
             <div className={styles.ourWorks__photo}>
               <img
@@ -201,7 +196,7 @@ export const HomePage = () => {
 
             {songsList ? (
               <div className={styles.ourWorks__list}>
-                <SongsList tracks={shuffledSongs} visual='strip' />
+                <SongsList tracks={shuffledSongs.slice(0, 2)} visual='strip' />
               </div>
             ) : (
               <div className={styles.ourWorks__list}>
@@ -214,7 +209,7 @@ export const HomePage = () => {
               to='./portfolio'
               className={styles.ourWorks__button}
             >
-              <Button text='View Portfolio' />
+              <Button text={t('home_works_button')} />
             </Link>
           </section>
         </div>
@@ -228,16 +223,16 @@ export const HomePage = () => {
             />
 
             <h2 className={`${styles.banner__text} ${styles.banner__text_1}`}>
-              Thinking of learning
+              {t('home_banner1')}
             </h2>
             <h2 className={`${styles.banner__text} ${styles.banner__text_2}`}>
-              to play the guitar?
+              {t('home_banner2')}
             </h2>
             <h2 className={`${styles.banner__text} ${styles.banner__text_3}`}>
-              Today is the best day
+              {t('home_banner3')}
             </h2>
             <h2 className={`${styles.banner__text} ${styles.banner__text_4}`}>
-              to start.
+              {t('home_banner4')}
             </h2>
           </section>
         </div>
@@ -247,33 +242,39 @@ export const HomePage = () => {
             {videosList ? (
               <>
                 <h2 className={styles.lessons__title}>
-                  {neededVideo?.title_en}
+                  {currenLanguage === 'ua'
+                    ? neededVideo?.title_uk
+                    : neededVideo?.title_en}
                 </h2>
 
                 <div className={styles.lessons__video}>
                   <video className={styles.lessons__videoItself} controls>
                     <source src={neededVideo?.video_file} type='video/mp4' />
-                    Your browser does not support the video tag.
+                    {t('not_support_video')}
                   </video>
                 </div>
 
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
                 >
-                  {neededVideo?.description_blok1_en}
+                  {currenLanguage === 'ua'
+                    ? neededVideo?.description_blok1_uk
+                    : neededVideo?.description_blok1_en}
                 </h5>
 
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
                 >
-                  {neededVideo?.description_blok2_en}
+                  {currenLanguage === 'ua'
+                    ? neededVideo?.description_blok2_uk
+                    : neededVideo?.description_blok2_en}
                 </h5>
 
                 <div
                   onClick={handleTextMeClick}
                   className={styles.lessons__button}
                 >
-                  <Button text='Text the teacher' />
+                  <Button text={t('home_lessons_button')} />
                 </div>
               </>
             ) : (
@@ -296,7 +297,9 @@ export const HomePage = () => {
               alt='image-star'
             />
 
-            <h2 className={styles.equipment__title}>Our equipment</h2>
+            <h2 className={styles.equipment__title}>
+              {t('home_equipment_title')}
+            </h2>
 
             <div className={styles.equipment__cardsPhone}>
               {equipmentList ? (
@@ -334,7 +337,9 @@ export const HomePage = () => {
 
         <div className={styles.testimonialsWrapper}>
           <section className={styles.testimonials}>
-            <h2 className={styles.testimonials__title}>Testimonials</h2>
+            <h2 className={styles.testimonials__title}>
+              {t('home_testimonials_title')}
+            </h2>
 
             <div className={styles.testimonials__blocksWrapper}>
               <div
@@ -350,21 +355,20 @@ export const HomePage = () => {
                   <h4
                     className={`${styles.testimonials__message} ${styles.testimonials__message_block1}`}
                   >
-                    Panda Records - modern equipment, good recording quality,
-                    friendly staff.
+                    {t('home_testimonials_block1_text')}
                   </h4>
 
                   <div>
                     <h4
                       className={`${styles.testimonials__name} ${styles.testimonials__name_block1}`}
                     >
-                      Vlad Boichuk
+                      {t('home_testimonials_block1_name')}
                     </h4>
 
                     <h5
                       className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block1}`}
                     >
-                      guitar player
+                      {t('home_testimonials_block1_activity')}
                     </h5>
                   </div>
                 </div>
@@ -389,21 +393,20 @@ export const HomePage = () => {
                   <h4
                     className={`${styles.testimonials__message} ${styles.testimonials__message_block2}`}
                   >
-                    I am very pleased with the recording! The sound is clear,
-                    without noise, and the mix sounds professional.
+                    {t('home_testimonials_block2_text')}
                   </h4>
 
                   <div>
                     <h4
                       className={`${styles.testimonials__name} ${styles.testimonials__name_block2}`}
                     >
-                      Olena Galun
+                      {t('home_testimonials_block2_name')}
                     </h4>
 
                     <h5
                       className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block2}`}
                     >
-                      singer
+                      {t('home_testimonials_block2_activity')}
                     </h5>
                   </div>
                 </div>
@@ -428,21 +431,20 @@ export const HomePage = () => {
                   <h4
                     className={`${styles.testimonials__message} ${styles.testimonials__message_block3}`}
                   >
-                    The studio team is very attentive to details. They helped to
-                    adapt the sound to my style!
+                    {t('home_testimonials_block3_text')}
                   </h4>
 
                   <div>
                     <h4
                       className={`${styles.testimonials__name} ${styles.testimonials__name_block3}`}
                     >
-                      Beata Bango
+                      {t('home_testimonials_block3_name')}
                     </h4>
 
                     <h5
                       className={`${styles.testimonials__activitie} ${styles.testimonials__activitie_block3}`}
                     >
-                      singer
+                      {t('home_testimonials_block3_activity')}
                     </h5>
                   </div>
                 </div>

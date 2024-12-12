@@ -1,50 +1,80 @@
 [
   {
     "id": 1,
-    "title": "Turnkey tracks",
-    "details_block1": "Detailes about Turnkey tracks card",
-    "details_block2": "More Detailes about Turnkey tracks card",
-    "photo": "./images/section-services/turnkey-tracks.jpg",
-    "price": 400
+    "title_uk": "Запис вокалу, інструменталу",
+    "title_en": "Recording vocal, instruments",
+    "details_block1_uk": "text",
+    "details_block1_en": "text",
+    "details_block2_uk": "text",
+    "details_block2_en": "text",
+    "details_block3_uk": "text",
+    "details_block3_en": "text",
+    "photo": "./images/section-services/recording.jpg",
+    "price": 450
   },
   {
     "id": 2,
-    "title": "Recording vocals, instruments",
-    "details_block1": "Detailes about Recording vocals, instruments card",
-    "details_block2": "More Detailes about Recording vocals, instruments card",
-    "photo": "./images/section-services/recording.jpg",
-    "price": 500
+    "title_uk": "Створення інструменталів, бітів",
+    "title_en": "Create instrumentals, beats",
+    "details_block1_uk": "text",
+    "details_block1_en": "text",
+    "details_block2_uk": "text",
+    "details_block2_en": "text",
+    "details_block3_uk": "text",
+    "details_block3_en": "text",
+    "photo": "./images/section-services/instrumentals.jpg",
+    "price": 6000
   },
   {
     "id": 3,
-    "title": "Create instrumentals, beats, arrangements",
-    "details_block1": "Detailes about Create instrumentals, beats, arrangements card",
-    "details_block2": "More Detailes about Create instrumentals, beats, arrangements card",
-    "photo": "./images/section-services/instrumentals.jpg",
-    "price": 400
+    "title_uk": "Запис та зведення каверів",
+    "title_en": "Recording and mixing of covers",
+    "details_block1_uk": "text",
+    "details_block1_en": "text",
+    "details_block2_uk": "text",
+    "details_block2_en": "text",
+    "details_block3_uk": "text",
+    "details_block3_en": "text",
+    "photo": "./images/section-services/recording-covers.jpg",
+    "price": 3000
   },
   {
     "id": 4,
-    "title": "Recording and mixing of a cover song",
-    "details_block1": "Detailes about Recording and mixing of a cover song card",
-    "details_block2": "More Detailes about Recording and mixing of a cover song card",
-    "photo": "./images/section-services/recording-covers.jpg",
-    "price": 800
+    "title_uk": "Трек під ключ",
+    "title_en": "Turnkey tracks",
+    "details_block1_uk": "text",
+    "details_block1_en": "text",
+    "details_block2_uk": "text",
+    "details_block2_en": "text",
+    "details_block3_uk": "text",
+    "details_block3_en": "text",
+    "photo": "./images/section-services/turnkey-tracks.jpg",
+    "price": 20000
   },
   {
     "id": 5,
-    "title": "Mixing and mastering",
-    "details_block1": "Detailes about Mixing and mastering card",
-    "details_block2": "More Detailes about Mixing and mastering card",
+    "title_uk": "Зведення та мастеринг",
+    "title_en": "Mixing and mastering",
+    "details_block1_uk": "text",
+    "details_block1_en": "text",
+    "details_block2_uk": "text",
+    "details_block2_en": "text",
+    "details_block3_uk": "text",
+    "details_block3_en": "text",
     "photo": "./images/section-services/mastering.jpg",
-    "price": 400
+    "price": 3000
   },
   {
     "id": 6,
-    "title": "Recording of advertisements, audiobooks",
-    "details_block1": "Detailes about Recording of advertisements, audiobooks card",
-    "details_block2": "More Detailes about Recording of advertisements, audiobooks card",
+    "title_uk": "Запис реклами та аудіокниг",
+    "title_en": "Recording commercials and audiobooks",
+    "details_block1_uk": "text",
+    "details_block1_en": "text",
+    "details_block2_uk": "text",
+    "details_block2_en": "text",
+    "details_block3_uk": "text",
+    "details_block3_en": "text",
     "photo": "./images/section-services/recording-audiobooks.jpg",
-    "price": 600
+    "price": 450
   }
 ]

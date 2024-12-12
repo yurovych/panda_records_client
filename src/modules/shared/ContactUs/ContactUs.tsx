@@ -1,11 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import { ContactForm } from '../ContactForm';
 import styles from './ContactUs.module.scss';
 
 export const ContactUs = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.contactUsWrapper}>
       <section id='contactUs' className={styles.contactUs}>
-        <h2 className={styles.contactUs__title}>Contact us</h2>
+        <h2 className={styles.contactUs__title}>{t('contact_us_title')}</h2>
 
         <div className={styles.contactUs__image} />
 
@@ -13,14 +16,14 @@ export const ContactUs = () => {
           className={`${styles.contactUs__inTouch} ${styles.contactUs__infoBlock}`}
         >
           <h3 className={styles.contactUs__infoBlock_title}>
-            Get in touch via
+            {t('contact_us_block1')}
           </h3>
 
           <a
-            href='mailto:hello@gmail.com'
+            href='mailto:romanmarinec611@gmail.com'
             className={`${styles.contactUs__inTouch_email} ${styles.contactUs__infoBlock_text}`}
           >
-            hello@gmail.com
+            romanmarinec611@gmail.com
           </a>
 
           <a
@@ -34,7 +37,9 @@ export const ContactUs = () => {
         <div
           className={`${styles.contactUs__visit} ${styles.contactUs__infoBlock}`}
         >
-          <h3 className={styles.contactUs__infoBlock_title}>Visit Studio</h3>
+          <h3 className={styles.contactUs__infoBlock_title}>
+            {t('contact_us_block2')}
+          </h3>
 
           <a
             target='_blank'
@@ -42,7 +47,7 @@ export const ContactUs = () => {
             className={styles.contactUs__infoBlock_text}
             rel='noreferrer'
           >
-            79000 Ukraine <br /> Lviv, str. Kozelnytska 17
+            {t('adress_1')} <br /> {t('adress_2')}
           </a>
         </div>
 
@@ -52,7 +57,7 @@ export const ContactUs = () => {
           <h3
             className={`${styles.contactUs__infoBlock_title} ${styles.contactUs__follow_title}`}
           >
-            Follow Us
+            {t('contact_us_block3')}
           </h3>
 
           <div className={styles.contactUs__icons}>
@@ -77,9 +82,9 @@ export const ContactUs = () => {
         </div>
 
         <h3 className={styles.contactUs__formTitle}>
-          Do you have any questions?
+          {t('contact_us_form_title1')}
           <br />
-          Write to us!
+          {t('contact_us_form_title2')}
         </h3>
 
         <div className={styles.contactUs__form}>

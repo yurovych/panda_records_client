@@ -36,7 +36,7 @@ export const Portfolio = () => {
               alt='star_ico'
             />
           </div>
-          <h2 className={styles.topSongs__title}> Our Top Works</h2>
+          <h2 className={styles.topSongs__title}>{t('portfolio_top')}</h2>
 
           {songsAll ? (
             <div className={styles.topSongs__swiper}>
@@ -73,7 +73,7 @@ export const Portfolio = () => {
               alt='star_ico'
             />
           </div>
-          <h2 className={styles.allSongs__title}>More Our Works</h2>
+          <h2 className={styles.allSongs__title}>{t('portfolio_all')}</h2>
 
           <div className={styles.allSongs__main}>
             <div className={styles.allSongs__image}>

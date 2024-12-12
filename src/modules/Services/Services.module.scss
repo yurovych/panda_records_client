@@ -8,6 +8,20 @@
 
 .variety {
   @include content-padding-inline;
+
+  &__photeTablet {
+    @include on-desktop {
+      display: none;
+    }
+  }
+
+  &__desktop {
+    display: none;
+
+    @include on-desktop {
+      display: flex;
+    }
+  }
 }
 
 .process {

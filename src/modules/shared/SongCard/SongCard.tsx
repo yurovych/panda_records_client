@@ -99,9 +99,13 @@ export const SongCard: React.FC<SongTrackProps> = ({ track, visual }) => {
 
           <div className={styles.card__top}>
             <div className={styles.card__info}>
-              <h4 className={styles.card__title}>{track.title}</h4>
+              <h4 title={track.title} className={styles.card__title}>
+                {track.title}
+              </h4>
 
-              <h5 className={styles.card__artist}>{track.artist}</h5>
+              <h5 title={track.artist} className={styles.card__artist}>
+                {track.artist}
+              </h5>
             </div>
 
             <div className={styles.card__buttonWrapper}>
@@ -111,9 +115,12 @@ export const SongCard: React.FC<SongTrackProps> = ({ track, visual }) => {
                   isPlaying && currentSong?.id === track.id && styles.rotate
                 } `}
                 src={
+                  // isPlaying && currentSong?.id === track.id
+                  //   ? './icons/stop-audio-ico.svg'
+                  //   : './icons/play-ico.svg'
                   isPlaying && currentSong?.id === track.id
-                    ? './icons/stop-audio-ico.svg'
-                    : './icons/play-ico.svg'
+                    ? './icons/stop-dark-ico.svg'
+                    : './icons/play-dark-ico.svg'
                 }
                 alt='play'
               />
@@ -179,9 +186,51 @@ export const SongCard: React.FC<SongTrackProps> = ({ track, visual }) => {
             />
 
             <div className={styles.strip__info}>
-              <h4 className={styles.strip__title}>{track.title}</h4>
+              <h4 title={track.title} className={styles.strip__title}>
+                {track.title}
+              </h4>
 
-              <h5 className={styles.strip__artist}>{track.artist}</h5>
+              <h5 title={track.artist} className={styles.strip__artist}>
+                {track.artist}
+              </h5>
+
+              <div className={styles.strip__progress}>
+                <div className={styles.strip__time}>
+                  <p className={styles.strip__time_element}>
+                    {isPlaying ? shownProgress() : '0:00'}
+                  </p>
+
+                  <p className={styles.strip__time_element}>/</p>
+
+                  <p className={styles.strip__time_element}>
+                    {shownDuration() || '0:00'}
+                  </p>
+                </div>
+
+                <div
+                  ref={searchBarElement}
+                  onClick={dragRunner}
+                  className={styles.strip__searchBar}
+                >
+                  <div
+                    style={{
+                      width: `${
+                        isPlaying &&
+                        track.id === currentSong?.id &&
+                        currentSong?.progress &&
+                        currentSong.song_length
+                          ? (currentSong?.progress / currentSong.song_length) *
+                              100 +
+                            '%'
+                          : 0
+                      }`,
+                    }}
+                    className={styles.strip__searchBar_runner}
+                  ></div>
+
+                  <div className={styles.strip__searchBar_runnerSpot}></div>
+                </div>
+              </div>
             </div>
 
             <div className={styles.strip__buttonWrapper}>
@@ -194,9 +243,12 @@ export const SongCard: React.FC<SongTrackProps> = ({ track, visual }) => {
                   styles.rotate
                 } `}
                 src={
+                  // isPlaying && currentSong?.id === track.id
+                  //   ? './icons/stop-audio-ico.svg'
+                  //   : './icons/play-ico.svg'
                   isPlaying && currentSong?.id === track.id
-                    ? './icons/stop-audio-ico.svg'
-                    : './icons/play-ico.svg'
+                    ? './icons/stop-dark-ico.svg'
+                    : './icons/play-dark-ico.svg'
                 }
                 alt='play'
               />
@@ -213,42 +265,6 @@ export const SongCard: React.FC<SongTrackProps> = ({ track, visual }) => {
                   ></div>
                 </div>
               )}
-            </div>
-          </div>
-
-          <div className={styles.strip__bottom}>
-            <div className={styles.strip__time}>
-              <p className={styles.strip__time_element}>
-                {isPlaying ? shownProgress() : '0:00'}
-              </p>
-
-              <p className={styles.strip__time_element}>
-                {shownDuration() || '0:00'}
-              </p>
-            </div>
-
-            <div
-              ref={searchBarElement}
-              onClick={dragRunner}
-              className={styles.strip__searchBar}
-            >
-              <div
-                style={{
-                  width: `${
-                    isPlaying &&
-                    track.id === currentSong?.id &&
-                    currentSong?.progress &&
-                    currentSong.song_length
-                      ? (currentSong?.progress / currentSong.song_length) *
-                          100 +
-                        '%'
-                      : 0
-                  }`,
-                }}
-                className={styles.strip__searchBar_runner}
-              ></div>
-
-              <div className={styles.strip__searchBar_runnerSpot}></div>
             </div>
           </div>
         </div>

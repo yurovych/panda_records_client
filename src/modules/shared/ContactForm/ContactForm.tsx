@@ -5,9 +5,12 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Button } from '../Button';
 import styles from './ContactForm.module.scss';
 import { clientService } from '../../../services/clientService';
+import { useTranslation } from 'react-i18next';
 // import { FormDataType } from './../../../types/FormDataType';
 
 export const ContactForm = () => {
+  const { t } = useTranslation();
+
   const [error, setError] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -123,44 +126,46 @@ export const ContactForm = () => {
           //     setError('');
           //   })
 
-          clientService
-            .sendForm({ name, email, phone_number, message })
-            .then(() => {
-              formikHelpers.resetForm();
-              manageShowSuccess();
-              setError('');
-            })
-            .catch((error) => {
-              if (error.message) {
-                manageShowError(error.message);
-              }
+          setTimeout(() => {
+            clientService
+              .sendForm({ name, email, phone_number, message })
+              .then(() => {
+                formikHelpers.resetForm();
+                manageShowSuccess();
+                setError('');
+              })
+              .catch((error) => {
+                if (error.message) {
+                  manageShowError(error.message);
+                }
 
-              if (!error.response?.data) {
-                manageShowError('Unnown error');
-                return;
-              }
+                if (!error.response?.data) {
+                  manageShowError('Unnown error');
+                  return;
+                }
 
-              const { errors, message } = error.response.data;
+                const { errors, message } = error.response.data;
 
-              formikHelpers.setFieldError('name', errors?.name);
-              formikHelpers.setFieldError('email', errors?.email);
-              formikHelpers.setFieldError('phoneNumber', errors?.phoneNumber);
-              formikHelpers.setFieldError('message', errors?.message);
+                formikHelpers.setFieldError('name', errors?.name);
+                formikHelpers.setFieldError('email', errors?.email);
+                formikHelpers.setFieldError('phoneNumber', errors?.phoneNumber);
+                formikHelpers.setFieldError('message', errors?.message);
 
-              if (message) {
-                manageShowError(message);
-              }
-            })
-            .finally(() => {
-              formikHelpers.setSubmitting(false);
-            });
+                if (message) {
+                  manageShowError(message);
+                }
+              })
+              .finally(() => {
+                formikHelpers.setSubmitting(false);
+              });
+          }, 300);
         }}
       >
         {({ touched, errors, isSubmitting, isValid }) => (
           <Form className={styles.form}>
             <div className={styles.form__element}>
               <label className={styles.form__label} htmlFor='name'>
-                Name
+                {t('form_name')}
               </label>
 
               <div className='control has-icons-left has-icons-right'>
@@ -172,7 +177,7 @@ export const ContactForm = () => {
                   name='name'
                   type='text'
                   id='name'
-                  placeholder='Name'
+                  placeholder={t('form_name_placeholder')}
                   className={`${cn('input', {
                     'is-danger': touched.name && errors.name,
                   })} ${styles.form__field}`}
@@ -198,7 +203,7 @@ export const ContactForm = () => {
 
             <div className={styles.form__element}>
               <label className={styles.form__label} htmlFor='email'>
-                Email
+                {t('form_email')}
               </label>
 
               <div className='control has-icons-left has-icons-right'>
@@ -234,7 +239,7 @@ export const ContactForm = () => {
 
             <div className={styles.form__element}>
               <label className={styles.form__label} htmlFor='phoneNumber'>
-                Phone number
+                {t('form_phone')}
               </label>
 
               <div className='control has-icons-left has-icons-right'>
@@ -271,7 +276,7 @@ export const ContactForm = () => {
 
             <div className={styles.form__element}>
               <label className={styles.form__label} htmlFor='message'>
-                Message
+                {t('form_message')}
               </label>
 
               <div className='control has-icons-left has-icons-right'>
@@ -284,7 +289,7 @@ export const ContactForm = () => {
                   name='message'
                   type='text'
                   id='message'
-                  placeholder='Maximum 200 characters'
+                  placeholder={t('form_message_placeholder')}
                   className={`${cn('textarea', {
                     'is-danger': touched.message && errors.message,
                   })} ${styles.form__field} `}
@@ -316,7 +321,11 @@ export const ContactForm = () => {
                 type='submit'
                 disabled={isSubmitting || !isValid}
               >
-                <Button text={`${isSubmitting ? 'Sending' : 'Send'}`} />
+                <Button
+                  text={t(
+                    isSubmitting ? 'form_button_sending' : 'form_button_send'
+                  )}
+                />
               </button>
             </div>
 
@@ -332,7 +341,7 @@ export const ContactForm = () => {
               <p
                 className={`${styles.form__resultMessage} notification is-success is-light`}
               >
-                Successfully sent
+                {t('form_success')}
               </p>
             )}
           </Form>
