@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "./static/css/main.bbd41714.css",
-    "main.js": "./static/js/main.c8e7cf51.js",
+    "main.css": "./static/css/main.b29e0095.css",
+    "main.js": "./static/js/main.c8fe51ff.js",
     "static/js/38.fa60f527.chunk.js": "./static/js/38.fa60f527.chunk.js",
     "static/media/about-us-history-article1.jpg": "./static/media/about-us-history-article1.04c2003bb5324f352e62.jpg",
-    "static/media/dynamic.jpg": "./static/media/dynamic.f08dd3b90fd38ecc4467.jpg",
     "static/media/disc-bg.png": "./static/media/disc-bg.f93fe61614bdf2cd2af6.png",
     "static/media/contactUs_image.jpg": "./static/media/contactUs_image.00c824ba8705db882e66.jpg",
     "static/media/about-us-history-article5.jpg": "./static/media/about-us-history-article5.beb9d44fb6e0228edce5.jpg",
+    "static/media/portfolio_banner2_bg.png": "./static/media/portfolio_banner2_bg.dfb5d839e24901e68e46.png",
     "static/media/services-bg.png": "./static/media/services-bg.634e8f5548dc1df3abdc.png",
     "static/media/big-logo.png": "./static/media/big-logo.377de8073578db162938.png",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "./static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -18,18 +18,19 @@
     "static/media/fa-solid-900.woff2": "./static/media/fa-solid-900.83a538a018a9e44b023a.woff2",
     "static/media/fa-brands-400.woff2": "./static/media/fa-brands-400.fdbb558523a380307689.woff2",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "./static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/studio.jpg": "./static/media/studio.c598eff19fd10a9d3895.jpg",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "./static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "static/media/fa-regular-400.ttf": "./static/media/fa-regular-400.05fdd87be89f7f8f0a1e.ttf",
     "static/media/fa-regular-400.woff2": "./static/media/fa-regular-400.4f6a2dabee9c092d09b9.woff2",
     "static/media/fa-v4compatibility.ttf": "./static/media/fa-v4compatibility.fa86b3c85e77abbd2ebd.ttf",
     "static/media/fa-v4compatibility.woff2": "./static/media/fa-v4compatibility.c3ea317a0f10f201597f.woff2",
     "index.html": "./index.html",
-    "main.bbd41714.css.map": "./static/css/main.bbd41714.css.map",
-    "main.c8e7cf51.js.map": "./static/js/main.c8e7cf51.js.map",
+    "main.b29e0095.css.map": "./static/css/main.b29e0095.css.map",
+    "main.c8fe51ff.js.map": "./static/js/main.c8fe51ff.js.map",
     "38.fa60f527.chunk.js.map": "./static/js/38.fa60f527.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbd41714.css",
-    "static/js/main.c8e7cf51.js"
+    "static/css/main.b29e0095.css",
+    "static/js/main.c8fe51ff.js"
   ]
 }
