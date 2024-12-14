@@ -1,5 +1,6 @@
 $tablet-min-width: 640px;
 $desktop-min-width: 1200px;
+$max-content-width: 1440px;
 $effect-duration: 0.4s;
 $clip-top-right: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
 $clip-top-left: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 20%);
@@ -56,6 +57,12 @@ $gradient-white-toBottomRigth: linear-gradient(
   rgba(255, 255, 255, 0)
 );
 
-$shadow: 0 4px 8px 0 #00000040;
+$gradient-white-transparent: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.2),
+  rgba(255, 255, 255, 0.2),
+  rgba(255, 255, 255, 0.15),
+  rgba(255, 255, 255, 0)
+);
 
-$max-content-width: 1440px;
+$shadow: 0 4px 8px 0 #00000040;

@@ -1,11 +1,7 @@
 @import './../shared/main';
 
 .portfolio {
-  // background-color: $color-white1;
-  background-image: url('./../../../public/images/dynamic.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: $color-white1;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -21,7 +17,7 @@
 }
 
 .topSongsWrapper {
-  // background-color: $color-white1;
+  background-color: $color-white1;
 }
 
 .topSongs {
@@ -45,8 +41,7 @@
     z-index: 1;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
-    // color: $color-pink1;
-    color: $color-white2;
+    color: $color-pink1;
     text-align: left;
     font-size: 32px;
     font-weight: 500;
@@ -82,12 +77,7 @@
 }
 
 .allSongsWrapper {
-  // background: $gradient-grey-white;
-
-  @include on-desktop {
-    background: none;
-    // background-color: $color-white2;
-  }
+  background-color: $color-white1;
 }
 
 .allSongs {
@@ -103,8 +93,7 @@
     z-index: 1;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
-    // color: $color-black2;
-    color: $color-white2;
+    color: $color-black2;
     text-align: left;
     font-size: 32px;
     font-weight: 500;
@@ -133,8 +122,9 @@
     display: none;
 
     @include on-desktop {
-      box-shadow: 0 4px 8px 0 #000000;
+      box-shadow: $shadow;
       display: block;
+      clip-path: $clip-top-right;
       grid-column: 1 / 6;
       height: 100%;
       aspect-ratio: 1;
@@ -151,42 +141,199 @@
     height: 100%;
   }
 
-  &__list {
-    background-color: $color-black1;
-    // background-color: $color-white3;
+  &__listWrapper {
+    background-color: $color-white1;
+    box-shadow: $shadow;
     grid-column: 1 / -1;
-    padding-block: 16px;
+    padding: 36px;
     height: 60vh;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    z-index: 1;
-    width: 100%;
 
     @include on-tablet {
-      padding-block: 24px;
       grid-column: 2 / -1;
-      gap: 24p x;
     }
 
     @include on-desktop {
-      height: auto;
+      height: 100%;
       aspect-ratio: 6 / 5;
       grid-column: 7 / -1;
     }
   }
+
+  &__listHeader {
+    margin-bottom: 16px;
+  }
+
+  &__listBanner {
+    background-image: url('./../../../public/images/studio.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-shadow: $shadow;
+    padding: 16px;
+    min-height: 112px;
+    max-height: 112px;
+    display: flex;
+    align-items: end;
+  }
+
+  &__listBannnerText {
+    font-size: 16px;
+    color: $color-white2;
+  }
+
+  &__list {
+    flex-grow: 1;
+    overflow-y: scroll;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+}
+
+.allSongs__data:hover .allSongs__button {
+  transform: scale(1.12);
 }
 
 .allSongs__list::-webkit-scrollbar {
+  width: 8px;
+}
+.allSongs__list::-webkit-scrollbar-track {
+  cursor: pointer;
+  background: $color-white2;
+  border-radius: 5px;
+}
+.allSongs__list::-webkit-scrollbar-thumb {
+  opacity: 0.2;
+  background: #19191a80;
+  border-radius: 5px;
+  transition: transform $effect-duration ease;
+}
+.allSongs__list::-webkit-scrollbar-thumb:hover {
+  background: $color-black2;
+}
+
+.banner1Wrapper {
   display: none;
+
+  @include on-desktop {
+    display: block;
+    background: $gradient-black-violet;
+  }
+}
+
+.banner1 {
+  margin-inline: auto;
+  max-width: $max-content-width;
+  position: relative;
+  height: 320px;
+
+  &__star {
+    z-index: 9;
+    position: absolute;
+    transform: scale(0.8);
+
+    @include on-tablet {
+      top: -100px;
+      left: -100px;
+    }
+
+    @include on-desktop {
+      transform: scale(1);
+      top: -40px;
+      left: 100px;
+    }
+  }
+
+  &__text {
+    white-space: nowrap;
+    z-index: 10;
+    position: absolute;
+    color: $color-white1;
+    font-size: 52px;
+    line-height: 130%;
+    font-weight: 500;
+
+    &_1 {
+      left: 30%;
+      top: 40px;
+    }
+
+    &_2 {
+      left: 45%;
+      top: 100px;
+    }
+
+    &_3 {
+      font-weight: 400;
+      position: static;
+    }
+
+    &_4 {
+      font-weight: 400;
+      position: static;
+      color: $color-pink3;
+    }
+  }
+
+  &__textBlock {
+    position: absolute;
+    display: flex;
+    top: 180px;
+    left: 100px;
+    gap: 10px;
+  }
+}
+
+.banner2Wrapper {
+  background-image: url('./../../../public/images/portfolio_banner2_bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner2 {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-inline: auto;
+  max-width: $max-content-width;
+  height: 320px;
+
+  @include content-padding-inline;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    background: $gradient-white-transparent;
+    padding-left: 24px;
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+
+    @include on-tablet {
+      text-align: right;
+      font-size: 36px;
+    }
+
+    @include on-desktop {
+      font-size: 48px;
+    }
+  }
 }
 
 .stars {
-  height: 100px;
-  width: 100%;
   position: absolute;
+  width: 100%;
+  height: 100px;
   right: 0;
   top: 0;
 
@@ -219,7 +366,6 @@
       right: 20%;
 
       @include on-tablet {
-        display: block;
         top: -20%;
         right: 15%;
       }
@@ -229,82 +375,5 @@
         right: 15%;
       }
     }
-  }
-}
-
-.stars2 {
-  @include on-tablet {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    right: 0;
-    top: 0;
-  }
-
-  &__star {
-    opacity: 0.8;
-    position: absolute;
-
-    &_star1 {
-      top: -10%;
-      right: -20%;
-
-      @include on-tablet {
-        top: 20%;
-        left: 10%;
-      }
-
-      @include on-desktop {
-        top: -5%;
-        left: 55%;
-      }
-    }
-
-    &_star2 {
-      top: 5%;
-      right: 50%;
-
-      @include on-tablet {
-        top: 45%;
-        left: 0%;
-      }
-
-      @include on-desktop {
-        top: 5%;
-        left: 75%;
-      }
-    }
-
-    &_star3 {
-      top: 0;
-      right: 30%;
-
-      @include on-tablet {
-        top: 65%;
-        left: 15%;
-      }
-
-      @include on-desktop {
-        top: 20%;
-        left: 70%;
-      }
-    }
-  }
-}
-
-.player {
-  display: flex;
-  padding-right: 16px;
-  z-index: 11;
-  position: fixed;
-  top: 120px;
-  right: 0;
-  width: 80vw;
-  height: max-content;
-  background: $gradient-grey-white;
-
-  @include on-tablet {
-    padding-right: 32px;
   }
 }

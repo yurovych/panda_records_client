@@ -1,19 +1,41 @@
-import { SongsList } from '../shared/SongsList';
 import styles from './Portfolio.module.scss';
 import songsAll from './../../data/songsCards.json';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../shared/Footer';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ServicesSwiper } from '../shared/ServicesSwiper';
 import { SongCard } from '../shared/SongCard';
 import { Loader } from '../Loader';
+import { SongTrackType } from '../../types/SongTrack';
+import { setCurrentSong, setIsPlaying } from '../../slices/playerSlice';
+import { ContactUs } from '../shared/ContactUs';
+import { SongsList } from '../shared/SongsList';
 
 export const Portfolio = () => {
-  // const songsList = useAppSelector((state) => state.songs.objects);
   const { t } = useTranslation();
   const currentSong = useAppSelector((state) => state.player.currentSong);
+  const isPlaying = useAppSelector((state) => state.player.isPlaying);
+  const currentLanguuage = useAppSelector(
+    (state) => state.current.currentLanguage
+  );
 
   const topSongs = songsAll.filter((song) => song.top);
+
+  const dispatch = useAppDispatch();
+
+  function toggleSong(track: SongTrackType) {
+    if (currentSong?.id === track.id) {
+      if (isPlaying) {
+        dispatch(setIsPlaying(false));
+        dispatch(setCurrentSong(null));
+      } else {
+        dispatch(setIsPlaying(true));
+      }
+    } else {
+      dispatch(setCurrentSong(track));
+      dispatch(setIsPlaying(true));
+    }
+  }
 
   return (
     <div className={styles.portfolio}>
@@ -54,25 +76,33 @@ export const Portfolio = () => {
         </section>
       </div>
 
+      <div className={styles.banner1Wrapper}>
+        <section className={styles.banner1}>
+          <img
+            className={styles.banner1__star}
+            src='./images/baner-star.png'
+            alt='image-star'
+          />
+
+          <h2 className={`${styles.banner1__text} ${styles.banner1__text_1}`}>
+            {t('portfolio_banner1_text1')}
+          </h2>
+          <h2 className={`${styles.banner1__text} ${styles.banner1__text_2}`}>
+            {t('portfolio_banner1_text2')}
+          </h2>
+          <div className={styles.banner1__textBlock}>
+            <h2 className={`${styles.banner1__text} ${styles.banner1__text_3}`}>
+              {t('portfolio_banner1_text3')}
+            </h2>
+            <h2 className={`${styles.banner1__text} ${styles.banner1__text_4}`}>
+              {t('portfolio_banner1_text4')}
+            </h2>
+          </div>
+        </section>
+      </div>
+
       <div className={styles.allSongsWrapper}>
         <section className={styles.allSongs}>
-          <div className={styles.stars2}>
-            <img
-              className={`${styles.stars2__star} ${styles.stars2__star_star1}`}
-              src='./images/songs-star-big.png'
-              alt='star_ico'
-            />
-            <img
-              className={`${styles.stars2__star} ${styles.stars2__star_star2}`}
-              src='./images/songs-star-avarage.png'
-              alt='star_ico'
-            />
-            <img
-              className={`${styles.stars2__star} ${styles.stars2__star_star3}`}
-              src='./images/songs-star-small.png'
-              alt='star_ico'
-            />
-          </div>
           <h2 className={styles.allSongs__title}>{t('portfolio_all')}</h2>
 
           <div className={styles.allSongs__main}>
@@ -84,16 +114,58 @@ export const Portfolio = () => {
               />
             </div>
 
-            <div className={styles.allSongs__list}>
-              {songsAll ? (
-                <SongsList tracks={songsAll} visual='strip' />
-              ) : (
-                <Loader />
-              )}
+            <div className={styles.allSongs__listWrapper}>
+              <div className={styles.allSongs__listHeader}>
+                {currentSong ? (
+                  <SongCard track={currentSong} visual='strip' />
+                ) : (
+                  <div className={styles.allSongs__listBanner}>
+                    <p className={styles.allSongs__listBannnerText}>
+                      {t('portfolio_all_listTitle')}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.allSongs__list}>
+                {songsAll ? (
+                  <>
+                    <SongsList tracks={songsAll} visual='mini' />
+                  </>
+                ) : (
+                  <Loader />
+                )}
+              </div>
             </div>
           </div>
         </section>
       </div>
+
+      <div className={styles.banner2Wrapper}>
+        <section className={styles.banner2}>
+          {currentLanguuage === 'ua' ? (
+            <div className={styles.banner2__content}>
+              <p className={styles.banner2__text}>
+                Твоя музика варта <b>бути почутою</b>!
+              </p>
+              <p className={styles.banner2__text}>
+                <b>Перетвори ідею</b> в хітовий трек!
+              </p>
+            </div>
+          ) : (
+            <div className={styles.banner2__content}>
+              <p className={styles.banner2__text}>
+                Your music deserves <b>to be heard</b>!
+              </p>
+              <p className={styles.banner2__text}>
+                <b>Turn your idea</b> into a track!
+              </p>
+            </div>
+          )}
+        </section>
+      </div>
+
+      <ContactUs />
 
       <Footer />
     </div>

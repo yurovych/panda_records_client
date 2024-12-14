@@ -1,7 +1,7 @@
 @import './../main';
 
 .player {
-  z-index: 99999;
+  z-index: 999;
   background-image: url('./../../../../public/images/disc-bg.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +10,8 @@
   top: 90px;
   height: 60px;
   width: max-content;
-  max-width: 80vw;
+  min-width: 90vw;
+  max-width: 90vw;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -19,11 +20,13 @@
   transition: all $effect-duration ease;
 
   @include on-tablet {
-    max-width: 50vw;
+    min-width: 90vw;
+    max-width: 90vw;
   }
 
   @include on-desktop {
-    max-width: 30vw;
+    min-width: 50vw;
+    max-width: 50vw;
   }
 
   &__photo {
@@ -45,8 +48,6 @@
   &__info {
     display: grid;
     height: 100%;
-    min-width: 100px;
-    width: max-content;
   }
 
   &__title {
@@ -157,22 +158,18 @@
 
 .showPlayer {
   opacity: 0.9;
-  transform: translate(-16px, 0) scale(1);
+  transform: translateX(-16px) scale(1);
 
   @include on-tablet {
-    transform: translate(-32px, 0) scale(1);
+    transform: translateX(-32px) scale(1);
   }
 
   @include on-desktop {
-    transform: translate(-64px, 0) scale(1);
+    transform: translateX(-64px) scale(1);
   }
 }
 
 .hidePlayer {
   opacity: 0;
-  transform: translate(30vw, 50vh) scale(0);
-
-  @include on-desktop {
-    transform: translate(300px, 50vh) scale(0);
-  }
+  transform: translateX(100vw) scale(0);
 }

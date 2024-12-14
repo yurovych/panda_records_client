@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "photo": "./images/about-us-photo.jpg"
+  },
+  {
+    "id": 2,
+    "photo": "./images/about-us-top1.png"
+  },
+  {
+    "id": 3,
+    "photo": "./images/big-logo.png"
+  },
+  {
+    "id": 4,
+    "photo": "./images/portfolio_banner2_bg.png"
+  },
+  {
+    "id": 5,
+    "photo": "./images/services-bg.png"
+  }
+]

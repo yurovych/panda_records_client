@@ -9,9 +9,10 @@ import { ServiceCardType } from '../../../types/Service';
 import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
 import { SongTrackType } from '../../../types/SongTrack';
+import { SimplePhoto } from '../../../types/SimplePhoto';
 
 type ServicesSwiperProps = {
-  type: 'type1' | 'type2';
+  type: 'type1' | 'type2' | 'type3';
   equipmentCadrs?: EquipmentCardType[];
   servicesCards?: ServiceCardType[];
   servicesWideCards?: ServiceCardType[];
@@ -23,7 +24,11 @@ type ServicesSwiperProps = {
   }>;
   EquipmentToRender?: React.FC<{ card: EquipmentCardType }>;
   VideoToRender?: React.FC<{ card: VideoFileType }>;
-  SongToRender?: React.FC<{ track: SongTrackType; visual: 'card' | 'strip' }>;
+  SongToRender?: React.FC<{
+    track: SongTrackType;
+    visual: 'card' | 'strip' | 'mini';
+  }>;
+  simplePhotos?: SimplePhoto[];
 };
 
 export const ServicesSwiper = ({
@@ -37,6 +42,7 @@ export const ServicesSwiper = ({
   EquipmentToRender,
   VideoToRender,
   SongToRender,
+  simplePhotos,
 }: ServicesSwiperProps) => {
   return (
     <div className={styles.swiperContainer}>
@@ -44,7 +50,7 @@ export const ServicesSwiper = ({
         style={type === 'type2' ? { paddingInline: '32px' } : undefined}
         modules={[Navigation, Pagination, FreeMode]}
         pagination={{ clickable: true }}
-        navigation
+        navigation={type !== 'type3' ? true : false}
         spaceBetween={type === 'type2' ? 24 : 16}
         freeMode={type === 'type2' && true}
         slidesPerView={1}
@@ -96,6 +102,18 @@ export const ServicesSwiper = ({
               <SongToRender track={card} visual='card' />
             </SwiperSlide>
           ))}
+        {/* {simplePhotos &&
+          simplePhotos.map((photo) => (
+            <SwiperSlide key={photo.id}>
+              <div className={styles.allSongs__image}>
+                <img
+                  className={styles.allSongs__imageItself}
+                  src={photo.photo}
+                  alt='studio_photo'
+                />
+              </div>
+            </SwiperSlide>
+          ))} */}
       </Swiper>
     </div>
   );

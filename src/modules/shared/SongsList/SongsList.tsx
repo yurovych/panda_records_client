@@ -5,14 +5,14 @@ import { SongTrackType } from './../../../types/SongTrack';
 
 type SongsListProps = {
   tracks: SongTrackType[];
-  visual: 'card' | 'strip';
+  visual: 'card' | 'strip' | 'mini';
 };
 
 export const SongsList = ({ tracks, visual }: SongsListProps) => {
   return (
     <>
-      {tracks.map((track) => (
-        <SongCard track={track} visual={visual} key={track.id} />
+      {tracks.map((track, index) => (
+        <SongCard index={index} track={track} visual={visual} key={track.id} />
       ))}
     </>
   );
