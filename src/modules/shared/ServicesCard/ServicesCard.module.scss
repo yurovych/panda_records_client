@@ -48,10 +48,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    @include on-tablet {
-      padding: 24px;
-    }
+    padding-inline: 24px;
   }
 
   &__title {
@@ -74,12 +71,12 @@
   justify-content: space-between;
   clip-path: $clip-top-right;
   background-color: $color-white1;
-  padding-inline: 40px;
-  padding-block: 16px;
-
-  @include on-tablet {
-    padding: 24px;
-  }
+  padding-bottom: 16px;
+  padding-inline: 24px;
+  padding-top: 32px;
+  background: linear-gradient(
+    (to bottom, $color-white2 75%, $color-white1 25%)
+  );
 
   &__title {
     color: $color-black2;
@@ -93,9 +90,9 @@
   &__description {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 16px;
     color: $color-grey2;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 130%;
     text-align: left;
@@ -132,10 +129,125 @@
 }
 
 .serDetCard {
+  display: flex;
+  flex-direction: column;
   background-color: $color-white1;
+  box-shadow: $shadow;
   margin-bottom: 32px;
+  padding: 24px 12px;
+  margin-inline: 5px;
+
+  @include on-tablet {
+    padding: 32px 16px;
+  }
+
+  &__image {
+    width: 100%;
+    margin-bottom: 16px;
+
+    @include on-tablet {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__imageItself {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    clip-path: $clip-top-right;
+
+    @include on-tablet {
+      aspect-ratio: 3 / 2;
+    }
+  }
+
+  &__content {
+    height: 320px;
+    padding-inline: 16px;
+    grid-auto-rows: min-content;
+    @include page-grid;
+
+    @include on-tablet {
+      padding-inline: 0;
+    }
+  }
+
+  &__title {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    color: $color-black2;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 130%;
+    margin-bottom: 8px;
+
+    @include on-tablet {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__textBlock {
+    grid-column: 1 / -1;
+
+    &_block1 {
+      grid-row: 2 / 3;
+      margin-bottom: 8px;
+
+      @include on-tablet {
+        margin-bottom: 16px;
+      }
+    }
+
+    &_block2 {
+      margin-bottom: 8px;
+      grid-row: 3 / 4;
+
+      @include on-tablet {
+        grid-column: 1 / 3;
+        background-color: $color-white4;
+        border: 1px solid $color-white2;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+    }
+
+    &_block3 {
+      margin-bottom: 8px;
+      grid-row: 4 / 5;
+
+      @include on-tablet {
+        grid-column: 3 / -1;
+        grid-row: 3 / 4;
+        background-color: $color-white4;
+        border: 1px solid $color-white2;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  &__text {
+    color: $color-grey2;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+
+    @include on-tablet {
+      font-size: 20px;
+    }
+  }
+
+  &__priceBlockWrapper {
+    display: flex;
+    align-self: flex-end;
+    align-items: end;
+    height: 100%;
+  }
 
   &__priceBlock {
+    padding-inline: 16px;
     display: flex;
     align-items: center;
   }

@@ -10,7 +10,7 @@ export const ContactUs = () => {
       <section id='contactUs' className={styles.contactUs}>
         <h2 className={styles.contactUs__title}>{t('contact_us_title')}</h2>
 
-        <div className={styles.contactUs__image} />
+        <div className={styles.contactUs__image}></div>
 
         <div
           className={`${styles.contactUs__inTouch} ${styles.contactUs__infoBlock}`}

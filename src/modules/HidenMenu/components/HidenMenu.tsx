@@ -36,7 +36,9 @@ export const HidenMenu: React.FC = () => {
       </div>
 
       <div className={styles.hidenMenu__contacts}>
-        <h3 className={styles.hidenMenu__contacts_title}>{t('contact_us')}:</h3>
+        <h3 className={styles.hidenMenu__contacts_title}>
+          {t('header_contact_us')}
+        </h3>
 
         <div className={styles.hidenMenu__contacts_contactWrapper}>
           <img

@@ -10,6 +10,7 @@ import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
 import { SongTrackType } from '../../../types/SongTrack';
 import { SimplePhoto } from '../../../types/SimplePhoto';
+import { SwiperOptions } from 'swiper/types';
 
 type ServicesSwiperProps = {
   type: 'type1' | 'type2' | 'type3';
@@ -44,28 +45,37 @@ export const ServicesSwiper = ({
   SongToRender,
   simplePhotos,
 }: ServicesSwiperProps) => {
+  function howManySlides(): { [key: number]: SwiperOptions } {
+    switch (type) {
+      case 'type1':
+        return {
+          640: {
+            slidesPerView: 2,
+          },
+          1200: {
+            slidesPerView: 4,
+          },
+        };
+
+      case 'type2':
+        return { 340: { slidesPerView: 1.3 }, 1200: { slidesPerView: 3 } };
+
+      default:
+        return { 340: { slidesPerView: 1 } };
+    }
+  }
+
   return (
     <div className={styles.swiperContainer}>
       <Swiper
         style={type === 'type2' ? { paddingInline: '32px' } : undefined}
         modules={[Navigation, Pagination, FreeMode]}
         pagination={{ clickable: true }}
-        navigation={type !== 'type3' ? true : false}
+        navigation={type === 'type2' ? true : false}
         spaceBetween={type === 'type2' ? 24 : 16}
         freeMode={type === 'type2' && true}
         slidesPerView={1}
-        breakpoints={
-          type === 'type1'
-            ? {
-                640: {
-                  slidesPerView: 2,
-                },
-                1200: {
-                  slidesPerView: 4,
-                },
-              }
-            : { 340: { slidesPerView: 1.3 }, 1200: { slidesPerView: 3 } }
-        }
+        breakpoints={howManySlides()}
       >
         {ServiceToRender &&
           servicesCards &&
