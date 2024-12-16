@@ -10,7 +10,8 @@
     "details_block3_uk": "Працюйте з досвідченими інженерами, щоб ідеально передати вашу гру.",
     "details_block3_en": "Work with skilled engineers to capture your unique performance perfectly.",
     "photo": "./images/section-services/recording.jpg",
-    "price": 450
+    "price": 450,
+    "hourly": true
   },
   {
     "id": 2,
@@ -23,7 +24,8 @@
     "details_block3_uk": "Від хіп-хопу до оркестрових треків — все для вашого стилю.",
     "details_block3_en": "From hip-hop to orchestral, we deliver instrumentals tailored to you.",
     "photo": "./images/section-services/instrumentals.jpg",
-    "price": 6000
+    "price": 6000,
+    "hourly": false
   },
   {
     "id": 3,
@@ -36,7 +38,8 @@
     "details_block3_uk": "Зведіть пісню так, щоб ваша версія засяяла по-особливому.",
     "details_block3_en": "Mix with precision to make your version stand out from the rest.",
     "photo": "./images/section-services/recording-covers.jpg",
-    "price": 3000
+    "price": 3000,
+    "hourly": false
   },
   {
     "id": 4,
@@ -49,7 +52,8 @@
     "details_block3_uk": "Зосередьтеся на творчості, а ми подбаємо про технічну сторону.",
     "details_block3_en": "Focus on your music; we’ll take care of the technical details.",
     "photo": "./images/section-services/turnkey-tracks.jpg",
-    "price": 20000
+    "price": 20000,
+    "hourly": false
   },
   {
     "id": 5,
@@ -62,7 +66,8 @@
     "details_block3_uk": "Готуйте треки до стрімінгів, радіо чи концертів.",
     "details_block3_en": "Ready your songs for streaming, radio, or live performances.",
     "photo": "./images/section-services/mastering.jpg",
-    "price": 3000
+    "price": 3000,
+    "hourly": false
   },
   {
     "id": 6,
@@ -75,6 +80,7 @@
     "details_block3_uk": "Довірте нашій команді оживити ваші тексти з максимальною точністю.",
     "details_block3_en": "Let our team help bring your scripts to life with precision.",
     "photo": "./images/section-services/recording-audiobooks.jpg",
-    "price": 450
+    "price": 450,
+    "hourly": true
   }
 ]

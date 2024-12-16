@@ -12,7 +12,12 @@ export const SongsList = ({ tracks, visual }: SongsListProps) => {
   return (
     <>
       {tracks.map((track, index) => (
-        <SongCard index={index} track={track} visual={visual} key={track.id} />
+        <SongCard
+          index={index + 1}
+          track={track}
+          visual={visual}
+          key={track.id}
+        />
       ))}
     </>
   );

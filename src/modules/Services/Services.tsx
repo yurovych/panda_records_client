@@ -6,9 +6,9 @@ import videos from './../../data/videos.json';
 import { ProcessVideoCard } from '../shared/ProcessVideoCard';
 import { Loader } from '../Loader';
 import { ServicesCard } from './../shared/ServicesCard/ServicesCard';
-import { ServicesList } from '../shared/ServicesList';
 import { useTranslation } from 'react-i18next';
 import { ContactUs } from '../shared/ContactUs';
+import { ServicesCardsDesktop } from '../shared/ServicesCardsDesktop';
 
 export const Services = () => {
   const processVideosList = videos.filter((video) => video);
@@ -17,7 +17,12 @@ export const Services = () => {
   return (
     <div className={styles.services}>
       <section className={styles.variety}>
-        <h1 className={styles.variety__title}>Our services</h1>
+        <img
+          className={styles.variety__star}
+          src='./images/services-blue-star.png'
+          alt='star-foto'
+        />
+        <h1 className={styles.variety__title}>{t('sevcices_title')} </h1>
         <div className={styles.variety__photeTablet}>
           {servicesList ? (
             <ServicesSwiper
@@ -32,7 +37,7 @@ export const Services = () => {
 
         <div className={styles.variety__desktop}>
           {servicesList ? (
-            <ServicesList cards={servicesList} visual='wide' />
+            <ServicesCardsDesktop services={servicesList} />
           ) : (
             <Loader />
           )}
@@ -40,12 +45,12 @@ export const Services = () => {
       </section>
 
       <section className={styles.process}>
-        <h2 className={styles.process__title}>How the process looks like?</h2>
+        <h2 className={styles.process__title}>{t('services_videos_title')} </h2>
 
         <div className={styles.process__swiperWrapper}>
           {processVideosList ? (
             <ServicesSwiper
-              type='type2'
+              type='type1'
               videoCards={processVideosList}
               VideoToRender={ProcessVideoCard}
             />
@@ -56,8 +61,13 @@ export const Services = () => {
       </section>
 
       <section className={styles.lessons}>
+        <img
+          className={styles.lessons__star}
+          src='./images/services-pink-star.png'
+          alt='star-foto'
+        />
         <h2 className={styles.lessons__sectionTitle}>
-          Improve Your skill level
+          {t('services_lessons_title')}
         </h2>
 
         <div className={styles.lessons__cardsBlock}>
@@ -71,13 +81,14 @@ export const Services = () => {
             </div>
 
             <h2 className={styles.lessons__title}>
-              Lessons of sound engineering
+              {t('services_lessons_engenering_title')}
             </h2>
 
-            <p className={styles.lessons__text}>
-              Text lesson of sound engineeri ngg fsfadfsd fase rafsdasdag
-              sdfaaewrsfewf
-            </p>
+            <div className={styles.lessons__textBlock}>
+              <p className={styles.lessons__text}>
+                {t('services_lessons_engenering_text')}
+              </p>
+            </div>
 
             <div className={styles.lessons__priceBlockWrapper}>
               <div className={styles.lessons__priceBlock}>
@@ -103,11 +114,12 @@ export const Services = () => {
               />
             </div>
 
-            <h2 className={styles.lessons__title}>Guitar lessons</h2>
+            <h2 className={styles.lessons__title}>
+              {t('services_lessons_giuitar_title')}
+            </h2>
 
             <p className={styles.lessons__text}>
-              Text guitar lessons asdfs fwef cfwaerfa csdfwe rer affsdfsawe tere
-              werafsd
+              {t('services_lessons_giuitar_text')}
             </p>
 
             <div className={styles.lessons__priceBlockWrapper}>

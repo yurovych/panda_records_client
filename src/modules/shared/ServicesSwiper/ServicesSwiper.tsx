@@ -1,10 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import { ServicesCard } from '../ServicesCard';
 import styles from './ServicesSwiper.module.scss';
 import 'swiper/css';
 import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
-import { FreeMode, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { ServiceCardType } from '../../../types/Service';
 import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
@@ -69,9 +68,10 @@ export const ServicesSwiper = ({
     <div className={styles.swiperContainer}>
       <Swiper
         style={type === 'type2' ? { paddingInline: '32px' } : undefined}
-        modules={[Navigation, Pagination, FreeMode]}
+        modules={[Pagination, FreeMode, Autoplay]}
         pagination={{ clickable: true }}
-        navigation={type === 'type2' ? true : false}
+        autoplay={type === 'type3' ? { delay: 5000 } : false}
+        loop={type === 'type3' ? true : false}
         spaceBetween={type === 'type2' ? 24 : 16}
         freeMode={type === 'type2' && true}
         slidesPerView={1}
@@ -112,18 +112,16 @@ export const ServicesSwiper = ({
               <SongToRender track={card} visual='card' />
             </SwiperSlide>
           ))}
-        {/* {simplePhotos &&
+        {simplePhotos &&
           simplePhotos.map((photo) => (
             <SwiperSlide key={photo.id}>
-              <div className={styles.allSongs__image}>
-                <img
-                  className={styles.allSongs__imageItself}
-                  src={photo.photo}
-                  alt='studio_photo'
-                />
-              </div>
+              <img
+                className={styles.portfolioSlide}
+                src={photo.photo}
+                alt='studio_photo'
+              />
             </SwiperSlide>
-          ))} */}
+          ))}
       </Swiper>
     </div>
   );

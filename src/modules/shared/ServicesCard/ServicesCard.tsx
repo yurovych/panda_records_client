@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type ServiceCardProps = {
+  index?: number;
   card: ServiceCardType;
   visual: 'brief' | 'wide';
 };
@@ -143,16 +144,20 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
           <div className={styles.serDetCard__priceBlockWrapper}>
             <div className={styles.serDetCard__priceBlock}>
               <h3 className={styles.serDetCard__priceBlockText}>
-                {`${card.price}₴ / `}
+                {`${card.price}₴`}
               </h3>
-              <img
-                className={styles.serDetCard__clockIco}
-                src='./icons/clock-ico.svg'
-                alt='clock-ico'
-              />
-              <h3 className={styles.serDetCard__priceBlockText}>
-                1 {t('hour')}
-              </h3>
+              {card.hourly && (
+                <>
+                  <img
+                    className={styles.serDetCard__clockIco}
+                    src='./icons/clock-ico.svg'
+                    alt='clock-ico'
+                  />
+                  <h3 className={styles.serDetCard__priceBlockText}>
+                    1 / {t('hour')}
+                  </h3>
+                </>
+              )}
             </div>
           </div>
         </div>

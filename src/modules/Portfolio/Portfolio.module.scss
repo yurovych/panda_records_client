@@ -118,27 +118,15 @@
     @include page-grid;
   }
 
-  &__image {
+  &__sliderWrapper {
     display: none;
 
     @include on-desktop {
-      box-shadow: $shadow;
       display: block;
       clip-path: $clip-top-right;
       grid-column: 1 / 6;
-      height: 100%;
       aspect-ratio: 1;
     }
-  }
-
-  &__imageItself {
-    background-image: url('./../../../public/images/big-logo.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
   }
 
   &__listWrapper {

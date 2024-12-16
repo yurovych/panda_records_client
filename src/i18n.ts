@@ -7,13 +7,13 @@ i18n
   .use(initReactI18next)
   .init({
     supportedLngs: ['en', 'ua'],
-    lng: 'ua', // Мова за замовчуванням
-    fallbackLng: 'en', // Резервна мова
+    lng: 'ua',
+    fallbackLng: 'en',
     interpolation: {
-      escapeValue: false, // Вимикаємо екранування
+      escapeValue: false,
     },
     backend: {
-      loadPath: './locales/{{lng}}/translation.json', // шлях з API
+      loadPath: './locales/{{lng}}/translation.json',
     },
     react: {
       useSuspense: true,

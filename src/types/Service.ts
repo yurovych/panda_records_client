@@ -10,4 +10,5 @@ export type ServiceCardType = {
   details_block3_en: string;
   photo: string;
   price: number;
+  hourly: boolean;
 };

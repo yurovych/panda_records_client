@@ -1,0 +1,273 @@
+@import './../main';
+
+.card {
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: min-content;
+
+  &__title {
+    color: $color-black2;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 110%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__text {
+    color: $color-black2;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+    text-align: left;
+  }
+
+  &__priceWrapper {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    height: 100%;
+  }
+
+  &__priceBlock {
+    display: flex;
+    align-items: center;
+  }
+
+  &__priceText {
+    color: $color-black2;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+  }
+
+  &__clockIco {
+    width: 16px;
+    height: 16px;
+    margin-inline: 5px;
+  }
+
+  &__imageItself {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    clip-path: $clip-top-right;
+  }
+}
+
+.card1 {
+  background-color: $color-white1;
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  padding: 48px;
+  column-gap: 64px;
+  box-shadow: $shadow;
+
+  &__title {
+    text-align: left;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin-bottom: 32px;
+  }
+
+  &__textBlock {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  &__text {
+    color: $color-grey2;
+  }
+
+  &__priceWrapper {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+
+  &__image {
+    grid-column: 2 / 3;
+    grid-row: 1 / 5;
+  }
+
+  &__imageItself {
+    aspect-ratio: 5 / 4;
+    clip-path: $clip-top-right-80px;
+  }
+}
+
+.card2 {
+  grid-column: 1 / 7;
+  grid-row: 2 / 3;
+  padding: 32px;
+  column-gap: 24px;
+  background-color: $color-white2;
+  clip-path: $clip-top-right-80px;
+
+  &__title {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    height: 2em;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  &__textBlock {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  &__priceWrapper {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+  }
+
+  &__image {
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+  }
+}
+
+.card3 {
+  grid-column: 7 / -1;
+  grid-row: 2 / 3;
+  padding: 32px;
+  column-gap: 24px;
+  background-color: $color-white2;
+  clip-path: $clip-top-right-80px;
+
+  &__title {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    height: 2em;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  &__textBlock {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  &__priceWrapper {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+  }
+
+  &__image {
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+  }
+}
+
+.card4 {
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+  padding: 48px;
+  column-gap: 64px;
+  background: $gradient-black-violet;
+
+  &__title {
+    text-align: left;
+    color: $color-pink3;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin-bottom: 32px;
+  }
+
+  &__textBlock {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  &__text {
+    color: $color-white2;
+  }
+
+  &__priceWrapper {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+  }
+
+  &__priceText {
+    color: $color-pink3;
+  }
+
+  &__image {
+    grid-column: 1 / 2;
+    grid-row: 1 / 5;
+  }
+
+  &__imageItself {
+    aspect-ratio: 5 / 4;
+    clip-path: $clip-top-right-80px;
+  }
+}
+
+.card5 {
+  grid-column: 1 / 7;
+  grid-row: 4 / 5;
+  padding: 32px;
+  column-gap: 24px;
+  background-color: $color-white2;
+  clip-path: $clip-top-right-80px;
+
+  &__title {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    height: 2em;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  &__textBlock {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  &__priceWrapper {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+
+  &__image {
+    grid-column: 2 / 3;
+    grid-row: 2 / 5;
+  }
+}
+
+.card6 {
+  grid-column: 7 / -1;
+  grid-row: 4 / 5;
+  padding: 32px;
+  column-gap: 24px;
+  background-color: $color-white2;
+  clip-path: $clip-top-right-80px;
+
+  &__title {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    height: 2em;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  &__textBlock {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  &__priceWrapper {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+
+  &__image {
+    grid-column: 2 / 3;
+    grid-row: 2 / 5;
+  }
+}

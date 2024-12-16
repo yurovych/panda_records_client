@@ -7,6 +7,27 @@
 }
 
 .variety {
+  position: relative;
+
+  &__star {
+    position: absolute;
+    scale: 0.5;
+    top: -70px;
+    right: -90px;
+
+    @include on-tablet {
+      scale: 0.8;
+      top: 10px;
+      right: -50px;
+    }
+
+    @include on-desktop {
+      scale: 1;
+      top: 0;
+      right: 50px;
+    }
+  }
+
   @include content-padding-inline;
   @include on-desktop {
     margin-inline: auto;
@@ -42,7 +63,8 @@
     display: none;
 
     @include on-desktop {
-      display: flex;
+      @include page-grid;
+      row-gap: 80px;
     }
   }
 }
@@ -78,14 +100,17 @@
 
   &__swiperWrapper {
     cursor: pointer;
+
+    @include content-padding-inline;
   }
 }
 
 .lessons {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  width: 100%;
   margin-bottom: 100px;
 
+  @include page-grid;
   @include content-padding-inline;
 
   @include on-tablet {
@@ -98,7 +123,27 @@
     max-width: $max-content-width;
   }
 
+  &__star {
+    position: absolute;
+    scale: 0.5;
+    top: -20px;
+    right: -90px;
+
+    @include on-tablet {
+      scale: 0.8;
+      top: 80px;
+      right: -20px;
+    }
+
+    @include on-desktop {
+      top: 20px;
+      right: 0;
+    }
+  }
+
   &__sectionTitle {
+    z-index: 1;
+    grid-column: 1 / -1;
     color: $color-black2;
     font-size: 32px;
     font-weight: 500;
@@ -114,23 +159,23 @@
   }
 
   &__cardsBlock {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 32px;
+    grid-column: 1 / -1;
+    row-gap: 32px;
 
+    @include page-grid;
     @include on-tablet {
-      gap: 60px;
+      row-gap: 60px;
     }
 
     @include on-desktop {
-      flex-direction: row;
-      gap: 24px;
+      row-gap: 0;
     }
   }
 
   &__card {
+    z-index: 1;
     display: grid;
+    grid-auto-rows: min-content;
     column-gap: 24px;
     background-color: $color-white1;
     box-shadow: $shadow;
@@ -147,7 +192,21 @@
     }
 
     &_1 {
+      grid-column: 1 / -1;
       background-color: $color-white2;
+
+      @include on-desktop {
+        grid-column: 1 / 7;
+      }
+    }
+
+    &_2 {
+      background-color: $color-white1;
+      grid-column: 1 / -1;
+
+      @include on-desktop {
+        grid-column: 7 / -1;
+      }
     }
   }
 
@@ -239,6 +298,10 @@
     padding-inline: 16px;
     display: flex;
     align-items: center;
+
+    @include on-desktop {
+      padding: 0;
+    }
   }
 
   &__priceBlockText {

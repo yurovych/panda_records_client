@@ -9,8 +9,13 @@ type ServicesListProps = {
 export const ServicesList = ({ cards, visual }: ServicesListProps) => {
   return (
     <>
-      {cards.map((card) => (
-        <ServicesCard card={card} visual={visual} key={card.id} />
+      {cards.map((card, index) => (
+        <ServicesCard
+          index={index + 1}
+          card={card}
+          visual={visual}
+          key={card.id}
+        />
       ))}
     </>
   );

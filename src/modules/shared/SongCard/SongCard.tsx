@@ -256,7 +256,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   }
                   alt='play'
                 />
-                {isPlaying && currentSong?.id === track.id && (
+                {/* {isPlaying && currentSong?.id === track.id && (
                   <div className={styles.songAnimation}>
                     <div
                       className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
@@ -268,7 +268,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                       className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
                     ></div>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -303,7 +303,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
               )}
 
               <p className={styles.mini__songText}>
-                &nbsp;&nbsp;&nbsp;{index && index + 1}.&nbsp;
+                &nbsp;&nbsp;&nbsp;{index && index}.&nbsp;
               </p>
 
               <p

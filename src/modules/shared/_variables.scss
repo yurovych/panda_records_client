@@ -2,6 +2,13 @@ $tablet-min-width: 640px;
 $desktop-min-width: 1200px;
 $max-content-width: 1440px;
 $effect-duration: 0.4s;
+$clip-top-right-80px: polygon(
+  0 0,
+  calc(100% - 80px) 0,
+  100% 80px,
+  100% 100%,
+  0 100%
+);
 $clip-top-right: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
 $clip-top-left: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 20%);
 $clip-bottom-right: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);

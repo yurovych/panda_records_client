@@ -10,7 +10,7 @@ import { SongTrackType } from '../../types/SongTrack';
 import { setCurrentSong, setIsPlaying } from '../../slices/playerSlice';
 import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
-
+import simplePhoto from './../../data/simplePhotos.json';
 export const Portfolio = () => {
   const { t } = useTranslation();
   const currentSong = useAppSelector((state) => state.player.currentSong);
@@ -106,12 +106,8 @@ export const Portfolio = () => {
           <h2 className={styles.allSongs__title}>{t('portfolio_all')}</h2>
 
           <div className={styles.allSongs__main}>
-            <div className={styles.allSongs__image}>
-              <img
-                className={styles.allSongs__imageItself}
-                src={currentSong?.photo || './images/big-logo.png'}
-                alt='song_imege'
-              />
+            <div className={styles.allSongs__sliderWrapper}>
+              <ServicesSwiper simplePhotos={simplePhoto} type='type3' />
             </div>
 
             <div className={styles.allSongs__listWrapper}>
