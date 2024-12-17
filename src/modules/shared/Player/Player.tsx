@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setCurrentSong, setIsPlaying } from '../../../slices/playerSlice';
 
@@ -10,6 +10,8 @@ export const Player: React.FC = () => {
   const currentProgress = useAppSelector(
     (state) => state.player.currentProgress
   );
+
+  const [prevTrackId, setPrevTrackId] = useState<number | null>(null);
 
   const onPlaying = () => {
     const audio = audioElem.current;
@@ -43,19 +45,22 @@ export const Player: React.FC = () => {
     if (!audio) return;
 
     if (isPlaying && currentSong?.audio_file) {
-      audio.src = currentSong.audio_file;
+      if (currentSong.id !== prevTrackId) {
+        audio.src = currentSong.audio_file;
+        setPrevTrackId(currentSong.id);
+      }
       audio.play().catch((error) => console.error('Error:', error));
-    } else {
+    } else if (!isPlaying) {
       audio.pause();
     }
 
     return () => {
-      if (audio) {
+      if (audio && !currentSong) {
         audio.pause();
         audio.src = '';
       }
     };
-  }, [isPlaying, currentSong?.audio_file]);
+  }, [isPlaying, currentSong, prevTrackId]);
 
   useEffect(() => {
     const audio = audioElem.current;

@@ -6,6 +6,14 @@
   background-repeat: no-repeat;
   background-size: 100% 25%;
   background-color: $color-white1;
+
+  @include on-tablet {
+    background-size: 100% 25%;
+  }
+
+  @include on-desktop {
+    background-size: 100% 50%;
+  }
 }
 
 .contactUs {
@@ -15,14 +23,6 @@
   @include content-padding-inline;
   @include page-grid;
   @include section-padding-block;
-
-  @include on-tablet {
-    background-size: 100% 35%;
-  }
-
-  @include on-desktop {
-    background-size: 100% 50%;
-  }
 
   &__title {
     grid-column: 1 / -1;

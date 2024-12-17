@@ -10,7 +10,7 @@ import {
 
 type SongTrackProps = {
   track: SongTrackType;
-  visual: 'card' | 'strip' | 'mini';
+  visual: 'card' | 'strip' | 'mini' | 'player';
   index?: number;
 };
 
@@ -28,7 +28,6 @@ export const SongCard: React.FC<SongTrackProps> = ({
     if (currentSong?.id === track.id) {
       if (isPlaying) {
         dispatch(setIsPlaying(false));
-        dispatch(setCurrentSong(null));
       } else {
         dispatch(setIsPlaying(true));
       }
@@ -122,7 +121,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   } `}
                   src={
                     isPlaying && currentSong?.id === track.id
-                      ? './icons/stop-audio-ico.svg'
+                      ? './icons/stop-black-ico.svg'
                       : './icons/play-ico.svg'
                   }
                   alt='play'
@@ -203,7 +202,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                 <div className={styles.strip__progress}>
                   <div className={styles.strip__time}>
                     <p className={styles.strip__time_element}>
-                      {isPlaying ? shownProgress() : '0:00'}
+                      {shownProgress() || '0:00'}
                     </p>
 
                     <p className={styles.strip__time_element}>/</p>
@@ -221,7 +220,6 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     <div
                       style={{
                         width: `${
-                          isPlaying &&
                           track.id === currentSong?.id &&
                           currentSong?.progress &&
                           currentSong.song_length
@@ -240,10 +238,10 @@ export const SongCard: React.FC<SongTrackProps> = ({
                 </div>
               </div>
 
-              <div className={styles.strip__buttonWrapper}>
+              <div className={styles.strip__control}>
                 <img
                   onClick={() => toggleTrack(track)}
-                  className={`${styles.strip__button} ${
+                  className={`${styles.strip__playPause} ${
                     isPlaying &&
                     isPlaying &&
                     currentSong?.id === track.id &&
@@ -251,24 +249,24 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   } `}
                   src={
                     isPlaying && currentSong?.id === track.id
-                      ? './icons/stop-audio-ico.svg'
-                      : './icons/play-ico.svg'
+                      ? './icons/pause-black-ico.svg'
+                      : './icons/play-black-ico.svg'
                   }
                   alt='play'
                 />
-                {/* {isPlaying && currentSong?.id === track.id && (
-                  <div className={styles.songAnimation}>
-                    <div
-                      className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
-                    ></div>
-                    <div
-                      className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
-                    ></div>
-                    <div
-                      className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
-                    ></div>
-                  </div>
-                )} */}
+
+                <div className={styles.strip__sondChangeBlock}>
+                  <img
+                    className={`${styles.strip__songChange} ${styles.strip__prevSong}`}
+                    src='./icons/previous-black-ico.svg'
+                    alt='prev-song'
+                  />
+                  <img
+                    className={`${styles.strip__songChange} ${styles.strip__prevSong}`}
+                    src='./icons/next-black-ico.svg'
+                    alt='next-song'
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -294,6 +292,12 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_3}`}
                   ></div>
                 </div>
+              ) : !isPlaying && currentSong && currentSong.id === track.id ? (
+                <img
+                  className={styles.mini__button}
+                  src='./icons/pause-black-mini-ico.svg'
+                  alt='play'
+                />
               ) : (
                 <img
                   className={styles.mini__button}
@@ -317,186 +321,47 @@ export const SongCard: React.FC<SongTrackProps> = ({
             <div className={styles.mini__songLine}></div>
           </div>
         );
-    }
-  }
 
-  return (
-    <>
-      {vizualisation()}
-      {/* {visual === 'card' ? (
-        <div className={styles.card}>
-          <img
-            className={styles.card__photo}
-            src={track.photo || './images/big-logo.png'}
-            alt='foto'
-          />
-
-          <div className={styles.card__top}>
-            <div className={styles.card__info}>
-              <h4 title={track.title} className={styles.card__title}>
-                {track.title}
-              </h4>
-
-              <h5 title={track.artist} className={styles.card__artist}>
-                {track.artist}
-              </h5>
-            </div>
-
-            <div className={styles.card__buttonWrapper}>
-              <img
-                onClick={() => toggleTrack(track)}
-                className={`${styles.card__button} ${
-                  isPlaying && currentSong?.id === track.id && styles.rotate
-                } `}
-                src={
-                  isPlaying && currentSong?.id === track.id
-                    ? './icons/stop-audio-ico.svg'
-                    : './icons/play-ico.svg'
-                }
-                alt='play'
-              />
-              {isPlaying && currentSong?.id === track.id && (
-                <div className={styles.songAnimation}>
-                  <div
-                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
-                  ></div>
-                  <div
-                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
-                  ></div>
-                  <div
-                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
-                  ></div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className={styles.card__bottom}>
-            <div className={styles.card__time}>
-              <p className={styles.card__time_element}>
-                {isPlaying ? shownProgress() : '0:00'}
-              </p>
-
-              <p className={styles.card__time_element}>
-                {shownDuration() || '0:00'}
-              </p>
-            </div>
-
-            <div
-              ref={searchBarElement}
-              onClick={dragRunner}
-              className={styles.card__searchBar}
-            >
-              <div
-                style={{
-                  width: `${
-                    isPlaying &&
-                    track.id === currentSong?.id &&
-                    currentSong?.progress &&
-                    currentSong.song_length
-                      ? (currentSong?.progress / currentSong.song_length) *
-                          100 +
-                        '%'
-                      : 0
-                  }`,
-                }}
-                className={styles.card__searchBar_runner}
-              ></div>
-
-              <div className={styles.card__searchBar_runnerSpot}></div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.strip}>
-          <div className={styles.strip__content}>
+      case 'player':
+        return (
+          <div
+            className={`${
+              currentSong ? styles.showPlayer : styles.hidePlayer
+            } ${styles.player}`}
+          >
             <img
-              className={styles.strip__photo}
-              src={track.photo || './images/big-logo.png'}
+              className={styles.player__photo}
+              src={currentSong?.photo}
               alt='foto'
             />
 
-            <div className={styles.strip__info}>
-              <h4 title={track.title} className={styles.strip__title}>
-                {track.title}
-              </h4>
+            <div className={styles.player__right}>
+              <div className={styles.player__info}>
+                <h4 className={styles.player__title}>{currentSong?.title}</h4>
 
-              <h5 title={track.artist} className={styles.strip__artist}>
-                {track.artist}
-              </h5>
-
-              <div className={styles.strip__progress}>
-                <div className={styles.strip__time}>
-                  <p className={styles.strip__time_element}>
-                    {isPlaying ? shownProgress() : '0:00'}
-                  </p>
-
-                  <p className={styles.strip__time_element}>/</p>
-
-                  <p className={styles.strip__time_element}>
-                    {shownDuration() || '0:00'}
-                  </p>
-                </div>
-
-                <div
-                  ref={searchBarElement}
-                  onClick={dragRunner}
-                  className={styles.strip__searchBar}
-                >
-                  <div
-                    style={{
-                      width: `${
-                        isPlaying &&
-                        track.id === currentSong?.id &&
-                        currentSong?.progress &&
-                        currentSong.song_length
-                          ? (currentSong?.progress / currentSong.song_length) *
-                              100 +
-                            '%'
-                          : 0
-                      }`,
-                    }}
-                    className={styles.strip__searchBar_runner}
-                  ></div>
-
-                  <div className={styles.strip__searchBar_runnerSpot}></div>
-                </div>
+                <h5 className={styles.player__artist}>{currentSong?.artist}</h5>
               </div>
-            </div>
 
-            <div className={styles.strip__buttonWrapper}>
-              <img
-                onClick={() => toggleTrack(track)}
-                className={`${styles.strip__button} ${
-                  isPlaying &&
-                  isPlaying &&
-                  currentSong?.id === track.id &&
-                  styles.rotate
-                } `}
-                src={
-                  isPlaying && currentSong?.id === track.id
-                    ? './icons/stop-audio-ico.svg'
-                    : './icons/play-ico.svg'
-                }
-                alt='play'
-              />
-              {isPlaying && currentSong?.id === track.id && (
-                <div className={styles.songAnimation}>
-                  <div
-                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
-                  ></div>
-                  <div
-                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
-                  ></div>
-                  <div
-                    className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
-                  ></div>
-                </div>
+              {isPlaying ? (
+                <img
+                  onClick={() => toggleTrack(track)}
+                  className={styles.player__playPause}
+                  src='./icons/pause-pink-ico.svg'
+                  alt='pause'
+                />
+              ) : (
+                <img
+                  onClick={() => toggleTrack(track)}
+                  className={styles.player__playPause}
+                  src='./icons/play-pink-ico.svg'
+                  alt='pause'
+                />
               )}
             </div>
           </div>
-        </div>
-      )} */}
-    </>
-  );
+        );
+    }
+  }
+
+  return <>{vizualisation()}</>;
 };

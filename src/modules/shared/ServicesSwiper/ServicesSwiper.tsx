@@ -12,7 +12,7 @@ import { SimplePhoto } from '../../../types/SimplePhoto';
 import { SwiperOptions } from 'swiper/types';
 
 type ServicesSwiperProps = {
-  type: 'type1' | 'type2' | 'type3';
+  type: 'type1' | 'type2' | 'type3' | 'type4';
   equipmentCadrs?: EquipmentCardType[];
   servicesCards?: ServiceCardType[];
   servicesWideCards?: ServiceCardType[];
@@ -26,7 +26,7 @@ type ServicesSwiperProps = {
   VideoToRender?: React.FC<{ card: VideoFileType }>;
   SongToRender?: React.FC<{
     track: SongTrackType;
-    visual: 'card' | 'strip' | 'mini';
+    visual: 'card' | 'strip' | 'mini' | 'player';
   }>;
   simplePhotos?: SimplePhoto[];
 };
@@ -44,7 +44,7 @@ export const ServicesSwiper = ({
   SongToRender,
   simplePhotos,
 }: ServicesSwiperProps) => {
-  function howManySlides(): { [key: number]: SwiperOptions } {
+  function breakpoints(): { [key: number]: SwiperOptions } {
     switch (type) {
       case 'type1':
         return {
@@ -75,7 +75,7 @@ export const ServicesSwiper = ({
         spaceBetween={type === 'type2' ? 24 : 16}
         freeMode={type === 'type2' && true}
         slidesPerView={1}
-        breakpoints={howManySlides()}
+        breakpoints={breakpoints()}
       >
         {ServiceToRender &&
           servicesCards &&

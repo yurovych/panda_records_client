@@ -119,13 +119,18 @@
   }
 
   &__sliderWrapper {
-    display: none;
+    clip-path: $clip-top-right;
+    aspect-ratio: 1;
+    grid-column: 1 / -1;
+    margin-bottom: 24px;
+
+    @include on-tablet {
+      margin-bottom: 32px;
+    }
 
     @include on-desktop {
-      display: block;
-      clip-path: $clip-top-right;
       grid-column: 1 / 6;
-      aspect-ratio: 1;
+      margin-bottom: 0;
     }
   }
 
@@ -138,10 +143,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-
-    @include on-tablet {
-      grid-column: 2 / -1;
-    }
 
     @include on-desktop {
       height: 100%;
@@ -282,6 +283,15 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 100px;
+
+  @include on-tablet {
+    margin-bottom: 130px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 120px;
+  }
 }
 
 .banner2 {

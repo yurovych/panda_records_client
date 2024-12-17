@@ -26,7 +26,7 @@ export const Services = () => {
         <div className={styles.variety__photeTablet}>
           {servicesList ? (
             <ServicesSwiper
-              type='type3'
+              type='type4'
               servicesWideCards={servicesList}
               ServiceToRender={ServicesCard}
             />
@@ -84,11 +84,9 @@ export const Services = () => {
               {t('services_lessons_engenering_title')}
             </h2>
 
-            <div className={styles.lessons__textBlock}>
-              <p className={styles.lessons__text}>
-                {t('services_lessons_engenering_text')}
-              </p>
-            </div>
+            <p className={styles.lessons__text}>
+              {t('services_lessons_engenering_text')}
+            </p>
 
             <div className={styles.lessons__priceBlockWrapper}>
               <div className={styles.lessons__priceBlock}>

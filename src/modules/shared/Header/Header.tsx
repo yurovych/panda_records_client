@@ -10,13 +10,14 @@ import { useEffect } from 'react';
 import './../_main.scss';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
-import { FixedSong } from '../FixedSong';
+import { SongCard } from '../SongCard';
 
 export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t, i18n } = useTranslation();
 
+  const currentSong = useAppSelector((state) => state.player.currentSong);
   const isHidenMenu = useAppSelector((state) => state.boolean.isHidenMenu);
   const currentLanguage = useAppSelector(
     (state) => state.current.currentLanguage
@@ -62,7 +63,7 @@ export const Header = () => {
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
-        <FixedSong />
+        {currentSong && <SongCard visual='player' track={currentSong} />}
 
         <div onClick={handleLogoClick}>
           <Logo />

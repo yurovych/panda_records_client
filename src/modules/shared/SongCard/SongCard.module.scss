@@ -180,13 +180,14 @@
 
   &__info {
     display: grid;
-    grid-auto-rows: min-content;
-    height: 100%;
+    height: 80px;
     width: 100%;
     margin-right: 24px;
   }
 
   &__title {
+    grid-row: 1 / 1;
+    grid-column: 1 / -1;
     color: $color-black2;
     font-size: 18px;
     font-weight: 400;
@@ -194,6 +195,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 16px;
 
     @include on-tablet {
       font-size: 20px;
@@ -202,6 +204,8 @@
   }
 
   &__artist {
+    grid-row: 1 / 1;
+    grid-column: 1 / -1;
     color: $color-grey1;
     font-size: 16px;
     font-weight: 400;
@@ -214,6 +218,16 @@
     @include on-tablet {
       font-size: 18px;
     }
+  }
+
+  &__progress {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 100%;
   }
 
   &__time {
@@ -231,6 +245,7 @@
   }
 
   &__searchBar {
+    width: 100%;
     box-sizing: content-box;
     cursor: pointer;
     display: flex;
@@ -259,9 +274,8 @@
     border: 3px solid $color-grey3;
   }
 
-  &__buttonWrapper {
+  &__control {
     flex-shrink: 0;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -269,11 +283,23 @@
     margin-left: auto;
   }
 
-  &__button {
+  &__playPause {
+    cursor: pointer;
     border-radius: 50%;
-    width: 54px;
+    width: 48px;
     aspect-ratio: 1;
     transition: all $effect-duration ease;
+  }
+
+  &__sondChangeBlock {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__songChange {
+    cursor: pointer;
+    width: 20px;
+    aspect-ratio: 1;
   }
 }
 
@@ -316,8 +342,109 @@
   }
 }
 
+.player {
+  z-index: 999;
+  background-image: url('./../../../../public/images/disc-bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 90px;
+  height: 60px;
+  width: max-content;
+  min-width: 90vw;
+  max-width: 90vw;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px;
+  overflow: hidden;
+  transition: all $effect-duration ease;
+
+  @include on-tablet {
+    min-width: 90vw;
+    max-width: 90vw;
+  }
+
+  @include on-desktop {
+    min-width: 50vw;
+    max-width: 50vw;
+  }
+
+  &__photo {
+    clip-path: $clip-top-right;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  &__right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__info {
+    display: grid;
+    height: 100%;
+  }
+
+  &__title {
+    color: $color-white2;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__artist {
+    color: $color-grey1;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+    align-self: flex-end;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__playPause {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1;
+    background-color: $color-pink2;
+    border-radius: 50%;
+  }
+}
+
+.showPlayer {
+  opacity: 0.9;
+  transform: translateX(-16px) scale(1);
+
+  @include on-tablet {
+    transform: translateX(-32px) scale(1);
+  }
+
+  @include on-desktop {
+    transform: translateX(-64px) scale(1);
+  }
+}
+
+.hidePlayer {
+  opacity: 0;
+  transform: translateX(100vw) scale(0);
+}
+
 .rotate {
-  transform: scale(0.8) rotate(180deg);
+  transform: scale(0.9) rotate(180deg);
 }
 
 @keyframes firstBar {
