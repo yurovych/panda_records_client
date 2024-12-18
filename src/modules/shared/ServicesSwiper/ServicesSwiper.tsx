@@ -3,7 +3,7 @@ import styles from './ServicesSwiper.module.scss';
 import 'swiper/css';
 import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
-import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
 import { ServiceCardType } from '../../../types/Service';
 import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
@@ -27,6 +27,7 @@ type ServicesSwiperProps = {
   SongToRender?: React.FC<{
     track: SongTrackType;
     visual: 'card' | 'strip' | 'mini' | 'player';
+    currentSongsArray: SongTrackType[];
   }>;
   simplePhotos?: SimplePhoto[];
 };
@@ -109,7 +110,11 @@ export const ServicesSwiper = ({
           songsCards &&
           songsCards.map((card) => (
             <SwiperSlide key={card.id}>
-              <SongToRender track={card} visual='card' />
+              <SongToRender
+                track={card}
+                visual='card'
+                currentSongsArray={songsCards}
+              />
             </SwiperSlide>
           ))}
         {simplePhotos &&

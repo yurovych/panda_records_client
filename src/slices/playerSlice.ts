@@ -5,12 +5,14 @@ import { SongTrackType } from '../types/SongTrack';
 type PlayerType = {
   isPlaying: boolean;
   currentSong: SongTrackType | null;
+  currentIndex: number | null;
   currentProgress: number | null;
 };
 
 const initialState: PlayerType = {
   isPlaying: false,
   currentSong: null,
+  currentIndex: null,
   currentProgress: null,
 };
 
@@ -28,6 +30,10 @@ const playerSlice = createSlice({
 
     setCurrentProgress: (state, action: PayloadAction<number | null>) => {
       state.currentProgress = action.payload;
+    },
+
+    setCurrentIndex: (state, action: PayloadAction<number | null>) => {
+      state.currentIndex = action.payload;
     },
   },
 });

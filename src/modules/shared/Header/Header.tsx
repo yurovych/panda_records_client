@@ -11,6 +11,7 @@ import './../_main.scss';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
 import { SongCard } from '../SongCard';
+import allSongs from './../../../data/songsCards.json';
 
 export const Header = () => {
   const navigate = useNavigate();

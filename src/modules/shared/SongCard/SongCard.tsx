@@ -7,6 +7,8 @@ import {
   setCurrentSong,
   setIsPlaying,
 } from '../../../slices/playerSlice';
+import { Loader } from '../../Loader';
+import allSongs from './../../../data/songsCards.json';
 
 type SongTrackProps = {
   track: SongTrackType;
@@ -24,8 +26,18 @@ export const SongCard: React.FC<SongTrackProps> = ({
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const isPlaying = useAppSelector((state) => state.player.isPlaying);
 
+  function getCurrentIndex() {
+    return allSongs.findIndex((song) => song.id === currentSong?.id);
+  }
+
+  const currentIndex = getCurrentIndex();
+
   function toggleTrack(track: SongTrackType) {
-    if (currentSong?.id === track.id) {
+    if (!track.audio_file) {
+      dispatch(setCurrentSong(track));
+      dispatch(setIsPlaying(false));
+      dispatch(setCurrentProgress(null));
+    } else if (currentSong?.id === track.id) {
       if (isPlaying) {
         dispatch(setIsPlaying(false));
       } else {
@@ -34,6 +46,20 @@ export const SongCard: React.FC<SongTrackProps> = ({
     } else {
       dispatch(setCurrentSong(track));
       dispatch(setIsPlaying(true));
+    }
+  }
+
+  console.log(currentIndex);
+
+  function prevSong() {
+    if (!currentIndex) {
+      dispatch(setCurrentSong(allSongs[0]));
+    } else if (+currentIndex === 0) {
+      console.log('here');
+
+      dispatch(setCurrentSong(allSongs[5]));
+    } else {
+      dispatch(setCurrentSong(allSongs[currentIndex - 1]));
     }
   }
 
@@ -64,7 +90,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
       return '0:00';
     }
 
-    if (currentSong.progress) {
+    if (track.audio_file && currentSong?.progress) {
       const minutes = Math.trunc(currentSong.progress / 60);
       const seconds = Math.floor(currentSong.progress % 60)
         .toString()
@@ -76,19 +102,9 @@ export const SongCard: React.FC<SongTrackProps> = ({
   }
 
   function shownDuration() {
-    if (track.id !== currentSong?.id) {
+    if (track.audio_file && track.id !== currentSong?.id) {
       return '0:00';
     }
-
-    if (currentSong.song_length) {
-      const minutes = Math.trunc(currentSong.song_length / 60);
-      const seconds = Math.floor(currentSong.song_length % 60)
-        .toString()
-        .padStart(2, '0');
-      return `${minutes}:${seconds}`;
-    }
-
-    return '0:00';
   }
 
   function vizualisation() {
@@ -220,6 +236,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     <div
                       style={{
                         width: `${
+                          track.audio_file &&
                           track.id === currentSong?.id &&
                           currentSong?.progress &&
                           currentSong.song_length
@@ -239,24 +256,24 @@ export const SongCard: React.FC<SongTrackProps> = ({
               </div>
 
               <div className={styles.strip__control}>
-                <img
-                  onClick={() => toggleTrack(track)}
-                  className={`${styles.strip__playPause} ${
-                    isPlaying &&
-                    isPlaying &&
-                    currentSong?.id === track.id &&
-                    styles.rotate
-                  } `}
-                  src={
-                    isPlaying && currentSong?.id === track.id
-                      ? './icons/pause-black-ico.svg'
-                      : './icons/play-black-ico.svg'
-                  }
-                  alt='play'
-                />
+                {track.id === currentSong?.id && !track.audio_file ? (
+                  <Loader />
+                ) : (
+                  <img
+                    onClick={() => toggleTrack(track)}
+                    className={styles.strip__playPause}
+                    src={
+                      isPlaying && currentSong?.id === track.id
+                        ? './icons/pause-black-ico.svg'
+                        : './icons/play-black-ico.svg'
+                    }
+                    alt='play'
+                  />
+                )}
 
                 <div className={styles.strip__sondChangeBlock}>
                   <img
+                    onClick={() => prevSong()}
                     className={`${styles.strip__songChange} ${styles.strip__prevSong}`}
                     src='./icons/previous-black-ico.svg'
                     alt='prev-song'
