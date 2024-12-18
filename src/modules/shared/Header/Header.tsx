@@ -64,7 +64,11 @@ export const Header = () => {
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
-        {currentSong && <SongCard visual='player' track={currentSong} />}
+        {currentSong && (
+          <div className={styles.playerWrapper}>
+            <SongCard visual='player' track={currentSong} />
+          </div>
+        )}
 
         <div onClick={handleLogoClick}>
           <Logo />

@@ -3,6 +3,7 @@ import { SongTrackType } from './../../../types/SongTrack';
 import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
+  setCurrentIndex,
   setCurrentProgress,
   setCurrentSong,
   setIsPlaying,
@@ -25,12 +26,13 @@ export const SongCard: React.FC<SongTrackProps> = ({
   const dispatch = useAppDispatch();
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const isPlaying = useAppSelector((state) => state.player.isPlaying);
+  const currentIndex = useAppSelector((state) => state.player.currentIndex);
 
-  function getCurrentIndex() {
-    return allSongs.findIndex((song) => song.id === currentSong?.id);
-  }
+  (function getCurrentIndex() {
+    const index = allSongs.findIndex((song) => song.id === currentSong?.id);
 
-  const currentIndex = getCurrentIndex();
+    dispatch(setCurrentIndex(index));
+  })();
 
   function toggleTrack(track: SongTrackType) {
     if (!track.audio_file) {
@@ -49,17 +51,32 @@ export const SongCard: React.FC<SongTrackProps> = ({
     }
   }
 
-  console.log(currentIndex);
-
   function prevSong() {
-    if (!currentIndex) {
-      dispatch(setCurrentSong(allSongs[0]));
-    } else if (+currentIndex === 0) {
-      console.log('here');
+    dispatch(setIsPlaying(true));
 
-      dispatch(setCurrentSong(allSongs[5]));
+    if (currentIndex === null) {
+      dispatch(setCurrentSong(allSongs[0]));
+    } else if (currentIndex === 0) {
+      dispatch(setCurrentSong(allSongs[allSongs.length - 1]));
     } else {
       dispatch(setCurrentSong(allSongs[currentIndex - 1]));
+    }
+  }
+
+  function closePlayer() {
+    dispatch(setIsPlaying(false));
+    dispatch(setCurrentSong(null));
+  }
+
+  function nextSong() {
+    dispatch(setIsPlaying(true));
+
+    if (currentIndex === null) {
+      dispatch(setCurrentSong(allSongs[0]));
+    } else if (currentIndex === allSongs.length - 1) {
+      dispatch(setCurrentSong(allSongs[0]));
+    } else {
+      dispatch(setCurrentSong(allSongs[currentIndex + 1]));
     }
   }
 
@@ -130,31 +147,37 @@ export const SongCard: React.FC<SongTrackProps> = ({
               </div>
 
               <div className={styles.card__buttonWrapper}>
-                <img
-                  onClick={() => toggleTrack(track)}
-                  className={`${styles.card__button} ${
-                    isPlaying && currentSong?.id === track.id && styles.rotate
-                  } `}
-                  src={
-                    isPlaying && currentSong?.id === track.id
-                      ? './icons/stop-black-ico.svg'
-                      : './icons/play-ico.svg'
-                  }
-                  alt='play'
-                />
-                {isPlaying && currentSong?.id === track.id && (
-                  <div className={styles.songAnimation}>
-                    <div
-                      className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
-                    ></div>
-                    <div
-                      className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
-                    ></div>
-                    <div
-                      className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
-                    ></div>
-                  </div>
+                {track.id === currentSong?.id && !track.audio_file ? (
+                  <Loader />
+                ) : (
+                  <img
+                    onClick={() => toggleTrack(track)}
+                    className={`${styles.card__button} ${
+                      isPlaying && currentSong?.id === track.id && styles.rotate
+                    } `}
+                    src={
+                      isPlaying && currentSong?.id === track.id
+                        ? './icons/pause-black-ico.svg'
+                        : './icons/play-black-ico.svg'
+                    }
+                    alt='play'
+                  />
                 )}
+                {isPlaying &&
+                  currentSong?.id === track.id &&
+                  track.audio_file && (
+                    <div className={styles.songAnimation}>
+                      <div
+                        className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_1}`}
+                      ></div>
+                      <div
+                        className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_2}`}
+                      ></div>
+                      <div
+                        className={`${styles.songAnimation__bar} ${styles.songAnimation__bar_3}`}
+                      ></div>
+                    </div>
+                  )}
               </div>
             </div>
 
@@ -271,7 +294,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   />
                 )}
 
-                <div className={styles.strip__sondChangeBlock}>
+                {/* <div className={styles.strip__sondChangeBlock}>
                   <img
                     onClick={() => prevSong()}
                     className={`${styles.strip__songChange} ${styles.strip__prevSong}`}
@@ -279,11 +302,12 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     alt='prev-song'
                   />
                   <img
+                    onClick={() => nextSong()}
                     className={`${styles.strip__songChange} ${styles.strip__prevSong}`}
                     src='./icons/next-black-ico.svg'
                     alt='next-song'
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -346,34 +370,61 @@ export const SongCard: React.FC<SongTrackProps> = ({
               currentSong ? styles.showPlayer : styles.hidePlayer
             } ${styles.player}`}
           >
-            <img
-              className={styles.player__photo}
-              src={currentSong?.photo}
-              alt='foto'
-            />
+            <div className={styles.player__short}>
+              <img
+                className={styles.player__photo}
+                src={currentSong?.photo}
+                alt='foto'
+              />
 
-            <div className={styles.player__right}>
-              <div className={styles.player__info}>
-                <h4 className={styles.player__title}>{currentSong?.title}</h4>
+              <div className={styles.player__right}>
+                <div className={styles.player__info}>
+                  <h4 className={styles.player__title}>{currentSong?.title}</h4>
 
-                <h5 className={styles.player__artist}>{currentSong?.artist}</h5>
+                  <h5 className={styles.player__artist}>
+                    {currentSong?.artist}
+                  </h5>
+                </div>
+
+                <div className={styles.player__playPauseWrapper}>
+                  {track.id === currentSong?.id && !track.audio_file ? (
+                    <Loader />
+                  ) : (
+                    <img
+                      onClick={() => toggleTrack(track)}
+                      className={styles.player__playPause}
+                      src={
+                        isPlaying && currentSong?.id === track.id
+                          ? './icons/pause-pink-ico.svg'
+                          : './icons/play-pink-ico.svg'
+                      }
+                      alt='play'
+                    />
+                  )}
+
+                  <img
+                    onClick={() => closePlayer()}
+                    className={styles.player__closeButton}
+                    src='./icons/close-ico.svg'
+                    alt='close'
+                  />
+                </div>
               </div>
+            </div>
 
-              {isPlaying ? (
-                <img
-                  onClick={() => toggleTrack(track)}
-                  className={styles.player__playPause}
-                  src='./icons/pause-pink-ico.svg'
-                  alt='pause'
-                />
-              ) : (
-                <img
-                  onClick={() => toggleTrack(track)}
-                  className={styles.player__playPause}
-                  src='./icons/play-pink-ico.svg'
-                  alt='pause'
-                />
-              )}
+            <div className={styles.player__sondChangeBlock}>
+              <img
+                onClick={() => prevSong()}
+                className={`${styles.player__songChange} ${styles.player__prevSong}`}
+                src='./icons/previous-pink-ico.svg'
+                alt='prev-song'
+              />
+              <img
+                onClick={() => nextSong()}
+                className={`${styles.player__songChange} ${styles.player__prevSong}`}
+                src='./icons/next-pink-ico.svg'
+                alt='next-song'
+              />
             </div>
           </div>
         );

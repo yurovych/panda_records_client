@@ -39,5 +39,9 @@ const playerSlice = createSlice({
 });
 
 export default playerSlice.reducer;
-export const { setIsPlaying, setCurrentSong, setCurrentProgress } =
-  playerSlice.actions;
+export const {
+  setIsPlaying,
+  setCurrentSong,
+  setCurrentProgress,
+  setCurrentIndex,
+} = playerSlice.actions;
