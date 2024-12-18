@@ -64,26 +64,17 @@ export const Player: React.FC = () => {
     };
   }, [isPlaying, currentSong, prevTrackId]);
 
-  useEffect(() => {
-    const audio = audioElem.current;
-    if (!audio) return;
+  const handleEnded = () => {
+    if (currentIndex === null) {
+      dispatch(setCurrentSong(allSongs[0]));
+    } else if (currentIndex === allSongs.length - 1) {
+      dispatch(setCurrentSong(allSongs[0]));
+    } else {
+      dispatch(setCurrentSong(allSongs[currentIndex + 1]));
+    }
+  };
 
-    const handleEnded = () => {
-      if (currentIndex === null) {
-        dispatch(setCurrentSong(allSongs[0]));
-      } else if (currentIndex === allSongs.length - 1) {
-        dispatch(setCurrentSong(allSongs[0]));
-      } else {
-        dispatch(setCurrentSong(allSongs[currentIndex + 1]));
-      }
-    };
-
-    audio.addEventListener('ended', handleEnded);
-
-    return () => {
-      audio.removeEventListener('ended', handleEnded);
-    };
-  }, [dispatch, currentSong]);
-
-  return <audio onTimeUpdate={onPlaying} ref={audioElem} />;
+  return (
+    <audio onEnded={handleEnded} onTimeUpdate={onPlaying} ref={audioElem} />
+  );
 };

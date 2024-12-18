@@ -51,6 +51,11 @@ export const SongCard: React.FC<SongTrackProps> = ({
     }
   }
 
+  function closePlayer() {
+    dispatch(setIsPlaying(false));
+    dispatch(setCurrentSong(null));
+  }
+
   function prevSong() {
     dispatch(setIsPlaying(true));
 
@@ -61,11 +66,6 @@ export const SongCard: React.FC<SongTrackProps> = ({
     } else {
       dispatch(setCurrentSong(allSongs[currentIndex - 1]));
     }
-  }
-
-  function closePlayer() {
-    dispatch(setIsPlaying(false));
-    dispatch(setCurrentSong(null));
   }
 
   function nextSong() {
@@ -124,6 +124,16 @@ export const SongCard: React.FC<SongTrackProps> = ({
     if (track.audio_file && track.id !== currentSong?.id) {
       return '0:00';
     }
+
+    if (currentSong?.song_length) {
+      const minutes = Math.trunc(currentSong.song_length / 60);
+      const seconds = Math.floor(currentSong.song_length % 60)
+        .toString()
+        .padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    }
+
+    return '0:00';
   }
 
   function vizualisation() {
