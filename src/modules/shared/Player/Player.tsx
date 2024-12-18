@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setCurrentSong, setIsPlaying } from '../../../slices/playerSlice';
+import { setCurrentSong } from '../../../slices/playerSlice';
+import allSongs from './../../../data/songsCards.json';
 
 export const Player: React.FC = () => {
   const audioElem = useRef<HTMLAudioElement | null>(null);
   const dispatch = useAppDispatch();
+  const currentIndex = useAppSelector((state) => state.player.currentIndex);
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const isPlaying = useAppSelector((state) => state.player.isPlaying);
   const currentProgress = useAppSelector(
@@ -67,8 +69,13 @@ export const Player: React.FC = () => {
     if (!audio) return;
 
     const handleEnded = () => {
-      dispatch(setIsPlaying(false));
-      dispatch(setCurrentSong(null));
+      if (currentIndex === null) {
+        dispatch(setCurrentSong(allSongs[0]));
+      } else if (currentIndex === allSongs.length - 1) {
+        dispatch(setCurrentSong(allSongs[0]));
+      } else {
+        dispatch(setCurrentSong(allSongs[currentIndex + 1]));
+      }
     };
 
     audio.addEventListener('ended', handleEnded);

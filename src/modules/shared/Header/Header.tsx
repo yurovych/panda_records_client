@@ -11,7 +11,6 @@ import './../_main.scss';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
 import { SongCard } from '../SongCard';
-import allSongs from './../../../data/songsCards.json';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -65,7 +64,11 @@ export const Header = () => {
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
         {currentSong && (
-          <div className={styles.playerWrapper}>
+          <div
+            className={`${
+              currentSong ? styles.showPlayer : styles.hidePlayer
+            } ${styles.playerWrapper}`}
+          >
             <SongCard visual='player' track={currentSong} />
           </div>
         )}

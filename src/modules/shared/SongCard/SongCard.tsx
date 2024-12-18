@@ -73,6 +73,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
 
     if (currentIndex === null) {
       dispatch(setCurrentSong(allSongs[0]));
+    } else if (currentIndex === null) {
+      dispatch(setCurrentSong(allSongs[0]));
     } else if (currentIndex === allSongs.length - 1) {
       dispatch(setCurrentSong(allSongs[0]));
     } else {
@@ -152,9 +154,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                 ) : (
                   <img
                     onClick={() => toggleTrack(track)}
-                    className={`${styles.card__button} ${
-                      isPlaying && currentSong?.id === track.id && styles.rotate
-                    } `}
+                    className={styles.card__button}
                     src={
                       isPlaying && currentSong?.id === track.id
                         ? './icons/pause-black-ico.svg'
@@ -181,13 +181,15 @@ export const SongCard: React.FC<SongTrackProps> = ({
               </div>
             </div>
 
-            <div className={styles.card__bottom}>
-              <div className={styles.card__time}>
-                <p className={styles.card__time_element}>
-                  {isPlaying ? shownProgress() : '0:00'}
+            <div className={styles.progress}>
+              <div className={styles.progress__time}>
+                <p className={styles.progress__time_element}>
+                  {shownProgress() || '0:00'}
                 </p>
 
-                <p className={styles.card__time_element}>
+                <p className={styles.progress__time_element}>/</p>
+
+                <p className={styles.progress__time_element}>
                   {shownDuration() || '0:00'}
                 </p>
               </div>
@@ -195,12 +197,12 @@ export const SongCard: React.FC<SongTrackProps> = ({
               <div
                 ref={searchBarElement}
                 onClick={dragRunner}
-                className={styles.card__searchBar}
+                className={styles.progress__searchBar}
               >
                 <div
                   style={{
                     width: `${
-                      isPlaying &&
+                      track.audio_file &&
                       track.id === currentSong?.id &&
                       currentSong?.progress &&
                       currentSong.song_length
@@ -210,10 +212,10 @@ export const SongCard: React.FC<SongTrackProps> = ({
                         : 0
                     }`,
                   }}
-                  className={styles.card__searchBar_runner}
+                  className={styles.progress__searchBar_runner}
                 ></div>
 
-                <div className={styles.card__searchBar_runnerSpot}></div>
+                <div className={styles.progress__searchBar_runnerSpot}></div>
               </div>
             </div>
           </div>
@@ -238,15 +240,15 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   {track.artist}
                 </h5>
 
-                <div className={styles.strip__progress}>
-                  <div className={styles.strip__time}>
-                    <p className={styles.strip__time_element}>
+                <div className={styles.progress}>
+                  <div className={styles.progress__time}>
+                    <p className={styles.progress__time_element}>
                       {shownProgress() || '0:00'}
                     </p>
 
-                    <p className={styles.strip__time_element}>/</p>
+                    <p className={styles.progress__time_element}>/</p>
 
-                    <p className={styles.strip__time_element}>
+                    <p className={styles.progress__time_element}>
                       {shownDuration() || '0:00'}
                     </p>
                   </div>
@@ -254,7 +256,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   <div
                     ref={searchBarElement}
                     onClick={dragRunner}
-                    className={styles.strip__searchBar}
+                    className={styles.progress__searchBar}
                   >
                     <div
                       style={{
@@ -270,10 +272,12 @@ export const SongCard: React.FC<SongTrackProps> = ({
                             : 0
                         }`,
                       }}
-                      className={styles.strip__searchBar_runner}
+                      className={styles.progress__searchBar_runner}
                     ></div>
 
-                    <div className={styles.strip__searchBar_runnerSpot}></div>
+                    <div
+                      className={styles.progress__searchBar_runnerSpot}
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -293,21 +297,6 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     alt='play'
                   />
                 )}
-
-                {/* <div className={styles.strip__sondChangeBlock}>
-                  <img
-                    onClick={() => prevSong()}
-                    className={`${styles.strip__songChange} ${styles.strip__prevSong}`}
-                    src='./icons/previous-black-ico.svg'
-                    alt='prev-song'
-                  />
-                  <img
-                    onClick={() => nextSong()}
-                    className={`${styles.strip__songChange} ${styles.strip__prevSong}`}
-                    src='./icons/next-black-ico.svg'
-                    alt='next-song'
-                  />
-                </div> */}
               </div>
             </div>
           </div>
@@ -365,12 +354,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
 
       case 'player':
         return (
-          <div
-            className={`${
-              currentSong ? styles.showPlayer : styles.hidePlayer
-            } ${styles.player}`}
-          >
-            <div className={styles.player__short}>
+          <div className={` ${styles.player}`}>
+            <div className={styles.player__topSector}>
               <img
                 className={styles.player__photo}
                 src={currentSong?.photo}
@@ -412,19 +397,58 @@ export const SongCard: React.FC<SongTrackProps> = ({
               </div>
             </div>
 
-            <div className={styles.player__sondChangeBlock}>
-              <img
-                onClick={() => prevSong()}
-                className={`${styles.player__songChange} ${styles.player__prevSong}`}
-                src='./icons/previous-pink-ico.svg'
-                alt='prev-song'
-              />
-              <img
-                onClick={() => nextSong()}
-                className={`${styles.player__songChange} ${styles.player__prevSong}`}
-                src='./icons/next-pink-ico.svg'
-                alt='next-song'
-              />
+            <div className={styles.player__bottomSector}>
+              <div className={styles.progress}>
+                <div className={styles.progress__time}>
+                  <img
+                    onClick={() => prevSong()}
+                    className={`${styles.player__songChange} ${styles.player__prevSong}`}
+                    src='./icons/previous-black-ico.svg'
+                    alt='prev-song'
+                  />
+
+                  <p className={styles.progress__time_element}>
+                    {shownProgress() || '0:00'}
+                  </p>
+
+                  <p className={styles.progress__time_element}>/</p>
+
+                  <p className={styles.progress__time_element}>
+                    {shownDuration() || '0:00'}
+                  </p>
+
+                  <img
+                    onClick={() => nextSong()}
+                    className={`${styles.player__songChange} ${styles.player__prevSong}`}
+                    src='./icons/next-black-ico.svg'
+                    alt='next-song'
+                  />
+                </div>
+
+                <div
+                  ref={searchBarElement}
+                  onClick={dragRunner}
+                  className={styles.progress__searchBar}
+                >
+                  <div
+                    style={{
+                      width: `${
+                        track.audio_file &&
+                        track.id === currentSong?.id &&
+                        currentSong?.progress &&
+                        currentSong.song_length
+                          ? (currentSong?.progress / currentSong.song_length) *
+                              100 +
+                            '%'
+                          : 0
+                      }`,
+                    }}
+                    className={styles.progress__searchBar_runner}
+                  ></div>
+
+                  <div className={styles.progress__searchBar_runnerSpot}></div>
+                </div>
+              </div>
             </div>
           </div>
         );

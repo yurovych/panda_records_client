@@ -92,6 +92,24 @@
   }
 }
 
+.showPlayer {
+  opacity: 1;
+  transform: translateX(-16px) scale(1);
+
+  @include on-tablet {
+    transform: translateX(-32px) scale(1);
+  }
+
+  @include on-desktop {
+    transform: translateX(-64px) scale(1);
+  }
+}
+
+.hidePlayer {
+  opacity: 0;
+  transform: translateX(100vw) scale(0);
+}
+
 .navigationWrapper {
   display: none;
 

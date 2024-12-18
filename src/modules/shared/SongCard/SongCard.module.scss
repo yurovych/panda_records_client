@@ -81,52 +81,6 @@
     }
   }
 
-  &__time {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-
-    @include on-tablet {
-      margin-bottom: 16px;
-    }
-
-    &_element {
-      color: $color-grey2;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 130%;
-    }
-  }
-
-  &__searchBar {
-    box-sizing: content-box;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    height: 3px;
-    background-color: $color-grey2;
-    border: 3px solid $color-white1;
-
-    &_runner {
-      position: relative;
-      height: 3px;
-      background-color: $color-pink2;
-      box-shadow: 0 0 6px 0 #00000080;
-    }
-
-    &_runnerSpot {
-      height: 15px;
-      width: 15px;
-      background-color: $color-pink1;
-      border-radius: 50%;
-      border: 5px solid $color-grey3;
-    }
-  }
-
-  &__searchBar:hover .card__searchBar_runnerSpot {
-    border: 3px solid $color-grey3;
-  }
-
   &__buttonWrapper {
     flex-shrink: 0;
     cursor: pointer;
@@ -142,6 +96,10 @@
     width: 36px;
     aspect-ratio: 1;
     transition: all $effect-duration ease;
+
+    &:hover {
+      scale: 1.1;
+    }
 
     @include on-tablet {
       width: 48px;
@@ -175,15 +133,14 @@
     aspect-ratio: 1;
     height: 80px;
     object-fit: cover;
-    margin-right: 24px;
+    margin-right: 16px;
   }
 
   &__info {
     display: grid;
-    grid-auto-rows: min-content;
     height: 80px;
     width: 100%;
-    margin-right: 24px;
+    margin-right: 16px;
   }
 
   &__title {
@@ -220,67 +177,10 @@
     }
   }
 
-  &__progress {
-    grid-row: 4 / 5;
-    grid-column: 1 / -1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    width: 100%;
-  }
-
-  &__time {
-    display: flex;
-    gap: 10px;
-    justify-content: end;
-    margin-bottom: 4px;
-
-    &_element {
-      color: $color-grey2;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 100%;
-    }
-  }
-
-  &__searchBar {
-    width: 100%;
-    box-sizing: content-box;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    height: 3px;
-    background-color: $color-grey2;
-    border: 3px solid $color-white1;
-
-    &_runner {
-      position: relative;
-      height: 3px;
-      background-color: $color-pink2;
-      box-shadow: 0 0 6px 0 #00000080;
-    }
-
-    &_runnerSpot {
-      height: 15px;
-      width: 15px;
-      background-color: $color-pink1;
-      border-radius: 50%;
-      border: 5px solid $color-grey3;
-    }
-  }
-
-  &__searchBar:hover .strip__searchBar_runnerSpot {
-    border: 3px solid $color-grey3;
-  }
-
   &__control {
     flex-shrink: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    margin-left: auto;
   }
 
   &__playPause {
@@ -288,6 +188,10 @@
     width: 48px;
     aspect-ratio: 1;
     transition: all $effect-duration ease;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 }
 
@@ -330,31 +234,32 @@
   }
 }
 
+.mini__song:hover .mini__button {
+  scale: 1.2;
+}
+
 .player {
   z-index: 999;
   background-image: url('./../../../../public/images/disc-bg.png');
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+  background-size: 100% 60px;
+  background-color: $color-white1;
   width: 100%;
   height: 60px;
   display: flex;
   flex-direction: column;
+  gap: 6px;
   padding: 6px;
   overflow: hidden;
   transition: all $effect-duration ease;
 
   &:hover {
-    height: 120px;
+    height: 105px;
   }
 
-  @include on-tablet {
-  }
-
-  @include on-desktop {
-  }
-
-  &__short {
+  &__topSector {
     height: 48px;
     width: 100%;
     display: flex;
@@ -410,6 +315,7 @@
     display: flex;
     align-items: center;
     align-self: start;
+    flex-shrink: 0;
   }
 
   &__playPause {
@@ -418,42 +324,94 @@
     justify-content: center;
     height: 100%;
     aspect-ratio: 1;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 
   &__closeButton {
     cursor: pointer;
     height: 32px;
     aspect-ratio: 1;
+
+    &:hover {
+      scale: 1.2;
+    }
   }
 
-  &__sondChangeBlock {
+  &__bottomSector {
+    width: 100%;
     display: flex;
-    gap: 4px;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 6px;
   }
 
   &__songChange {
     cursor: pointer;
-    width: 20px;
+    width: 25px;
     aspect-ratio: 1;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 }
 
-.showPlayer {
-  opacity: 0.9;
-  transform: translateX(-16px) scale(1);
+.progress {
+  grid-row: 4 / 5;
+  grid-column: 1 / -1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 100%;
 
-  @include on-tablet {
-    transform: translateX(-32px) scale(1);
+  &__time {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 4px;
+
+    &_element {
+      color: $color-grey2;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 100%;
+    }
   }
 
-  @include on-desktop {
-    transform: translateX(-64px) scale(1);
-  }
-}
+  &__searchBar {
+    width: 100%;
+    box-sizing: content-box;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 3px;
+    background-color: $color-grey2;
+    border: 3px solid $color-white1;
 
-.hidePlayer {
-  opacity: 0;
-  transform: translateX(100vw) scale(0);
+    &_runner {
+      position: relative;
+      height: 3px;
+      background-color: $color-pink2;
+      box-shadow: 0 0 6px 0 #00000080;
+    }
+
+    &_runnerSpot {
+      height: 15px;
+      width: 15px;
+      background-color: $color-pink1;
+      border-radius: 50%;
+      border: 5px solid $color-grey3;
+    }
+  }
+
+  &__searchBar:hover .progress__searchBar_runnerSpot {
+    border: 3px solid $color-grey3;
+  }
 }
 
 @keyframes firstBar {
