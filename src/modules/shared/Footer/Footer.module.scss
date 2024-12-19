@@ -148,6 +148,18 @@
   }
 
   &__bottom {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__login {
+    margin-right: auto;
+    width: 20px;
+    aspect-ratio: 1;
+  }
+
+  &__copyRigths {
+    margin-right: auto;
   }
 }

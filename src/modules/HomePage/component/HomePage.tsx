@@ -20,6 +20,7 @@ import { scrollPageUp } from '../../../helpers/scrollPageUp';
 import { useAppSelector } from '../../../app/hooks';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { VideoPlayer } from '../../shared/VideoPlayer';
 
 export const HomePage = () => {
   // const songsList = useAppSelector((state) => state.songs.objects);
@@ -32,7 +33,7 @@ export const HomePage = () => {
   const currenLanguage = useAppSelector(
     (state) => state.current.currentLanguage
   );
-  const neededVideo = videosList.find((video) => video.title_en);
+  const guitarTeacherVideo = videosList.find((video) => video.title_en);
   const { t } = useTranslation();
 
   async function handleTextMeClick() {
@@ -243,31 +244,30 @@ export const HomePage = () => {
               <>
                 <h2 className={styles.lessons__title}>
                   {currenLanguage === 'ua'
-                    ? neededVideo?.title_uk
-                    : neededVideo?.title_en}
+                    ? guitarTeacherVideo?.title_uk
+                    : guitarTeacherVideo?.title_en}
                 </h2>
 
                 <div className={styles.lessons__video}>
-                  <video className={styles.lessons__videoItself} controls>
-                    <source src={neededVideo?.video_file} type='video/mp4' />
-                    {t('not_support_video')}
-                  </video>
+                  {guitarTeacherVideo && (
+                    <VideoPlayer shownVideo={guitarTeacherVideo} />
+                  )}
                 </div>
 
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
                 >
                   {currenLanguage === 'ua'
-                    ? neededVideo?.description_blok1_uk
-                    : neededVideo?.description_blok1_en}
+                    ? guitarTeacherVideo?.description_blok1_uk
+                    : guitarTeacherVideo?.description_blok1_en}
                 </h5>
 
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
                 >
                   {currenLanguage === 'ua'
-                    ? neededVideo?.description_blok2_uk
-                    : neededVideo?.description_blok2_en}
+                    ? guitarTeacherVideo?.description_blok2_uk
+                    : guitarTeacherVideo?.description_blok2_en}
                 </h5>
 
                 <div

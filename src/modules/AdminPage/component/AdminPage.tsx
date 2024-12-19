@@ -36,4 +36,16 @@ export const AdminPage: React.FC = () => {
       )}
     </>
   );
+
+  // return (
+  //   <>
+  //     {false ? (
+  //       <Loader />
+  //     ) : (
+  //       <div id='AdminPage' className={styles.adminPage}>
+  //         This is AdminPage
+  //       </div>
+  //     )}
+  //   </>
+  // );
 };

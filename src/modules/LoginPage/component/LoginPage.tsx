@@ -2,9 +2,11 @@ import { Formik, Form, Field } from 'formik';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { accessTokenService } from '../../../services/accessTokenService';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TokensType } from './../../../types/Tokens';
 import { authService } from '../../../services/authService';
+import styles from './LoginPage.module.scss';
+import { useTranslation } from 'react-i18next';
 
 type LoginParams = {
   email: string;
@@ -36,8 +38,13 @@ function validatePassword(value: string) {
 export const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const [error, setError] = useState('');
+
+  const handleGoBack = () => {
+    navigate('/');
+  };
 
   async function login({ email, password }: LoginParams): Promise<void> {
     const { access_token }: TokensType = await authService.login({
@@ -49,7 +56,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <>
+    <div className={styles.login}>
       <Formik
         initialValues={{
           email: '',
@@ -62,17 +69,17 @@ export const LoginPage = () => {
               navigate(location.state?.from?.pathname || '/admin');
             })
             .catch((error) => {
-              console.log(`Eroor is ${error}`);
+              console.log(`Error is ${error}`);
 
               setError(error.response?.data?.message);
             });
         }}
       >
-        {({ touched, errors }) => (
-          <Form className='box'>
-            <h1 className='title'>Log in</h1>
-            <div className='field'>
-              <label htmlFor='email' className='label'>
+        {({ touched, errors, isSubmitting }) => (
+          <Form className={styles.form}>
+            <h1 className={styles.form__title}>Log in as Admin</h1>
+            <div className={styles.form__element}>
+              <label htmlFor='email' className={styles.form__lable}>
                 Email
               </label>
 
@@ -83,12 +90,14 @@ export const LoginPage = () => {
                   type='email'
                   id='email'
                   placeholder='e.g. Johnjohnson@gmail.com'
-                  className={cn('input', {
+                  className={`${cn({
                     'is-danger': touched.email && errors.email,
-                  })}
+                  })} ${styles.form__field}`}
                 />
 
-                <span className='icon is-small is-left'>
+                <span
+                  className={`${styles.form__icoBlock} icon is-small is-left`}
+                >
                   <i className='fa fa-envelope'></i>
                 </span>
 
@@ -103,8 +112,8 @@ export const LoginPage = () => {
                 <p className='help is-danger'>{errors.email}</p>
               )}
             </div>
-            <div className='field'>
-              <label htmlFor='password' className='label'>
+            <div className={styles.form__element}>
+              <label className={styles.form__label} htmlFor='password'>
                 Password
               </label>
 
@@ -115,12 +124,14 @@ export const LoginPage = () => {
                   type='password'
                   id='password'
                   placeholder='*******'
-                  className={cn('input', {
+                  className={`${cn({
                     'is-danger': touched.password && errors.password,
-                  })}
+                  })} ${styles.form__field}`}
                 />
 
-                <span className='icon is-small is-left'>
+                <span
+                  className={`${styles.form__icoBlock} icon is-small is-left`}
+                >
                   <i className='fa fa-lock'></i>
                 </span>
 
@@ -137,21 +148,30 @@ export const LoginPage = () => {
                 <p className='help'>At least 6 characters</p>
               )}
             </div>
-            <div className='field'>
+            <div className={styles.form__element}>
               <button
                 type='submit'
-                className={cn('button is-success has-text-weight-bold')}
-                disabled={!!errors.email || !!errors.password}
+                disabled={isSubmitting || !!errors.email || !!errors.password}
+                className={styles.form__formikButton}
               >
-                Log in
+                {t(isSubmitting ? 'form_button_sending' : 'form_button_send')}
               </button>
             </div>
             Forgot password? <Link to='/reset-password'>Reset password</Link>
+            <div className={styles.form__element}>
+              <button
+                onClick={handleGoBack}
+                type='button'
+                className={styles.form__goBackButton}
+              >
+                Back to studio
+              </button>
+            </div>
           </Form>
         )}
       </Formik>
 
       {error && <p className='notification is-danger is-light'>{error}</p>}
-    </>
+    </div>
   );
 };

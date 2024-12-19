@@ -6,11 +6,13 @@ import allSongs from './../../../data/songsCards.json';
 export const Player: React.FC = () => {
   const audioElem = useRef<HTMLAudioElement | null>(null);
   const dispatch = useAppDispatch();
-  const currentIndex = useAppSelector((state) => state.player.currentIndex);
+  const currentSongIndex = useAppSelector(
+    (state) => state.player.currentSongIndex
+  );
   const currentSong = useAppSelector((state) => state.player.currentSong);
-  const isPlaying = useAppSelector((state) => state.player.isPlaying);
-  const currentProgress = useAppSelector(
-    (state) => state.player.currentProgress
+  const isSongPlaying = useAppSelector((state) => state.player.isSongPlaying);
+  const currentSongProgress = useAppSelector(
+    (state) => state.player.currentSongProgress
   );
 
   const [prevTrackId, setPrevTrackId] = useState<number | null>(null);
@@ -37,22 +39,22 @@ export const Player: React.FC = () => {
     const audio = audioElem.current;
     if (!audio) return;
 
-    if (currentProgress) {
-      audio.currentTime = currentProgress;
+    if (currentSongProgress) {
+      audio.currentTime = currentSongProgress;
     }
-  }, [currentProgress]);
+  }, [currentSongProgress]);
 
   useEffect(() => {
     const audio = audioElem.current;
     if (!audio) return;
 
-    if (isPlaying && currentSong?.audio_file) {
+    if (isSongPlaying && currentSong?.audio_file) {
       if (currentSong.id !== prevTrackId) {
         audio.src = currentSong.audio_file;
         setPrevTrackId(currentSong.id);
       }
       audio.play().catch((error) => console.error('Error:', error));
-    } else if (!isPlaying) {
+    } else if (!isSongPlaying) {
       audio.pause();
     }
 
@@ -62,15 +64,15 @@ export const Player: React.FC = () => {
         audio.src = '';
       }
     };
-  }, [isPlaying, currentSong, prevTrackId]);
+  }, [isSongPlaying, currentSong, prevTrackId]);
 
   const handleEnded = () => {
-    if (currentIndex === null) {
+    if (currentSongIndex === null) {
       dispatch(setCurrentSong(allSongs[0]));
-    } else if (currentIndex === allSongs.length - 1) {
+    } else if (currentSongIndex === allSongs.length - 1) {
       dispatch(setCurrentSong(allSongs[0]));
     } else {
-      dispatch(setCurrentSong(allSongs[currentIndex + 1]));
+      dispatch(setCurrentSong(allSongs[currentSongIndex + 1]));
     }
   };
 

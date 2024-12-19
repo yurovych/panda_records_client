@@ -1,17 +1,10 @@
 @import './../main';
 
 .pvc {
-  height: 340px;
+  width: 100%;
+  aspect-ratio: 1;
   display: flex;
   justify-content: center;
   background: $gradient-black-violet;
   margin-bottom: 32px;
-
-  @include on-tablet {
-    height: 480px;
-  }
-
-  &__video {
-    height: 100%;
-  }
 }

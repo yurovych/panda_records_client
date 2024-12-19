@@ -15,6 +15,8 @@ import { Services } from './modules/Services';
 import { Portfolio } from './modules/Portfolio';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import { ResetPasswordRequest } from './modules/ResetPasswordRequest';
+import { ChangePasswordPage } from './modules/ChangePasswordPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,8 +33,12 @@ root.render(
               <Route path='services' element={<Services />} />
               <Route path='portfolio' element={<Portfolio />} />
             </Route>
-
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/reset-password' element={<ResetPasswordRequest />} />
+            <Route
+              path='/reset-password/:resetToken'
+              element={<ChangePasswordPage />}
+            />
             <Route path='/admin' element={<AdminPage />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>

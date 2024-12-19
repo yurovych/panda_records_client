@@ -6,7 +6,6 @@ import { Button } from '../Button';
 import styles from './ContactForm.module.scss';
 import { clientService } from '../../../services/clientService';
 import { useTranslation } from 'react-i18next';
-// import { FormDataType } from './../../../types/FormDataType';
 
 export const ContactForm = () => {
   const { t } = useTranslation();

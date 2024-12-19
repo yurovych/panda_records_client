@@ -1,5 +1,6 @@
 import styles from './ProcessVideoCard.module.scss';
 import { VideoFileType } from '../../../types/Video';
+import { VideoPlayer } from '../VideoPlayer';
 
 type ProcessVideoCardProps = {
   card: VideoFileType;
@@ -8,9 +9,7 @@ type ProcessVideoCardProps = {
 export const ProcessVideoCard: React.FC<ProcessVideoCardProps> = ({ card }) => {
   return (
     <div className={styles.pvc}>
-      <video className={styles.pvc__video} controls>
-        <source src={card.video_file} type='video/mp4' />
-      </video>
+      <VideoPlayer shownVideo={card} />
     </div>
   );
 };

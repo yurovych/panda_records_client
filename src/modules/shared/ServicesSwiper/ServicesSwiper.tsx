@@ -58,10 +58,10 @@ export const ServicesSwiper = ({
         };
 
       case 'type2':
-        return { 340: { slidesPerView: 1.3 }, 1200: { slidesPerView: 3 } };
+        return { 375: { slidesPerView: 1.3 }, 1200: { slidesPerView: 3 } };
 
       default:
-        return { 340: { slidesPerView: 1 } };
+        return { 375: { slidesPerView: 1 } };
     }
   }
 

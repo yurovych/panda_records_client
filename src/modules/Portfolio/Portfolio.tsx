@@ -2,40 +2,21 @@ import styles from './Portfolio.module.scss';
 import songsAll from './../../data/songsCards.json';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../shared/Footer';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { ServicesSwiper } from '../shared/ServicesSwiper';
 import { SongCard } from '../shared/SongCard';
 import { Loader } from '../Loader';
-import { SongTrackType } from '../../types/SongTrack';
-import { setCurrentSong, setIsPlaying } from '../../slices/playerSlice';
 import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
 import simplePhoto from './../../data/simplePhotos.json';
 export const Portfolio = () => {
   const { t } = useTranslation();
   const currentSong = useAppSelector((state) => state.player.currentSong);
-  const isPlaying = useAppSelector((state) => state.player.isPlaying);
   const currentLanguuage = useAppSelector(
     (state) => state.current.currentLanguage
   );
 
   const topSongs = songsAll.filter((song) => song.top);
-
-  const dispatch = useAppDispatch();
-
-  function toggleSong(track: SongTrackType) {
-    if (currentSong?.id === track.id) {
-      if (isPlaying) {
-        dispatch(setIsPlaying(false));
-        dispatch(setCurrentSong(null));
-      } else {
-        dispatch(setIsPlaying(true));
-      }
-    } else {
-      dispatch(setCurrentSong(track));
-      dispatch(setIsPlaying(true));
-    }
-  }
 
   return (
     <div className={styles.portfolio}>

@@ -3,6 +3,7 @@ import { Navigation } from '../Navigation';
 import styles from './Footer.module.scss';
 import { scrollPageUp } from '../../../helpers/scrollPageUp';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -63,8 +64,14 @@ export const Footer = () => {
         <div className={styles.footer__line}></div>
 
         <div className={styles.footer__bottom}>
-          2024&nbsp;&nbsp;&nbsp;&nbsp;Panda Records. Copyright&nbsp;&nbsp;
-          &copy;
+          <Link to='/admin' className={styles.footer__login}>
+            <img src='./icons/log-in-ico.svg' alt='login' />
+          </Link>
+
+          <p className={styles.footer__copyRigths}>
+            2024&nbsp;&nbsp;&nbsp;&nbsp;Panda Records. Copyright&nbsp;&nbsp;
+            &copy;
+          </p>
         </div>
       </div>
     </div>

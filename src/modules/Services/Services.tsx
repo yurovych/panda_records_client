@@ -47,17 +47,15 @@ export const Services = () => {
       <section className={styles.process}>
         <h2 className={styles.process__title}>{t('services_videos_title')} </h2>
 
-        <div className={styles.process__swiperWrapper}>
-          {processVideosList ? (
-            <ServicesSwiper
-              type='type1'
-              videoCards={processVideosList}
-              VideoToRender={ProcessVideoCard}
-            />
-          ) : (
-            <Loader />
-          )}
-        </div>
+        {processVideosList ? (
+          <ServicesSwiper
+            type='type2'
+            videoCards={processVideosList}
+            VideoToRender={ProcessVideoCard}
+          />
+        ) : (
+          <Loader />
+        )}
       </section>
 
       <section className={styles.lessons}>

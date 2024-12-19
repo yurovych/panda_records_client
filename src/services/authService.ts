@@ -6,11 +6,25 @@ type LoginParams = {
   password: string;
 };
 
+type ResetPaswordRequesr = {
+  email: string;
+};
+
+type ChangePassword = {
+  password: string;
+  confirmation: string;
+  resetToken: string;
+};
+
 function login({ email, password }: LoginParams): Promise<TokensType> {
   return authClient.post(
     'https://2d34-185-110-133-10.ngrok-free.app/api/users/login/',
     { email, password }
   );
+}
+
+function logout() {
+  return authClient.post('/logout');
 }
 
 function refresh(): Promise<TokensType> {
@@ -19,7 +33,25 @@ function refresh(): Promise<TokensType> {
   );
 }
 
+function resetPasswordRequest({ email }: ResetPaswordRequesr) {
+  return authClient.post('/reset-password', { email });
+}
+
+function changePassword({
+  password,
+  confirmation,
+  resetToken,
+}: ChangePassword) {
+  return authClient.post(`/reset-password/${resetToken}`, {
+    password,
+    confirmation,
+  });
+}
+
 export const authService = {
   login,
+  logout,
   refresh,
+  resetPasswordRequest,
+  changePassword,
 };

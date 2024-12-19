@@ -3,10 +3,10 @@ import { SongTrackType } from './../../../types/SongTrack';
 import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
-  setCurrentIndex,
-  setCurrentProgress,
+  setCurrentSongIndex,
+  setCurrentSongProgress,
   setCurrentSong,
-  setIsPlaying,
+  setIsSongPlaying,
 } from '../../../slices/playerSlice';
 import { Loader } from '../../Loader';
 import allSongs from './../../../data/songsCards.json';
@@ -25,60 +25,62 @@ export const SongCard: React.FC<SongTrackProps> = ({
   const searchBarElement = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
   const currentSong = useAppSelector((state) => state.player.currentSong);
-  const isPlaying = useAppSelector((state) => state.player.isPlaying);
-  const currentIndex = useAppSelector((state) => state.player.currentIndex);
+  const isSongPlaying = useAppSelector((state) => state.player.isSongPlaying);
+  const currentSongIndex = useAppSelector(
+    (state) => state.player.currentSongIndex
+  );
 
   (function getCurrentIndex() {
     const index = allSongs.findIndex((song) => song.id === currentSong?.id);
 
-    dispatch(setCurrentIndex(index));
+    dispatch(setCurrentSongIndex(index));
   })();
 
   function toggleTrack(track: SongTrackType) {
     if (!track.audio_file) {
       dispatch(setCurrentSong(track));
-      dispatch(setIsPlaying(false));
-      dispatch(setCurrentProgress(null));
+      dispatch(setIsSongPlaying(false));
+      dispatch(setCurrentSongProgress(null));
     } else if (currentSong?.id === track.id) {
-      if (isPlaying) {
-        dispatch(setIsPlaying(false));
+      if (isSongPlaying) {
+        dispatch(setIsSongPlaying(false));
       } else {
-        dispatch(setIsPlaying(true));
+        dispatch(setIsSongPlaying(true));
       }
     } else {
       dispatch(setCurrentSong(track));
-      dispatch(setIsPlaying(true));
+      dispatch(setIsSongPlaying(true));
     }
   }
 
   function closePlayer() {
-    dispatch(setIsPlaying(false));
+    dispatch(setIsSongPlaying(false));
     dispatch(setCurrentSong(null));
   }
 
   function prevSong() {
-    dispatch(setIsPlaying(true));
+    dispatch(setIsSongPlaying(true));
 
-    if (currentIndex === null) {
+    if (currentSongIndex === null) {
       dispatch(setCurrentSong(allSongs[0]));
-    } else if (currentIndex === 0) {
+    } else if (currentSongIndex === 0) {
       dispatch(setCurrentSong(allSongs[allSongs.length - 1]));
     } else {
-      dispatch(setCurrentSong(allSongs[currentIndex - 1]));
+      dispatch(setCurrentSong(allSongs[currentSongIndex - 1]));
     }
   }
 
   function nextSong() {
-    dispatch(setIsPlaying(true));
+    dispatch(setIsSongPlaying(true));
 
-    if (currentIndex === null) {
+    if (currentSongIndex === null) {
       dispatch(setCurrentSong(allSongs[0]));
-    } else if (currentIndex === null) {
+    } else if (currentSongIndex === null) {
       dispatch(setCurrentSong(allSongs[0]));
-    } else if (currentIndex === allSongs.length - 1) {
+    } else if (currentSongIndex === allSongs.length - 1) {
       dispatch(setCurrentSong(allSongs[0]));
     } else {
-      dispatch(setCurrentSong(allSongs[currentIndex + 1]));
+      dispatch(setCurrentSong(allSongs[currentSongIndex + 1]));
     }
   }
 
@@ -99,7 +101,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
       currentSong.song_length
     ) {
       dispatch(
-        setCurrentProgress((songProgress / 100) * currentSong.song_length)
+        setCurrentSongProgress((songProgress / 100) * currentSong.song_length)
       );
     }
   }
@@ -166,14 +168,14 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     onClick={() => toggleTrack(track)}
                     className={styles.card__button}
                     src={
-                      isPlaying && currentSong?.id === track.id
+                      isSongPlaying && currentSong?.id === track.id
                         ? './icons/pause-black-ico.svg'
                         : './icons/play-black-ico.svg'
                     }
                     alt='play'
                   />
                 )}
-                {isPlaying &&
+                {isSongPlaying &&
                   currentSong?.id === track.id &&
                   track.audio_file && (
                     <div className={styles.songAnimation}>
@@ -300,7 +302,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     onClick={() => toggleTrack(track)}
                     className={styles.strip__playPause}
                     src={
-                      isPlaying && currentSong?.id === track.id
+                      isSongPlaying && currentSong?.id === track.id
                         ? './icons/pause-black-ico.svg'
                         : './icons/play-black-ico.svg'
                     }
@@ -320,7 +322,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
             key={track.id}
           >
             <div className={styles.mini__data}>
-              {isPlaying && currentSong && currentSong.id === track.id ? (
+              {isSongPlaying && currentSong && currentSong.id === track.id ? (
                 <div title='stop' className={styles.miniSongAnimation}>
                   <div
                     className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_1}`}
@@ -332,7 +334,9 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_3}`}
                   ></div>
                 </div>
-              ) : !isPlaying && currentSong && currentSong.id === track.id ? (
+              ) : !isSongPlaying &&
+                currentSong &&
+                currentSong.id === track.id ? (
                 <img
                   className={styles.mini__button}
                   src='./icons/pause-black-mini-ico.svg'
@@ -389,7 +393,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                       onClick={() => toggleTrack(track)}
                       className={styles.player__playPause}
                       src={
-                        isPlaying && currentSong?.id === track.id
+                        isSongPlaying && currentSong?.id === track.id
                           ? './icons/pause-pink-ico.svg'
                           : './icons/play-pink-ico.svg'
                       }
