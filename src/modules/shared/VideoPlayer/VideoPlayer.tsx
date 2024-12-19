@@ -19,7 +19,7 @@ export const VideoPlayer: React.FC<VideoPlayerPropsType> = ({ shownVideo }) => {
   const isSongPlaying = useAppSelector((state) => state.player.isSongPlaying);
   const dispatch = useAppDispatch();
 
-  function handleOnPlay(id: number) {
+  function handleOnPlay() {
     dispatch(setIsVideoPlaying(!isVideoPlaying));
 
     if (currentVideo?.id !== shownVideo.id) {
@@ -43,7 +43,9 @@ export const VideoPlayer: React.FC<VideoPlayerPropsType> = ({ shownVideo }) => {
   return (
     <video
       controls
-      onPlay={() => handleOnPlay(shownVideo.id)}
+      preload='none'
+      poster={shownVideo.poster}
+      onPlay={handleOnPlay}
       ref={videoElem}
       className={styles.videoItself}
     >

@@ -32,6 +32,7 @@ root.render(
               <Route path='about' element={<AboutUs />} />
               <Route path='services' element={<Services />} />
               <Route path='portfolio' element={<Portfolio />} />
+              <Route path='admin' element={<AdminPage />} />
             </Route>
             <Route path='/login' element={<LoginPage />} />
             <Route path='/reset-password' element={<ResetPasswordRequest />} />
@@ -39,7 +40,6 @@ root.render(
               path='/reset-password/:resetToken'
               element={<ChangePasswordPage />}
             />
-            <Route path='/admin' element={<AdminPage />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </Router>

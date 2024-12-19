@@ -9,8 +9,11 @@ import { ServicesCard } from './../shared/ServicesCard/ServicesCard';
 import { useTranslation } from 'react-i18next';
 import { ContactUs } from '../shared/ContactUs';
 import { ServicesCardsDesktop } from '../shared/ServicesCardsDesktop';
+// import { useAppSelector } from '../../app/hooks';
 
 export const Services = () => {
+  // const videos = useAppSelector((state) => state.videos.objects);
+
   const processVideosList = videos.filter((video) => video);
   const { t } = useTranslation();
 

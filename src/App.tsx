@@ -8,22 +8,53 @@ import { fetchSongsAsync } from './slices/fetchSongs';
 import { fetchServicesAsync } from './slices/fetchServices';
 import { fetchEquipmentAsync } from './slices/fetchEquipment';
 import { fetchVideosAsync } from './slices/fetchVideos';
-import { useAppDispatch } from './app/hooks';
+import { useAppDispatch, useAppSelector } from './app/hooks';
 import { Player } from './modules/shared/Player';
-import { VideoPlayer } from './modules/shared/VideoPlayer';
+import { TokensType } from './types/Tokens';
+import { authService } from './services/authService';
+import { accessTokenService } from './services/accessTokenService';
+import { setIsAuthenticated } from './slices/booleanSlice';
+import { setCurrentLanguage } from './slices/current';
+import { useTranslation } from 'react-i18next';
 
 export const App = () => {
   const dispatch = useAppDispatch();
+  const currenLanguage = useAppSelector(
+    (state) => state.current.currentLanguage
+  );
+
+  const { i18n } = useTranslation();
+
+  async function checkAuth() {
+    try {
+      const { access_token }: TokensType = await authService.refresh();
+      accessTokenService.save(access_token);
+      dispatch(setIsAuthenticated(true));
+    } catch (error) {
+      dispatch(setIsAuthenticated(false));
+    }
+  }
 
   useEffect(() => {
     dispatch(fetchSongsAsync());
-    dispatch(fetchServicesAsync());
-    dispatch(fetchEquipmentAsync());
-    dispatch(fetchVideosAsync());
-  }, []);
+    dispatch(fetchServicesAsync(currenLanguage));
+    dispatch(fetchEquipmentAsync(currenLanguage));
+    dispatch(fetchVideosAsync(currenLanguage));
+
+    i18n.changeLanguage(currenLanguage);
+  }, [currenLanguage, dispatch, i18n]);
 
   useEffect(() => {
     scrollPageUp();
+    checkAuth();
+
+    const customerLanguage = localStorage.getItem('language');
+
+    if (customerLanguage) {
+      dispatch(setCurrentLanguage(customerLanguage));
+    } else {
+      dispatch(setCurrentLanguage('ua'));
+    }
   }, []);
 
   return (

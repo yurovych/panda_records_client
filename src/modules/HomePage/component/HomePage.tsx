@@ -3,9 +3,9 @@ import styles from './HomePage.module.scss';
 import { Footer } from '../../shared/Footer';
 import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
-import equipmentList from './../../../data/equipmentCards.json';
+// import equipmentList from './../../../data/equipmentCards.json';
 import servicesList from './../../../data/servicesCards.json';
-import songsList from './../../../data/songsCards.json';
+// import songsList from './../../../data/songsCards.json';
 import videosList from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
@@ -23,17 +23,18 @@ import { useTranslation } from 'react-i18next';
 import { VideoPlayer } from '../../shared/VideoPlayer';
 
 export const HomePage = () => {
-  // const songsList = useAppSelector((state) => state.songs.objects);
+  const songsList = useAppSelector((state) => state.songs.objects);
+
   // const servicesList = useAppSelector((state) => state.sevrices.objects);
-  // const equipmentList = useAppSelector((state) => state.equipment.objects);
+  const equipmentList = useAppSelector((state) => state.equipment.objects);
   // const videosList = useAppSelector((state) => state.videos.objects);
 
   const navigate = useNavigate();
   const currentSong = useAppSelector((state) => state.player.currentSong);
-  const currenLanguage = useAppSelector(
-    (state) => state.current.currentLanguage
+
+  const guitarTeacherVideo = videosList.find(
+    (video) => video.description_block1
   );
-  const guitarTeacherVideo = videosList.find((video) => video.title_en);
   const { t } = useTranslation();
 
   async function handleTextMeClick() {
@@ -45,20 +46,22 @@ export const HomePage = () => {
   const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
   const shuffleSongs = (songs: SongTrackType[]) => {
-    for (let i = songs.length - 1; i > 0; i--) {
+    const shuffled = [...songs];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
 
-      [songs[i], songs[j]] = [songs[j], songs[i]];
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    return songs.slice(0, 5);
+    return shuffled;
   };
 
   useEffect(() => {
     if (songsList) {
       setShuffledSongs(shuffleSongs(songsList));
     }
-  }, []);
+  }, [songsList]);
 
   return (
     <>
@@ -243,9 +246,7 @@ export const HomePage = () => {
             {videosList ? (
               <>
                 <h2 className={styles.lessons__title}>
-                  {currenLanguage === 'ua'
-                    ? guitarTeacherVideo?.title_uk
-                    : guitarTeacherVideo?.title_en}
+                  {guitarTeacherVideo?.title}
                 </h2>
 
                 <div className={styles.lessons__video}>
@@ -257,17 +258,13 @@ export const HomePage = () => {
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
                 >
-                  {currenLanguage === 'ua'
-                    ? guitarTeacherVideo?.description_blok1_uk
-                    : guitarTeacherVideo?.description_blok1_en}
+                  {guitarTeacherVideo?.description_block1}
                 </h5>
 
                 <h5
                   className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
                 >
-                  {currenLanguage === 'ua'
-                    ? guitarTeacherVideo?.description_blok2_uk
-                    : guitarTeacherVideo?.description_blok2_en}
+                  {guitarTeacherVideo?.description_block2}
                 </h5>
 
                 <div

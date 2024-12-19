@@ -75,6 +75,11 @@
   }
 }
 
+.langButtonDisabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
 .playerWrapper {
   position: fixed;
   top: 90px;

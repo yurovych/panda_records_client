@@ -15,14 +15,17 @@ const initialState: VideoType = {
   error: '',
 };
 
-export const fetchVideosAsync = createAsyncThunk('videos/fetch', async () => {
-  const videosList = await clientService.getVideos();
+export const fetchVideosAsync = createAsyncThunk(
+  'videos/fetch',
+  async (currenLanguage: string) => {
+    const videosList = await clientService.getVideos(currenLanguage);
 
-  return videosList;
-});
+    return videosList;
+  }
+);
 
 const getVideosSlice = createSlice({
-  name: 'videos',
+  name: 'videos/fetch',
   initialState,
   reducers: {},
 

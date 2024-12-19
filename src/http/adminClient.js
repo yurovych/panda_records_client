@@ -1,11 +1,11 @@
 import { createClient } from './index.js';
-import { authService } from '../services/authService.js';
-import { accessTokenService } from '../services/accessTokenService.js';
+import { authService } from './../services/authService.ts';
+import { accessTokenService } from './../services/accessTokenService.ts';
 
-export const httpClient = createClient();
+export const adminClient = createClient();
 
-httpClient.interceptors.request.use(onRequest);
-httpClient.interceptors.response.use(onResponseSuccess, onResponseError);
+adminClient.interceptors.request.use(onRequest);
+adminClient.interceptors.response.use(onResponseSuccess, onResponseError);
 
 function onRequest(request) {
   const access_token = localStorage.getItem('access_token');
@@ -18,7 +18,7 @@ function onRequest(request) {
 }
 
 function onResponseSuccess(res) {
-  return res.data;
+  return res;
 }
 
 async function onResponseError(error) {
@@ -37,7 +37,7 @@ async function onResponseError(error) {
 
     accessTokenService.save(access_token);
 
-    return httpClient.request(originalRequest);
+    return adminClient.request(originalRequest);
   } catch (error) {
     throw error;
   }

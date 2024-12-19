@@ -30,8 +30,8 @@ function validatePassword(value: string) {
     return 'Password is required';
   }
 
-  if (value.length < 6) {
-    return 'At least 6 characters';
+  if (value.length < 5) {
+    return 'At least 5 characters';
   }
 }
 

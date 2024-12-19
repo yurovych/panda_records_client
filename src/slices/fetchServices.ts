@@ -17,8 +17,8 @@ const initialState: ServicesType = {
 
 export const fetchServicesAsync = createAsyncThunk(
   'services/fetch',
-  async () => {
-    const servicesList = await clientService.getSevices();
+  async (currenLanguage: string) => {
+    const servicesList = await clientService.getSevices(currenLanguage);
 
     return servicesList;
   }

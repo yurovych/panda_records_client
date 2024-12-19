@@ -6,16 +6,18 @@ import servicesReduser from './../slices/fetchServices';
 import equipmentReducer from './../slices/fetchEquipment';
 import videosReducer from './../slices/fetchVideos';
 import playerReducer from './../slices/playerSlice';
+import messagesReducer from './../slices/fetchMessages';
 
 export const store = configureStore({
   reducer: {
     boolean: booleanReducer,
     current: currentReducer,
-    songs: songsReduser,
-    sevrices: servicesReduser,
     equipment: equipmentReducer,
+    sevrices: servicesReduser,
+    songs: songsReduser,
     videos: videosReducer,
     player: playerReducer,
+    messages: messagesReducer,
   },
 });
 

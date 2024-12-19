@@ -17,8 +17,8 @@ const initialState: EquipmentType = {
 
 export const fetchEquipmentAsync = createAsyncThunk(
   'equipment/fetch',
-  async () => {
-    const equipmentList = await clientService.getEquipment();
+  async (currentLanguage: string) => {
+    const equipmentList = await clientService.getEquipment(currentLanguage);
 
     return equipmentList;
   }

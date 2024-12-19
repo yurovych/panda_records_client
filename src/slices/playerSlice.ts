@@ -22,7 +22,7 @@ const initialState: PlayerType = {
 };
 
 const playerSlice = createSlice({
-  name: 'boolean',
+  name: 'player',
   initialState,
   reducers: {
     setIsSongPlaying: (state, action: PayloadAction<boolean>) => {

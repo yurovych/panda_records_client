@@ -12,7 +12,7 @@ const initialState: CurrentType = {
 };
 
 const currentSlice = createSlice({
-  name: 'songs',
+  name: 'current',
   initialState,
   reducers: {
     setCurrentServiceId: (state, action: PayloadAction<number | null>) => {

@@ -22,7 +22,7 @@ export const fetchSongsAsync = createAsyncThunk('songs/fetch', async () => {
 });
 
 const getSongsSlice = createSlice({
-  name: 'songs',
+  name: 'songs/fetch',
   initialState,
   reducers: {},
 

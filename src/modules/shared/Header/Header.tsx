@@ -6,7 +6,7 @@ import { Logo } from '../Logo/Logo';
 import { Navigation } from '../Navigation';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setIsHidenMenu } from '../../../slices/booleanSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './../_main.scss';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
@@ -16,6 +16,8 @@ export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t, i18n } = useTranslation();
+
+  const [languageDisabled, setLanguageDisabled] = useState(false);
 
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const isHidenMenu = useAppSelector((state) => state.boolean.isHidenMenu);
@@ -53,10 +55,16 @@ export const Header = () => {
   }, [isHidenMenu]);
 
   const handleLanguageChange = () => {
+    setLanguageDisabled(true);
+
+    setTimeout(() => {
+      setLanguageDisabled(false);
+    }, 3000);
+
     const newLang = currentLanguage === 'en' ? 'ua' : 'en';
 
     dispatch(setCurrentLanguage(newLang));
-    i18n.changeLanguage(newLang);
+
     localStorage.setItem('language', newLang);
   };
 
@@ -72,17 +80,19 @@ export const Header = () => {
             <SongCard visual='player' track={currentSong} />
           </div>
         )}
-
         <div onClick={handleLogoClick}>
           <Logo />
         </div>
-
         <nav style={{ fontSize: '18px' }} className={styles.navigationWrapper}>
           <Navigation />
         </nav>
-
         <div className={styles.header__right}>
-          <div onClick={handleLanguageChange} className={styles.languageButton}>
+          <div
+            onClick={handleLanguageChange}
+            className={`${languageDisabled && styles.langButtonDisabled} ${
+              styles.languageButton
+            }`}
+          >
             {currentLanguage === 'ua' ? (
               <img
                 className={`${styles.languageButton__img} ${

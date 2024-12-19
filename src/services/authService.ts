@@ -17,24 +17,19 @@ type ChangePassword = {
 };
 
 function login({ email, password }: LoginParams): Promise<TokensType> {
-  return authClient.post(
-    'https://2d34-185-110-133-10.ngrok-free.app/api/users/login/',
-    { email, password }
-  );
+  return authClient.post('/users/login/', { email, password });
 }
 
 function logout() {
-  return authClient.post('/logout');
+  return authClient.post('/logout/');
 }
 
 function refresh(): Promise<TokensType> {
-  return authClient.get(
-    'https://457b-185-110-133-10.ngrok-free.app/api/users/refresh/'
-  );
+  return authClient.get('/users/refresh');
 }
 
 function resetPasswordRequest({ email }: ResetPaswordRequesr) {
-  return authClient.post('/reset-password', { email });
+  return authClient.post('/reset-password/', { email });
 }
 
 function changePassword({

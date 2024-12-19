@@ -1,35 +1,45 @@
 @import './../../shared/main';
 
 .notFoundPage {
-  padding: 30px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px;
+  height: 100vh;
+  background-image: url('./../../../../public/images/login-image.jpg');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: cover;
+
+  @include content-padding-inline;
+  @include section-padding-block;
 
   &__text {
-    padding-bottom: 30px;
-    color: black;
-    font-family: inherit;
-    font-size: 22px;
+    text-align: center;
+    color: $color-white2;
+    font-size: 32px;
     font-weight: 700;
-    line-height: 140%;
-    letter-spacing: 0%;
   }
 
-  &__image {
-    width: 30%;
-  }
-}
+  &__goToStudio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-white1;
+    font-size: 20px;
+    margin-block: 24px;
+    width: 60%;
+    background-color: $color-green;
+    border: 1px solid $color-white1;
+    height: 48px;
+    border-radius: 5px;
 
-.goHome {
-  padding-top: 30px;
-  color: black;
-  font-family: inherit;
-  font-size: 18px;
-  font-weight: 500;
+    @include on-tablet {
+      width: 40%;
+    }
 
-  &:hover {
-    color: black;
+    @include on-desktop {
+      width: 20%;
+    }
   }
 }

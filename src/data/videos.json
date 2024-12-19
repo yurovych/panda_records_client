@@ -1,28 +1,42 @@
 [
   {
     "id": 1,
-    "title_uk": "Уроки гри на гітарі",
-    "title_en": "Guitar lessons",
+    "title": "Guitar lessons",
     "video_file": "./videos/guitar-lessons-video.MP4",
-    "description_blok1_uk": "Хочете навчитися грати на гітарі чи вдосконалити свої навички? Ми пропоную професійне навчання гри на акустичній, електрогітарі та бас-гітарі як для початківців так і для тих хто хоче вдосконалити свої навички.",
-    "description_blok2_uk": "Наш підхід – індивідуальний. Ми працюємо у вашому темпі, з урахуванням ваших цілей і вподобань. Ви навчитеся правильній техніці, розвиватимете музичний слух, вивчите улюблені композиції й отримаєте натхнення для створення власної музики. Заняття – це не просто уроки, це шлях до вашої музичної мрії.",
-    "description_blok1_en": "Want to learn to play the guitar or improve your skills? We offer professional lessons on acoustic guitar, electric guitar, and bass guitar for both beginners and those looking to refine their abilities.",
-    "description_blok2_en": "Our approach is personalized. We work at your pace, taking into account your goals and preferences. You will learn proper techniques, develop your musical ear, master your favorite pieces, and find inspiration to create your own music. Lessons are not just classes; they are a journey toward your musical dream."
+    "description_block1": "Want to learn to play the guitar or improve your skills? We offer professional lessons on acoustic guitar, electric guitar, and bass guitar for both beginners and those looking to refine their abilities.",
+    "description_block2": "Our approach is personalized. We work at your pace, taking into account your goals and preferences. You will learn proper techniques, develop your musical ear, master your favorite pieces, and find inspiration to create your own music. Lessons are not just classes; they are a journey toward your musical dream.",
+    "poster": "./images/video_lessons_poster.jpg"
   },
   {
     "id": 2,
-    "video_file": "./videos/video_1.MP4"
+    "title": "",
+    "video_file": "./videos/video_1.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": ""
   },
   {
     "id": 3,
-    "video_file": "./videos/video_2.MP4"
+    "title": "",
+    "video_file": "./videos/video_2.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": ""
   },
   {
     "id": 4,
-    "video_file": "./videos/video_3.MP4"
+    "title": "",
+    "video_file": "./videos/video_3.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": ""
   },
   {
     "id": 5,
-    "video_file": "./videos/video_4.MP4"
+    "title": "",
+    "video_file": "./videos/video_4.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": ""
   }
 ]

@@ -9,20 +9,41 @@ function getSongs(): Promise<SongTrackType[]> {
   return userClient.get('/songs');
 }
 
-function getVideos(): Promise<VideoFileType[]> {
-  return userClient.get('/lessons');
+function getVideos(currenLanguage: string): Promise<VideoFileType[]> {
+  return userClient.get('/lessons', {
+    headers: {
+      'Accept-Language': currenLanguage,
+    },
+  });
 }
 
-function getEquipment(): Promise<EquipmentCardType[]> {
-  return userClient.get('/equipment');
+function getEquipment(currenLanguage: string): Promise<EquipmentCardType[]> {
+  return userClient.get('/equipment', {
+    headers: {
+      'Accept-Language': currenLanguage,
+    },
+  });
 }
 
-function getSevices(): Promise<ServiceCardType[]> {
-  return userClient.get('/services');
+function getSevices(currenLanguage: string): Promise<ServiceCardType[]> {
+  return userClient.get('/services', {
+    headers: {
+      'Accept-Language': currenLanguage,
+    },
+  });
 }
 
 function sendForm({ name, email, phone_number, message }: FormDataType) {
-  return userClient.post('/form-sent', { name, email, phone_number, message });
+  return userClient.post('/notifications/', {
+    name,
+    email,
+    phone_number,
+    message,
+  });
+}
+
+function changeLanguage() {
+  return userClient.get('./');
 }
 
 export const clientService = {
@@ -31,4 +52,5 @@ export const clientService = {
   getEquipment,
   getSevices,
   sendForm,
+  changeLanguage,
 };
