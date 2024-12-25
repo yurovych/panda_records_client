@@ -1,0 +1,68 @@
+@import './../../shared/main';
+
+.adminPanel {
+  position: fixed;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  background-color: $color-white4;
+  box-shadow: $shadow;
+
+  &__openButton {
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    left: 100vw;
+    top: calc(50vh - 80px);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    padding: 32px;
+    align-items: end;
+  }
+
+  &__element {
+    padding: 8px;
+    color: $color-grey2;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 130%;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__logoutWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: end;
+  }
+}
+
+.adminPanel:has(:target) {
+  overflow: hidden;
+}
+
+.showAdminPanel {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hideAdminPanel {
+  opacity: 0.3;
+  transform: translateX(-100vw);
+}
+
+.moveButton {
+  left: calc(100vw - 35px);
+}
+
+.adminPanel:has(:target) {
+  overflow: hidden;
+}

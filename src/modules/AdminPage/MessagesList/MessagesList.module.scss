@@ -1,0 +1,102 @@
+@import './../../shared/main';
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 130%;
+    color: $color-grey2;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 5fr 6fr 5fr 4fr 4fr;
+    background-color: $color-white2;
+  }
+
+  &__row {
+    box-shadow: $shadow;
+    height: 80px;
+    padding: 8px;
+    display: grid;
+    column-gap: 8px;
+    grid-template-columns: 3fr 1fr;
+    background-color: $color-white4;
+  }
+
+  &__text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    color: $color-black2;
+    text-align: left;
+  }
+
+  &__name {
+    padding-left: 8px;
+    font-weight: 500;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  &__email {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  &__message {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+
+  &__date {
+    font-size: 14px;
+    color: $color-white2;
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+  }
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+
+  &__select {
+    box-shadow: $shadow;
+    border: 1px solid $color-grey1;
+    outline: none;
+  }
+
+  &__pending {
+    color: $color-green2;
+  }
+
+  &__processing {
+    color: $color-orange;
+  }
+
+  &__completed {
+    color: $color-blue;
+  }
+
+  &__button {
+    box-shadow: $shadow;
+    color: $color-black2;
+    text-align: center;
+    height: 50%;
+    border: 1px solid $color-grey1;
+    background-color: $color-white4;
+  }
+}

@@ -3,11 +3,14 @@ import { authService } from '../../../services/authService';
 import styles from './AdminPage.module.scss';
 import React, { useEffect } from 'react';
 import { TokensType } from './../../../types/Tokens';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Loader } from '../../Loader';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setIsAuthenticated } from '../../../slices/booleanSlice';
 import { fetchMessagesAsync } from '../../../slices/fetchMessages';
+import { MessagesList } from '../MessagesList';
+import { AdminPanel } from '../../AdminPanel/component';
+import { OpenedMessage } from '../../shared/OpenedMessage';
 
 export const AdminPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,40 +19,55 @@ export const AdminPage: React.FC = () => {
     (state) => state.boolean.isAuthenticated
   );
 
-  const messages = useAppSelector((state) => state.messages.objects);
+  const isMessageOpened = useAppSelector(
+    (state) => state.boolean.isMessageOpened
+  );
+
+  // const messages = useAppSelector((state) => state.messages.objects);
 
   async function checkAuth() {
     try {
       const { access_token }: TokensType = await authService.refresh();
       accessTokenService.save(access_token);
       dispatch(setIsAuthenticated(true));
+      dispatch(fetchMessagesAsync());
     } catch (error) {
       console.log('User is not authenticated');
       navigate('./../login');
     }
   }
 
-  useEffect(() => {
-    dispatch(fetchMessagesAsync());
-  }, [dispatch]);
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, []);
 
   return (
     <>
-      {!isAuthenticated ? (
-        <Loader />
-      ) : (
-        <div id='AdminPage' className={styles.adminPage}>
-          {messages ? (
-            messages.map((message) => <p>{message.name}</p>)
-          ) : (
-            <p> List is empty </p>
-          )}
+      {isMessageOpened && <OpenedMessage />}
+
+      <div id='AdminPage' className={styles.adminPage}>
+        <div className={styles.adminPage__panel}>
+          <AdminPanel />
         </div>
-      )}
+
+        <div className={styles.adminPage__listWrapper}>{<Outlet />}</div>
+      </div>
     </>
   );
 };
+
+// <>
+//   {!isAuthenticated ? (
+//     <Loader />
+//   ) : (
+//     <div id='AdminPage' className={styles.adminPage}>
+//       {messages ? (
+//         messages.map((message) => <p>{message.name}</p>)
+//       ) : (
+//         <p> List is empty </p>
+//       )}
+
+//       <button onClick={logout}>Logout</button>
+//     </div>
+//   )}
+// </>

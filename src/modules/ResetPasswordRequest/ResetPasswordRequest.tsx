@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { authService } from './../../services/authService';
 import styles from './ResetPasswordRequest.module.scss';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function validateEmail(value?: string) {
   if (!value) {
@@ -69,51 +70,63 @@ export const ResetPasswordRequest = () => {
         }}
       >
         {({ touched, errors, isSubmitting }) => (
-          <Form className={styles.form}>
-            <h1 className={styles.form__title}>Reset Password</h1>
-            <div className={styles.form__element}>
-              <label htmlFor='email' className={styles.form__lable}>
-                Email
-              </label>
+          <>
+            <div className={styles.goHomeButton}>
+              <Link className={styles.goHomeLink} to={'/'}>
+                Return to Home Page
+              </Link>
+            </div>
 
-              <div className='control has-icons-left has-icons-right'>
-                <Field
-                  style={{ marginBottom: '10px' }}
-                  validate={validateEmail}
-                  name='email'
-                  type='email'
-                  id='email'
-                  placeholder='e.g. Johnjohnson@gmail.com'
-                  className={`${cn('input', {
-                    'is-danger': touched.email && errors.email,
-                  })} ${styles.form__field}`}
-                />
+            <Form className={styles.form}>
+              <h1 className={styles.form__title}>Reset password request</h1>
+              <div className={styles.form__element}>
+                <label htmlFor='email' className={styles.form__lable}>
+                  Email
+                </label>
 
-                <span className='icon is-small is-left'>
-                  <i className='fa fa-envelope'></i>
-                </span>
+                <div className='control has-icons-left has-icons-right'>
+                  <Field
+                    style={{ marginBottom: '10px' }}
+                    validate={validateEmail}
+                    name='email'
+                    type='email'
+                    id='email'
+                    placeholder='e.g. Johnjohnson@gmail.com'
+                    className={`${cn('input', {
+                      'is-danger': touched.email && errors.email,
+                    })} ${styles.form__field}`}
+                  />
+
+                  <span
+                    className={`${styles.form__icoBlock} icon is-small is-left`}
+                  >
+                    <i className='fa fa-envelope'></i>
+                  </span>
+
+                  {touched.email && errors.email && (
+                    <span className='icon is-small is-right has-text-danger'>
+                      <i className='fas fa-exclamation-triangle'></i>
+                    </span>
+                  )}
+                </div>
 
                 {touched.email && errors.email && (
-                  <span className='icon is-small is-right has-text-danger'>
-                    <i className='fas fa-exclamation-triangle'></i>
-                  </span>
+                  <p className='help is-danger'>{errors.email}</p>
                 )}
               </div>
-
-              {touched.email && errors.email && (
-                <p className='help is-danger'>{errors.email}</p>
-              )}
-            </div>
-            <div className={styles.form__element}>
-              <button
-                type='submit'
-                disabled={isSubmitting || !!errors.email}
-                className={styles.form__formikButton}
-              >
-                {t(isSubmitting ? 'form_button_sending' : 'form_button_send')}
-              </button>
-            </div>
-          </Form>
+              <div className={styles.form__element}>
+                <button
+                  type='submit'
+                  disabled={isSubmitting || !!errors.email}
+                  className={`${styles.form__formikButton} ${
+                    (isSubmitting || !!errors.email) && styles.disabled
+                  }`}
+                >
+                  {t(isSubmitting ? 'form_button_sending' : 'form_button_send')}
+                </button>
+              </div>
+            </Form>
+          </>
         )}
       </Formik>
 

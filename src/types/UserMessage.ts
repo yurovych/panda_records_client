@@ -2,8 +2,8 @@ export type UserMessageType = {
   id: number;
   name: string;
   email: string;
-  phohe_number?: string;
+  phone_number?: string;
   message: string;
   created_at: string;
-  status: 'pending' | 'processing' | 'completed';
+  status: string;
 };

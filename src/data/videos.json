@@ -13,7 +13,7 @@
     "video_file": "./videos/video_1.MP4",
     "description_block1": "",
     "description_block2": "",
-    "poster": ""
+    "poster": "./images/video1_poster.jpg"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "video_file": "./videos/video_2.MP4",
     "description_block1": "",
     "description_block2": "",
-    "poster": ""
+    "poster": "./images/video2_poster.jpg"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "video_file": "./videos/video_3.MP4",
     "description_block1": "",
     "description_block2": "",
-    "poster": ""
+    "poster": "./images/video3_poster.jpg"
   },
   {
     "id": 5,
@@ -37,6 +37,6 @@
     "video_file": "./videos/video_4.MP4",
     "description_block1": "",
     "description_block2": "",
-    "poster": ""
+    "poster": "./images/video4_poster.jpg"
   }
 ]

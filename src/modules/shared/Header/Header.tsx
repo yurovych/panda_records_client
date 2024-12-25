@@ -5,7 +5,7 @@ import { scrollPageUp } from '../../../helpers/scrollPageUp';
 import { Logo } from '../Logo/Logo';
 import { Navigation } from '../Navigation';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setIsHidenMenu } from '../../../slices/booleanSlice';
+import { setIsAdminPanel, setIsHidenMenu } from '../../../slices/booleanSlice';
 import { useEffect, useState } from 'react';
 import './../_main.scss';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ import { SongCard } from '../SongCard';
 export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [languageDisabled, setLanguageDisabled] = useState(false);
 
@@ -26,6 +26,7 @@ export const Header = () => {
   );
 
   function handleLogoClick() {
+    dispatch(setIsAdminPanel(false));
     dispatch(setIsHidenMenu(false));
     scrollPageUp();
   }
@@ -37,6 +38,7 @@ export const Header = () => {
   }
 
   const handleMenuButtonClick = () => {
+    dispatch(setIsAdminPanel(false));
     dispatch(setIsHidenMenu(isHidenMenu ? false : true));
   };
 

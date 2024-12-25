@@ -5,7 +5,7 @@ import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
 // import equipmentList from './../../../data/equipmentCards.json';
 import servicesList from './../../../data/servicesCards.json';
-// import songsList from './../../../data/songsCards.json';
+import songsList from './../../../data/songsCards.json';
 import videosList from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next';
 import { VideoPlayer } from '../../shared/VideoPlayer';
 
 export const HomePage = () => {
-  const songsList = useAppSelector((state) => state.songs.objects);
+  // const songsList = useAppSelector((state) => state.songs.objects);
 
   // const servicesList = useAppSelector((state) => state.sevrices.objects);
   const equipmentList = useAppSelector((state) => state.equipment.objects);

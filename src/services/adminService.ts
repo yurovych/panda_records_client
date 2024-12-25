@@ -4,6 +4,11 @@ function getAllMessages() {
   return adminClient.get('/notifications');
 }
 
+function logout() {
+  return adminClient.post('/users/logout/');
+}
+
 export const adminServices = {
   getAllMessages,
+  logout,
 };

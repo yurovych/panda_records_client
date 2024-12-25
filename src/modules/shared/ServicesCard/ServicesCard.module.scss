@@ -71,9 +71,7 @@
   justify-content: space-between;
   clip-path: $clip-top-right;
   background-color: $color-white1;
-  padding-bottom: 16px;
-  padding-inline: 24px;
-  padding-top: 32px;
+  padding: 32px 48px 16px 24px;
   background: linear-gradient(
     (to bottom, $color-white2 75%, $color-white1 25%)
   );

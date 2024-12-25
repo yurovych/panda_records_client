@@ -17,9 +17,6 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
   const currentServiceId = useAppSelector(
     (state) => state.current.currentServiceId
   );
-  const currentLanguage = useAppSelector(
-    (state) => state.current.currentLanguage
-  );
 
   const [isShown, setIsShown] = useState(true);
 
@@ -56,9 +53,7 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
               </div>
 
               <div className={styles.card__textContent}>
-                <p className={styles.card__title}>
-                  {currentLanguage === 'ua' ? card.title_uk : card.title_en}
-                </p>
+                <p className={styles.card__title}>{card.title}</p>
 
                 <p className={`${styles.detailsLink} ${styles.card__details}`}>
                   {t('home_services_details')}
@@ -68,20 +63,10 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
           ) : (
             <div onClick={handleLessDetails} className={styles.details}>
               <div className={styles.details__content}>
-                <h3 className={styles.details__title}>
-                  {currentLanguage === 'ua' ? card.title_uk : card.title_en}
-                </h3>
+                <h3 className={styles.details__title}>{card.title}</h3>
                 <div className={styles.details__description}>
-                  <h5>
-                    {currentLanguage === 'ua'
-                      ? card.details_block1_uk
-                      : card.details_block1_en}
-                  </h5>
-                  <h5>
-                    {currentLanguage === 'ua'
-                      ? card.details_block2_uk
-                      : card.details_block2_en}
-                  </h5>
+                  <h5>{card.details_block1}</h5>
+                  <h5>{card.details_block2}</h5>
                 </div>
               </div>
 
@@ -100,9 +85,7 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
           </div>
 
           <div className={styles.serDetCard__content}>
-            <h2 className={styles.serDetCard__title}>
-              {currentLanguage === 'ua' ? card.title_uk : card.title_en}
-            </h2>
+            <h2 className={styles.serDetCard__title}>{card.title}</h2>
 
             <div
               className={`${styles.serDetCard__textBlock} ${styles.serDetCard__textBlock_block1}`}
@@ -110,9 +93,7 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
               <p
                 className={`${styles.serDetCard__text} ${styles.serDetCard__text_text1}`}
               >
-                {currentLanguage === 'ua'
-                  ? card.details_block1_uk
-                  : card.details_block1_en}
+                {card.details_block1}
               </p>
             </div>
 
@@ -122,9 +103,7 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
               <p
                 className={`${styles.serDetCard__text} ${styles.serDetCard__text_text2}`}
               >
-                {currentLanguage === 'ua'
-                  ? card.details_block2_uk
-                  : card.details_block2_en}
+                {card.details_block2}
               </p>
             </div>
 
@@ -134,9 +113,7 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
               <p
                 className={`${styles.serDetCard__text} ${styles.serDetCard__text_text3}`}
               >
-                {currentLanguage === 'ua'
-                  ? card.details_block3_uk
-                  : card.details_block3_en}
+                {card.details_block3}
               </p>
             </div>
           </div>
@@ -148,13 +125,16 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
               </h3>
               {card.hourly && (
                 <>
-                  <img
-                    className={styles.serDetCard__clockIco}
-                    src='./icons/clock-ico.svg'
-                    alt='clock-ico'
-                  />
                   <h3 className={styles.serDetCard__priceBlockText}>
-                    1 / {t('hour')}
+                    &nbsp;/
+                    {
+                      <img
+                        className={styles.serDetCard__clockIco}
+                        src='./icons/clock-ico.svg'
+                        alt='clock-ico'
+                      />
+                    }
+                    1 {t('hour')}
                   </h3>
                 </>
               )}

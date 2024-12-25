@@ -10,7 +10,7 @@ function getSongs(): Promise<SongTrackType[]> {
 }
 
 function getVideos(currenLanguage: string): Promise<VideoFileType[]> {
-  return userClient.get('/lessons', {
+  return userClient.get('/videos', {
     headers: {
       'Accept-Language': currenLanguage,
     },

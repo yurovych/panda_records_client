@@ -20,10 +20,6 @@ function login({ email, password }: LoginParams): Promise<TokensType> {
   return authClient.post('/users/login/', { email, password });
 }
 
-function logout() {
-  return authClient.post('/logout/');
-}
-
 function refresh(): Promise<TokensType> {
   return authClient.get('/users/refresh');
 }
@@ -45,7 +41,6 @@ function changePassword({
 
 export const authService = {
   login,
-  logout,
   refresh,
   resetPasswordRequest,
   changePassword,

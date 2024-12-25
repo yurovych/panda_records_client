@@ -2,7 +2,7 @@ import { Formik, Form, Field } from 'formik';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { accessTokenService } from '../../../services/accessTokenService';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { TokensType } from './../../../types/Tokens';
 import { authService } from '../../../services/authService';
 import styles from './LoginPage.module.scss';
@@ -42,10 +42,6 @@ export const LoginPage = () => {
 
   const [error, setError] = useState('');
 
-  const handleGoBack = () => {
-    navigate('/');
-  };
-
   async function login({ email, password }: LoginParams): Promise<void> {
     const { access_token }: TokensType = await authService.login({
       email,
@@ -76,98 +72,107 @@ export const LoginPage = () => {
         }}
       >
         {({ touched, errors, isSubmitting }) => (
-          <Form className={styles.form}>
-            <h1 className={styles.form__title}>Log in as Admin</h1>
-            <div className={styles.form__element}>
-              <label htmlFor='email' className={styles.form__lable}>
-                Email
-              </label>
+          <>
+            <div className={styles.goHomeButton}>
+              <Link className={styles.goHomeLink} to={'/'}>
+                Return to Home Page
+              </Link>
+            </div>
 
-              <div className='control has-icons-left has-icons-right'>
-                <Field
-                  validate={validateEmail}
-                  name='email'
-                  type='email'
-                  id='email'
-                  placeholder='e.g. Johnjohnson@gmail.com'
-                  className={`${cn({
-                    'is-danger': touched.email && errors.email,
-                  })} ${styles.form__field}`}
-                />
+            <Form className={styles.form}>
+              <h1 className={styles.form__title}>Log in as Admin</h1>
+              <div className={styles.form__element}>
+                <label htmlFor='email' className={styles.form__lable}>
+                  Email
+                </label>
 
-                <span
-                  className={`${styles.form__icoBlock} icon is-small is-left`}
-                >
-                  <i className='fa fa-envelope'></i>
-                </span>
+                <div className='control has-icons-left has-icons-right'>
+                  <Field
+                    validate={validateEmail}
+                    name='email'
+                    type='email'
+                    id='email'
+                    placeholder='e.g. Johnjohnson@gmail.com'
+                    className={`${cn({
+                      'is-danger': touched.email && errors.email,
+                    })} ${styles.form__field}`}
+                  />
+
+                  <span
+                    className={`${styles.form__icoBlock} icon is-small is-left`}
+                  >
+                    <i className='fa fa-envelope'></i>
+                  </span>
+
+                  {touched.email && errors.email && (
+                    <span
+                      className={`${styles.form__icoBlock} icon is-small is-right has-text-danger`}
+                    >
+                      <i className='fas fa-exclamation-triangle'></i>
+                    </span>
+                  )}
+                </div>
 
                 {touched.email && errors.email && (
-                  <span className='icon is-small is-right has-text-danger'>
-                    <i className='fas fa-exclamation-triangle'></i>
-                  </span>
+                  <p className='help is-danger'>{errors.email}</p>
                 )}
               </div>
+              <div className={styles.form__element}>
+                <label className={styles.form__label} htmlFor='password'>
+                  Password
+                </label>
 
-              {touched.email && errors.email && (
-                <p className='help is-danger'>{errors.email}</p>
-              )}
-            </div>
-            <div className={styles.form__element}>
-              <label className={styles.form__label} htmlFor='password'>
-                Password
-              </label>
+                <div className='control has-icons-left has-icons-right'>
+                  <Field
+                    validate={validatePassword}
+                    name='password'
+                    type='password'
+                    id='password'
+                    placeholder='*******'
+                    className={`${cn({
+                      'is-danger': touched.password && errors.password,
+                    })} ${styles.form__field}`}
+                  />
 
-              <div className='control has-icons-left has-icons-right'>
-                <Field
-                  validate={validatePassword}
-                  name='password'
-                  type='password'
-                  id='password'
-                  placeholder='*******'
-                  className={`${cn({
-                    'is-danger': touched.password && errors.password,
-                  })} ${styles.form__field}`}
-                />
+                  <span
+                    className={`${styles.form__icoBlock} icon is-small is-left`}
+                  >
+                    <i className='fa fa-lock'></i>
+                  </span>
 
-                <span
-                  className={`${styles.form__icoBlock} icon is-small is-left`}
+                  {touched.password && errors.password && (
+                    <span
+                      className={`${styles.form__icoBlock} icon is-small is-right has-text-danger`}
+                    >
+                      <i className='fas fa-exclamation-triangle'></i>
+                    </span>
+                  )}
+                </div>
+
+                {touched.password && errors.password ? (
+                  <p className='help is-danger'>{errors.password}</p>
+                ) : (
+                  <p className='help'>At least 6 characters</p>
+                )}
+              </div>
+              <div className={styles.form__element}>
+                <button
+                  type='submit'
+                  disabled={isSubmitting || !!errors.email || !!errors.password}
+                  className={`${styles.form__formikButton} ${
+                    (isSubmitting || !!errors.email || !!errors.password) &&
+                    styles.disabled
+                  }`}
                 >
-                  <i className='fa fa-lock'></i>
-                </span>
-
-                {touched.password && errors.password && (
-                  <span className='icon is-small is-right has-text-danger'>
-                    <i className='fas fa-exclamation-triangle'></i>
-                  </span>
-                )}
+                  {t(isSubmitting ? 'form_button_sending' : 'form_button_send')}
+                </button>
               </div>
-
-              {touched.password && errors.password ? (
-                <p className='help is-danger'>{errors.password}</p>
-              ) : (
-                <p className='help'>At least 6 characters</p>
-              )}
-            </div>
-            <div className={styles.form__element}>
-              <button
-                type='submit'
-                disabled={isSubmitting || !!errors.email || !!errors.password}
-                className={styles.form__formikButton}
-              >
-                {t(isSubmitting ? 'form_button_sending' : 'form_button_send')}
-              </button>
-            </div>
-            Forgot password? <Link to='/reset-password'>Reset password</Link>
-            <div className={styles.form__element}>
-              <button
-                onClick={handleGoBack}
-                type='button'
-                className={styles.form__goBackButton}
-              >
-                Back to studio
-              </button>
-            </div>
-          </Form>
+              <div className={styles.form__resetPassword}>
+                Forgot password?{' '}
+                <Link to='/reset-password'>Reset password</Link>
+              </div>
+            </Form>
+          </>
         )}
       </Formik>
 

@@ -16,7 +16,10 @@ import { Portfolio } from './modules/Portfolio';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { ResetPasswordRequest } from './modules/ResetPasswordRequest';
-import { ChangePasswordPage } from './modules/ChangePasswordPage';
+import { ResetPasswordPage } from './modules/ResetPasswordPage';
+import { MessagesList } from './modules/AdminPage/MessagesList';
+import { ChangeEmail } from './modules/AdminPage/ChangeEmail';
+import { ChangePassword } from './modules/AdminPage/ChangePassword';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -32,14 +35,18 @@ root.render(
               <Route path='about' element={<AboutUs />} />
               <Route path='services' element={<Services />} />
               <Route path='portfolio' element={<Portfolio />} />
-              <Route path='admin' element={<AdminPage />} />
+              <Route path='admin' element={<AdminPage />}>
+                <Route index element={<MessagesList />} />
+                <Route path='change-email' element={<ChangeEmail />} />
+                <Route path='change-password' element={<ChangePassword />} />
+              </Route>
+              <Route path='login' element={<LoginPage />} />
+              <Route path='reset-password' element={<ResetPasswordRequest />} />
+              <Route
+                path='reset-password/:resetToken'
+                element={<ResetPasswordPage />}
+              />
             </Route>
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/reset-password' element={<ResetPasswordRequest />} />
-            <Route
-              path='/reset-password/:resetToken'
-              element={<ChangePasswordPage />}
-            />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </Router>

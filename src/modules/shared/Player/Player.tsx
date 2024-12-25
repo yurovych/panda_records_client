@@ -21,7 +21,7 @@ export const Player: React.FC = () => {
     const audio = audioElem.current;
     if (!audio || !currentSong || audio.duration === 0) return;
 
-    const duration = audio?.duration;
+    // const duration = audio?.duration;
     const currentTime = audio?.currentTime;
 
     if (audio && currentSong) {
@@ -29,7 +29,7 @@ export const Player: React.FC = () => {
         setCurrentSong({
           ...currentSong,
           progress: currentTime,
-          song_length: duration,
+          // song_length: duration,
         })
       );
     }

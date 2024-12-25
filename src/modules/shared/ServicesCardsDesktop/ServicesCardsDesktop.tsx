@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ServiceCardType } from '../../../types/Service';
 import styles from './ServicesCardsDesktop.module.scss';
-import { useAppSelector } from '../../../app/hooks';
 
 type ServicesCardsDesktopType = {
   services: ServiceCardType[];
@@ -10,10 +9,6 @@ type ServicesCardsDesktopType = {
 export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
   services
 ) => {
-  const currentLanguage = useAppSelector(
-    (state) => state.current.currentLanguage
-  );
-
   const { t } = useTranslation();
 
   const service1 = services.services[0];
@@ -27,7 +22,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
     <>
       <div className={`${styles.card} ${styles.card1}`}>
         <h2 className={`${styles.card__title} ${styles.card1__title}`}>
-          {currentLanguage === 'ua' ? service1.title_uk : service1.title_en}
+          {service1.title}
         </h2>
 
         <div className={`${styles.card__content} ${styles.card1__content}`}>
@@ -35,9 +30,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card1__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card1__text}`}>
-              {currentLanguage === 'ua'
-                ? service1.details_block1_uk
-                : service1.details_block1_en}
+              {service1.details_block1}
             </p>
           </div>
 
@@ -45,9 +38,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card1__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card1__text}`}>
-              {currentLanguage === 'ua'
-                ? service1.details_block2_uk
-                : service1.details_block2_en}
+              {service1.details_block2}
             </p>
           </div>
 
@@ -55,9 +46,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card1__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card1__text}`}>
-              {currentLanguage === 'ua'
-                ? service1.details_block3_uk
-                : service1.details_block3_en}
+              {service1.details_block3}
             </p>
           </div>
         </div>
@@ -71,12 +60,17 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             >{`${service1.price}₴`}</h3>
             {service1.hourly && (
               <>
-                <img
-                  className={styles.card__clockIco}
-                  src='./icons/clock-ico.svg'
-                  alt='clock-ico'
-                />
-                <h3 className={styles.card__priceText}>1 / {t('hour')}</h3>
+                <h3 className={styles.card__priceText}>
+                  &nbsp;/
+                  {
+                    <img
+                      className={styles.card__clockIco}
+                      src='./icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                  }
+                  1 {t('hour')}
+                </h3>
               </>
             )}
           </div>
@@ -93,7 +87,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
 
       <div className={`${styles.card} ${styles.card2}`}>
         <h2 className={`${styles.card__title} ${styles.card2__title}`}>
-          {currentLanguage === 'ua' ? service2.title_uk : service2.title_en}{' '}
+          {service2.title}
         </h2>
 
         <div className={`${styles.card__content} ${styles.card2__content}`}>
@@ -101,9 +95,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card2__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card2__text}`}>
-              {currentLanguage === 'ua'
-                ? service2.details_block1_uk
-                : service2.details_block1_en}
+              {service2.details_block1}
             </p>
           </div>
 
@@ -111,9 +103,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card2__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card2__text}`}>
-              {currentLanguage === 'ua'
-                ? service2.details_block2_uk
-                : service2.details_block2_en}
+              {service2.details_block2}
             </p>
           </div>
         </div>
@@ -127,12 +117,17 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             >{`${service2.price}₴`}</h3>
             {service2.hourly && (
               <>
-                <img
-                  className={styles.card__clockIco}
-                  src='./icons/clock-ico.svg'
-                  alt='clock-ico'
-                />
-                <h3 className={styles.card__priceText}>1 / {t('hour')}</h3>
+                <h3 className={styles.card__priceText}>
+                  &nbsp;/
+                  {
+                    <img
+                      className={styles.card__clockIco}
+                      src='./icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                  }
+                  1 {t('hour')}
+                </h3>
               </>
             )}
           </div>
@@ -149,7 +144,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
 
       <div className={`${styles.card} ${styles.card3}`}>
         <h2 className={`${styles.card__title} ${styles.card3__title}`}>
-          {currentLanguage === 'ua' ? service3.title_uk : service3.title_en}{' '}
+          {service3.title}
         </h2>
 
         <div className={`${styles.card__content} ${styles.card3__content}`}>
@@ -157,9 +152,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card3__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card3__text}`}>
-              {currentLanguage === 'ua'
-                ? service3.details_block1_uk
-                : service3.details_block1_en}
+              {service3.details_block1}
             </p>
           </div>
 
@@ -167,9 +160,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card3__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card3__text}`}>
-              {currentLanguage === 'ua'
-                ? service3.details_block2_uk
-                : service3.details_block2_en}
+              {service3.details_block2}
             </p>
           </div>
         </div>
@@ -183,12 +174,17 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             >{`${service3.price}₴`}</h3>
             {service3.hourly && (
               <>
-                <img
-                  className={styles.card__clockIco}
-                  src='./icons/clock-ico.svg'
-                  alt='clock-ico'
-                />
-                <h3 className={styles.card__priceText}>1 / {t('hour')}</h3>
+                <h3 className={styles.card__priceText}>
+                  &nbsp;/
+                  {
+                    <img
+                      className={styles.card__clockIco}
+                      src='./icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                  }
+                  1 {t('hour')}
+                </h3>
               </>
             )}
           </div>
@@ -205,7 +201,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
 
       <div className={`${styles.card} ${styles.card4}`}>
         <h2 className={`${styles.card__title} ${styles.card4__title}`}>
-          {currentLanguage === 'ua' ? service4.title_uk : service4.title_en}{' '}
+          {service4.title}{' '}
         </h2>
 
         <div className={`${styles.card__content} ${styles.card4__content}`}>
@@ -213,9 +209,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card4__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card4__text}`}>
-              {currentLanguage === 'ua'
-                ? service4.details_block1_uk
-                : service4.details_block1_en}
+              {service4.details_block1}
             </p>
           </div>
 
@@ -223,9 +217,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card4__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card4__text}`}>
-              {currentLanguage === 'ua'
-                ? service4.details_block2_uk
-                : service4.details_block2_en}
+              {service4.details_block2}
             </p>
           </div>
 
@@ -233,9 +225,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card4__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card4__text}`}>
-              {currentLanguage === 'ua'
-                ? service4.details_block3_uk
-                : service4.details_block3_en}
+              {service4.details_block3}
             </p>
           </div>
         </div>
@@ -249,12 +239,17 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             >{`${service4.price}₴`}</h3>
             {service4.hourly && (
               <>
-                <img
-                  className={styles.card__clockIco}
-                  src='./icons/clock-ico.svg'
-                  alt='clock-ico'
-                />
-                <h3 className={styles.card__priceText}>1 / {t('hour')}</h3>
+                <h3 className={styles.card__priceText}>
+                  &nbsp;/
+                  {
+                    <img
+                      className={styles.card__clockIco}
+                      src='./icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                  }
+                  1 {t('hour')}
+                </h3>
               </>
             )}
           </div>
@@ -271,7 +266,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
 
       <div className={`${styles.card} ${styles.card5}`}>
         <h2 className={`${styles.card__title} ${styles.card5__title}`}>
-          {currentLanguage === 'ua' ? service5.title_uk : service5.title_en}{' '}
+          {service5.title}{' '}
         </h2>
 
         <div className={`${styles.card__content} ${styles.card5__content}`}>
@@ -279,9 +274,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card5__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card5__text}`}>
-              {currentLanguage === 'ua'
-                ? service5.details_block1_uk
-                : service5.details_block1_en}
+              {service5.details_block1}
             </p>
           </div>
 
@@ -289,9 +282,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card5__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card5__text}`}>
-              {currentLanguage === 'ua'
-                ? service5.details_block2_uk
-                : service5.details_block2_en}
+              {service5.details_block2}
             </p>
           </div>
         </div>
@@ -305,12 +296,17 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             >{`${service5.price}₴`}</h3>
             {service5.hourly && (
               <>
-                <img
-                  className={styles.card__clockIco}
-                  src='./icons/clock-ico.svg'
-                  alt='clock-ico'
-                />
-                <h3 className={styles.card__priceText}>1 / {t('hour')}</h3>
+                <h3 className={styles.card__priceText}>
+                  &nbsp;/
+                  {
+                    <img
+                      className={styles.card__clockIco}
+                      src='./icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                  }
+                  1 {t('hour')}
+                </h3>
               </>
             )}
           </div>
@@ -327,7 +323,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
 
       <div className={`${styles.card} ${styles.card6}`}>
         <h2 className={`${styles.card__title} ${styles.card6__title}`}>
-          {currentLanguage === 'ua' ? service6.title_uk : service6.title_en}{' '}
+          {service6.title}
         </h2>
 
         <div className={`${styles.card__content} ${styles.card6__content}`}>
@@ -335,9 +331,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card6__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card6__text}`}>
-              {currentLanguage === 'ua'
-                ? service6.details_block1_uk
-                : service6.details_block1_en}
+              {service6.details_block1}
             </p>
           </div>
 
@@ -345,9 +339,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             className={`${styles.card__textBlock} ${styles.card6__textBlock}`}
           >
             <p className={`${styles.card__text} ${styles.card6__text}`}>
-              {currentLanguage === 'ua'
-                ? service6.details_block2_uk
-                : service6.details_block2_en}
+              {service6.details_block2}
             </p>
           </div>
         </div>
@@ -361,12 +353,17 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
             >{`${service6.price}₴`}</h3>
             {service6.hourly && (
               <>
-                <img
-                  className={styles.card__clockIco}
-                  src='./icons/clock-ico.svg'
-                  alt='clock-ico'
-                />
-                <h3 className={styles.card__priceText}>1 / {t('hour')}</h3>
+                <h3 className={styles.card__priceText}>
+                  &nbsp;/
+                  {
+                    <img
+                      className={styles.card__clockIco}
+                      src='./icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                  }
+                  1 {t('hour')}
+                </h3>
               </>
             )}
           </div>

@@ -1,5 +1,5 @@
 import styles from './Portfolio.module.scss';
-// import songsAll from './../../data/songsCards.json';
+import songsAll from './../../data/songsCards.json';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../shared/Footer';
 import { useAppSelector } from '../../app/hooks';
@@ -15,7 +15,7 @@ export const Portfolio = () => {
   const currentLanguuage = useAppSelector(
     (state) => state.current.currentLanguage
   );
-  const songsAll = useAppSelector((state) => state.songs.objects);
+  // const songsAll = useAppSelector((state) => state.songs.objects);
   const topSongs = songsAll.filter((song) => song.top);
 
   return (
