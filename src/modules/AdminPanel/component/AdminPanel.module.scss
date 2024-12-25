@@ -3,12 +3,20 @@
 .adminPanel {
   position: fixed;
   height: calc(100vh - 80px);
-  width: 100vw;
+  width: 80vw;
   display: flex;
   flex-direction: column;
-  z-index: 1001;
+  z-index: 1002;
   background-color: $color-white4;
-  box-shadow: $shadow;
+  box-shadow: $shadow-right;
+
+  @include on-tablet {
+    width: 60vw;
+  }
+
+  @include on-desktop {
+    width: 300px;
+  }
 
   &__openButton {
     height: 32px;
@@ -16,9 +24,18 @@
     position: absolute;
     left: 100vw;
     top: calc(50vh - 80px);
+
+    @include on-tablet {
+      height: 48px;
+      width: 48px;
+    }
+
+    @include on-desktop {
+      display: none;
+    }
   }
 
-  &__content {
+  &__navigation {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -29,12 +46,20 @@
 
   &__element {
     padding: 8px;
-    color: $color-grey2;
+    color: $color-grey1;
     font-size: 24px;
     font-weight: 500;
     line-height: 130%;
     width: 100%;
     text-align: center;
+
+    &:hover {
+      color: $color-pink1;
+    }
+
+    @include on-desktop {
+      text-align: right;
+    }
   }
 
   &__logoutWrapper {
@@ -57,12 +82,37 @@
 .hideAdminPanel {
   opacity: 0.3;
   transform: translateX(-100vw);
+
+  @include on-desktop {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .moveButton {
-  left: calc(100vw - 35px);
+  left: calc(100vw - 32px);
+
+  @include on-tablet {
+    left: calc(100vw - 48px);
+  }
 }
 
 .adminPanel:has(:target) {
   overflow: hidden;
+}
+
+.linkIsActive {
+  color: $color-pink1;
+}
+
+.overlay {
+  z-index: 1001;
+  position: fixed;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  background-color: $color-modal-bg;
+
+  @include on-desktop {
+    display: none;
+  }
 }

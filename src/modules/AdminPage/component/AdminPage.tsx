@@ -8,9 +8,8 @@ import { Loader } from '../../Loader';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setIsAuthenticated } from '../../../slices/booleanSlice';
 import { fetchMessagesAsync } from '../../../slices/fetchMessages';
-import { MessagesList } from '../MessagesList';
 import { AdminPanel } from '../../AdminPanel/component';
-import { OpenedMessage } from '../../shared/OpenedMessage';
+import { OpenedMessage } from '../OpenedMessage';
 
 export const AdminPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +41,7 @@ export const AdminPage: React.FC = () => {
   // }, []);
 
   return (
-    <>
+    <div className={styles.adminPageWrapper}>
       {isMessageOpened && <OpenedMessage />}
 
       <div id='AdminPage' className={styles.adminPage}>
@@ -52,7 +51,7 @@ export const AdminPage: React.FC = () => {
 
         <div className={styles.adminPage__listWrapper}>{<Outlet />}</div>
       </div>
-    </>
+    </div>
   );
 };
 

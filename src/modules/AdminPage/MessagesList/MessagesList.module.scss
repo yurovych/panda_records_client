@@ -1,43 +1,80 @@
 @import './../../shared/main';
 
 .list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  position: relative;
 
-  &__title {
-    text-align: left;
-    font-size: 20px;
+  &__empty {
+    text-align: center;
+    font-size: 32px;
     font-weight: 500;
     line-height: 130%;
-    color: $color-grey2;
+    color: $color-black2;
   }
 
   &__header {
+    z-index: 1000;
     display: grid;
-    grid-template-columns: 1fr 5fr 6fr 5fr 4fr 4fr;
+    column-gap: 8px;
+    grid-template-columns: 1fr 3fr 4fr 3fr 3fr 100px;
     background-color: $color-white2;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  &__headerTitle {
+    color: $color-black2;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
   }
 
   &__row {
+    z-index: 1000;
+    cursor: pointer;
+    position: relative;
     box-shadow: $shadow;
-    height: 80px;
     padding: 8px;
     display: grid;
+    grid-auto-rows: min-content;
+    row-gap: 8px;
     column-gap: 8px;
-    grid-template-columns: 3fr 1fr;
     background-color: $color-white4;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  &__strip {
+    z-index: 1000;
+    display: grid;
+    column-gap: 8px;
+    position: relative;
+    grid-template-columns: 1fr 3fr 4fr 3fr 3fr 100px;
+    height: 48px;
+    border-bottom: 1px solid $color-grey1;
+    padding: 8px;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 
   &__text {
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    align-self: flex-end;
     font-size: 16px;
     font-weight: 400;
-    line-height: 100%;
-    color: $color-black2;
-    text-align: left;
+    line-height: 130%;
+    color: $color-grey3;
+
+    @include on-desktop {
+      align-self: center;
+    }
   }
 
   &__name {
@@ -53,27 +90,32 @@
   }
 
   &__message {
-    grid-column: 1 / 2;
+    font-style: italic;
+    grid-column: 1 / 3;
     grid-row: 3 / 4;
   }
 
   &__date {
+    justify-self: end;
     font-size: 14px;
     color: $color-white2;
     grid-column: 2 / 3;
-    grid-row: 3 / 4;
+    grid-row: 2 / 3;
   }
 }
 
 .form {
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
-  justify-content: space-between;
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+
+  @include on-desktop {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
   &__select {
+    cursor: pointer;
     box-shadow: $shadow;
     border: 1px solid $color-grey1;
     outline: none;
@@ -90,13 +132,72 @@
   &__completed {
     color: $color-blue;
   }
+}
 
-  &__button {
-    box-shadow: $shadow;
-    color: $color-black2;
-    text-align: center;
-    height: 50%;
-    border: 1px solid $color-grey1;
-    background-color: $color-white4;
+.isDesktop {
+  display: none;
+
+  @include on-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.isMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include on-desktop {
+    display: none;
+  }
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  right: 0;
+  top: 0;
+
+  &__star {
+    opacity: 0.8;
+    position: absolute;
+
+    &_star1 {
+      top: -150%;
+      right: 0;
+
+      @include on-desktop {
+        top: -100%;
+        right: 5%;
+      }
+    }
+
+    &_star2 {
+      top: -30%;
+      right: 30%;
+
+      @include on-desktop {
+        top: -30%;
+        right: 30%;
+      }
+    }
+
+    &_star3 {
+      top: -30%;
+      right: 20%;
+
+      @include on-tablet {
+        top: -20%;
+        right: 15%;
+      }
+
+      @include on-desktop {
+        top: -20%;
+        right: 15%;
+      }
+    }
   }
 }

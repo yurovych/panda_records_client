@@ -40,6 +40,7 @@ $color-white4: #fbfbfb;
 $color-grey1: #989899;
 $color-grey2: #6e6e6f;
 $color-grey3: #5e5e5f;
+$color-modal-bg: rgba(0, 0, 0, 0.7);
 
 $gradient-black-violet: linear-gradient(
   to right,
@@ -78,3 +79,4 @@ $gradient-white-transparent: linear-gradient(
 );
 
 $shadow: 0 4px 8px 0 #00000040;
+$shadow-right: 4px 0 8px -4px #00000040;
