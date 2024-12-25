@@ -12,7 +12,6 @@
   }
 
   &__header {
-    z-index: 1000;
     display: grid;
     column-gap: 8px;
     grid-template-columns: 1fr 3fr 4fr 3fr 3fr 100px;
@@ -30,7 +29,6 @@
   }
 
   &__row {
-    z-index: 1000;
     cursor: pointer;
     position: relative;
     box-shadow: $shadow;
@@ -47,7 +45,6 @@
   }
 
   &__strip {
-    z-index: 1000;
     display: grid;
     column-gap: 8px;
     position: relative;

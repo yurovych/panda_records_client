@@ -7,13 +7,13 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
-  z-index: 1003;
   background-color: $color-modal-bg;
   pointer-events: auto;
+  z-index: 1090;
 
   &__letter {
+    z-index: 1100;
     padding: 16px;
-    z-index: 1004;
     position: fixed;
     display: flex;
     flex-direction: column;

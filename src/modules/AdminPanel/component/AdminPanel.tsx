@@ -89,18 +89,21 @@ export const AdminPanel = () => {
           </div>
         </nav>
 
-        <img
+        <div
           onClick={handleAdminMenuButton}
           className={`${styles.adminPanel__openButton} ${
             isAdminPanel ? styles.moveButton : ''
           }`}
-          src={
-            isAdminPanel
-              ? './icons/admin-panel-close-button-ico.svg'
-              : './icons/admin-panel-open-button-ico.svg'
-          }
-          alt='open'
-        />
+        >
+          <img
+            src={
+              isAdminPanel
+                ? './icons/admin-panel-close-button-ico.svg'
+                : './icons/admin-panel-open-button-ico.svg'
+            }
+            alt='open'
+          />
+        </div>
       </div>
     </>
   );
