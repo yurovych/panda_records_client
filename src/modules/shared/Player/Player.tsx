@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setCurrentSong } from '../../../slices/playerSlice';
-import allSongs from './../../../data/songsCards.json';
+// import allSongs from './../../../data/songsCards.json';
 
 export const Player: React.FC = () => {
   const audioElem = useRef<HTMLAudioElement | null>(null);
@@ -17,11 +17,12 @@ export const Player: React.FC = () => {
 
   const [prevTrackId, setPrevTrackId] = useState<number | null>(null);
 
+  const allSongs = useAppSelector((state) => state.songs.objects);
+
   const onPlaying = () => {
     const audio = audioElem.current;
     if (!audio || !currentSong || audio.duration === 0) return;
 
-    // const duration = audio?.duration;
     const currentTime = audio?.currentTime;
 
     if (audio && currentSong) {
@@ -29,7 +30,6 @@ export const Player: React.FC = () => {
         setCurrentSong({
           ...currentSong,
           progress: currentTime,
-          // song_length: duration,
         })
       );
     }

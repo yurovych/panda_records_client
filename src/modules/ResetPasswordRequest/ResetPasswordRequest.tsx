@@ -26,8 +26,8 @@ export const ResetPasswordRequest = () => {
   if (emailSent) {
     return (
       <section className={styles.sent}>
-        <h1 className='title'>Check your email</h1>
-        <p>We have sent you the following instructions</p>
+        <h1 className='title'>{t('reset_password_request_check_email1')}</h1>
+        <p>{t('reset_password_request_check_email2')}</p>
       </section>
     );
   }
@@ -73,15 +73,17 @@ export const ResetPasswordRequest = () => {
           <>
             <div className={styles.goHomeButton}>
               <Link className={styles.goHomeLink} to={'/'}>
-                Return to Home Page
+                {t('return_to_home_page')}
               </Link>
             </div>
 
             <Form className={styles.form}>
-              <h1 className={styles.form__title}>Reset password request</h1>
+              <h1 className={styles.form__title}>
+                {t('reset_password_request_title')}
+              </h1>
               <div className={styles.form__element}>
                 <label htmlFor='email' className={styles.form__lable}>
-                  Email
+                  {t('email')}
                 </label>
 
                 <div className='control has-icons-left has-icons-right'>
@@ -104,7 +106,9 @@ export const ResetPasswordRequest = () => {
                   </span>
 
                   {touched.email && errors.email && (
-                    <span className='icon is-small is-right has-text-danger'>
+                    <span
+                      className={`${styles.form__icoBlock} icon is-small is-right has-text-danger`}
+                    >
                       <i className='fas fa-exclamation-triangle'></i>
                     </span>
                   )}
@@ -130,7 +134,13 @@ export const ResetPasswordRequest = () => {
         )}
       </Formik>
 
-      {error && <p className='notification is-danger is-light'>{error}</p>}
+      {error && (
+        <p
+          className={`${styles.resetPasswordRequesError} notification is-danger is-light`}
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
 };

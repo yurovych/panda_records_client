@@ -25,9 +25,9 @@ export const ResetPasswordPage = () => {
   if (changed) {
     return (
       <p className={styles.changed}>
-        Success. Your password has been changed.
+        {t('reset_password_succes_text')}
         <br />
-        <Link to={'/login'}>Log in</Link>
+        <Link to={'/login'}>{t('log_in')}</Link>
       </p>
     );
   }
@@ -42,6 +42,17 @@ export const ResetPasswordPage = () => {
         validateOnMount={true}
         onSubmit={({ password, confirmation }, formikHelpers) => {
           formikHelpers.setSubmitting(true);
+
+          if (password !== confirmation) {
+            setError('Passwords should be equal');
+            setTimeout(() => {
+              setError('');
+            }, 3000);
+            formikHelpers.setSubmitting(false);
+            return;
+          } else {
+            setError('');
+          }
 
           resetToken &&
             authService
@@ -72,21 +83,27 @@ export const ResetPasswordPage = () => {
               })
               .finally(() => {
                 formikHelpers.setSubmitting(false);
+
+                setTimeout(() => {
+                  setError('');
+                }, 3000);
               });
         }}
       >
-        {({ touched, errors, isSubmitting, isValid }) => (
+        {({ touched, errors, isSubmitting }) => (
           <>
             <div className={styles.goHomeButton}>
               <Link className={styles.goHomeLink} to={'/'}>
-                Return to Home Page
+                {t('return_to_home_page')}
               </Link>
             </div>
             <Form className={styles.form}>
-              <h1 className={styles.form__title}>Change password</h1>
+              <h1 className={styles.form__title}>
+                {t('reset_password_title')}
+              </h1>
               <div className={styles.form__element}>
                 <label htmlFor='new-password' className={styles.form__lable}>
-                  New password
+                  {t('password_new')}
                 </label>
 
                 <div className='control has-icons-left has-icons-right'>
@@ -101,12 +118,16 @@ export const ResetPasswordPage = () => {
                     })} ${styles.form__field}`}
                   />
 
-                  <span className='icon is-small is-left'>
+                  <span
+                    className={`${styles.form__icoBlock} icon is-small is-left`}
+                  >
                     <i className='fa fa-lock'></i>
                   </span>
 
                   {touched.password && errors.password && (
-                    <span className='icon is-small is-right has-text-danger'>
+                    <span
+                      className={`${styles.form__icoBlock} icon is-small is-right has-text-danger`}
+                    >
                       <i className='fas fa-exclamation-triangle'></i>
                     </span>
                   )}
@@ -115,7 +136,7 @@ export const ResetPasswordPage = () => {
                 {touched.password && errors.password ? (
                   <p className='help is-danger'>{errors.password}</p>
                 ) : (
-                  <p className='help'>At least 6 characters</p>
+                  <p className='help'>{t('password_hint')}</p>
                 )}
               </div>
 
@@ -124,7 +145,7 @@ export const ResetPasswordPage = () => {
                   htmlFor='confirm-password'
                   className={styles.form__lable}
                 >
-                  Confirm password
+                  {t('password_confirmation')}
                 </label>
 
                 <div className='control has-icons-left has-icons-right'>
@@ -139,12 +160,16 @@ export const ResetPasswordPage = () => {
                     })} ${styles.form__field}`}
                   />
 
-                  <span className='icon is-small is-left'>
+                  <span
+                    className={`${styles.form__icoBlock} icon is-small is-left`}
+                  >
                     <i className='fa fa-lock'></i>
                   </span>
 
                   {touched.confirmation && errors.confirmation && (
-                    <span className='icon is-small is-right has-text-danger'>
+                    <span
+                      className={`${styles.form__icoBlock} icon is-small is-right has-text-danger`}
+                    >
                       <i className='fas fa-exclamation-triangle'></i>
                     </span>
                   )}
@@ -153,7 +178,7 @@ export const ResetPasswordPage = () => {
                 {touched.confirmation && errors.confirmation ? (
                   <p className='help is-danger'>{errors.confirmation}</p>
                 ) : (
-                  <p className='help'>At least 6 characters</p>
+                  <p className='help'>{t('password_hint')}</p>
                 )}
               </div>
 
@@ -178,7 +203,13 @@ export const ResetPasswordPage = () => {
         )}
       </Formik>
 
-      {error && <p className='notification is-danger is-light'>{error}</p>}
+      {error && (
+        <p
+          className={`${styles.resetPasswordError} notification is-danger is-light`}
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
 };

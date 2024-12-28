@@ -1,5 +1,4 @@
 import styles from './Portfolio.module.scss';
-import songsAll from './../../data/songsCards.json';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../shared/Footer';
 import { useAppSelector } from '../../app/hooks';
@@ -9,13 +8,15 @@ import { Loader } from '../Loader';
 import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
 import simplePhoto from './../../data/simplePhotos.json';
+// import songsAll from './../../data/songsCards.json';
+
 export const Portfolio = () => {
   const { t } = useTranslation();
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const currentLanguuage = useAppSelector(
     (state) => state.current.currentLanguage
   );
-  // const songsAll = useAppSelector((state) => state.songs.objects);
+  const songsAll = useAppSelector((state) => state.songs.objects);
   const topSongs = songsAll.filter((song) => song.top);
 
   return (
@@ -41,7 +42,7 @@ export const Portfolio = () => {
           </div>
           <h2 className={styles.topSongs__title}>{t('portfolio_top')}</h2>
 
-          {songsAll ? (
+          {songsAll.length > 0 ? (
             <div className={styles.topSongs__swiper}>
               <ServicesSwiper
                 type='type1'
@@ -105,7 +106,7 @@ export const Portfolio = () => {
               </div>
 
               <div className={styles.allSongs__list}>
-                {songsAll ? (
+                {songsAll.length > 0 ? (
                   <>
                     <SongsList tracks={songsAll} visual='mini' />
                   </>

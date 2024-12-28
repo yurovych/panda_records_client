@@ -17,12 +17,13 @@ export const AdminPage: React.FC = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.boolean.isAuthenticated
   );
+  const telegram = useAppSelector((state) => state.current.currentTelegramLink);
+
+  console.log(telegram);
 
   const isMessageOpened = useAppSelector(
     (state) => state.boolean.isMessageOpened
   );
-
-  // const messages = useAppSelector((state) => state.messages.objects);
 
   async function checkAuth() {
     try {
@@ -36,37 +37,27 @@ export const AdminPage: React.FC = () => {
     }
   }
 
-  // useEffect(() => {
-  //   checkAuth();
-  // }, []);
+  useEffect(() => {
+    // checkAuth();
+  }, []);
 
   return (
-    <div className={styles.adminPageWrapper}>
-      {isMessageOpened && <OpenedMessage />}
+    <>
+      {true ? (
+        <div className={styles.adminPageWrapper}>
+          {isMessageOpened && <OpenedMessage />}
 
-      <div id='AdminPage' className={styles.adminPage}>
-        <div className={styles.adminPage__panel}>
-          <AdminPanel />
+          <div id='AdminPage' className={styles.adminPage}>
+            <div className={styles.adminPage__panel}>
+              <AdminPanel />
+            </div>
+
+            <div className={styles.adminPage__listWrapper}>{<Outlet />}</div>
+          </div>
         </div>
-
-        <div className={styles.adminPage__listWrapper}>{<Outlet />}</div>
-      </div>
-    </div>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
-
-// <>
-//   {!isAuthenticated ? (
-//     <Loader />
-//   ) : (
-//     <div id='AdminPage' className={styles.adminPage}>
-//       {messages ? (
-//         messages.map((message) => <p>{message.name}</p>)
-//       ) : (
-//         <p> List is empty </p>
-//       )}
-
-//       <button onClick={logout}>Logout</button>
-//     </div>
-//   )}
-// </>

@@ -1,18 +1,34 @@
 import styles from './MessagesList.module.scss';
-import messages from '../../../data/notifications.json';
+// import messages from '../../../data/notifications.json';
 import { Field, Form, Formik } from 'formik';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setiIsMessageOpened } from '../../../slices/booleanSlice';
 import { setCurrentMessage } from '../../../slices/current';
 import { UserMessageType } from '../../../types/UserMessage';
 import { Loader } from '../../Loader';
+import { getTime } from './../../../helpers/getTime';
+import { updateMessageStatusAsync } from '../../../slices/fetchMessages';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const MessagesList = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
+  const currentMessage = useAppSelector(
+    (state) => state.current.currentMessage
+  );
+  const messages = useAppSelector((state) => state.messages.objects);
+  const messagesLoading = useAppSelector((state) => state.messages.loading);
+  const messagesError = useAppSelector((state) => state.messages.error);
+  const statusError = useAppSelector((state) => state.messages.statusError);
+
+  const [error, setError] = useState('');
 
   function handleClickOnMessage(message: UserMessageType) {
     dispatch(setiIsMessageOpened(true));
     dispatch(setCurrentMessage(message));
+    setError('');
   }
 
   function getBg(status: string) {
@@ -28,53 +44,72 @@ export const MessagesList = () => {
 
   function getStatus(message: UserMessageType) {
     return (
-      <Formik
-        initialValues={{
-          status: message.status,
-        }}
-        onSubmit={(values) => {
-          alert(`Вибраний статус: ${values.status}`);
-        }}
-      >
-        {({ isSubmitting, handleSubmit, setFieldValue }) => (
-          <Form className={styles.form}>
-            <Field
-              // disabled={isSubmitting}
-              className={`${styles.form__select} ${styles.list__text}`}
-              as='select'
-              name='status'
-              id='status'
-              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-                const selectedValue = event.target.value;
-                setFieldValue('status', selectedValue);
-                handleSubmit();
-              }}
-              onClick={(event: React.MouseEvent<HTMLSelectElement>) => {
-                event.stopPropagation();
-              }}
-            >
-              <option
-                className={`${styles.form__option} ${styles.form__pending}`}
-                value='pending'
+      <>
+        <Formik
+          initialValues={{
+            status: message.status,
+          }}
+          onSubmit={(values, formikHelpers) => {
+            formikHelpers.setSubmitting(true);
+
+            dispatch(
+              updateMessageStatusAsync({
+                status: values.status,
+                id: message.id,
+              })
+            )
+              .then(() => {
+                setError(statusError);
+                setTimeout(() => {
+                  setError('');
+                }, 3000);
+              })
+              .finally(() => {
+                formikHelpers.setSubmitting(false);
+                dispatch(setCurrentMessage(message));
+              });
+          }}
+        >
+          {({ isSubmitting, handleSubmit, setFieldValue }) => (
+            <Form className={styles.form}>
+              <Field
+                disabled={isSubmitting}
+                className={`${styles.form__select} ${styles.list__text}`}
+                as='select'
+                name='status'
+                id='status'
+                onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                  const selectedValue = event.target.value;
+                  setFieldValue('status', selectedValue);
+                  handleSubmit();
+                }}
+                onClick={(event: React.MouseEvent<HTMLSelectElement>) => {
+                  event.stopPropagation();
+                }}
               >
-                Pending
-              </option>
-              <option
-                className={`${styles.form__option} ${styles.form__processing}`}
-                value='processing'
-              >
-                Processing
-              </option>
-              <option
-                className={`${styles.form__option} ${styles.form__completed}`}
-                value='completed'
-              >
-                Completed
-              </option>
-            </Field>
-          </Form>
-        )}
-      </Formik>
+                <option
+                  className={`${styles.form__option} ${styles.form__pending}`}
+                  value='pending'
+                >
+                  {t('admin_page_status_pending')}
+                </option>
+                <option
+                  className={`${styles.form__option} ${styles.form__processing}`}
+                  value='processing'
+                >
+                  {t('admin_page_status_processing')}
+                </option>
+                <option
+                  className={`${styles.form__option} ${styles.form__completed}`}
+                  value='completed'
+                >
+                  {t('admin_page_status_completed')}
+                </option>
+              </Field>
+            </Form>
+          )}
+        </Formik>
+      </>
     );
   }
 
@@ -103,81 +138,110 @@ export const MessagesList = () => {
           ''
         )}
 
-        {messages ? (
-          <>
-            {messages.length > 0 ? (
-              <>
-                <div className={styles.isDesktop}>
-                  <div className={styles.list__header}>
-                    <h3 className={styles.list__headerTitle}>N</h3>
-                    <h3 className={styles.list__headerTitle}>Name</h3>
-                    <h3 className={styles.list__headerTitle}>Email</h3>
-                    <h3 className={styles.list__headerTitle}>Phone number</h3>
-                    <h3 className={styles.list__headerTitle}>Date</h3>
-                    <h3 className={styles.list__headerTitle}>Status</h3>
-                  </div>
-
-                  {messages.map((message: UserMessageType, index: number) => (
-                    <div
-                      onClick={() => handleClickOnMessage(message)}
-                      style={{ backgroundColor: `${getBg(message.status)}` }}
-                      className={styles.list__strip}
-                    >
-                      <p className={styles.list__text}>{index + 1}</p>
-                      <p className={styles.list__text}>{message.name}</p>
-                      <p className={styles.list__text}>{message.email}</p>
-                      <p className={styles.list__text}>
-                        {message.phone_number || '-'}
-                      </p>
-                      <p className={styles.list__text}>{message.created_at}</p>
-                      {getStatus(message)}
-                    </div>
-                  ))}
-                </div>
-
-                <div className={styles.isMobile}>
-                  {messages.map((message: UserMessageType) => (
-                    <div
-                      onClick={() => handleClickOnMessage(message)}
-                      style={{ backgroundColor: `${getBg(message.status)}` }}
-                      className={styles.list__row}
-                    >
-                      <p
-                        className={`${styles.list__text} ${styles.list__name}`}
-                      >
-                        {message.name}
-                      </p>
-                      <p
-                        className={`${styles.list__text} ${styles.list__email}`}
-                      >
-                        {message.email}
-                      </p>
-                      <p
-                        className={`${styles.list__text} ${styles.list__message}`}
-                      >
-                        {message.message}
-                      </p>
-
-                      <p
-                        className={`${styles.list__text} ${styles.list__date}`}
-                      >
-                        {message.created_at}
-                      </p>
-
-                      {getStatus(message)}
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <h3 className={styles.list__empty}>
-                You don't have any message yet
+        <>
+          <div className={styles.isDesktop}>
+            <div className={styles.list__header}>
+              <h3 className={styles.list__headerTitle}>N</h3>
+              <h3 className={styles.list__headerTitle}>
+                {t('admin_page_header_name')}
               </h3>
+              <h3 className={styles.list__headerTitle}>
+                {t('admin_page_header_email')}
+              </h3>
+              <h3 className={styles.list__headerTitle}>
+                {t('admin_page_header_phone')}
+              </h3>
+              <h3 className={styles.list__headerTitle}>
+                {t('admin_page_header_date')}
+              </h3>
+              <h3 className={styles.list__headerTitle}>
+                {t('admin_page_header_status')}
+              </h3>
+            </div>
+
+            {messagesLoading ? (
+              <Loader />
+            ) : (
+              <>
+                {messagesError ? (
+                  <p>{messagesError}</p>
+                ) : (
+                  <>
+                    {messages.map((message: UserMessageType, index: number) => (
+                      <div
+                        onClick={() => handleClickOnMessage(message)}
+                        style={{ backgroundColor: `${getBg(message.status)}` }}
+                        className={styles.list__strip}
+                      >
+                        {error && currentMessage?.id === message.id && (
+                          <p
+                            className={`${styles.statusError} notification is-danger is-light`}
+                          >
+                            {error}
+                          </p>
+                        )}
+                        <p className={styles.list__text}>{index + 1}</p>
+                        <p className={styles.list__text}>{message.name}</p>
+                        <p className={styles.list__text}>{message.email}</p>
+                        <p className={styles.list__text}>
+                          {message.phone_number || '-'}
+                        </p>
+                        <p className={styles.list__text}>{getTime(message)}</p>
+                        {getStatus(message)}
+                      </div>
+                    ))}
+                  </>
+                )}
+              </>
             )}
-          </>
-        ) : (
-          <Loader />
-        )}
+          </div>
+
+          <div className={styles.isMobile}>
+            {messagesLoading ? (
+              <Loader />
+            ) : (
+              <>
+                {messagesError ? (
+                  <p>{messagesError}</p>
+                ) : (
+                  <>
+                    {messages.map((message: UserMessageType) => (
+                      <div
+                        onClick={() => handleClickOnMessage(message)}
+                        style={{ backgroundColor: `${getBg(message.status)}` }}
+                        className={styles.list__row}
+                      >
+                        <p
+                          className={`${styles.list__text} ${styles.list__name}`}
+                        >
+                          {message.name}
+                        </p>
+                        <p
+                          className={`${styles.list__text} ${styles.list__email}`}
+                        >
+                          {message.email}
+                        </p>
+                        <p
+                          className={`${styles.list__text} ${styles.list__message}`}
+                        >
+                          {message.message}
+                        </p>
+
+                        <p
+                          className={`${styles.list__text} ${styles.list__date}`}
+                        >
+                          {getTime(message)}
+                        </p>
+
+                        {getStatus(message)}
+                      </div>
+                    ))}
+                  </>
+                )}
+              </>
+            )}
+          </div>
+        </>
       </div>
     </>
   );

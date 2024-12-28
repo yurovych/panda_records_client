@@ -9,7 +9,7 @@ import {
   setIsSongPlaying,
 } from '../../../slices/playerSlice';
 import { Loader } from '../../Loader';
-import allSongs from './../../../data/songsCards.json';
+// import allSongs from './../../../data/songsCards.json';
 
 type SongTrackProps = {
   track: SongTrackType;
@@ -29,6 +29,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
   const currentSongIndex = useAppSelector(
     (state) => state.player.currentSongIndex
   );
+  const allSongs = useAppSelector((state) => state.songs.objects);
 
   (function getCurrentIndex() {
     const index = allSongs.findIndex((song) => song.id === currentSong?.id);
@@ -94,14 +95,10 @@ export const SongCard: React.FC<SongTrackProps> = ({
       songProgress = (offset / position) * 100;
     }
 
-    if (
-      currentSong?.id === track.id &&
-      currentSong?.progress &&
-      songProgress &&
-      currentSong.song_length
-    ) {
+    if (currentSong?.id === track.id && currentSong?.progress && songProgress) {
       dispatch(
-        setCurrentSongProgress((songProgress / 100) * currentSong.song_length)
+        setCurrentSongProgress(songProgress / 2)
+        // setCurrentSongProgress((songProgress / 100) * currentSong.song_length)
       );
     }
   }
@@ -127,9 +124,9 @@ export const SongCard: React.FC<SongTrackProps> = ({
       return '0:00';
     }
 
-    if (currentSong?.song_length) {
-      const minutes = Math.trunc(currentSong.song_length / 60);
-      const seconds = Math.floor(currentSong.song_length % 60)
+    if (currentSong?.duration) {
+      const minutes = Math.trunc(currentSong.duration / 60);
+      const seconds = Math.floor(currentSong.duration % 60)
         .toString()
         .padStart(2, '0');
       return `${minutes}:${seconds}`;
@@ -217,9 +214,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
                       track.audio_file &&
                       track.id === currentSong?.id &&
                       currentSong?.progress &&
-                      currentSong.song_length
-                        ? (currentSong?.progress / currentSong.song_length) *
-                            100 +
+                      currentSong.duration
+                        ? (currentSong?.progress / currentSong.duration) * 100 +
                           '%'
                         : 0
                     }`,
@@ -276,9 +272,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
                           track.audio_file &&
                           track.id === currentSong?.id &&
                           currentSong?.progress &&
-                          currentSong.song_length
-                            ? (currentSong?.progress /
-                                currentSong.song_length) *
+                          currentSong.duration
+                            ? (currentSong?.progress / currentSong.duration) *
                                 100 +
                               '%'
                             : 0
@@ -450,8 +445,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
                         track.audio_file &&
                         track.id === currentSong?.id &&
                         currentSong?.progress &&
-                        currentSong.song_length
-                          ? (currentSong?.progress / currentSong.song_length) *
+                        currentSong.duration
+                          ? (currentSong?.progress / currentSong.duration) *
                               100 +
                             '%'
                           : 0

@@ -1,16 +1,11 @@
 import styles from './Equipment.module.scss';
 import { EquipmentCardType } from './../../../types/Equipment';
-import { useAppSelector } from '../../../app/hooks';
 
 type EquipmentCardProps = {
   card: EquipmentCardType;
 };
 
 export const EquipmentCard: React.FC<EquipmentCardProps> = ({ card }) => {
-  const currentLanguage = useAppSelector(
-    (state) => state.current.currentLanguage
-  );
-
   return (
     <article className={styles.cardWrapper}>
       <div className={styles.card}>

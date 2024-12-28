@@ -1,6 +1,7 @@
 @import './../../shared/main';
 
 .login {
+  // position: relative;
   height: 100vh;
   background-image: url('./../../../../public/images/login-image.jpg');
   background-repeat: no-repeat;
@@ -66,4 +67,16 @@
 .disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.loginError {
+  grid-column: 1 / -1;
+
+  @include on-tablet {
+    grid-column: 2 / 4;
+  }
+
+  @include on-desktop {
+    grid-column: 6 / 9;
+  }
 }

@@ -56,39 +56,6 @@ export const ContactForm = () => {
     }
   }
 
-  // const requestObj = {
-  //   name: '',
-  //   email: '',
-  //   phoneNumber: '',
-  //   message: '',
-  // };
-
-  // const sendFormDemo = ({
-  //   name,
-  //   email,
-  //   phoneNumber,
-  //   message,
-  // }: FormDataType) => {
-  //   const formPromise = new Promise((resolve, reject) => {
-  //     requestObj.name = name;
-  //     requestObj.email = email;
-  //     requestObj.phoneNumber = phoneNumber;
-  //     requestObj.message = message;
-
-  //     const success = false;
-
-  //     setTimeout(() => {
-  //       if (success) {
-  //         resolve(requestObj);
-  //       } else {
-  //         reject('Помилка при отриманні даних.');
-  //       }
-  //     }, 2000);
-  //   });
-
-  //   return formPromise;
-  // };
-
   const manageShowSuccess = () => {
     setShowSuccess(true);
 
@@ -118,46 +85,38 @@ export const ContactForm = () => {
         onSubmit={({ name, email, phone_number, message }, formikHelpers) => {
           formikHelpers.setSubmitting(true);
 
-          // sendFormDemo({ name, email, phone_number, message })
-          //   .then(() => {
-          //     formikHelpers.resetForm();
-          //     manageShowSuccess();
-          //     setError('');
-          //   })
+          clientService
+            .sendForm({ name, email, phone_number, message })
+            .then(() => {
+              formikHelpers.resetForm();
+              formikHelpers.validateForm(false);
+              manageShowSuccess();
+              setError('');
+            })
+            .catch((error) => {
+              if (error.message) {
+                manageShowError(error.message);
+              }
 
-          setTimeout(() => {
-            clientService
-              .sendForm({ name, email, phone_number, message })
-              .then(() => {
-                formikHelpers.resetForm();
-                manageShowSuccess();
-                setError('');
-              })
-              .catch((error) => {
-                if (error.message) {
-                  manageShowError(error.message);
-                }
+              if (!error.response?.data) {
+                manageShowError('Unnown error');
+                return;
+              }
 
-                if (!error.response?.data) {
-                  manageShowError('Unnown error');
-                  return;
-                }
+              const { errors, message } = error.response.data;
 
-                const { errors, message } = error.response.data;
+              formikHelpers.setFieldError('name', errors?.name);
+              formikHelpers.setFieldError('email', errors?.email);
+              formikHelpers.setFieldError('phoneNumber', errors?.phoneNumber);
+              formikHelpers.setFieldError('message', errors?.message);
 
-                formikHelpers.setFieldError('name', errors?.name);
-                formikHelpers.setFieldError('email', errors?.email);
-                formikHelpers.setFieldError('phoneNumber', errors?.phoneNumber);
-                formikHelpers.setFieldError('message', errors?.message);
-
-                if (message) {
-                  manageShowError(message);
-                }
-              })
-              .finally(() => {
-                formikHelpers.setSubmitting(false);
-              });
-          }, 300);
+              if (message) {
+                manageShowError(message);
+              }
+            })
+            .finally(() => {
+              formikHelpers.setSubmitting(false);
+            });
         }}
       >
         {({ touched, errors, isSubmitting, isValid }) => (

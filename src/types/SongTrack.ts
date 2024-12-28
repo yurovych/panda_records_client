@@ -5,6 +5,6 @@ export type SongTrackType = {
   photo: string;
   audio_file: string;
   progress?: number | undefined;
-  song_length?: number | undefined;
+  duration: number | null;
   top?: boolean;
 };

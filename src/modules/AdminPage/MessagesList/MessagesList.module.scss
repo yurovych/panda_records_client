@@ -1,5 +1,17 @@
 @import './../../shared/main';
 
+.statusError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  font-size: 16px;
+  color: $color-black2;
+  position: absolute;
+}
+
 .list {
   position: relative;
 
@@ -18,6 +30,7 @@
     background-color: $color-white2;
     padding: 8px;
     margin-bottom: 8px;
+    z-index: 1;
   }
 
   &__headerTitle {
@@ -29,6 +42,7 @@
   }
 
   &__row {
+    z-index: 1;
     cursor: pointer;
     position: relative;
     box-shadow: $shadow;
@@ -45,6 +59,7 @@
   }
 
   &__strip {
+    z-index: 1;
     display: grid;
     column-gap: 8px;
     position: relative;
@@ -105,6 +120,7 @@
   position: absolute;
   right: 8px;
   top: 8px;
+  width: 125px;
 
   @include on-desktop {
     top: 50%;
@@ -112,6 +128,7 @@
   }
 
   &__select {
+    width: 100%;
     cursor: pointer;
     box-shadow: $shadow;
     border: 1px solid $color-grey1;

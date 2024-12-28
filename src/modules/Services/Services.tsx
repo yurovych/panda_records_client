@@ -1,20 +1,22 @@
 import { Footer } from '../shared/Footer';
 import styles from './Services.module.scss';
-import servicesList from './../../data/servicesCards.json';
 import { ServicesSwiper } from '../shared/ServicesSwiper';
-import videos from './../../data/videos.json';
 import { ProcessVideoCard } from '../shared/ProcessVideoCard';
 import { Loader } from '../Loader';
 import { ServicesCard } from './../shared/ServicesCard/ServicesCard';
 import { useTranslation } from 'react-i18next';
 import { ContactUs } from '../shared/ContactUs';
 import { ServicesCardsDesktop } from '../shared/ServicesCardsDesktop';
-// import { useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
+// import servicesList from './../../data/servicesCards.json';
+// import videos from './../../data/videos.json';
 
 export const Services = () => {
-  // const videos = useAppSelector((state) => state.videos.objects);
+  const videos = useAppSelector((state) => state.videos.objects);
+  const servicesList = useAppSelector((state) => state.sevrices.objects);
 
-  const processVideosList = videos.filter((video) => video);
+  console.log(videos);
+
   const { t } = useTranslation();
 
   return (
@@ -27,7 +29,7 @@ export const Services = () => {
         />
         <h1 className={styles.variety__title}>{t('sevcices_title')} </h1>
         <div className={styles.variety__photeTablet}>
-          {servicesList ? (
+          {servicesList.length > 0 ? (
             <ServicesSwiper
               type='type4'
               servicesWideCards={servicesList}
@@ -39,7 +41,7 @@ export const Services = () => {
         </div>
 
         <div className={styles.variety__desktop}>
-          {servicesList ? (
+          {servicesList.length > 0 ? (
             <ServicesCardsDesktop services={servicesList} />
           ) : (
             <Loader />
@@ -50,10 +52,10 @@ export const Services = () => {
       <section className={styles.process}>
         <h2 className={styles.process__title}>{t('services_videos_title')} </h2>
 
-        {processVideosList ? (
+        {videos.length > 0 ? (
           <ServicesSwiper
             type='type2'
-            videoCards={processVideosList}
+            videoCards={videos}
             VideoToRender={ProcessVideoCard}
           />
         ) : (

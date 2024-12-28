@@ -63,6 +63,23 @@
     }
   }
 
+  &__links {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    @include on-desktop {
+      justify-content: right;
+    }
+  }
+
+  &__linkIco {
+    width: 24px;
+    aspect-ratio: 1;
+  }
+
   &__logoutWrapper {
     height: 100%;
     width: 100%;

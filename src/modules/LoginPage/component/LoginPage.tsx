@@ -3,10 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { accessTokenService } from '../../../services/accessTokenService';
 import { useState } from 'react';
-import { TokensType } from './../../../types/Tokens';
+// import { TokensType } from './../../../types/Tokens';
 import { authService } from '../../../services/authService';
 import styles from './LoginPage.module.scss';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '../../../app/hooks';
+import { setCurrentTelegramLink } from '../../../slices/current';
 
 type LoginParams = {
   email: string;
@@ -39,16 +41,18 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   const [error, setError] = useState('');
 
   async function login({ email, password }: LoginParams): Promise<void> {
-    const { access_token }: TokensType = await authService.login({
+    const { access_token, telegram_bot } = await authService.login({
       email,
       password,
     });
 
     accessTokenService.save(access_token);
+    dispatch(setCurrentTelegramLink(telegram_bot));
   }
 
   return (
@@ -65,9 +69,8 @@ export const LoginPage = () => {
               navigate(location.state?.from?.pathname || '/admin');
             })
             .catch((error) => {
-              console.log(`Error is ${error}`);
-
-              setError(error.response?.data?.message);
+              setError(error.message);
+              console.log(error.message);
             });
         }}
       >
@@ -75,15 +78,15 @@ export const LoginPage = () => {
           <>
             <div className={styles.goHomeButton}>
               <Link className={styles.goHomeLink} to={'/'}>
-                Return to Home Page
+                {t('return_to_home_page')}
               </Link>
             </div>
 
             <Form className={styles.form}>
-              <h1 className={styles.form__title}>Log in as Admin</h1>
+              <h1 className={styles.form__title}>{t('login_title')}</h1>
               <div className={styles.form__element}>
                 <label htmlFor='email' className={styles.form__lable}>
-                  Email
+                  {t('email')}
                 </label>
 
                 <div className='control has-icons-left has-icons-right'>
@@ -119,7 +122,7 @@ export const LoginPage = () => {
               </div>
               <div className={styles.form__element}>
                 <label className={styles.form__label} htmlFor='password'>
-                  Password
+                  {t('password')}
                 </label>
 
                 <div className='control has-icons-left has-icons-right'>
@@ -152,7 +155,7 @@ export const LoginPage = () => {
                 {touched.password && errors.password ? (
                   <p className='help is-danger'>{errors.password}</p>
                 ) : (
-                  <p className='help'>At least 6 characters</p>
+                  <p className='help'>{t('password_hint')} </p>
                 )}
               </div>
               <div className={styles.form__element}>
@@ -164,19 +167,24 @@ export const LoginPage = () => {
                     styles.disabled
                   }`}
                 >
-                  {t(isSubmitting ? 'form_button_sending' : 'form_button_send')}
+                  {t('log_in')}
                 </button>
               </div>
               <div className={styles.form__resetPassword}>
-                Forgot password?{' '}
-                <Link to='/reset-password'>Reset password</Link>
+                {t('forgot_password')}
+                &nbsp;&nbsp;&nbsp;
+                <Link to='/reset-password'>{t('reset_password')}</Link>
               </div>
             </Form>
           </>
         )}
       </Formik>
 
-      {error && <p className='notification is-danger is-light'>{error}</p>}
+      {error && (
+        <p className={`${styles.loginError} notification is-danger is-light`}>
+          {error}
+        </p>
+      )}
     </div>
   );
 };

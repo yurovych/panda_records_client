@@ -7,10 +7,10 @@ import { Navigation } from '../Navigation';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setIsAdminPanel, setIsHidenMenu } from '../../../slices/booleanSlice';
 import { useEffect, useState } from 'react';
-import './../_main.scss';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
 import { SongCard } from '../SongCard';
+import './../_main.scss';
 
 export const Header = () => {
   const navigate = useNavigate();

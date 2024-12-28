@@ -6,12 +6,14 @@ type CurrentType = {
   currentServiceId: number | null;
   currentLanguage: string;
   currentMessage: UserMessageType | null;
+  currentTelegramLink: string | undefined;
 };
 
 const initialState: CurrentType = {
   currentServiceId: null,
   currentLanguage: 'ua',
   currentMessage: null,
+  currentTelegramLink: undefined,
 };
 
 const currentSlice = createSlice({
@@ -30,9 +32,19 @@ const currentSlice = createSlice({
     ) => {
       state.currentMessage = action.payload;
     },
+    setCurrentTelegramLink: (
+      state,
+      action: PayloadAction<string | undefined>
+    ) => {
+      state.currentTelegramLink = action.payload;
+    },
   },
 });
 
 export default currentSlice.reducer;
-export const { setCurrentServiceId, setCurrentLanguage, setCurrentMessage } =
-  currentSlice.actions;
+export const {
+  setCurrentServiceId,
+  setCurrentLanguage,
+  setCurrentMessage,
+  setCurrentTelegramLink,
+} = currentSlice.actions;

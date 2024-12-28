@@ -4,9 +4,9 @@ import { Footer } from '../../shared/Footer';
 import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
 // import equipmentList from './../../../data/equipmentCards.json';
-import servicesList from './../../../data/servicesCards.json';
-import songsList from './../../../data/songsCards.json';
-import videosList from './../../../data/videos.json';
+// import servicesList from './../../../data/servicesCards.json';
+// import songsList from './../../../data/songsCards.json';
+// import videosList from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
 import { Link, useNavigate } from 'react-router-dom';
@@ -23,27 +23,26 @@ import { useTranslation } from 'react-i18next';
 import { VideoPlayer } from '../../shared/VideoPlayer';
 
 export const HomePage = () => {
-  // const songsList = useAppSelector((state) => state.songs.objects);
-
-  // const servicesList = useAppSelector((state) => state.sevrices.objects);
+  const songsList = useAppSelector((state) => state.songs.objects);
+  const servicesList = useAppSelector((state) => state.sevrices.objects);
   const equipmentList = useAppSelector((state) => state.equipment.objects);
-  // const videosList = useAppSelector((state) => state.videos.objects);
+  const videosList = useAppSelector((state) => state.videos.objects);
+  const currentSong = useAppSelector((state) => state.player.currentSong);
 
   const navigate = useNavigate();
-  const currentSong = useAppSelector((state) => state.player.currentSong);
+  const { t } = useTranslation();
+
+  const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
   const guitarTeacherVideo = videosList.find(
     (video) => video.description_block1
   );
-  const { t } = useTranslation();
 
   async function handleTextMeClick() {
     await navigate('/');
     const element = document.getElementById('contactUs');
     element?.scrollIntoView({ behavior: 'smooth' });
   }
-
-  const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
   const shuffleSongs = (songs: SongTrackType[]) => {
     const shuffled = [...songs];
@@ -147,7 +146,7 @@ export const HomePage = () => {
             </h2>
 
             <div className={styles.services__cardsPhone}>
-              {servicesList ? (
+              {servicesList.length > 0 ? (
                 <ServicesSwiper
                   type='type1'
                   servicesCards={servicesList}
@@ -159,7 +158,7 @@ export const HomePage = () => {
             </div>
 
             <div className={styles.services__cardsTablet}>
-              {servicesList ? (
+              {servicesList.length > 0 ? (
                 <ServicesList cards={servicesList.slice(0, 4)} visual='brief' />
               ) : (
                 <Loader />
@@ -167,7 +166,7 @@ export const HomePage = () => {
             </div>
 
             <div className={styles.services__cardsDesktop}>
-              {servicesList ? (
+              {servicesList.length > 0 ? (
                 <ServicesList cards={servicesList} visual='brief' />
               ) : (
                 <Loader />
@@ -198,7 +197,7 @@ export const HomePage = () => {
               />
             </div>
 
-            {songsList ? (
+            {songsList.length > 0 ? (
               <div className={styles.ourWorks__list}>
                 <SongsList tracks={shuffledSongs.slice(0, 2)} visual='strip' />
               </div>
@@ -241,9 +240,9 @@ export const HomePage = () => {
           </section>
         </div>
 
-        <div className={styles.lessonsWrapper}>
-          <section className={styles.lessons}>
-            {videosList ? (
+        {guitarTeacherVideo && (
+          <div className={styles.lessonsWrapper}>
+            <section className={styles.lessons}>
               <>
                 <h2 className={styles.lessons__title}>
                   {guitarTeacherVideo?.title}
@@ -274,11 +273,9 @@ export const HomePage = () => {
                   <Button text={t('home_lessons_button')} />
                 </div>
               </>
-            ) : (
-              <Loader />
-            )}
-          </section>
-        </div>
+            </section>
+          </div>
+        )}
 
         <div className={styles.equipmentWrapper}>
           <section className={styles.equipment}>
@@ -299,7 +296,7 @@ export const HomePage = () => {
             </h2>
 
             <div className={styles.equipment__cardsPhone}>
-              {equipmentList ? (
+              {equipmentList.length > 0 ? (
                 <ServicesSwiper
                   type='type1'
                   equipmentCadrs={equipmentList}
@@ -311,7 +308,7 @@ export const HomePage = () => {
             </div>
 
             <div className={styles.equipment__cardsTablet}>
-              {equipmentList ? (
+              {equipmentList.length > 0 ? (
                 <ServicesSwiper
                   type='type2'
                   equipmentCadrs={equipmentList}
@@ -323,7 +320,7 @@ export const HomePage = () => {
             </div>
 
             <div className={styles.equipment__cardsDesktop}>
-              {equipmentList ? (
+              {equipmentList.length > 0 ? (
                 <EquipmentList cards={equipmentList.slice(0, 4)} />
               ) : (
                 <Loader />
