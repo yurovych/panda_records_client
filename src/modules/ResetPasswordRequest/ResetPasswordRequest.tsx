@@ -5,23 +5,16 @@ import { authService } from './../../services/authService';
 import styles from './ResetPasswordRequest.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-
-function validateEmail(value?: string) {
-  if (!value) {
-    return 'Email is required';
-  }
-
-  const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
-
-  if (!emailPattern.test(value)) {
-    return 'Email is not valid';
-  }
-}
+import { useAppSelector } from '../../app/hooks';
 
 export const ResetPasswordRequest = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [error, setError] = useState('');
   const { t } = useTranslation();
+
+  const currentLanguage = useAppSelector(
+    (state) => state.current.currentLanguage
+  );
 
   if (emailSent) {
     return (
@@ -30,6 +23,18 @@ export const ResetPasswordRequest = () => {
         <p>{t('reset_password_request_check_email2')}</p>
       </section>
     );
+  }
+
+  function validateEmail(value: string) {
+    if (!value) {
+      return `${t('validate_email_error1')}`;
+    }
+
+    const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
+
+    if (!emailPattern.test(value)) {
+      return `${t('validate_email_error2')}`;
+    }
   }
 
   return (
@@ -43,7 +48,7 @@ export const ResetPasswordRequest = () => {
           formikHelpers.setSubmitting(true);
 
           authService
-            .resetPasswordRequest({ email })
+            .resetPasswordRequest({ email, currentLanguage })
             .then(() => {
               setEmailSent(true);
             })
@@ -56,15 +61,18 @@ export const ResetPasswordRequest = () => {
                 return;
               }
 
-              const { errors, message } = error.response.data;
+              const { errors, detail } = error.response.data;
 
               formikHelpers.setFieldError('email', errors?.email);
 
-              if (message) {
-                setError(message);
+              if (detail) {
+                setError(detail);
               }
             })
             .finally(() => {
+              setTimeout(() => {
+                setError('');
+              }, 5000);
               formikHelpers.setSubmitting(false);
             });
         }}

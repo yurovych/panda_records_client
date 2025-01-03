@@ -41,9 +41,9 @@ root.render(
                 <Route path='change-password' element={<ChangePassword />} />
               </Route>
               <Route path='login' element={<LoginPage />} />
-              <Route path='reset-password' element={<ResetPasswordRequest />} />
+              <Route path='password-reset' element={<ResetPasswordRequest />} />
               <Route
-                path='reset-password/:resetToken'
+                path='password-reset/:reset_token'
                 element={<ResetPasswordPage />}
               />
             </Route>

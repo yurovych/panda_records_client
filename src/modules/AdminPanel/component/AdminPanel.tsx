@@ -8,6 +8,7 @@ import {
   setIsAuthenticated,
 } from '../../../slices/booleanSlice';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 export const AdminPanel = () => {
   const navigate = useNavigate();
@@ -15,21 +16,46 @@ export const AdminPanel = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
+  const [disableLogout, setDisableLogout] = useState(false);
+  const [logoutError, setLogoutError] = useState('');
+
   const isAdminPanel = useAppSelector((state) => state.boolean.isAdminPanel);
   const currentTelegram = useAppSelector(
     (state) => state.current.currentTelegramLink
   );
 
-  async function logout() {
-    try {
-      await adminServices.logout();
-      dispatch(setIsAdminPanel(false));
-      dispatch(setIsAuthenticated(false));
-      accessTokenService.remove();
-      navigate('./../login');
-    } catch (error) {
-      console.log('User is not authenticated');
-    }
+  function logout() {
+    setDisableLogout(true);
+
+    adminServices
+      .logout()
+      .then(() => {
+        dispatch(setIsAdminPanel(false));
+        dispatch(setIsAuthenticated(false));
+        accessTokenService.remove();
+        navigate('./../login');
+      })
+      .catch((error) => {
+        if (error.message) {
+          setLogoutError(error.message);
+          return;
+        }
+
+        if (!error.response?.date) {
+          setLogoutError(`${t('unnown_error')}`);
+          return;
+        }
+
+        const { message } = error.response.data;
+
+        setLogoutError(message);
+      })
+      .finally(() => {
+        setDisableLogout(false);
+        setTimeout(() => {
+          setLogoutError('');
+        }, 5000);
+      });
   }
 
   const handleAdminMenuButton = () => {
@@ -123,11 +149,23 @@ export const AdminPanel = () => {
 
           <div className={styles.adminPanel__logoutWrapper}>
             <button
-              className={`${styles.adminPanel__logout} ${styles.adminPanel__element}`}
+              className={`
+                ${styles.adminPanel__logout} 
+                ${styles.adminPanel__element} 
+                ${disableLogout && styles.disableLogout}
+              `}
               onClick={logout}
             >
               {t('admin_panel_logout')}
             </button>
+
+            {logoutError && (
+              <p
+                className={`${styles.logoutError} notification is-danger is-light`}
+              >
+                {logoutError}
+              </p>
+            )}
           </div>
         </nav>
 

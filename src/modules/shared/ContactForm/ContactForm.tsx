@@ -15,23 +15,23 @@ export const ContactForm = () => {
 
   function validateName(value: string) {
     if (!value) {
-      return 'Name is required';
+      return `${t('validate_name_error1')}`;
     }
 
     if (value.length < 2) {
-      return 'At least 2 characters';
+      return `${t('validate_name_error2')}`;
     }
   }
 
   function validateEmail(value: string) {
     if (!value) {
-      return 'Email is required';
+      return `${t('validate_email_error1')}`;
     }
 
     const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
 
     if (!emailPattern.test(value)) {
-      return 'Email is not valid';
+      return `${t('validate_email_error2')}`;
     }
   }
 
@@ -42,35 +42,19 @@ export const ContactForm = () => {
 
     const phoneRegex = /^0\d{9}$/;
     if (!phoneRegex.test(value)) {
-      return 'Use correct format';
+      return `${t('validate_phone_error1')}`;
     }
   }
 
   function validateMessage(value: string) {
     if (!value) {
-      return 'Message is required';
+      return `${t('validate_message_error1')}`;
     }
 
     if (value.length < 10) {
-      return 'At least 10 characters';
+      return `${t('validate_message_error2')}`;
     }
   }
-
-  const manageShowSuccess = () => {
-    setShowSuccess(true);
-
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
-  };
-
-  const manageShowError = (error: string) => {
-    setError(error);
-
-    setTimeout(() => {
-      setError('');
-    }, 10000);
-  };
 
   return (
     <>
@@ -90,16 +74,16 @@ export const ContactForm = () => {
             .then(() => {
               formikHelpers.resetForm();
               formikHelpers.validateForm(false);
-              manageShowSuccess();
+              setShowSuccess(true);
               setError('');
             })
             .catch((error) => {
               if (error.message) {
-                manageShowError(error.message);
+                setError(error.message);
               }
 
               if (!error.response?.data) {
-                manageShowError('Unnown error');
+                setError(`${t('unnown_error')}`);
                 return;
               }
 
@@ -111,11 +95,15 @@ export const ContactForm = () => {
               formikHelpers.setFieldError('message', errors?.message);
 
               if (message) {
-                manageShowError(message);
+                setError(message);
               }
             })
             .finally(() => {
               formikHelpers.setSubmitting(false);
+              setTimeout(() => {
+                setShowSuccess(false);
+                setError('');
+              }, 5000);
             });
         }}
       >

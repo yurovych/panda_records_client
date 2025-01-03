@@ -40,7 +40,6 @@ export const App = () => {
     dispatch(fetchServicesAsync(currenLanguage));
     dispatch(fetchEquipmentAsync(currenLanguage));
     dispatch(fetchVideosAsync(currenLanguage));
-
     i18n.changeLanguage(currenLanguage);
   }, [currenLanguage, dispatch, i18n]);
 

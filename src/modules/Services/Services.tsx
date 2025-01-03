@@ -44,7 +44,9 @@ export const Services = () => {
           {servicesList.length > 0 ? (
             <ServicesCardsDesktop services={servicesList} />
           ) : (
-            <Loader />
+            <div className={styles.variety__desktopLoader}>
+              <Loader />
+            </div>
           )}
         </div>
       </section>

@@ -22,6 +22,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 
   @include on-tablet {
     grid-column: span 2;
@@ -75,6 +76,7 @@
   background: linear-gradient(
     (to bottom, $color-white2 75%, $color-white1 25%)
   );
+  cursor: pointer;
 
   &__title {
     color: $color-black2;

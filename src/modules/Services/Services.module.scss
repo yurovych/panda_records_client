@@ -8,6 +8,7 @@
 
 .variety {
   position: relative;
+  width: 100%;
 
   &__star {
     position: absolute;
@@ -66,6 +67,10 @@
       @include page-grid;
       row-gap: 80px;
     }
+  }
+
+  &__desktopLoader {
+    grid-column: 1 / -1;
   }
 }
 

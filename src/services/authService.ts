@@ -4,38 +4,58 @@ import { TokensType } from './../types/Tokens';
 type LoginParams = {
   email: string;
   password: string;
+  currentLanguage: string;
 };
 
-type ResetPaswordRequesr = {
+type ResetPasswordRequest = {
   email: string;
+  currentLanguage: string;
 };
 
-type ChangePassword = {
-  password: string;
-  confirmation: string;
-  resetToken: string;
+type ResetPassword = {
+  new_password: string;
+  confirm_password: string;
+  reset_token: string;
+  currentLanguage: string;
 };
 
-function login({ email, password }: LoginParams): Promise<TokensType> {
-  return authClient.post('/users/login/', { email, password });
+function login({
+  email,
+  password,
+  currentLanguage,
+}: LoginParams): Promise<TokensType> {
+  return authClient.post(
+    '/users/login/',
+    { email, password },
+    {
+      headers: {
+        'Accept-Language': currentLanguage,
+      },
+    }
+  );
 }
 
 function refresh(): Promise<TokensType> {
   return authClient.get('/users/refresh');
 }
 
-function resetPasswordRequest({ email }: ResetPaswordRequesr) {
-  return authClient.post('/reset-password/', { email });
+function resetPasswordRequest({
+  email,
+  currentLanguage,
+}: ResetPasswordRequest) {
+  return authClient.post('/users/password-reset/', { email, currentLanguage });
 }
 
-function changePassword({
-  password,
-  confirmation,
-  resetToken,
-}: ChangePassword) {
-  return authClient.post(`/reset-password/${resetToken}`, {
-    password,
-    confirmation,
+function resetPassword({
+  new_password,
+  confirm_password,
+  reset_token,
+  currentLanguage,
+}: ResetPassword) {
+  return authClient.post(`/users/password-reset/${reset_token}/`, {
+    new_password,
+    confirm_password,
+    currentLanguage,
   });
 }
 
@@ -43,5 +63,5 @@ export const authService = {
   login,
   refresh,
   resetPasswordRequest,
-  changePassword,
+  resetPassword,
 };

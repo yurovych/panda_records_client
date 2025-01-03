@@ -95,10 +95,14 @@ export const SongCard: React.FC<SongTrackProps> = ({
       songProgress = (offset / position) * 100;
     }
 
-    if (currentSong?.id === track.id && currentSong?.progress && songProgress) {
+    if (
+      currentSong?.id === track.id &&
+      currentSong?.progress &&
+      currentSong.duration &&
+      songProgress
+    ) {
       dispatch(
-        setCurrentSongProgress(songProgress / 2)
-        // setCurrentSongProgress((songProgress / 100) * currentSong.song_length)
+        setCurrentSongProgress((songProgress / 100) * currentSong.duration)
       );
     }
   }
@@ -120,19 +124,15 @@ export const SongCard: React.FC<SongTrackProps> = ({
   }
 
   function shownDuration() {
-    if (track.audio_file && track.id !== currentSong?.id) {
+    if (!track.duration) {
       return '0:00';
     }
 
-    if (currentSong?.duration) {
-      const minutes = Math.trunc(currentSong.duration / 60);
-      const seconds = Math.floor(currentSong.duration % 60)
-        .toString()
-        .padStart(2, '0');
-      return `${minutes}:${seconds}`;
-    }
-
-    return '0:00';
+    const minutes = Math.trunc(track.duration / 60);
+    const seconds = Math.floor(track.duration % 60)
+      .toString()
+      .padStart(2, '0');
+    return `${minutes}:${seconds}`;
   }
 
   function vizualisation() {

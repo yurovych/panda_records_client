@@ -32,7 +32,6 @@ export const AdminPage: React.FC = () => {
       dispatch(setIsAuthenticated(true));
       dispatch(fetchMessagesAsync());
     } catch (error) {
-      console.log('User is not authenticated');
       navigate('./../login');
     }
   }

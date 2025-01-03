@@ -7,35 +7,13 @@ import { useState } from 'react';
 import { authService } from '../../../services/authService';
 import styles from './LoginPage.module.scss';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setCurrentTelegramLink } from '../../../slices/current';
 
 type LoginParams = {
   email: string;
   password: string;
 };
-
-function validateEmail(value: string) {
-  if (!value) {
-    return 'Email is required';
-  }
-
-  const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
-
-  if (!emailPattern.test(value)) {
-    return 'Email is not valid';
-  }
-}
-
-function validatePassword(value: string) {
-  if (!value) {
-    return 'Password is required';
-  }
-
-  if (value.length < 5) {
-    return 'At least 5 characters';
-  }
-}
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -45,15 +23,47 @@ export const LoginPage = () => {
 
   const [error, setError] = useState('');
 
+  const currentLanguage = useAppSelector(
+    (state) => state.current.currentLanguage
+  );
+
   async function login({ email, password }: LoginParams): Promise<void> {
     const { access_token, telegram_bot } = await authService.login({
       email,
       password,
+      currentLanguage,
     });
 
     accessTokenService.save(access_token);
     dispatch(setCurrentTelegramLink(telegram_bot));
   }
+
+  function validateEmail(value: string) {
+    if (!value) {
+      return `${t('validate_email_error1')}`;
+    }
+
+    const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
+
+    if (!emailPattern.test(value)) {
+      return `${t('validate_email_error2')}`;
+    }
+  }
+
+  const validatePassword = (value?: string) => {
+    if (!value) {
+      return `${t('validate_password_error1')}`;
+    }
+
+    if (value.length < 6) {
+      return `${t('validate_password_error2')}`;
+    }
+
+    const hasNumber = /\d/;
+    if (!hasNumber.test(value)) {
+      return `${t('validate_password_error3')}`;
+    }
+  };
 
   return (
     <div className={styles.login}>
@@ -63,14 +73,38 @@ export const LoginPage = () => {
           password: '',
         }}
         validateOnMount={true}
-        onSubmit={({ email, password }) => {
+        onSubmit={({ email, password }, formikHelpers) => {
+          console.log(error);
+
           return login({ email, password })
             .then(() => {
               navigate(location.state?.from?.pathname || '/admin');
             })
             .catch((error) => {
-              setError(error.message);
-              console.log(error.message);
+              if (error.message) {
+                setError(error.message);
+              }
+
+              if (!error.response?.data) {
+                return;
+              }
+
+              const { errors, detail } = error.response.data;
+
+              formikHelpers.setFieldError('new_password', errors?.new_password);
+              formikHelpers.setFieldError(
+                'confirm_password',
+                errors?.confirm_password
+              );
+
+              if (detail) {
+                setError(detail);
+              }
+            })
+            .finally(() => {
+              setTimeout(() => {
+                setError('');
+              }, 5000);
             });
         }}
       >
@@ -173,7 +207,7 @@ export const LoginPage = () => {
               <div className={styles.form__resetPassword}>
                 {t('forgot_password')}
                 &nbsp;&nbsp;&nbsp;
-                <Link to='/reset-password'>{t('reset_password')}</Link>
+                <Link to='/password-reset'>{t('reset_password')}</Link>
               </div>
             </Form>
           </>

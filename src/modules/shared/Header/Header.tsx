@@ -82,7 +82,7 @@ export const Header = () => {
             <SongCard visual='player' track={currentSong} />
           </div>
         )}
-        <div onClick={handleLogoClick}>
+        <div title='Home' onClick={handleLogoClick}>
           <Logo />
         </div>
         <nav style={{ fontSize: '18px' }} className={styles.navigationWrapper}>
@@ -105,6 +105,7 @@ export const Header = () => {
               />
             ) : (
               <img
+                title='Language'
                 className={`${styles.languageButton__img} ${
                   currentLanguage === 'ua' && styles.languageChanging
                 }`}

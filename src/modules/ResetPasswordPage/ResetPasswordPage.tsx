@@ -5,22 +5,17 @@ import { authService } from '../../services/authService';
 import { useState } from 'react';
 import styles from './ResetPasswordPage.module.scss';
 import { useTranslation } from 'react-i18next';
-
-const validatePassword = (value?: string) => {
-  if (!value) {
-    return 'Password is required';
-  }
-
-  if (value.length < 5) {
-    return 'At least 5 characters';
-  }
-};
+import { useAppSelector } from '../../app/hooks';
 
 export const ResetPasswordPage = () => {
-  const { resetToken } = useParams();
+  const { reset_token } = useParams();
   const [error, setError] = useState('');
   const [changed, setChanged] = useState(false);
   const { t } = useTranslation();
+
+  const currentLanguage = useAppSelector(
+    (state) => state.current.currentLanguage
+  );
 
   if (changed) {
     return (
@@ -32,19 +27,34 @@ export const ResetPasswordPage = () => {
     );
   }
 
+  const validatePassword = (value?: string) => {
+    if (!value) {
+      return `${t('validate_password_error1')}`;
+    }
+
+    if (value.length < 8) {
+      return `${t('validate_password_error2')}`;
+    }
+
+    const hasNumber = /\d/;
+    if (!hasNumber.test(value)) {
+      return `${t('validate_password_error3')}`;
+    }
+  };
+
   return (
     <div className={styles.changePassword}>
       <Formik
         initialValues={{
-          password: '',
-          confirmation: '',
+          new_password: '',
+          confirm_password: '',
         }}
         validateOnMount={true}
-        onSubmit={({ password, confirmation }, formikHelpers) => {
+        onSubmit={({ new_password, confirm_password }, formikHelpers) => {
           formikHelpers.setSubmitting(true);
 
-          if (password !== confirmation) {
-            setError('Passwords should be equal');
+          if (new_password !== confirm_password) {
+            setError(`${t('passwords_equality')}`);
             setTimeout(() => {
               setError('');
             }, 3000);
@@ -54,9 +64,14 @@ export const ResetPasswordPage = () => {
             setError('');
           }
 
-          resetToken &&
+          if (reset_token) {
             authService
-              .changePassword({ password, confirmation, resetToken })
+              .resetPassword({
+                new_password,
+                confirm_password,
+                reset_token,
+                currentLanguage,
+              })
               .then(() => {
                 setChanged(true);
               })
@@ -69,16 +84,19 @@ export const ResetPasswordPage = () => {
                   return;
                 }
 
-                const { errors, message } = error.response.data;
+                const { errors, detail } = error.response.data;
 
-                formikHelpers.setFieldError('password', errors?.password);
                 formikHelpers.setFieldError(
-                  'confirmation',
-                  errors?.confirmation
+                  'new_password',
+                  errors?.new_password
+                );
+                formikHelpers.setFieldError(
+                  'confirm_password',
+                  errors?.confirm_password
                 );
 
-                if (message) {
-                  setError(message);
+                if (detail) {
+                  setError(detail);
                 }
               })
               .finally(() => {
@@ -86,8 +104,9 @@ export const ResetPasswordPage = () => {
 
                 setTimeout(() => {
                   setError('');
-                }, 3000);
+                }, 5000);
               });
+          }
         }}
       >
         {({ touched, errors, isSubmitting }) => (
@@ -109,12 +128,12 @@ export const ResetPasswordPage = () => {
                 <div className='control has-icons-left has-icons-right'>
                   <Field
                     validate={validatePassword}
-                    name='password'
+                    name='new_password'
                     type='password'
                     id='new-password'
                     placeholder='*******'
                     className={`${cn('input', {
-                      'is-danger': touched.password && errors.password,
+                      'is-danger': touched.new_password && errors.new_password,
                     })} ${styles.form__field}`}
                   />
 
@@ -124,7 +143,7 @@ export const ResetPasswordPage = () => {
                     <i className='fa fa-lock'></i>
                   </span>
 
-                  {touched.password && errors.password && (
+                  {touched.new_password && errors.new_password && (
                     <span
                       className={`${styles.form__icoBlock} icon is-small is-right has-text-danger`}
                     >
@@ -133,8 +152,8 @@ export const ResetPasswordPage = () => {
                   )}
                 </div>
 
-                {touched.password && errors.password ? (
-                  <p className='help is-danger'>{errors.password}</p>
+                {touched.new_password && errors.new_password ? (
+                  <p className='help is-danger'>{errors.new_password}</p>
                 ) : (
                   <p className='help'>{t('password_hint')}</p>
                 )}
@@ -151,12 +170,13 @@ export const ResetPasswordPage = () => {
                 <div className='control has-icons-left has-icons-right'>
                   <Field
                     validate={validatePassword}
-                    name='confirmation'
+                    name='confirm_password'
                     type='password'
                     id='confirm-password'
                     placeholder='*******'
                     className={`${cn('input', {
-                      'is-danger': touched.confirmation && errors.confirmation,
+                      'is-danger':
+                        touched.confirm_password && errors.confirm_password,
                     })} ${styles.form__field}`}
                   />
 
@@ -166,7 +186,7 @@ export const ResetPasswordPage = () => {
                     <i className='fa fa-lock'></i>
                   </span>
 
-                  {touched.confirmation && errors.confirmation && (
+                  {touched.confirm_password && errors.confirm_password && (
                     <span
                       className={`${styles.form__icoBlock} icon is-small is-right has-text-danger`}
                     >
@@ -175,8 +195,8 @@ export const ResetPasswordPage = () => {
                   )}
                 </div>
 
-                {touched.confirmation && errors.confirmation ? (
-                  <p className='help is-danger'>{errors.confirmation}</p>
+                {touched.confirm_password && errors.confirm_password ? (
+                  <p className='help is-danger'>{errors.confirm_password}</p>
                 ) : (
                   <p className='help'>{t('password_hint')}</p>
                 )}
@@ -186,12 +206,14 @@ export const ResetPasswordPage = () => {
                 <button
                   type='submit'
                   disabled={
-                    isSubmitting || !!errors.password || !!errors.confirmation
+                    isSubmitting ||
+                    !!errors.new_password ||
+                    !!errors.confirm_password
                   }
                   className={`${styles.form__formikButton} ${
                     (isSubmitting ||
-                      !!errors.password ||
-                      !!errors.confirmation) &&
+                      !!errors.new_password ||
+                      !!errors.confirm_password) &&
                     styles.disabled
                   }`}
                 >
