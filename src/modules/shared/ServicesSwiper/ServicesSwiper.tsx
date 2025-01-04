@@ -9,7 +9,7 @@ import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
 import { SongTrackType } from '../../../types/SongTrack';
 import { SimplePhoto } from '../../../types/SimplePhoto';
-import { SwiperOptions } from 'swiper/types';
+import SwiperOptions from 'swiper';
 
 type ServicesSwiperProps = {
   type: 'type1' | 'type2' | 'type3' | 'type4';
