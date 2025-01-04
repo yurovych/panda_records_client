@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Outlet } from 'react-router-dom';
 import styles from './App.module.scss';
 import { HidenMenu } from './modules/HidenMenu/components';

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { accessTokenService } from '../../../services/accessTokenService';
 import { authService } from '../../../services/authService';
 import styles from './AdminPage.module.scss';
