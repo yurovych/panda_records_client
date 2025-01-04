@@ -8,16 +8,14 @@ import { useTranslation } from 'react-i18next';
 import { ContactUs } from '../shared/ContactUs';
 import { ServicesCardsDesktop } from '../shared/ServicesCardsDesktop';
 import { useAppSelector } from '../../app/hooks';
-// import servicesList from './../../data/servicesCards.json';
-// import videos from './../../data/videos.json';
 
 export const Services = () => {
+  const { t } = useTranslation();
+
   const videos = useAppSelector((state) => state.videos.objects);
   const servicesList = useAppSelector((state) => state.sevrices.objects);
-
-  console.log(videos);
-
-  const { t } = useTranslation();
+  const servicesFetchError = useAppSelector((state) => state.sevrices.error);
+  const videosFetchError = useAppSelector((state) => state.videos.error);
 
   return (
     <div className={styles.services}>
@@ -43,10 +41,14 @@ export const Services = () => {
         <div className={styles.variety__desktop}>
           {servicesList.length > 0 ? (
             <ServicesCardsDesktop services={servicesList} />
+          ) : servicesFetchError ? (
+            <p
+              className={`${styles.fetchError} notification is-danger is-light`}
+            >
+              {servicesFetchError}
+            </p>
           ) : (
-            <div className={styles.variety__desktopLoader}>
-              <Loader />
-            </div>
+            <Loader />
           )}
         </div>
       </section>
@@ -60,6 +62,10 @@ export const Services = () => {
             videoCards={videos}
             VideoToRender={ProcessVideoCard}
           />
+        ) : videosFetchError ? (
+          <p className={`${styles.fetchError} notification is-danger is-light`}>
+            {videosFetchError}
+          </p>
         ) : (
           <Loader />
         )}

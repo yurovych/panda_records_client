@@ -8,15 +8,13 @@ import { Link } from 'react-router-dom';
 export const Footer = () => {
   const { t } = useTranslation();
 
-  const handleLogoClick = () => {
-    scrollPageUp();
-  };
+  const PHONE_NUMBER = '+380687166092';
 
   return (
     <div className={styles.footerWrapper}>
       <div className={styles.footer}>
         <div className={styles.footer__main}>
-          <div onClick={handleLogoClick} className={styles.footer__logo}>
+          <div onClick={scrollPageUp} className={styles.footer__logo}>
             <Logo />
           </div>
 
@@ -50,20 +48,20 @@ export const Footer = () => {
               {t('adress_2')}
             </p>
           </a>
-          <a href='tel:+380687166092' className={styles.footer__phone}>
+          <a href={`tel:${PHONE_NUMBER}`} className={styles.footer__phone}>
             <img
               className={styles.footer__phoneIco}
               src='./icons/phone-ico.svg'
               alt='phone_ico'
             />
 
-            <p className={styles.footer__number}>+380687166092</p>
+            <p className={styles.footer__number}>{PHONE_NUMBER}</p>
           </a>
         </div>
 
         <div className={styles.footer__line}></div>
 
-        <div className={styles.footer__bottom}>
+        <div className={styles.footer__underline}>
           <Link to='/admin' className={styles.footer__login}>
             <img src='./icons/log-in-ico.svg' alt='login' />
           </Link>
@@ -72,6 +70,14 @@ export const Footer = () => {
             2024&nbsp;&nbsp;&nbsp;&nbsp;Panda Records. Copyright&nbsp;&nbsp;
             &copy;
           </p>
+
+          <Link
+            onClick={scrollPageUp}
+            className={styles.footer__policy}
+            to='/policy'
+          >
+            {t('policy_title')}
+          </Link>
         </div>
       </div>
     </div>

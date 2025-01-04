@@ -8,15 +8,17 @@ import { Loader } from '../Loader';
 import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
 import simplePhoto from './../../data/simplePhotos.json';
-// import songsAll from './../../data/songsCards.json';
 
 export const Portfolio = () => {
   const { t } = useTranslation();
+
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const currentLanguuage = useAppSelector(
     (state) => state.current.currentLanguage
   );
   const songsAll = useAppSelector((state) => state.songs.objects);
+  const songsFetchError = useAppSelector((state) => state.songs.error);
+
   const topSongs = songsAll.filter((song) => song.top);
 
   return (
@@ -50,10 +52,14 @@ export const Portfolio = () => {
                 SongToRender={SongCard}
               />
             </div>
+          ) : songsFetchError ? (
+            <p
+              className={`${styles.fetchError} notification is-danger is-light`}
+            >
+              {songsFetchError}
+            </p>
           ) : (
-            <div className={styles.topSongs__swiper}>
-              <Loader />
-            </div>
+            <Loader />
           )}
         </section>
       </div>
@@ -110,6 +116,12 @@ export const Portfolio = () => {
                   <>
                     <SongsList tracks={songsAll} visual='mini' />
                   </>
+                ) : songsFetchError ? (
+                  <p
+                    className={`${styles.fetchError} notification is-danger is-light`}
+                  >
+                    {songsFetchError}
+                  </p>
                 ) : (
                   <Loader />
                 )}

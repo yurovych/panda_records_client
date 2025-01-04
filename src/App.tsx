@@ -19,11 +19,11 @@ import { useTranslation } from 'react-i18next';
 
 export const App = () => {
   const dispatch = useAppDispatch();
+  const { i18n } = useTranslation();
+
   const currenLanguage = useAppSelector(
     (state) => state.current.currentLanguage
   );
-
-  const { i18n } = useTranslation();
 
   async function checkAuth() {
     try {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { HomePage } from './modules/HomePage/component/HomePage';
 import { AdminPage } from './modules/AdminPage/component/AdminPage';
-import { Route, HashRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { NotFoundPage } from './modules/NotFoundPage/component/NotFoundPage';
@@ -20,6 +20,7 @@ import { ResetPasswordPage } from './modules/ResetPasswordPage';
 import { MessagesList } from './modules/AdminPage/MessagesList';
 import { ChangeEmail } from './modules/AdminPage/ChangeEmail';
 import { ChangePassword } from './modules/AdminPage/ChangePassword';
+import { PrivatPolicy } from './modules/PrivatPolicy';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -46,6 +47,7 @@ root.render(
                 path='password-reset/:reset_token'
                 element={<ResetPasswordPage />}
               />
+              <Route path='policy' element={<PrivatPolicy />} />
             </Route>
             <Route path='*' element={<NotFoundPage />} />
           </Routes>

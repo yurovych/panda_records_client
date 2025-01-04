@@ -12,8 +12,9 @@ type ServiceCardProps = {
 };
 
 export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
   const currentServiceId = useAppSelector(
     (state) => state.current.currentServiceId
   );

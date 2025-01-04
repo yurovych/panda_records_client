@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { accessTokenService } from '../../../services/accessTokenService';
 import { useState } from 'react';
-// import { TokensType } from './../../../types/Tokens';
 import { authService } from '../../../services/authService';
 import styles from './LoginPage.module.scss';
 import { useTranslation } from 'react-i18next';
@@ -17,15 +16,15 @@ type LoginParams = {
 
 export const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
-
-  const [error, setError] = useState('');
 
   const currentLanguage = useAppSelector(
     (state) => state.current.currentLanguage
   );
+
+  const [error, setError] = useState('');
 
   async function login({ email, password }: LoginParams): Promise<void> {
     const { access_token, telegram_bot } = await authService.login({

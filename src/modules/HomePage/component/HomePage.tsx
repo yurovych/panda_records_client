@@ -1,12 +1,7 @@
 import styles from './HomePage.module.scss';
-
 import { Footer } from '../../shared/Footer';
 import { Button } from '../../shared/Button';
 import { ServicesList } from '../../shared/ServicesList';
-// import equipmentList from './../../../data/equipmentCards.json';
-// import servicesList from './../../../data/servicesCards.json';
-// import songsList from './../../../data/songsCards.json';
-// import videosList from './../../../data/videos.json';
 import { SongsList } from '../../shared/SongsList';
 import { ServicesSwiper } from '../../shared/ServicesSwiper';
 import { Link, useNavigate } from 'react-router-dom';
@@ -23,14 +18,18 @@ import { useTranslation } from 'react-i18next';
 import { VideoPlayer } from '../../shared/VideoPlayer';
 
 export const HomePage = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const songsList = useAppSelector((state) => state.songs.objects);
   const servicesList = useAppSelector((state) => state.sevrices.objects);
   const equipmentList = useAppSelector((state) => state.equipment.objects);
   const videosList = useAppSelector((state) => state.videos.objects);
   const currentSong = useAppSelector((state) => state.player.currentSong);
-
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+  const servicesFetchError = useAppSelector((state) => state.sevrices.error);
+  const videosFetchError = useAppSelector((state) => state.videos.error);
+  const songsFetchError = useAppSelector((state) => state.songs.error);
+  const equipmentFetchError = useAppSelector((state) => state.equipment.error);
 
   const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
@@ -61,6 +60,8 @@ export const HomePage = () => {
       setShuffledSongs(shuffleSongs(songsList));
     }
   }, [songsList]);
+
+  console.log('Render HomePage');
 
   return (
     <>
@@ -152,6 +153,12 @@ export const HomePage = () => {
                   servicesCards={servicesList}
                   ServiceToRender={ServicesCard}
                 />
+              ) : servicesFetchError ? (
+                <p
+                  className={`${styles.fetchError} notification is-danger is-light`}
+                >
+                  {servicesFetchError}
+                </p>
               ) : (
                 <Loader />
               )}
@@ -160,6 +167,12 @@ export const HomePage = () => {
             <div className={styles.services__cardsTablet}>
               {servicesList.length > 0 ? (
                 <ServicesList cards={servicesList.slice(0, 4)} visual='brief' />
+              ) : servicesFetchError ? (
+                <p
+                  className={`${styles.fetchError} notification is-danger is-light`}
+                >
+                  {servicesFetchError}
+                </p>
               ) : (
                 <Loader />
               )}
@@ -168,6 +181,12 @@ export const HomePage = () => {
             <div className={styles.services__cardsDesktop}>
               {servicesList.length > 0 ? (
                 <ServicesList cards={servicesList} visual='brief' />
+              ) : servicesFetchError ? (
+                <p
+                  className={`${styles.fetchError} notification is-danger is-light`}
+                >
+                  {servicesFetchError}
+                </p>
               ) : (
                 <Loader />
               )}
@@ -200,6 +219,14 @@ export const HomePage = () => {
             {songsList.length > 0 ? (
               <div className={styles.ourWorks__list}>
                 <SongsList tracks={shuffledSongs.slice(0, 2)} visual='strip' />
+              </div>
+            ) : songsFetchError ? (
+              <div className={styles.ourWorks__list}>
+                <p
+                  className={`${styles.fetchError} notification is-danger is-light`}
+                >
+                  {songsFetchError}
+                </p>
               </div>
             ) : (
               <div className={styles.ourWorks__list}>
@@ -277,57 +304,59 @@ export const HomePage = () => {
           </div>
         )}
 
-        <div className={styles.equipmentWrapper}>
-          <section className={styles.equipment}>
-            <img
-              className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
-              src='./images/equipment-white-star.png'
-              alt='image-star'
-            />
+        {equipmentList.length > 0 && (
+          <div className={styles.equipmentWrapper}>
+            <section className={styles.equipment}>
+              <img
+                className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
+                src='./images/equipment-white-star.png'
+                alt='image-star'
+              />
 
-            <img
-              className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
-              src='./images/equipment-white-star.png'
-              alt='image-star'
-            />
+              <img
+                className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
+                src='./images/equipment-white-star.png'
+                alt='image-star'
+              />
 
-            <h2 className={styles.equipment__title}>
-              {t('home_equipment_title')}
-            </h2>
+              <h2 className={styles.equipment__title}>
+                {t('home_equipment_title')}
+              </h2>
 
-            <div className={styles.equipment__cardsPhone}>
-              {equipmentList.length > 0 ? (
-                <ServicesSwiper
-                  type='type1'
-                  equipmentCadrs={equipmentList}
-                  EquipmentToRender={EquipmentCard}
-                />
-              ) : (
-                <Loader />
-              )}
-            </div>
+              <div className={styles.equipment__cardsPhone}>
+                {equipmentList.length > 0 ? (
+                  <ServicesSwiper
+                    type='type1'
+                    equipmentCadrs={equipmentList}
+                    EquipmentToRender={EquipmentCard}
+                  />
+                ) : (
+                  <Loader />
+                )}
+              </div>
 
-            <div className={styles.equipment__cardsTablet}>
-              {equipmentList.length > 0 ? (
-                <ServicesSwiper
-                  type='type2'
-                  equipmentCadrs={equipmentList}
-                  EquipmentToRender={EquipmentCard}
-                />
-              ) : (
-                <Loader />
-              )}
-            </div>
+              <div className={styles.equipment__cardsTablet}>
+                {equipmentList.length > 0 ? (
+                  <ServicesSwiper
+                    type='type2'
+                    equipmentCadrs={equipmentList}
+                    EquipmentToRender={EquipmentCard}
+                  />
+                ) : (
+                  <Loader />
+                )}
+              </div>
 
-            <div className={styles.equipment__cardsDesktop}>
-              {equipmentList.length > 0 ? (
-                <EquipmentList cards={equipmentList.slice(0, 4)} />
-              ) : (
-                <Loader />
-              )}
-            </div>
-          </section>
-        </div>
+              <div className={styles.equipment__cardsDesktop}>
+                {equipmentList.length > 0 ? (
+                  <EquipmentList cards={equipmentList.slice(0, 4)} />
+                ) : (
+                  <Loader />
+                )}
+              </div>
+            </section>
+          </div>
+        )}
 
         <div className={styles.testimonialsWrapper}>
           <section className={styles.testimonials}>

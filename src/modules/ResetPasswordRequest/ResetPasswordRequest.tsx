@@ -8,13 +8,14 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 
 export const ResetPasswordRequest = () => {
-  const [emailSent, setEmailSent] = useState(false);
-  const [error, setError] = useState('');
   const { t } = useTranslation();
 
   const currentLanguage = useAppSelector(
     (state) => state.current.currentLanguage
   );
+
+  const [emailSent, setEmailSent] = useState(false);
+  const [error, setError] = useState('');
 
   if (emailSent) {
     return (

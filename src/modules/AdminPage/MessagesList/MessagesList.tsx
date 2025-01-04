@@ -1,5 +1,4 @@
 import styles from './MessagesList.module.scss';
-// import messages from '../../../data/notifications.json';
 import { Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setiIsMessageOpened } from '../../../slices/booleanSlice';

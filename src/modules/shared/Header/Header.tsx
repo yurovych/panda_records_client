@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
 import { SongCard } from '../SongCard';
-import './../_main.scss';
 
 export const Header = () => {
   const navigate = useNavigate();

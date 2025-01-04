@@ -8,14 +8,15 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../app/hooks';
 
 export const ResetPasswordPage = () => {
-  const { reset_token } = useParams();
-  const [error, setError] = useState('');
-  const [changed, setChanged] = useState(false);
   const { t } = useTranslation();
+  const { reset_token } = useParams();
 
   const currentLanguage = useAppSelector(
     (state) => state.current.currentLanguage
   );
+
+  const [error, setError] = useState('');
+  const [changed, setChanged] = useState(false);
 
   if (changed) {
     return (

@@ -5,6 +5,9 @@ import styles from './ContactUs.module.scss';
 export const ContactUs = () => {
   const { t } = useTranslation();
 
+  const PHONE_NUMBER = '+380687166092';
+  const EMAIL = 'romanmarinec611@gmail.com';
+
   return (
     <div className={styles.contactUsWrapper}>
       <section id='contactUs' className={styles.contactUs}>
@@ -23,14 +26,14 @@ export const ContactUs = () => {
             href='mailto:romanmarinec611@gmail.com'
             className={`${styles.contactUs__inTouch_email} ${styles.contactUs__infoBlock_text}`}
           >
-            romanmarinec611@gmail.com
+            {EMAIL}
           </a>
 
           <a
             href='tel:+380687166092'
             className={styles.contactUs__infoBlock_text}
           >
-            +380687166092
+            {PHONE_NUMBER}
           </a>
         </div>
 

@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setCurrentSong } from '../../../slices/playerSlice';
-// import allSongs from './../../../data/songsCards.json';
 
 export const Player: React.FC = () => {
-  const audioElem = useRef<HTMLAudioElement | null>(null);
   const dispatch = useAppDispatch();
+  const audioElem = useRef<HTMLAudioElement | null>(null);
+
   const currentSongIndex = useAppSelector(
     (state) => state.player.currentSongIndex
   );
+  const allSongs = useAppSelector((state) => state.songs.objects);
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const isSongPlaying = useAppSelector((state) => state.player.isSongPlaying);
   const currentSongProgress = useAppSelector(
@@ -16,8 +17,6 @@ export const Player: React.FC = () => {
   );
 
   const [prevTrackId, setPrevTrackId] = useState<number | null>(null);
-
-  const allSongs = useAppSelector((state) => state.songs.objects);
 
   const onPlaying = () => {
     const audio = audioElem.current;

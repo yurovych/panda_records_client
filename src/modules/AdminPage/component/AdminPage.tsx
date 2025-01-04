@@ -14,16 +14,14 @@ import { OpenedMessage } from '../OpenedMessage';
 export const AdminPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const isAuthenticated = useAppSelector(
     (state) => state.boolean.isAuthenticated
   );
-  const telegram = useAppSelector((state) => state.current.currentTelegramLink);
-
-  console.log(telegram);
-
   const isMessageOpened = useAppSelector(
     (state) => state.boolean.isMessageOpened
   );
+  const messagesFetchError = useAppSelector((state) => state.messages.error);
 
   async function checkAuth() {
     try {
@@ -54,6 +52,10 @@ export const AdminPage: React.FC = () => {
             <div className={styles.adminPage__listWrapper}>{<Outlet />}</div>
           </div>
         </div>
+      ) : messagesFetchError ? (
+        <p className={`${styles.fetchError} notification is-danger is-light`}>
+          {messagesFetchError}
+        </p>
       ) : (
         <Loader />
       )}

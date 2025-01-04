@@ -1,45 +1,105 @@
 @import './../../shared/main';
 
 .notFoundPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
   height: 100vh;
-  background-image: url('./../../../../public/images/login-image.jpg');
+  background-image: url('./../../../../public/images/disc-bg.png');
   background-repeat: no-repeat;
   background-position: left;
   background-size: cover;
 
   @include content-padding-inline;
   @include section-padding-block;
+  @include page-grid;
 
-  &__text {
-    text-align: center;
-    color: $color-white2;
-    font-size: 32px;
-    font-weight: 700;
-  }
-
-  &__goToStudio {
+  &__error {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $color-white1;
-    font-size: 20px;
-    margin-block: 24px;
-    width: 60%;
-    background-color: $color-green;
-    border: 1px solid $color-white1;
-    height: 48px;
-    border-radius: 5px;
+    gap: 8px;
+    margin-bottom: 24px;
 
     @include on-tablet {
-      width: 40%;
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    @include on-tablet {
+      gap: 24px;
+    }
+  }
+
+  &__4 {
+    color: $color-white1;
+    font-size: 160px;
+    font-weight: 500;
+    line-height: 120%;
+
+    @include on-tablet {
+      font-size: 200px;
+    }
+
+    @include on-tablet {
+      font-size: 200px;
+    }
+  }
+
+  &__imgBlock {
+    position: relative;
+  }
+
+  &__logo {
+    height: 120px;
+    aspect-ratio: 1;
+
+    @include on-tablet {
+      height: 180px;
+    }
+  }
+
+  &__oops {
+    position: absolute;
+    top: -55px;
+    right: -80px;
+
+    @include on-tablet {
+      top: -90px;
+      right: -110px;
+    }
+  }
+
+  &__text {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    text-align: center;
+    color: $color-pink1;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 130%;
+    margin-bottom: 40px;
+
+    @include on-tablet {
+      font-size: 32px;
+      line-height: 110%;
+    }
+
+    @include on-tablet {
+      font-size: 56px;
+      line-height: 120%;
+    }
+  }
+
+  &__button {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+
+    @include on-tablet {
+      grid-column: 2 / 4;
     }
 
     @include on-desktop {
-      width: 20%;
+      grid-column: 4 / 10;
     }
   }
 }

@@ -9,7 +9,6 @@ import {
   setIsSongPlaying,
 } from '../../../slices/playerSlice';
 import { Loader } from '../../Loader';
-// import allSongs from './../../../data/songsCards.json';
 
 type SongTrackProps = {
   track: SongTrackType;
@@ -22,8 +21,9 @@ export const SongCard: React.FC<SongTrackProps> = ({
   track,
   visual,
 }) => {
-  const searchBarElement = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
+  const searchBarElement = useRef<HTMLDivElement | null>(null);
+
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const isSongPlaying = useAppSelector((state) => state.player.isSongPlaying);
   const currentSongIndex = useAppSelector(

@@ -53,7 +53,7 @@ const getMessagesSlice = createSlice({
       })
       .addCase(fetchMessagesAsync.rejected, (state) => {
         state.loading = false;
-        state.error = 'Failed to load messages';
+        state.error = 'failed to load messages';
       })
       .addCase(updateMessageStatusAsync.pending, (state) => {
         state.statusError = '';

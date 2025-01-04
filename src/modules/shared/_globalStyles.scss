@@ -52,3 +52,7 @@ html {
     background-color: $color-white1;
   }
 }
+
+.fetchError {
+  grid-column: 1 / -1;
+}

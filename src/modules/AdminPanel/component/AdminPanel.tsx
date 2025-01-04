@@ -12,17 +12,17 @@ import { useState } from 'react';
 
 export const AdminPanel = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useAppDispatch();
+  const location = useLocation();
   const { t } = useTranslation();
-
-  const [disableLogout, setDisableLogout] = useState(false);
-  const [logoutError, setLogoutError] = useState('');
 
   const isAdminPanel = useAppSelector((state) => state.boolean.isAdminPanel);
   const currentTelegram = useAppSelector(
     (state) => state.current.currentTelegramLink
   );
+
+  const [disableLogout, setDisableLogout] = useState(false);
+  const [logoutError, setLogoutError] = useState('');
 
   function logout() {
     setDisableLogout(true);

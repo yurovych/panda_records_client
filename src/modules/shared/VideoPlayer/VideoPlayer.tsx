@@ -13,11 +13,12 @@ type VideoPlayerPropsType = {
 };
 
 export const VideoPlayer: React.FC<VideoPlayerPropsType> = ({ shownVideo }) => {
+  const dispatch = useAppDispatch();
   const videoElem = useRef<HTMLVideoElement | null>(null);
+
   const currentVideo = useAppSelector((state) => state.player.currentVideo);
   const isVideoPlaying = useAppSelector((state) => state.player.isVideoPlaying);
   const isSongPlaying = useAppSelector((state) => state.player.isSongPlaying);
-  const dispatch = useAppDispatch();
 
   function handleOnPlay() {
     dispatch(setIsVideoPlaying(!isVideoPlaying));

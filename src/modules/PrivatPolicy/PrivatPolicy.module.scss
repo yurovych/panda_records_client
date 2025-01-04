@@ -1,0 +1,104 @@
+@import './../shared/main';
+
+.policy {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-white4;
+
+  &__star {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+
+    @include on-tablet {
+      right: 32px;
+      top: 32px;
+    }
+
+    @include on-desktop {
+      right: 64px;
+      top: 64px;
+    }
+  }
+
+  &__top {
+    background-image: url('./../../../public/images/login-image.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__title {
+    text-align: center;
+    color: $color-white1;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 130%;
+    margin-block: 24px;
+
+    @include on-tablet {
+      font-size: 32px;
+      margin-block: 32px;
+    }
+
+    @include on-desktop {
+      font-size: 56px;
+      margin-block: 64px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    max-width: $max-content-width;
+    margin-inline: auto;
+    background-color: $color-white4;
+    padding-block: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include content-padding-inline;
+
+    @include on-tablet {
+      padding-block: 32px;
+      gap: 24px;
+    }
+
+    @include on-desktop {
+      padding-block: 48px;
+    }
+  }
+
+  &__blockTitle {
+    z-index: 1;
+    text-align: left;
+    color: $color-black1;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 130%;
+  }
+
+  &__greeting {
+    z-index: 1;
+    text-align: left;
+    color: $color-black1;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 130%;
+  }
+
+  &__text {
+    z-index: 1;
+    text-align: left;
+    color: $color-black1;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
+  &__list {
+    margin-left: 30px;
+    list-style: disc;
+  }
+}

@@ -11,6 +11,8 @@ export const HidenMenu: React.FC = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
+  const PHONE_NUMBER = '+380687166092';
+
   const isHidenMenu = useAppSelector((state) => state.boolean.isHidenMenu);
 
   async function handleContactUsClick() {
@@ -51,7 +53,7 @@ export const HidenMenu: React.FC = () => {
             className={styles.hidenMenu__contacts_number}
             href='tel:+380687166092'
           >
-            +380687166092
+            {PHONE_NUMBER}
           </a>
         </div>
 

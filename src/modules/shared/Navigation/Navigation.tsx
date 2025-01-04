@@ -7,6 +7,7 @@ import { useAppSelector } from '../../../app/hooks';
 export const Navigation = () => {
   const { t } = useTranslation();
   const location = useLocation();
+
   const isAuthenticated = useAppSelector(
     (state) => state.boolean.isAuthenticated
   );

@@ -147,19 +147,49 @@
     margin-bottom: 24px;
   }
 
-  &__bottom {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &__underline {
+    display: grid;
+    row-gap: 40px;
+
+    @include on-tablet {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__policy {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    text-align: right;
+    color: $color-white2;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 130%;
   }
 
   &__login {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
     margin-right: auto;
-    width: 20px;
-    aspect-ratio: 1;
+    height: 20px;
+
+    @include on-tablet {
+      margin-right: 0;
+    }
   }
 
   &__copyRigths {
-    margin-right: auto;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    margin-inline: auto;
+    color: $color-white2;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 130%;
+
+    @include on-tablet {
+      margin-inline: 0;
+    }
   }
 }
