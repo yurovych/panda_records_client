@@ -27,9 +27,7 @@ export const HomePage = () => {
   const videosList = useAppSelector((state) => state.videos.objects);
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const servicesFetchError = useAppSelector((state) => state.sevrices.error);
-  const videosFetchError = useAppSelector((state) => state.videos.error);
   const songsFetchError = useAppSelector((state) => state.songs.error);
-  const equipmentFetchError = useAppSelector((state) => state.equipment.error);
 
   const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
@@ -60,8 +58,6 @@ export const HomePage = () => {
       setShuffledSongs(shuffleSongs(songsList));
     }
   }, [songsList]);
-
-  console.log('Render HomePage');
 
   return (
     <>
