@@ -33,6 +33,12 @@ export const Services = () => {
               servicesWideCards={servicesList}
               ServiceToRender={ServicesCard}
             />
+          ) : servicesFetchError ? (
+            <p
+              className={`${styles.fetchError} notification is-danger is-light`}
+            >
+              {servicesFetchError}
+            </p>
           ) : (
             <Loader />
           )}
