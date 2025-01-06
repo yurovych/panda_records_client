@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './AdminPanel.module.scss';
 import { adminServices } from '../../../services/adminService';
@@ -8,7 +9,8 @@ import {
   setIsAuthenticated,
 } from '../../../slices/booleanSlice';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { setCurrentTelegramLink } from '../../../slices/current';
 
 export const AdminPanel = () => {
   const navigate = useNavigate();
@@ -24,6 +26,11 @@ export const AdminPanel = () => {
   const [disableLogout, setDisableLogout] = useState(false);
   const [logoutError, setLogoutError] = useState('');
 
+  useEffect(() => {
+    const telegramLink = localStorage.getItem('telegram_bot');
+    telegramLink && dispatch(setCurrentTelegramLink(telegramLink));
+  }, []);
+
   function logout() {
     setDisableLogout(true);
 
@@ -33,6 +40,7 @@ export const AdminPanel = () => {
         dispatch(setIsAdminPanel(false));
         dispatch(setIsAuthenticated(false));
         accessTokenService.remove();
+        localStorage.removeItem('telegram_bot');
         navigate('./../login');
       })
       .catch((error) => {

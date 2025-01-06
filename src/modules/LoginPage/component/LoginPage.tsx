@@ -6,8 +6,7 @@ import { useState } from 'react';
 import { authService } from '../../../services/authService';
 import styles from './LoginPage.module.scss';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setCurrentTelegramLink } from '../../../slices/current';
+import { useAppSelector } from '../../../app/hooks';
 
 type LoginParams = {
   email: string;
@@ -16,7 +15,6 @@ type LoginParams = {
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const location = useLocation();
   const { t } = useTranslation();
 
@@ -34,7 +32,7 @@ export const LoginPage = () => {
     });
 
     accessTokenService.save(access_token);
-    dispatch(setCurrentTelegramLink(telegram_bot));
+    localStorage.setItem('telegram_bot', telegram_bot);
   }
 
   function validateEmail(value: string) {
@@ -73,8 +71,6 @@ export const LoginPage = () => {
         }}
         validateOnMount={true}
         onSubmit={({ email, password }, formikHelpers) => {
-          console.log(error);
-
           return login({ email, password })
             .then(() => {
               navigate(location.state?.from?.pathname || '/admin');
