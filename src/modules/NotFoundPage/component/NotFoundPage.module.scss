@@ -1,11 +1,16 @@
 @import './../../shared/main';
 
-.notFoundPage {
+.notFoundPageWrapper {
   height: 100vh;
   background-image: url('./../../../../public/images/disc-bg.png');
   background-repeat: no-repeat;
   background-position: left;
   background-size: cover;
+}
+
+.notFoundPage {
+  max-width: $max-content-width;
+  margin-inline: auto;
 
   @include content-padding-inline;
   @include section-padding-block;
