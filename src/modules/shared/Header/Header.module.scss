@@ -81,6 +81,9 @@
 }
 
 .playerWrapper {
+  cursor: grab;
+  transition: all 0s ease;
+  user-select: none;
   position: fixed;
   top: 90px;
   min-width: 90vw;

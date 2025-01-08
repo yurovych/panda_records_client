@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
@@ -6,7 +7,7 @@ import { Logo } from '../Logo/Logo';
 import { Navigation } from '../Navigation';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setIsAdminPanel, setIsHidenMenu } from '../../../slices/booleanSlice';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
 import { SongCard } from '../SongCard';
@@ -15,7 +16,10 @@ export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const movedPlayer = useRef<HTMLDivElement | null>(null);
 
+  const [isDragging, setIsDragging] = useState(false);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [languageDisabled, setLanguageDisabled] = useState(false);
 
   const currentSong = useAppSelector((state) => state.player.currentSong);
@@ -69,11 +73,69 @@ export const Header = () => {
     localStorage.setItem('language', newLang);
   };
 
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    const startX = event.clientX;
+    const startY = event.clientY;
+
+    const rect = movedPlayer.current?.getBoundingClientRect();
+
+    if (rect) {
+      const offsetX = startX - rect.left;
+      const offsetY = startY - rect.top;
+
+      setOffset({ x: offsetX, y: offsetY });
+      setIsDragging(true);
+    }
+  };
+
+  const handleMouseMove = (event: MouseEvent) => {
+    if (!isDragging) return;
+
+    const newX = event.clientX;
+    const newY = event.clientY;
+
+    const paddingInline = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue('--global-padding');
+
+    const normalizePaddingInline = parseInt(paddingInline);
+
+    console.log(normalizePaddingInline);
+
+    if (movedPlayer.current) {
+      movedPlayer.current.style.left = `${
+        newX - offset.x + normalizePaddingInline
+      }px`;
+      movedPlayer.current.style.top = `${newY - offset.y}px`;
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    } else {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging]);
+
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
         {currentSong && (
           <div
+            onMouseDown={handleMouseDown}
+            ref={movedPlayer}
             className={`${
               currentSong ? styles.showPlayer : styles.hidePlayer
             } ${styles.playerWrapper}`}

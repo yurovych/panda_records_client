@@ -8,6 +8,7 @@ import { Loader } from '../Loader';
 import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
 import simplePhoto from './../../data/simplePhotos.json';
+import songsAll from './../../data/songsCards.json';
 
 export const Portfolio = () => {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ export const Portfolio = () => {
   const currentLanguuage = useAppSelector(
     (state) => state.current.currentLanguage
   );
-  const songsAll = useAppSelector((state) => state.songs.objects);
+  // const songsAll = useAppSelector((state) => state.songs.objects);
   const songsFetchError = useAppSelector((state) => state.songs.error);
 
   const topSongs = songsAll.filter((song) => song.top);

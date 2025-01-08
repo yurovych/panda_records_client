@@ -91,6 +91,7 @@ export const Services = () => {
           <div className={`${styles.lessons__card} ${styles.lessons__card_1} `}>
             <div className={styles.lessons__image}>
               <img
+                loading='lazy'
                 className={styles.lessons__imageItself}
                 src='./images/contactUs_image2.jpg'
                 alt='card_image'
@@ -123,6 +124,7 @@ export const Services = () => {
           <div className={`${styles.lessons__card} ${styles.lessons__card_2} `}>
             <div className={styles.lessons__image}>
               <img
+                loading='lazy'
                 className={styles.lessons__imageItself}
                 src='./images/guitar_lesson_services.jpg'
                 alt='card_image'

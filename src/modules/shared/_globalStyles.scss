@@ -6,8 +6,17 @@
   font-family: Mulish, sans-serif;
 }
 
-html {
+:root {
   scroll-behavior: smooth;
+  --global-padding: 16px;
+
+  @include on-tablet {
+    --global-padding: 32px;
+  }
+
+  @include on-desktop {
+    --global-padding: 64px;
+  }
 }
 
 .hidenMenuHeightNoScroll {

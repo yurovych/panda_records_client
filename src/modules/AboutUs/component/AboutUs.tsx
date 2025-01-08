@@ -47,6 +47,7 @@ export const AboutUs = () => {
 
           <div className={styles.staff__media}>
             <img
+              loading='lazy'
               className={styles.staff__mediaItself}
               src='./images/about-us-page/founder-photo.jpg'
               alt='media-content'

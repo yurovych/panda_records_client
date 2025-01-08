@@ -206,6 +206,7 @@ export const HomePage = () => {
 
             <div className={styles.ourWorks__photo}>
               <img
+                loading='lazy'
                 className={styles.ourWorks__photoItself}
                 src={currentSong?.photo || './images/songs-photo.jpg'}
                 alt='foto'
@@ -393,6 +394,7 @@ export const HomePage = () => {
                 </div>
 
                 <img
+                  loading='lazy'
                   className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block1}`}
                   src='./images/section-testimonials/photo-block1.png'
                   alt='photo-persone'
@@ -431,6 +433,7 @@ export const HomePage = () => {
                 </div>
 
                 <img
+                  loading='lazy'
                   className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block2}`}
                   src='./images/section-testimonials/photo-block2.png'
                   alt='photo-persone'
@@ -469,6 +472,7 @@ export const HomePage = () => {
                 </div>
 
                 <img
+                  loading='lazy'
                   className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block3}`}
                   src='./images/section-testimonials/photo-block3.png'
                   alt='photo-persone'
