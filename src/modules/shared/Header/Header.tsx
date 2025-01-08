@@ -73,19 +73,33 @@ export const Header = () => {
     localStorage.setItem('language', newLang);
   };
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    const startX = event.clientX;
-    const startY = event.clientY;
+  const paddingInline = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue('--global-padding');
 
+  const normalizePaddingInline = parseInt(paddingInline);
+
+  const startDragging = (startX: number, startY: number) => {
     const rect = movedPlayer.current?.getBoundingClientRect();
 
     if (rect) {
       const offsetX = startX - rect.left;
       const offsetY = startY - rect.top;
-
       setOffset({ x: offsetX, y: offsetY });
       setIsDragging(true);
     }
+  };
+
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    const startX = event.clientX;
+    const startY = event.clientY;
+
+    startDragging(startX, startY);
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    startDragging(touch.clientX, touch.clientY);
   };
 
   const handleMouseMove = (event: MouseEvent) => {
@@ -93,14 +107,6 @@ export const Header = () => {
 
     const newX = event.clientX;
     const newY = event.clientY;
-
-    const paddingInline = getComputedStyle(
-      document.documentElement
-    ).getPropertyValue('--global-padding');
-
-    const normalizePaddingInline = parseInt(paddingInline);
-
-    console.log(normalizePaddingInline);
 
     if (movedPlayer.current) {
       movedPlayer.current.style.left = `${
@@ -110,7 +116,25 @@ export const Header = () => {
     }
   };
 
-  const handleMouseUp = () => {
+  const handleTouchMove = (event: TouchEvent) => {
+    if (!isDragging) return;
+    const touch = event.touches[0];
+    updatePosition(touch.clientX, touch.clientY);
+  };
+
+  const updatePosition = (x: number, y: number) => {
+    if (movedPlayer.current) {
+      movedPlayer.current.style.left = `${
+        x - offset.x + normalizePaddingInline
+      }px`;
+      movedPlayer.current.style.top = `${y - offset.y}px`;
+    }
+  };
+
+  const handleMouseUp = () => stopDragging();
+  const handleTouchEnd = () => stopDragging();
+
+  const stopDragging = () => {
     setIsDragging(false);
   };
 
@@ -118,14 +142,20 @@ export const Header = () => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchend', handleTouchEnd);
     } else {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
     }
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
     };
   }, [isDragging]);
 
@@ -135,6 +165,7 @@ export const Header = () => {
         {currentSong && (
           <div
             onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
             ref={movedPlayer}
             className={`${
               currentSong ? styles.showPlayer : styles.hidePlayer
