@@ -98,7 +98,6 @@ export const Header = () => {
   };
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-    event.stopPropagation();
     const touch = event.touches[0];
     startDragging(touch.clientX, touch.clientY);
   };
@@ -119,6 +118,8 @@ export const Header = () => {
 
   const handleTouchMove = (event: TouchEvent) => {
     if (!isDragging) return;
+
+    event.preventDefault();
     const touch = event.touches[0];
     updatePosition(touch.clientX, touch.clientY);
   };
