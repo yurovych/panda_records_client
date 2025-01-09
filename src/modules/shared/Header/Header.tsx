@@ -98,6 +98,7 @@ export const Header = () => {
   };
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    event.stopPropagation();
     const touch = event.touches[0];
     startDragging(touch.clientX, touch.clientY);
   };
