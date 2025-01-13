@@ -141,6 +141,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
         return (
           <div className={styles.card}>
             <img
+              loading='lazy'
               className={styles.card__photo}
               src={track.photo || './images/big-logo.png'}
               alt='foto'
@@ -234,6 +235,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
           <div className={styles.strip}>
             <div className={styles.strip__content}>
               <img
+                loading='lazy'
                 className={styles.strip__photo}
                 src={track.photo || './images/big-logo.png'}
                 alt='foto'

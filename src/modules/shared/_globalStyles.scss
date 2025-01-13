@@ -8,7 +8,7 @@
 
 :root {
   scroll-behavior: smooth;
-  --global-padding: 16px;
+  --global-padding: 16;
 
   @include on-tablet {
     --global-padding: 32px;

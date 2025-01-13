@@ -34,10 +34,12 @@ export const Header = () => {
     scrollPageUp();
   }
 
-  async function handleContactUsClick() {
-    await navigate('/');
-    const element = document.getElementById('contactUs');
-    element?.scrollIntoView({ behavior: 'smooth' });
+  function handleContactUsClick() {
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById('contactUs');
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
   }
 
   const handleMenuButtonClick = () => {
@@ -77,8 +79,6 @@ export const Header = () => {
     document.documentElement
   ).getPropertyValue('--global-padding');
 
-  const normalizePaddingInline = parseInt(paddingInline);
-
   const startDragging = (startX: number, startY: number) => {
     const rect = movedPlayer.current?.getBoundingClientRect();
 
@@ -98,39 +98,32 @@ export const Header = () => {
   };
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-    event.preventDefault();
-
     const touch = event.touches[0];
     startDragging(touch.clientX, touch.clientY);
   };
 
-  const handleMouseMove = (event: MouseEvent) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
 
     const newX = event.clientX;
     const newY = event.clientY;
 
     if (movedPlayer.current) {
-      movedPlayer.current.style.left = `${
-        newX - offset.x + normalizePaddingInline
-      }px`;
+      movedPlayer.current.style.left = `${newX - offset.x + paddingInline}px`;
       movedPlayer.current.style.top = `${newY - offset.y}px`;
     }
   };
 
-  const handleTouchMove = (event: TouchEvent) => {
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
     if (!isDragging) return;
 
-    event.preventDefault();
     const touch = event.touches[0];
     updatePosition(touch.clientX, touch.clientY);
   };
 
   const updatePosition = (x: number, y: number) => {
     if (movedPlayer.current) {
-      movedPlayer.current.style.left = `${
-        x - offset.x + normalizePaddingInline
-      }px`;
+      movedPlayer.current.style.left = `${x - offset.x + paddingInline}px`;
       movedPlayer.current.style.top = `${y - offset.y}px`;
     }
   };
@@ -142,34 +135,17 @@ export const Header = () => {
     setIsDragging(false);
   };
 
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      document.addEventListener('touchmove', handleTouchMove);
-      document.addEventListener('touchend', handleTouchEnd);
-    } else {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, [isDragging]);
-
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
         {currentSong && (
           <div
             onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
             onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             ref={movedPlayer}
             className={`${
               currentSong ? styles.showPlayer : styles.hidePlayer

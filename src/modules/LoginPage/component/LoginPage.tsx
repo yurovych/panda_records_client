@@ -52,7 +52,7 @@ export const LoginPage = () => {
       return `${t('validate_password_error1')}`;
     }
 
-    if (value.length < 6) {
+    if (value.length < 8) {
       return `${t('validate_password_error2')}`;
     }
 
