@@ -196,8 +196,15 @@
 }
 
 .mini {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
   &__song {
     margin-right: 20px;
+    width: 100%;
   }
 
   &__data {
@@ -239,7 +246,7 @@
 }
 
 .player {
-  z-index: 999;
+  z-index: 1080;
   background-image: url('./../../../../public/images/disc-bg.png');
   background-position: top;
   background-repeat: no-repeat;

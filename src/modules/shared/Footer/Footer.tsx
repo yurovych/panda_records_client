@@ -4,6 +4,8 @@ import styles from './Footer.module.scss';
 import { scrollPageUp } from '../../../helpers/scrollPageUp';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { UserIcon } from '../../../iconsMove/user';
+import { MapPinIcon } from '../../../iconsMove/map-pin';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -30,11 +32,9 @@ export const Footer = () => {
             className={styles.footer__location}
             rel='noreferrer'
           >
-            <img
-              className={styles.footer__locationIco}
-              src='./icons/location-ico.svg'
-              alt='location_ico'
-            />
+            <div className={styles.footer__locationIco}>
+              <MapPinIcon />
+            </div>
 
             <p className={styles.footer__adressPhone} rel='noreferrer'>
               {t('adress_1')}
@@ -51,7 +51,7 @@ export const Footer = () => {
           <a href={`tel:${PHONE_NUMBER}`} className={styles.footer__phone}>
             <img
               className={styles.footer__phoneIco}
-              src='./icons/phone-ico.svg'
+              src='/icons/phone-ico.svg'
               alt='phone_ico'
             />
 
@@ -63,7 +63,7 @@ export const Footer = () => {
 
         <div className={styles.footer__underline}>
           <Link to='/admin' className={styles.footer__login}>
-            <img src='./icons/log-in-ico.svg' alt='login' />
+            <UserIcon />
           </Link>
 
           <p className={styles.footer__copyRigths}>

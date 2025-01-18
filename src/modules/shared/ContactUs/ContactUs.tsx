@@ -70,7 +70,7 @@ export const ContactUs = () => {
               rel='noreferrer'
               href='https://www.instagram.com/panda._.record?igsh=a2J0ajlmbXptNGd4'
             >
-              <img src='./icons/instagram-color-ico.svg' alt='instagram-ico' />
+              <img src='/icons/instagram-color-ico.svg' alt='instagram-ico' />
             </a>
 
             <a
@@ -79,7 +79,7 @@ export const ContactUs = () => {
               rel='noreferrer'
               href='https://www.tiktok.com/@panda._.record?_t=8s3ITFWiSVK&_r=1'
             >
-              <img src='./icons/tiktok-color-ico.svg' alt='tiktok-ico' />
+              <img src='/icons/tiktok-color-ico.svg' alt='tiktok-ico' />
             </a>
           </div>
         </div>

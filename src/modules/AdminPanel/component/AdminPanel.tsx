@@ -70,11 +70,12 @@ export const AdminPanel = () => {
     dispatch(setIsAdminPanel(!isAdminPanel));
   };
 
-  const navPaths = {
-    messages: '/admin',
-    email: '/admin/change-email',
-    password: '/admin/change-password',
-  };
+  enum NavPaths {
+    MESSAGES = '/admin',
+    EMAIL = '/admin/change-email',
+    PASSWORD = '/admin/change-password',
+    ADD_SONG = '/admin/add-song',
+  }
 
   return (
     <>
@@ -96,31 +97,45 @@ export const AdminPanel = () => {
             className={`${styles.adminPanel__element} ${
               styles.adminPanel__message
             } ${
-              navPaths.messages === location.pathname && styles.linkIsActive
+              NavPaths.MESSAGES === location.pathname && styles.linkIsActive
             }`}
             to='/admin'
           >
             {t('admin_panel_messages')}
           </Link>
+
           <Link
             onClick={handleAdminMenuButton}
             className={`${styles.adminPanel__element} ${
               styles.adminPanel__email
-            } ${navPaths.email === location.pathname && styles.linkIsActive}`}
+            } ${NavPaths.EMAIL === location.pathname && styles.linkIsActive}`}
             to='/admin/change-email'
           >
             {t('admin_panel_email')}
           </Link>
+
           <Link
             onClick={handleAdminMenuButton}
             className={`${styles.adminPanel__element} ${
               styles.adminPanel__password
             } ${
-              navPaths.password === location.pathname && styles.linkIsActive
+              NavPaths.PASSWORD === location.pathname && styles.linkIsActive
             }`}
             to='/admin/change-password'
           >
             {t('admin_panel_password')}
+          </Link>
+
+          <Link
+            onClick={handleAdminMenuButton}
+            className={`${styles.adminPanel__element} ${
+              styles.adminPanel__addSong
+            } ${
+              NavPaths.ADD_SONG === location.pathname && styles.linkIsActive
+            }`}
+            to='/admin/add-song'
+          >
+            {t('admin_panel_add_song')}
           </Link>
 
           <div className={styles.adminPanel__links}>
@@ -131,7 +146,7 @@ export const AdminPanel = () => {
             >
               <img
                 className={styles.adminPanel__linkIco}
-                src='./icons/instagram-color-ico.svg'
+                src='/icons/instagram-color-ico.svg'
                 alt='instagram'
               />
             </a>
@@ -142,14 +157,14 @@ export const AdminPanel = () => {
             >
               <img
                 className={styles.adminPanel__linkIco}
-                src='./icons/tiktok-color-ico.svg'
+                src='/icons/tiktok-color-ico.svg'
                 alt='tiktok'
               />
             </a>
             <a href={currentTelegram} target='_blank' rel='noreferrer'>
               <img
                 className={styles.adminPanel__linkIco}
-                src='./icons/telegram-color-ico.svg'
+                src='/icons/telegram-color-ico.svg'
                 alt='telegram'
               />
             </a>
@@ -186,8 +201,8 @@ export const AdminPanel = () => {
           <img
             src={
               isAdminPanel
-                ? './icons/admin-panel-close-button-ico.svg'
-                : './icons/admin-panel-open-button-ico.svg'
+                ? '/icons/admin-panel-close-button-ico.svg'
+                : '/icons/admin-panel-open-button-ico.svg'
             }
             alt='open'
           />

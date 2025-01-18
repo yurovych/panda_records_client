@@ -1,60 +1,20 @@
 import { Formik, Form, Field } from 'formik';
+import { Button } from '../Button';
 import cn from 'classnames';
 import { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { Button } from '../Button';
 import styles from './ContactForm.module.scss';
 import { clientService } from '../../../services/clientService';
 import { useTranslation } from 'react-i18next';
+import { useValidation } from '../../../app/hooks';
 
 export const ContactForm = () => {
   const { t } = useTranslation();
+  const { validateEmail, validateName, validatePhoneNumber, validateMessage } =
+    useValidation();
 
   const [error, setError] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
-
-  function validateName(value: string) {
-    if (!value) {
-      return `${t('validate_name_error1')}`;
-    }
-
-    if (value.length < 2) {
-      return `${t('validate_name_error2')}`;
-    }
-  }
-
-  function validateEmail(value: string) {
-    if (!value) {
-      return `${t('validate_email_error1')}`;
-    }
-
-    const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
-
-    if (!emailPattern.test(value)) {
-      return `${t('validate_email_error2')}`;
-    }
-  }
-
-  function validatePhoneNumber(value: string) {
-    if (!value) {
-      return;
-    }
-
-    const phoneRegex = /^0\d{9}$/;
-    if (!phoneRegex.test(value)) {
-      return `${t('validate_phone_error1')}`;
-    }
-  }
-
-  function validateMessage(value: string) {
-    if (!value) {
-      return `${t('validate_message_error1')}`;
-    }
-
-    if (value.length < 10) {
-      return `${t('validate_message_error2')}`;
-    }
-  }
 
   return (
     <>

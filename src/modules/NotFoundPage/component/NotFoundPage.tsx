@@ -15,13 +15,13 @@ export const NotFoundPage: React.FC = () => {
           <div className={styles.notFoundPage__imgBlock}>
             <img
               className={styles.notFoundPage__logo}
-              src='./icons/logo_panda52x52.svg'
+              src='/icons/logo_panda52x52.svg'
               alt='logo-ico'
             />
 
             <img
               className={styles.notFoundPage__oops}
-              src='./icons/oops.png'
+              src='/icons/oops.png'
               alt='oops-ico'
             />
           </div>

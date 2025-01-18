@@ -5,6 +5,9 @@ import styles from './HidenMenu.module.scss';
 import React from 'react';
 import { setIsHidenMenu } from '../../../slices/booleanSlice';
 import { useTranslation } from 'react-i18next';
+import { MapPinIcon } from '../../../iconsMove/map-pin';
+import { MessageCircleMoreIcon } from '../../../iconsMove/message-circle-more';
+import { InstagramIcon } from '../../../iconsMove/instagram';
 
 export const HidenMenu: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +48,7 @@ export const HidenMenu: React.FC = () => {
         <div className={styles.hidenMenu__contacts_contactWrapper}>
           <img
             className={styles.hidenMenu__contacts_ico}
-            src='./icons/phone-ico.svg'
+            src='/icons/phone-ico.svg'
             alt='phone'
           />
 
@@ -58,11 +61,9 @@ export const HidenMenu: React.FC = () => {
         </div>
 
         <div className={styles.hidenMenu__contacts_contactWrapper}>
-          <img
-            className={styles.hidenMenu__contacts_ico}
-            src='./icons/location-ico.svg'
-            alt='location_ico'
-          />
+          <div className={styles.hidenMenu__contacts_ico}>
+            <MapPinIcon />
+          </div>
 
           <a
             target='_blank'
@@ -79,15 +80,12 @@ export const HidenMenu: React.FC = () => {
 
       <div className={styles.hidenMenu__icons}>
         <a className={styles.hidenMenu__icons_icon} href='tel:+380687166092'>
-          <img src='./icons/phone-ico.svg' alt='phone-ico' />
+          <img src='/icons/phone-ico.svg' alt='phone-ico' />
         </a>
 
-        <img
-          className={styles.hidenMenu__icons_icon}
-          onClick={handleContactUsClick}
-          src='./icons/envelope-ico.svg'
-          alt='envelop_ico'
-        />
+        <div onClick={handleContactUsClick}>
+          <MessageCircleMoreIcon />
+        </div>
 
         <a
           className={styles.hidenMenu__icons_icon}
@@ -95,11 +93,7 @@ export const HidenMenu: React.FC = () => {
           target='_blank'
           rel='noreferrer'
         >
-          <img
-            className={styles.hidenMenu__icons_icon}
-            src='./icons/instagram-ico.svg'
-            alt='instagram_ico'
-          />
+          <InstagramIcon />
         </a>
 
         <a
@@ -110,7 +104,7 @@ export const HidenMenu: React.FC = () => {
         >
           <img
             className={styles.hidenMenu__icons_icon}
-            src='./icons/tiktok-white-ico.svg'
+            src='/icons/tiktok-white-ico.svg'
             alt='tiktok_ico'
           />
         </a>

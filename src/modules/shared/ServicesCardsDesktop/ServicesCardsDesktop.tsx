@@ -65,7 +65,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
                   {
                     <img
                       className={styles.card__clockIco}
-                      src='./icons/clock-ico.svg'
+                      src='/icons/clock-ico.svg'
                       alt='clock-ico'
                     />
                   }
@@ -122,7 +122,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
                   {
                     <img
                       className={styles.card__clockIco}
-                      src='./icons/clock-ico.svg'
+                      src='/icons/clock-ico.svg'
                       alt='clock-ico'
                     />
                   }
@@ -179,7 +179,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
                   {
                     <img
                       className={styles.card__clockIco}
-                      src='./icons/clock-ico.svg'
+                      src='/icons/clock-ico.svg'
                       alt='clock-ico'
                     />
                   }
@@ -244,7 +244,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
                   {
                     <img
                       className={styles.card__clockIco}
-                      src='./icons/clock-ico.svg'
+                      src='/icons/clock-ico.svg'
                       alt='clock-ico'
                     />
                   }
@@ -301,7 +301,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
                   {
                     <img
                       className={styles.card__clockIco}
-                      src='./icons/clock-ico.svg'
+                      src='/icons/clock-ico.svg'
                       alt='clock-ico'
                     />
                   }
@@ -358,7 +358,7 @@ export const ServicesCardsDesktop: React.FC<ServicesCardsDesktopType> = (
                   {
                     <img
                       className={styles.card__clockIco}
-                      src='./icons/clock-ico.svg'
+                      src='/icons/clock-ico.svg'
                       alt='clock-ico'
                     />
                   }

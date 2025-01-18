@@ -14,7 +14,7 @@ export const PrivatPolicy = () => {
       <div className={styles.policy__content}>
         <img
           className={styles.policy__star}
-          src='./images/policy-white-star.png'
+          src='/images/policy-white-star.png'
           alt='star-image'
         />
 

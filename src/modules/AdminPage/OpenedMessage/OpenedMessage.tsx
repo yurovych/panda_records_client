@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setiIsMessageOpened } from '../../../slices/booleanSlice';
+import { setIsMessageOpened } from '../../../slices/booleanSlice';
 import styles from './OpenedMessage.module.scss';
 import { getTime } from './../../../helpers/getTime';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ export const OpenedMessage = () => {
   );
 
   function closeMessage() {
-    dispatch(setiIsMessageOpened(false));
+    dispatch(setIsMessageOpened(false));
   }
 
   return (

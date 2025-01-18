@@ -22,7 +22,7 @@ export const Services = () => {
       <section className={styles.variety}>
         <img
           className={styles.variety__star}
-          src='./images/services-blue-star.png'
+          src='/images/services-blue-star.png'
           alt='star-foto'
         />
         <h1 className={styles.variety__title}>{t('sevcices_title')} </h1>
@@ -80,7 +80,7 @@ export const Services = () => {
       <section className={styles.lessons}>
         <img
           className={styles.lessons__star}
-          src='./images/services-pink-star.png'
+          src='/images/services-pink-star.png'
           alt='star-foto'
         />
         <h2 className={styles.lessons__sectionTitle}>
@@ -93,7 +93,7 @@ export const Services = () => {
               <img
                 loading='lazy'
                 className={styles.lessons__imageItself}
-                src='./images/contactUs_image2.jpg'
+                src='/images/contactUs_image2.jpg'
                 alt='card_image'
               />
             </div>
@@ -111,7 +111,7 @@ export const Services = () => {
                 <h3 className={styles.lessons__priceBlockText}>800₴ /</h3>
                 <img
                   className={styles.lessons__clockIco}
-                  src='./icons/clock-ico.svg'
+                  src='/icons/clock-ico.svg'
                   alt='clock-ico'
                 />
                 <h3 className={styles.lessons__priceBlockText}>
@@ -126,7 +126,7 @@ export const Services = () => {
               <img
                 loading='lazy'
                 className={styles.lessons__imageItself}
-                src='./images/guitar_lesson_services.jpg'
+                src='/images/guitar_lesson_services.jpg'
                 alt='card_image'
               />
             </div>
@@ -144,7 +144,7 @@ export const Services = () => {
                 <h3 className={styles.lessons__priceBlockText}>450₴ /</h3>
                 <img
                   className={styles.lessons__clockIco}
-                  src='./icons/clock-ico.svg'
+                  src='/icons/clock-ico.svg'
                   alt='clock-ico'
                 />
                 <h3 className={styles.lessons__priceBlockText}>

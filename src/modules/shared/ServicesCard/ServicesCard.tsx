@@ -131,7 +131,7 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card, visual }) => {
                     {
                       <img
                         className={styles.serDetCard__clockIco}
-                        src='./icons/clock-ico.svg'
+                        src='/icons/clock-ico.svg'
                         alt='clock-ico'
                       />
                     }

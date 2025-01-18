@@ -11,6 +11,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { setCurrentLanguage } from '../../../slices/current';
 import { SongCard } from '../SongCard';
+import { InstagramIcon } from '../../../iconsMove/instagram';
+import { XIcon } from '../../../iconsMove/x';
+import { MenuIcon } from '../../../iconsMove/menu';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -172,7 +175,7 @@ export const Header = () => {
                 className={`${styles.languageButton__img} ${
                   currentLanguage === 'ua' && styles.languageChanging
                 }`}
-                src='./icons/ua-flag-ico.svg'
+                src='/icons/ua-flag-ico.svg'
                 alt='ua-flag'
               />
             ) : (
@@ -181,7 +184,7 @@ export const Header = () => {
                 className={`${styles.languageButton__img} ${
                   currentLanguage === 'ua' && styles.languageChanging
                 }`}
-                src='./icons/en-flag-ico.svg'
+                src='/icons/en-flag-ico.svg'
                 alt='en-flag'
               />
             )}
@@ -198,7 +201,7 @@ export const Header = () => {
               target='_blank'
               rel='noreferrer'
             >
-              <img src='./icons/instagram-ico.svg' alt='instagram_ico' />
+              <InstagramIcon />
             </a>
 
             <a
@@ -207,7 +210,7 @@ export const Header = () => {
               target='_blank'
               rel='noreferrer'
             >
-              <img src='./icons/tiktok-white-ico.svg' alt='tiktok_ico' />
+              <img src='/icons/tiktok-white-ico.svg' alt='tiktok_ico' />
             </a>
           </div>
 
@@ -215,14 +218,7 @@ export const Header = () => {
             onClick={handleMenuButtonClick}
             className={styles.header__burgerMenu}
           >
-            <img
-              src={
-                isHidenMenu
-                  ? './icons/close-ico.svg'
-                  : './icons/burger-menu-ico.svg'
-              }
-              alt='menu'
-            />
+            {isHidenMenu ? <XIcon /> : <MenuIcon />}
           </div>
         </div>
       </div>

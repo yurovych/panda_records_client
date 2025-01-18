@@ -50,7 +50,7 @@ export const AdminPage: React.FC = () => {
               <AdminPanel />
             </div>
 
-            <div className={styles.adminPage__listWrapper}>{<Outlet />}</div>
+            <div className={styles.adminPage__contentWrapper}>{<Outlet />}</div>
           </div>
         </div>
       ) : messagesFetchError ? (

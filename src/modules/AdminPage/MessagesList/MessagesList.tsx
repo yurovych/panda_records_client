@@ -1,7 +1,7 @@
 import styles from './MessagesList.module.scss';
 import { Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setiIsMessageOpened } from '../../../slices/booleanSlice';
+import { setIsMessageOpened } from '../../../slices/booleanSlice';
 import { setCurrentMessage } from '../../../slices/current';
 import { UserMessageType } from '../../../types/UserMessage';
 import { Loader } from '../../Loader';
@@ -9,6 +9,8 @@ import { getTime } from './../../../helpers/getTime';
 import { updateMessageStatusAsync } from '../../../slices/fetchMessages';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TablePagination } from '@mui/material';
+import { MyTablePagination } from './MessagesStyles';
 
 export const MessagesList = () => {
   const dispatch = useAppDispatch();
@@ -23,9 +25,22 @@ export const MessagesList = () => {
   const statusError = useAppSelector((state) => state.messages.statusError);
 
   const [error, setError] = useState('');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   function handleClickOnMessage(message: UserMessageType) {
-    dispatch(setiIsMessageOpened(true));
+    dispatch(setIsMessageOpened(true));
     dispatch(setCurrentMessage(message));
     setError('');
   }
@@ -119,17 +134,17 @@ export const MessagesList = () => {
           <div className={styles.stars}>
             <img
               className={`${styles.stars__star} ${styles.stars__star_star1}`}
-              src='./images/songs-star-big.png'
+              src='/images/songs-star-big.png'
               alt='star_ico'
             />
             <img
               className={`${styles.stars__star} ${styles.stars__star_star2}`}
-              src='./images/songs-star-avarage.png'
+              src='/images/songs-star-avarage.png'
               alt='star_ico'
             />
             <img
               className={`${styles.stars__star} ${styles.stars__star_star3}`}
-              src='./images/songs-star-small.png'
+              src='/images/songs-star-small.png'
               alt='star_ico'
             />
           </div>
@@ -166,29 +181,60 @@ export const MessagesList = () => {
                   <p>{messagesError}</p>
                 ) : (
                   <>
-                    {messages.map((message: UserMessageType, index: number) => (
-                      <div
-                        onClick={() => handleClickOnMessage(message)}
-                        style={{ backgroundColor: `${getBg(message.status)}` }}
-                        className={styles.list__strip}
-                      >
-                        {error && currentMessage?.id === message.id && (
-                          <p
-                            className={`${styles.statusError} notification is-danger is-light`}
-                          >
-                            {error}
-                          </p>
-                        )}
-                        <p className={styles.list__text}>{index + 1}</p>
-                        <p className={styles.list__text}>{message.name}</p>
-                        <p className={styles.list__text}>{message.email}</p>
-                        <p className={styles.list__text}>
-                          {message.phone_number || '-'}
-                        </p>
-                        <p className={styles.list__text}>{getTime(message)}</p>
-                        {getStatus(message)}
-                      </div>
-                    ))}
+                    {messages.length > 0 ? (
+                      <>
+                        {messages
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
+                          .map((message: UserMessageType, index: number) => (
+                            <div
+                              onClick={() => handleClickOnMessage(message)}
+                              style={{
+                                backgroundColor: `${getBg(message.status)}`,
+                              }}
+                              className={styles.list__strip}
+                            >
+                              {error && currentMessage?.id === message.id && (
+                                <p
+                                  className={`${styles.statusError} notification is-danger is-light`}
+                                >
+                                  {error}
+                                </p>
+                              )}
+                              <p className={styles.list__text}>{index + 1}</p>
+                              <p className={styles.list__text}>
+                                {message.name}
+                              </p>
+                              <p className={styles.list__text}>
+                                {message.email}
+                              </p>
+                              <p className={styles.list__text}>
+                                {message.phone_number || '-'}
+                              </p>
+                              <p className={styles.list__text}>
+                                {getTime(message)}
+                              </p>
+                              {getStatus(message)}
+                            </div>
+                          ))}
+
+                        <MyTablePagination
+                          sx={{ color: '#5e5e5f' }}
+                          rowsPerPageOptions={[10, 25, 100]}
+                          count={messages.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                      </>
+                    ) : (
+                      <p className={styles.list__empty}>
+                        {t('admin_page_no_messages')}
+                      </p>
+                    )}
                   </>
                 )}
               </>
@@ -204,37 +250,57 @@ export const MessagesList = () => {
                   <p>{messagesError}</p>
                 ) : (
                   <>
-                    {messages.map((message: UserMessageType) => (
-                      <div
-                        onClick={() => handleClickOnMessage(message)}
-                        style={{ backgroundColor: `${getBg(message.status)}` }}
-                        className={styles.list__row}
-                      >
-                        <p
-                          className={`${styles.list__text} ${styles.list__name}`}
-                        >
-                          {message.name}
-                        </p>
-                        <p
-                          className={`${styles.list__text} ${styles.list__email}`}
-                        >
-                          {message.email}
-                        </p>
-                        <p
-                          className={`${styles.list__text} ${styles.list__message}`}
-                        >
-                          {message.message}
-                        </p>
+                    {messages.length > 0 ? (
+                      <>
+                        {messages.map((message: UserMessageType) => (
+                          <div
+                            onClick={() => handleClickOnMessage(message)}
+                            style={{
+                              backgroundColor: `${getBg(message.status)}`,
+                            }}
+                            className={styles.list__row}
+                          >
+                            <p
+                              className={`${styles.list__text} ${styles.list__name}`}
+                            >
+                              {message.name}
+                            </p>
+                            <p
+                              className={`${styles.list__text} ${styles.list__email}`}
+                            >
+                              {message.email}
+                            </p>
+                            <p
+                              className={`${styles.list__text} ${styles.list__message}`}
+                            >
+                              {message.message}
+                            </p>
 
-                        <p
-                          className={`${styles.list__text} ${styles.list__date}`}
-                        >
-                          {getTime(message)}
-                        </p>
+                            <p
+                              className={`${styles.list__text} ${styles.list__date}`}
+                            >
+                              {getTime(message)}
+                            </p>
 
-                        {getStatus(message)}
-                      </div>
-                    ))}
+                            {getStatus(message)}
+                          </div>
+                        ))}
+                        <TablePagination
+                          sx={{ color: '#5e5e5f' }}
+                          rowsPerPageOptions={[10, 25, 100]}
+                          component='div'
+                          count={messages.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                      </>
+                    ) : (
+                      <p className={styles.list__empty}>
+                        {t('admin_page_no_messages')}
+                      </p>
+                    )}
                   </>
                 )}
               </>

@@ -5,10 +5,11 @@ import { authService } from './../../services/authService';
 import styles from './ResetPasswordRequest.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useValidation } from '../../app/hooks';
 
 export const ResetPasswordRequest = () => {
   const { t } = useTranslation();
+  const { validateEmail } = useValidation();
 
   const currentLanguage = useAppSelector(
     (state) => state.current.currentLanguage
@@ -24,18 +25,6 @@ export const ResetPasswordRequest = () => {
         <p>{t('reset_password_request_check_email2')}</p>
       </section>
     );
-  }
-
-  function validateEmail(value: string) {
-    if (!value) {
-      return `${t('validate_email_error1')}`;
-    }
-
-    const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
-
-    if (!emailPattern.test(value)) {
-      return `${t('validate_email_error2')}`;
-    }
   }
 
   return (
@@ -91,7 +80,7 @@ export const ResetPasswordRequest = () => {
                 {t('reset_password_request_title')}
               </h1>
               <div className={styles.form__element}>
-                <label htmlFor='email' className={styles.form__lable}>
+                <label htmlFor='email' className={styles.form__label}>
                   {t('email')}
                 </label>
 

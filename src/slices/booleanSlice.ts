@@ -6,6 +6,7 @@ type BooleanType = {
   isHidenMenu: boolean;
   isAdminPanel: boolean;
   isMessageOpened: boolean;
+  isDeleteModalOpened: boolean;
 };
 
 const initialState: BooleanType = {
@@ -13,6 +14,7 @@ const initialState: BooleanType = {
   isHidenMenu: false,
   isAdminPanel: false,
   isMessageOpened: false,
+  isDeleteModalOpened: false,
 };
 
 const booleanSlice = createSlice({
@@ -31,8 +33,11 @@ const booleanSlice = createSlice({
       state.isAdminPanel = action.payload;
     },
 
-    setiIsMessageOpened: (state, action: PayloadAction<boolean>) => {
+    setIsMessageOpened: (state, action: PayloadAction<boolean>) => {
       state.isMessageOpened = action.payload;
+    },
+    setIsDeleteModalOpened: (state, action: PayloadAction<boolean>) => {
+      state.isDeleteModalOpened = action.payload;
     },
   },
 });
@@ -42,5 +47,6 @@ export const {
   setIsAuthenticated,
   setIsHidenMenu,
   setIsAdminPanel,
-  setiIsMessageOpened,
+  setIsMessageOpened,
+  setIsDeleteModalOpened,
 } = booleanSlice.actions;

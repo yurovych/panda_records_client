@@ -28,7 +28,6 @@ export const HomePage = () => {
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const servicesFetchError = useAppSelector((state) => state.sevrices.error);
   const songsFetchError = useAppSelector((state) => state.songs.error);
-
   const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
   const guitarTeacherVideo = videosList.find(
@@ -69,7 +68,7 @@ export const HomePage = () => {
             <div className={styles.top__photo}>
               <img
                 className={styles.top__photoItself}
-                src='./images/top-photo.jpg'
+                src='/images/top-photo.jpg'
                 alt='foto'
               />
             </div>
@@ -86,12 +85,14 @@ export const HomePage = () => {
 
         <div className={styles.aboutUsWrapper}>
           <section className={styles.aboutUs}>
-            <h2 className={styles.aboutUs__title}>{t('home_about_title')}</h2>
+            <h2 id='aboutUsTitleId' className={styles.aboutUs__title}>
+              {t('home_about_title')}
+            </h2>
 
             <div className={styles.aboutUs__photo}>
               <img
                 className={styles.aboutUs__photoItself}
-                src='./images/about-us-photo.jpg'
+                src='/images/about-us-photo.jpg'
                 alt='foto'
               />
             </div>
@@ -102,12 +103,12 @@ export const HomePage = () => {
               className={`${styles.aboutUs__advantages} ${styles.aboutUs__advantages_block1}`}
             >
               <div className={styles.aboutUs__advantage}>
-                <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />
+                <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />
                 <p>{t('home_about_marker1')}</p>
               </div>
 
               <div className={styles.aboutUs__advantage}>
-                <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
+                <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
                 <p>{t('home_about_marker2')}</p>
               </div>
             </div>
@@ -116,12 +117,12 @@ export const HomePage = () => {
               className={`${styles.aboutUs__advantages} ${styles.aboutUs__advantages_block2}`}
             >
               <div className={styles.aboutUs__advantage}>
-                <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
+                <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
                 <p>{t('home_about_marker3')}</p>
               </div>
 
               <div className={styles.aboutUs__advantage}>
-                <img src='./icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
+                <img src='/icons/checkmark-filled-ico.svg' alt='checkmark' />{' '}
                 <p>{t('home_about_marker4')}</p>
               </div>
             </div>
@@ -208,7 +209,7 @@ export const HomePage = () => {
               <img
                 loading='lazy'
                 className={styles.ourWorks__photoItself}
-                src={currentSong?.photo || './images/songs-photo.jpg'}
+                src={currentSong?.photo || '/images/songs-photo.jpg'}
                 alt='foto'
               />
             </div>
@@ -245,7 +246,7 @@ export const HomePage = () => {
           <section className={styles.banner}>
             <img
               className={styles.banner__star}
-              src='./images/baner-star.png'
+              src='/images/baner-star.png'
               alt='image-star'
             />
 
@@ -306,13 +307,13 @@ export const HomePage = () => {
             <section className={styles.equipment}>
               <img
                 className={`${styles.equipment__star} ${styles.equipment__star_star1}`}
-                src='./images/equipment-white-star.png'
+                src='/images/equipment-white-star.png'
                 alt='image-star'
               />
 
               <img
                 className={`${styles.equipment__star} ${styles.equipment__star_star2}`}
-                src='./images/equipment-white-star.png'
+                src='/images/equipment-white-star.png'
                 alt='image-star'
               />
 
@@ -367,7 +368,7 @@ export const HomePage = () => {
               >
                 <img
                   className={`${styles.testimonials__imageQuotes} ${styles.testimonials__imageQuotes_block1}`}
-                  src='./icons/white-quotes-ico.svg'
+                  src='/icons/white-quotes-ico.svg'
                   alt='image-quotes'
                 />
 
@@ -396,7 +397,7 @@ export const HomePage = () => {
                 <img
                   loading='lazy'
                   className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block1}`}
-                  src='./images/section-testimonials/photo-block1.png'
+                  src='/images/section-testimonials/photo-block1.png'
                   alt='photo-persone'
                 />
               </div>
@@ -406,7 +407,7 @@ export const HomePage = () => {
               >
                 <img
                   className={`${styles.testimonials__imageQuotes} ${styles.testimonials__imageQuotes_block2}`}
-                  src='./icons/pink-quotes-ico.svg'
+                  src='/icons/pink-quotes-ico.svg'
                   alt='image-quotes'
                 />
 
@@ -435,7 +436,7 @@ export const HomePage = () => {
                 <img
                   loading='lazy'
                   className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block2}`}
-                  src='./images/section-testimonials/photo-block2.png'
+                  src='/images/section-testimonials/photo-block2.png'
                   alt='photo-persone'
                 />
               </div>
@@ -445,7 +446,7 @@ export const HomePage = () => {
               >
                 <img
                   className={`${styles.testimonials__imageQuotes} ${styles.testimonials__imageQuotes_block3}`}
-                  src='./icons/black-quotes-ico.svg'
+                  src='/icons/black-quotes-ico.svg'
                   alt='image-quotes'
                 />
 
@@ -474,7 +475,7 @@ export const HomePage = () => {
                 <img
                   loading='lazy'
                   className={`${styles.testimonials__personPhoto} ${styles.testimonials__personPhoto_block3}`}
-                  src='./images/section-testimonials/photo-block3.png'
+                  src='/images/section-testimonials/photo-block3.png'
                   alt='photo-persone'
                 />
               </div>

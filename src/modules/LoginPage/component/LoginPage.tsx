@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { authService } from '../../../services/authService';
 import styles from './LoginPage.module.scss';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from '../../../app/hooks';
+import { useAppSelector, useValidation } from '../../../app/hooks';
 
 type LoginParams = {
   email: string;
@@ -17,6 +17,7 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
+  const { validateEmail, validatePassword } = useValidation();
 
   const currentLanguage = useAppSelector(
     (state) => state.current.currentLanguage
@@ -34,33 +35,6 @@ export const LoginPage = () => {
     accessTokenService.save(access_token);
     localStorage.setItem('telegram_bot', telegram_bot);
   }
-
-  function validateEmail(value: string) {
-    if (!value) {
-      return `${t('validate_email_error1')}`;
-    }
-
-    const emailPattern = /^[\w.+-]+@([\w-]+\.){1,3}[\w-]{2,}$/;
-
-    if (!emailPattern.test(value)) {
-      return `${t('validate_email_error2')}`;
-    }
-  }
-
-  const validatePassword = (value?: string) => {
-    if (!value) {
-      return `${t('validate_password_error1')}`;
-    }
-
-    if (value.length < 8) {
-      return `${t('validate_password_error2')}`;
-    }
-
-    const hasNumber = /\d/;
-    if (!hasNumber.test(value)) {
-      return `${t('validate_password_error3')}`;
-    }
-  };
 
   return (
     <div className={styles.login}>
@@ -114,7 +88,7 @@ export const LoginPage = () => {
             <Form className={styles.form}>
               <h1 className={styles.form__title}>{t('login_title')}</h1>
               <div className={styles.form__element}>
-                <label htmlFor='email' className={styles.form__lable}>
+                <label htmlFor='email' className={styles.form__label}>
                   {t('email')}
                 </label>
 

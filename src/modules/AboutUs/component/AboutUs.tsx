@@ -13,7 +13,7 @@ export const AboutUs = () => {
           <div className={styles.top__thornImg}>
             <img
               className={styles.top__thornImgItself}
-              src='./icons/thorn-empty-ico.svg'
+              src='/icons/thorn-empty-ico.svg'
               alt='thorn_image'
             />
           </div>
@@ -22,7 +22,7 @@ export const AboutUs = () => {
           <div className={`${styles.top__photo} ${styles.top__photo_photo1}`}>
             <img
               className={styles.top__photoItself}
-              src='./images/about-us-page/about-us-top2.jpg'
+              src='/images/about-us-page/about-us-top2.jpg'
               alt='foto'
             />
           </div>
@@ -32,7 +32,7 @@ export const AboutUs = () => {
           <div className={`${styles.top__photo} ${styles.top__photo_photo2}`}>
             <img
               className={styles.top__photoItself}
-              src='./images/about-us-page/about-us-top1.jpg'
+              src='/images/about-us-page/about-us-top1.jpg'
               alt='foto'
             />
           </div>
@@ -49,7 +49,7 @@ export const AboutUs = () => {
             <img
               loading='lazy'
               className={styles.staff__mediaItself}
-              src='./images/about-us-page/founder-photo.jpg'
+              src='/images/about-us-page/founder-photo.jpg'
               alt='media-content'
             />
           </div>
@@ -80,7 +80,7 @@ export const AboutUs = () => {
             <div className={styles.history__art2Thorn}>
               <img
                 className={styles.history__art2ThornItself}
-                src='./icons/thorn-green-ico.svg'
+                src='/icons/thorn-green-ico.svg'
                 alt='thorn-image'
               />
             </div>
@@ -132,7 +132,7 @@ export const AboutUs = () => {
             <div className={styles.history__art5Thorn}>
               <img
                 className={styles.history__art2ThornItself}
-                src='./icons/thorn-blue-ico.svg'
+                src='/icons/thorn-blue-ico.svg'
                 alt='thorn-image'
               />
             </div>
@@ -151,7 +151,7 @@ export const AboutUs = () => {
           <div className={styles.staff__media}>
             <img
               className={styles.staff__mediaItself}
-              src='./images/about-us-page/teacher-photo.jpg'
+              src='/images/about-us-page/teacher-photo.jpg'
               alt='media-content'
             />
           </div>

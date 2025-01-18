@@ -10,6 +10,8 @@
   background-color: $color-modal-bg;
   pointer-events: auto;
   z-index: 1090;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 
   &__letter {
     z-index: 1100;

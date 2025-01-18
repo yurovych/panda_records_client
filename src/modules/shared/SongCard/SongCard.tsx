@@ -9,6 +9,9 @@ import {
   setIsSongPlaying,
 } from '../../../slices/playerSlice';
 import { Loader } from '../../Loader';
+import { DeleteIcon } from '../../../iconsMove/delete';
+import { DeleteSongModal } from '../../DeleteSongModal/DeleteSongModal';
+import { setIsDeleteModalOpened } from '../../../slices/booleanSlice';
 
 type SongTrackProps = {
   track: SongTrackType;
@@ -30,6 +33,12 @@ export const SongCard: React.FC<SongTrackProps> = ({
     (state) => state.player.currentSongIndex
   );
   const allSongs = useAppSelector((state) => state.songs.objects);
+  const isAuthenticated = useAppSelector(
+    (state) => state.boolean.isAuthenticated
+  );
+  const isDeleteModalOpened = useAppSelector(
+    (state) => state.boolean.isDeleteModalOpened
+  );
 
   (function getCurrentIndex() {
     const index = allSongs.findIndex((song) => song.id === currentSong?.id);
@@ -135,6 +144,11 @@ export const SongCard: React.FC<SongTrackProps> = ({
     return `${minutes}:${seconds}`;
   }
 
+  function handleDeleteSong() {
+    toggleTrack(track);
+    dispatch(setIsDeleteModalOpened(true));
+  }
+
   function vizualisation() {
     switch (visual) {
       case 'card':
@@ -143,7 +157,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
             <img
               loading='lazy'
               className={styles.card__photo}
-              src={track.photo || './images/big-logo.png'}
+              src={track.photo || '/images/big-logo.png'}
               alt='foto'
             />
 
@@ -167,8 +181,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     className={styles.card__button}
                     src={
                       isSongPlaying && currentSong?.id === track.id
-                        ? './icons/pause-black-ico.svg'
-                        : './icons/play-black-ico.svg'
+                        ? '/icons/pause-black-ico.svg'
+                        : '/icons/play-black-ico.svg'
                     }
                     alt='play'
                   />
@@ -237,7 +251,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
               <img
                 loading='lazy'
                 className={styles.strip__photo}
-                src={track.photo || './images/big-logo.png'}
+                src={track.photo || '/images/big-logo.png'}
                 alt='foto'
               />
 
@@ -300,8 +314,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
                     className={styles.strip__playPause}
                     src={
                       isSongPlaying && currentSong?.id === track.id
-                        ? './icons/pause-black-ico.svg'
-                        : './icons/play-black-ico.svg'
+                        ? '/icons/pause-black-ico.svg'
+                        : '/icons/play-black-ico.svg'
                     }
                     alt='play'
                   />
@@ -313,53 +327,61 @@ export const SongCard: React.FC<SongTrackProps> = ({
 
       case 'mini':
         return (
-          <div
-            onClick={() => toggleTrack(track)}
-            className={styles.mini__song}
-            key={track.id}
-          >
-            <div className={styles.mini__data}>
-              {isSongPlaying && currentSong && currentSong.id === track.id ? (
-                <div title='stop' className={styles.miniSongAnimation}>
-                  <div
-                    className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_1}`}
-                  ></div>
-                  <div
-                    className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_2}`}
-                  ></div>
-                  <div
-                    className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_3}`}
-                  ></div>
-                </div>
-              ) : !isSongPlaying &&
-                currentSong &&
-                currentSong.id === track.id ? (
-                <img
-                  className={styles.mini__button}
-                  src='./icons/pause-black-mini-ico.svg'
-                  alt='play'
-                />
-              ) : (
-                <img
-                  className={styles.mini__button}
-                  src='./icons/play-triangle-ico.svg'
-                  alt='play'
-                />
-              )}
+          <div className={styles.mini__wrapper}>
+            {isAuthenticated && (
+              <div onClick={handleDeleteSong}>
+                <DeleteIcon />
+              </div>
+            )}
 
-              <p className={styles.mini__songText}>
-                &nbsp;&nbsp;&nbsp;{index && index}.&nbsp;
-              </p>
+            <div
+              onClick={() => toggleTrack(track)}
+              className={styles.mini__song}
+              key={track.id}
+            >
+              <div className={styles.mini__data}>
+                {isSongPlaying && currentSong && currentSong.id === track.id ? (
+                  <div title='stop' className={styles.miniSongAnimation}>
+                    <div
+                      className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_1}`}
+                    ></div>
+                    <div
+                      className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_2}`}
+                    ></div>
+                    <div
+                      className={`${styles.miniSongAnimation__bar} ${styles.songAnimation__bar_3}`}
+                    ></div>
+                  </div>
+                ) : !isSongPlaying &&
+                  currentSong &&
+                  currentSong.id === track.id ? (
+                  <img
+                    className={styles.mini__button}
+                    src='/icons/pause-black-mini-ico.svg'
+                    alt='play'
+                  />
+                ) : (
+                  <img
+                    className={styles.mini__button}
+                    src='/icons/play-triangle-ico.svg'
+                    alt='play'
+                  />
+                )}
 
-              <p
-                className={`${styles.mini__songText} ${styles.mini__songDetails}`}
-              >
-                {track.artist || 'Unnown singer'}&nbsp;-&nbsp;
-                {track.title || 'Unnown song title'}
-              </p>
+                <p className={styles.mini__songText}>
+                  &nbsp;&nbsp;&nbsp;{index && index}.&nbsp;
+                </p>
+
+                <p
+                  className={`${styles.mini__songText} ${styles.mini__songDetails}`}
+                >
+                  {track.artist || 'Unnown singer'}&nbsp;-&nbsp;
+                  {track.title || 'Unnown song title'}
+                </p>
+              </div>
+
+              <div className={styles.mini__songLine}></div>
             </div>
-
-            <div className={styles.mini__songLine}></div>
           </div>
         );
 
@@ -391,8 +413,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
                       className={styles.player__playPause}
                       src={
                         isSongPlaying && currentSong?.id === track.id
-                          ? './icons/pause-pink-ico.svg'
-                          : './icons/play-pink-ico.svg'
+                          ? '/icons/pause-pink-ico.svg'
+                          : '/icons/play-pink-ico.svg'
                       }
                       alt='play'
                     />
@@ -401,7 +423,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   <img
                     onClick={() => closePlayer()}
                     className={styles.player__closeButton}
-                    src='./icons/close-ico.svg'
+                    src='/icons/close-ico.svg'
                     alt='close'
                   />
                 </div>
@@ -414,7 +436,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   <img
                     onClick={() => prevSong()}
                     className={`${styles.player__songChange} ${styles.player__prevSong}`}
-                    src='./icons/previous-black-ico.svg'
+                    src='/icons/previous-black-ico.svg'
                     alt='prev-song'
                   />
 
@@ -431,7 +453,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
                   <img
                     onClick={() => nextSong()}
                     className={`${styles.player__songChange} ${styles.player__prevSong}`}
-                    src='./icons/next-black-ico.svg'
+                    src='/icons/next-black-ico.svg'
                     alt='next-song'
                   />
                 </div>
@@ -466,5 +488,10 @@ export const SongCard: React.FC<SongTrackProps> = ({
     }
   }
 
-  return <>{vizualisation()}</>;
+  return (
+    <>
+      {isDeleteModalOpened && <DeleteSongModal track={track} />}
+      {vizualisation()}
+    </>
+  );
 };

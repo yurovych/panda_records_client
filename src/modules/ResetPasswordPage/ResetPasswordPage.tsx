@@ -5,11 +5,12 @@ import { authService } from '../../services/authService';
 import { useState } from 'react';
 import styles from './ResetPasswordPage.module.scss';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useValidation } from '../../app/hooks';
 
 export const ResetPasswordPage = () => {
   const { t } = useTranslation();
   const { reset_token } = useParams();
+  const { validatePassword } = useValidation();
 
   const currentLanguage = useAppSelector(
     (state) => state.current.currentLanguage
@@ -27,21 +28,6 @@ export const ResetPasswordPage = () => {
       </p>
     );
   }
-
-  const validatePassword = (value?: string) => {
-    if (!value) {
-      return `${t('validate_password_error1')}`;
-    }
-
-    if (value.length < 8) {
-      return `${t('validate_password_error2')}`;
-    }
-
-    const hasNumber = /\d/;
-    if (!hasNumber.test(value)) {
-      return `${t('validate_password_error3')}`;
-    }
-  };
 
   return (
     <div className={styles.changePassword}>
@@ -122,7 +108,7 @@ export const ResetPasswordPage = () => {
                 {t('reset_password_title')}
               </h1>
               <div className={styles.form__element}>
-                <label htmlFor='new-password' className={styles.form__lable}>
+                <label htmlFor='new-password' className={styles.form__label}>
                   {t('password_new')}
                 </label>
 
@@ -163,7 +149,7 @@ export const ResetPasswordPage = () => {
               <div className={styles.form__element}>
                 <label
                   htmlFor='confirm-password'
-                  className={styles.form__lable}
+                  className={styles.form__label}
                 >
                   {t('password_confirmation')}
                 </label>

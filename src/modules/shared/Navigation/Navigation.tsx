@@ -12,54 +12,54 @@ export const Navigation = () => {
     (state) => state.boolean.isAuthenticated
   );
 
-  const navPaths = {
-    aboutUs: '/about',
-    services: '/services',
-    portfolio: '/portfolio',
-    admin: '/admin',
-  };
+  enum NavPaths {
+    ABOUTUS = '/about',
+    SERVICES = '/services',
+    PORTFOLIO = '/portfolio',
+    ADMIN = '/admin',
+  }
 
   return (
     <>
       <Link
         onClick={scrollPageUp}
         className={`${styles.link} ${
-          navPaths.aboutUs === location.pathname && styles.linkIsActive
+          NavPaths.ABOUTUS === location.pathname && styles.linkIsActive
         }`}
         to={'/about'}
       >
-        {t('nav_about_us')}
+        {t('nav.about_us')}
       </Link>
 
       <Link
         onClick={scrollPageUp}
         className={`${styles.link} ${
-          navPaths.services === location.pathname && styles.linkIsActive
+          NavPaths.SERVICES === location.pathname && styles.linkIsActive
         }`}
         to={'/services'}
       >
-        {t('nav_services')}
+        {t('nav.services')}
       </Link>
 
       <Link
         onClick={scrollPageUp}
         className={`${styles.link} ${
-          navPaths.portfolio === location.pathname && styles.linkIsActive
+          NavPaths.PORTFOLIO === location.pathname && styles.linkIsActive
         }`}
         to={'/portfolio'}
       >
-        {t('nav_portfolio')}
+        {t('nav.portfolio')}
       </Link>
 
       {isAuthenticated && (
         <Link
           onClick={scrollPageUp}
           className={`${styles.link} ${
-            navPaths.admin === location.pathname && styles.linkIsActive
+            NavPaths.ADMIN === location.pathname && styles.linkIsActive
           }`}
           to={'/admin'}
         >
-          {t('nav_admin')}
+          {t('nav.admin')}
         </Link>
       )}
     </>
