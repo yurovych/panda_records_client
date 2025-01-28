@@ -31,6 +31,8 @@ export const Header = () => {
     (state) => state.current.currentLanguage
   );
 
+  window.addEventListener('resize', () => dispatch(setIsHidenMenu(false)));
+
   function handleLogoClick() {
     dispatch(setIsAdminPanel(false));
     dispatch(setIsHidenMenu(false));
@@ -50,20 +52,6 @@ export const Header = () => {
     dispatch(setIsHidenMenu(isHidenMenu ? false : true));
   };
 
-  window.addEventListener('resize', () => dispatch(setIsHidenMenu(false)));
-
-  useEffect(() => {
-    if (isHidenMenu) {
-      document.body.classList.add('hidenMenuHeightNoScroll');
-    } else {
-      document.body.classList.remove('hidenMenuHeightNoScroll');
-    }
-
-    return () => {
-      document.body.classList.remove('hidenMenuHeightNoScroll');
-    };
-  }, [isHidenMenu]);
-
   const handleLanguageChange = () => {
     setLanguageDisabled(true);
 
@@ -78,9 +66,29 @@ export const Header = () => {
     localStorage.setItem('language', newLang);
   };
 
+  useEffect(() => {
+    const disableScroll = (event: TouchEvent | MouseEvent) =>
+      event.preventDefault();
+
+    if (isDragging) {
+      document.addEventListener('touchmove', disableScroll, { passive: false });
+      document.addEventListener('mousemove', disableScroll, { passive: false });
+    } else {
+      document.removeEventListener('touchmove', disableScroll);
+      document.removeEventListener('mousemove', disableScroll);
+    }
+
+    return () => {
+      document.removeEventListener('touchmove', disableScroll);
+      document.removeEventListener('mousemove', disableScroll);
+    };
+  }, [isDragging]);
+
   const paddingInline = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--global-padding');
+
+  const paddingInlineValue = parseFloat(paddingInline) || 0;
 
   const startDragging = (startX: number, startY: number) => {
     const rect = movedPlayer.current?.getBoundingClientRect();
@@ -108,17 +116,18 @@ export const Header = () => {
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
 
+    event.preventDefault();
+
     const newX = event.clientX;
     const newY = event.clientY;
 
-    if (movedPlayer.current) {
-      movedPlayer.current.style.left = `${newX - offset.x + paddingInline}px`;
-      movedPlayer.current.style.top = `${newY - offset.y}px`;
-    }
+    updatePosition(newX, newY);
   };
 
   const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
     if (!isDragging) return;
+
+    event.preventDefault();
 
     const touch = event.touches[0];
     updatePosition(touch.clientX, touch.clientY);
@@ -126,17 +135,34 @@ export const Header = () => {
 
   const updatePosition = (x: number, y: number) => {
     if (movedPlayer.current) {
-      movedPlayer.current.style.left = `${x - offset.x + paddingInline}px`;
-      movedPlayer.current.style.top = `${y - offset.y}px`;
+      const playerRect = movedPlayer.current.getBoundingClientRect();
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      const newX = Math.max(
+        paddingInlineValue - playerRect.width * 0.6,
+        Math.min(
+          x - offset.x + paddingInlineValue,
+          windowWidth - playerRect.width + playerRect.width * 0.6
+        )
+      );
+
+      const newY = Math.max(
+        70,
+        Math.min(y - offset.y, windowHeight - playerRect.height)
+      );
+
+      movedPlayer.current.style.left = `${newX}px`;
+      movedPlayer.current.style.top = `${newY}px`;
     }
   };
-
-  const handleMouseUp = () => stopDragging();
-  const handleTouchEnd = () => stopDragging();
 
   const stopDragging = () => {
     setIsDragging(false);
   };
+
+  const handleMouseUp = () => stopDragging();
+  const handleTouchEnd = () => stopDragging();
 
   return (
     <div className={styles.headerWrapper}>

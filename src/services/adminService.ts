@@ -40,7 +40,7 @@ function addSong({ title, artist, photo, audio_file, top }: AddSong) {
 }
 
 function deleteSong(song_id: number) {
-  return adminClient.delete(`/songs/${song_id}/`);
+  return adminClient.delete(`/songs/${song_id}`);
 }
 
 function deleteMessage(message_id: number) {

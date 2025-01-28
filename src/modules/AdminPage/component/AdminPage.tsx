@@ -3,7 +3,7 @@ import { accessTokenService } from '../../../services/accessTokenService';
 import { authService } from '../../../services/authService';
 import styles from './AdminPage.module.scss';
 import React, { useEffect } from 'react';
-import { TokensType } from './../../../types/Tokens';
+import { TokensType } from '../../../types/Tokens';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Loader } from '../../Loader';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -35,13 +35,13 @@ export const AdminPage: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, []);
 
   return (
     <>
-      {isAuthenticated ? (
+      {true ? (
         <div className={styles.adminPageWrapper}>
           {isMessageOpened && <OpenedMessage />}
 

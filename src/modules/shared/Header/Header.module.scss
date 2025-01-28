@@ -1,10 +1,5 @@
 @import './../main';
 
-.hidenMenuHeightNoScroll {
-  height: 100vh;
-  overflow: hidden;
-}
-
 .headerWrapper {
   z-index: 999;
   background: $gradient-black-violet;

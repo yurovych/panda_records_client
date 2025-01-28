@@ -13,8 +13,8 @@ export const Navigation = () => {
   );
 
   enum NavPaths {
+    HOME = '/',
     ABOUTUS = '/about',
-    SERVICES = '/services',
     PORTFOLIO = '/portfolio',
     ADMIN = '/admin',
   }
@@ -24,21 +24,21 @@ export const Navigation = () => {
       <Link
         onClick={scrollPageUp}
         className={`${styles.link} ${
-          NavPaths.ABOUTUS === location.pathname && styles.linkIsActive
+          NavPaths.HOME === location.pathname && styles.linkIsActive
         }`}
-        to={'/about'}
+        to={'/'}
       >
-        {t('nav.about_us')}
+        {t('nav.home')}
       </Link>
 
       <Link
         onClick={scrollPageUp}
         className={`${styles.link} ${
-          NavPaths.SERVICES === location.pathname && styles.linkIsActive
+          NavPaths.ABOUTUS === location.pathname && styles.linkIsActive
         }`}
-        to={'/services'}
+        to={'/about'}
       >
-        {t('nav.services')}
+        {t('nav.about_us')}
       </Link>
 
       <Link

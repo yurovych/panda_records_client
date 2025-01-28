@@ -62,7 +62,7 @@
     width: 20px;
   }
 
-  &__adressPhone {
+  &__addressPhone {
     font-size: 16px;
     font-weight: 400;
     line-height: 130%;
@@ -73,7 +73,7 @@
     }
   }
 
-  &__adressTabletDesktop {
+  &__addressTabletDesktop {
     display: none;
 
     @include on-tablet {

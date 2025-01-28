@@ -60,6 +60,31 @@
     line-height: 120%;
     text-align: left;
   }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.price {
+  display: flex;
+  align-items: center;
+
+  &__priceText {
+    color: $color-black2;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 130%;
+  }
+
+  &__clockIco {
+    width: 16px;
+    height: 16px;
+    margin-bottom: -2px;
+    margin-inline: 5px;
+  }
 }
 
 .details {
@@ -97,6 +122,12 @@
     line-height: 130%;
     text-align: left;
   }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .detailsLink {
@@ -106,7 +137,6 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 100%;
-  align-self: flex-end;
 
   &::after {
     content: '';

@@ -16,18 +16,23 @@ import { useAppSelector } from '../../../app/hooks';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VideoPlayer } from '../../shared/VideoPlayer';
+import servicesList from './../../../data/servicesCards.json'; // Temporary
+import videosList from './../../../data/videos.json'; // Temporary
+import { ProcessVideoCard } from '../../shared/ProcessVideoCard';
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  // const servicesList = useAppSelector((state) => state.sevrices.objects);
   const songsList = useAppSelector((state) => state.songs.objects);
-  const servicesList = useAppSelector((state) => state.sevrices.objects);
   const equipmentList = useAppSelector((state) => state.equipment.objects);
-  const videosList = useAppSelector((state) => state.videos.objects);
+  // const videosList = useAppSelector((state) => state.videos.objects);
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const servicesFetchError = useAppSelector((state) => state.sevrices.error);
   const songsFetchError = useAppSelector((state) => state.songs.error);
+  const videosFetchError = useAppSelector((state) => state.videos.error);
+
   const [shuffledSongs, setShuffledSongs] = useState<SongTrackType[]>([]);
 
   const guitarTeacherVideo = videosList.find(
@@ -161,9 +166,9 @@ export const HomePage = () => {
               )}
             </div>
 
-            <div className={styles.services__cardsTablet}>
+            <div className={styles.services__cardstabletDesktop}>
               {servicesList.length > 0 ? (
-                <ServicesList cards={servicesList.slice(0, 4)} visual='brief' />
+                <ServicesList cards={servicesList} />
               ) : servicesFetchError ? (
                 <p
                   className={`${styles.fetchError} notification is-danger is-light`}
@@ -174,30 +179,113 @@ export const HomePage = () => {
                 <Loader />
               )}
             </div>
+          </section>
 
-            <div className={styles.services__cardsDesktop}>
-              {servicesList.length > 0 ? (
-                <ServicesList cards={servicesList} visual='brief' />
-              ) : servicesFetchError ? (
-                <p
-                  className={`${styles.fetchError} notification is-danger is-light`}
-                >
-                  {servicesFetchError}
-                </p>
-              ) : (
-                <Loader />
-              )}
-            </div>
+          <section className={styles.lessons}>
+            <img
+              className={styles.lessons__star}
+              src='/images/services-pink-star.png'
+              alt='star-foto'
+            />
+            <h2 className={styles.lessons__sectionTitle}>
+              {t('services_lessons_title')}
+            </h2>
 
-            <div className={styles.services__viewAll}>
-              <Link
-                onClick={scrollPageUp}
-                className={styles.services__viewAll_link}
-                to='./services'
+            <div className={styles.lessons__cardsBlock}>
+              <div
+                className={`${styles.lessons__card} ${styles.lessons__card_1} `}
               >
-                {t('home_services_view_all')}
-              </Link>
+                <div className={styles.lessons__image}>
+                  <img
+                    loading='lazy'
+                    className={styles.lessons__imageItself}
+                    src='/images/contactUs_image2.jpg'
+                    alt='card_image'
+                  />
+                </div>
+
+                <h2 className={styles.lessons__title}>
+                  {t('services_lessons_engineering_title')}
+                </h2>
+
+                <p className={styles.lessons__text}>
+                  {t('services_lessons_engineering_text')}
+                </p>
+
+                <div className={styles.lessons__priceBlockWrapper}>
+                  <div className={styles.lessons__priceBlock}>
+                    <h3 className={styles.lessons__priceBlockText}>800₴ /</h3>
+                    <img
+                      className={styles.lessons__clockIco}
+                      src='/icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                    <h3 className={styles.lessons__priceBlockText}>
+                      1 {t('hour')}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className={`${styles.lessons__card} ${styles.lessons__card_2} `}
+              >
+                <div className={styles.lessons__image}>
+                  <img
+                    loading='lazy'
+                    className={styles.lessons__imageItself}
+                    src='/images/guitar_lesson_services.jpg'
+                    alt='card_image'
+                  />
+                </div>
+
+                <h2 className={styles.lessons__title}>
+                  {t('services_lessons_guitar_title')}
+                </h2>
+
+                <p className={styles.lessons__text}>
+                  {t('services_lessons_guitar_text')}
+                </p>
+
+                <div className={styles.lessons__priceBlockWrapper}>
+                  <div className={styles.lessons__priceBlock}>
+                    <h3 className={styles.lessons__priceBlockText}>450₴ /</h3>
+                    <img
+                      className={styles.lessons__clockIco}
+                      src='/icons/clock-ico.svg'
+                      alt='clock-ico'
+                    />
+                    <h3 className={styles.lessons__priceBlockText}>
+                      1 {t('hour')}
+                    </h3>
+                  </div>
+                </div>
+              </div>
             </div>
+          </section>
+        </div>
+
+        <div className={styles.videosWrapper}>
+          <section className={styles.videos}>
+            <h2 className={styles.videos__title}>
+              {t('services_videos_title')}{' '}
+            </h2>
+
+            {videosList.length > 0 ? (
+              <ServicesSwiper
+                type='type2'
+                videoCards={videosList}
+                VideoToRender={ProcessVideoCard}
+              />
+            ) : videosFetchError ? (
+              <p
+                className={`${styles.fetchError} notification is-danger is-light`}
+              >
+                {videosFetchError}
+              </p>
+            ) : (
+              <Loader />
+            )}
           </section>
         </div>
 
@@ -228,6 +316,7 @@ export const HomePage = () => {
               </div>
             ) : (
               <div className={styles.ourWorks__list}>
+                <p className={styles.noSongsYet}>{t('no_songs_yet')}</p>
                 <Loader />
               </div>
             )}
@@ -267,33 +356,33 @@ export const HomePage = () => {
 
         {guitarTeacherVideo && (
           <div className={styles.lessonsWrapper}>
-            <section className={styles.lessons}>
+            <section className={styles.guitarLessons}>
               <>
-                <h2 className={styles.lessons__title}>
+                <h2 className={styles.guitarLessons__title}>
                   {guitarTeacherVideo?.title}
                 </h2>
 
-                <div className={styles.lessons__video}>
+                <div className={styles.guitarLessons__video}>
                   {guitarTeacherVideo && (
                     <VideoPlayer shownVideo={guitarTeacherVideo} />
                   )}
                 </div>
 
                 <h5
-                  className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block1}`}
+                  className={`${styles.guitarLessons__desctiption} ${styles.guitarLessons__desctiption_block1}`}
                 >
                   {guitarTeacherVideo?.description_block1}
                 </h5>
 
                 <h5
-                  className={`${styles.lessons__desctiption} ${styles.lessons__desctiption_block2}`}
+                  className={`${styles.guitarLessons__desctiption} ${styles.guitarLessons__desctiption_block2}`}
                 >
                   {guitarTeacherVideo?.description_block2}
                 </h5>
 
                 <div
                   onClick={handleTextMeClick}
-                  className={styles.lessons__button}
+                  className={styles.guitarLessons__button}
                 >
                   <Button text={t('home_lessons_button')} />
                 </div>

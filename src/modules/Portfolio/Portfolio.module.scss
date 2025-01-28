@@ -139,7 +139,6 @@
     background-color: $color-white1;
     box-shadow: $shadow;
     grid-column: 1 / -1;
-    padding: 36px;
     height: 60vh;
     width: 100%;
     display: flex;
@@ -186,6 +185,12 @@
     flex-direction: column;
     z-index: 1;
   }
+}
+
+.noSongsYet {
+  font-size: 16px;
+  color: $color-grey1;
+  width: max-content;
 }
 
 .allSongs__data:hover .allSongs__button {

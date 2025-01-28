@@ -1,23 +1,23 @@
 import styles from './ChangeEmail.module.scss';
 import { Formik, Form, Field } from 'formik';
 import cn from 'classnames';
-import { useState } from 'react';
+import { useState} from 'react';
 import { useTranslation } from 'react-i18next';
 import { adminServices } from '../../../services/adminService';
-import { useValidation } from '../../../app/hooks';
+import { useValidation} from '../../../app/hooks';
+
 
 export const ChangeEmail = () => {
   const { t } = useTranslation();
   const { validateEmail } = useValidation();
-
   const [error, setError] = useState('');
   const [changed, setChanged] = useState(false);
+
 
   if (changed) {
     return (
       <p className={styles.changed}>
-        Запит на зміну емейлу упішно надіслано. Перейдіть в електронну пошту
-        пошту для подальгих інструкцій
+        {t('email_change_request_sent')}
       </p>
     );
   }
@@ -32,7 +32,7 @@ export const ChangeEmail = () => {
         validateOnMount={true}
         onSubmit={({ new_email, confirm_email }, formikHelpers) => {
           if (new_email !== confirm_email) {
-            setError('Емейли різні с.ка');
+            setError(`${t('emails_are_different')}`);
             setTimeout(() => {
               setError('');
             }, 3000);
@@ -67,8 +67,11 @@ export const ChangeEmail = () => {
               if (detail) {
                 setError(detail);
               }
+
             })
             .finally(() => {
+              formikHelpers.setSubmitting(false);
+
               setTimeout(() => {
                 setError('');
               }, 5000);
@@ -168,7 +171,7 @@ export const ChangeEmail = () => {
                     styles.disabled
                   }`}
                 >
-                  {t('form_button_send')}
+                  {t(isSubmitting ? 'form_button_sending' : 'form_button_send')}
                 </button>
               </div>
             </Form>

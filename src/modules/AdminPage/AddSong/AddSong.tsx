@@ -60,7 +60,7 @@ export const AddSong: React.FC = () => {
                 }
 
                 if (!error.response?.data) {
-                  setError(`${t('unnown_error')}`);
+                  setError(`${t('unknown_error')}`);
                   return;
                 }
 
@@ -78,6 +78,7 @@ export const AddSong: React.FC = () => {
               })
               .finally(() => {
                 formikHelpers.setSubmitting(false);
+
                 setTimeout(() => {
                   setShowSuccess(false);
                   setError('');
@@ -286,7 +287,7 @@ export const AddSong: React.FC = () => {
                 <p
                   className={`${styles.form__resultMessage} notification is-success is-light`}
                 >
-                  Song has been added succesfully
+                  {t('add_song_successfully_added')}
                 </p>
               )}
             </Form>

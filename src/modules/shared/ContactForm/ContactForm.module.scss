@@ -59,6 +59,24 @@
     }
   }
 
+  &__elementCheckbox {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    gap: 20px;
+  }
+
+  &__checkboxLabel {
+    color: $color-grey2;
+  }
+
+  &__checkBox {
+    height: 25px;
+    aspect-ratio: 1;
+    cursor: pointer;
+  }
+
+
   &__button {
     width: 100%;
 

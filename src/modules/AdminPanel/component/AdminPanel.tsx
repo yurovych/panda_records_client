@@ -50,7 +50,7 @@ export const AdminPanel = () => {
         }
 
         if (!error.response?.date) {
-          setLogoutError(`${t('unnown_error')}`);
+          setLogoutError(`${t('unknown_error')}`);
           return;
         }
 

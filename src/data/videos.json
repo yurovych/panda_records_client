@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Guitar lessons",
+    "video_file": "./videos/guitar-lessons-video.MP4",
+    "description_block1": "Want to learn to play the guitar or improve your skills? We offer professional lessons on acoustic guitar, electric guitar, and bass guitar for both beginners and those looking to refine their abilities.",
+    "description_block2": "Our approach is personalized. We work at your pace, taking into account your goals and preferences. You will learn proper techniques, develop your musical ear, master your favorite pieces, and find inspiration to create your own music. Lessons are not just classes; they are a journey toward your musical dream.",
+    "poster": "./images/video_lessons_poster.jpg"
+  },
+  {
+    "id": 2,
+    "title": "",
+    "video_file": "./videos/video_1.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": "./images/video1_poster.jpg"
+  },
+  {
+    "id": 3,
+    "title": "",
+    "video_file": "./videos/video_2.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": "./images/video2_poster.jpg"
+  },
+  {
+    "id": 4,
+    "title": "",
+    "video_file": "./videos/video_3.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": "./images/video3_poster.jpg"
+  },
+  {
+    "id": 5,
+    "title": "",
+    "video_file": "./videos/video_4.MP4",
+    "description_block1": "",
+    "description_block2": "",
+    "poster": "./images/video4_poster.jpg"
+  }
+]

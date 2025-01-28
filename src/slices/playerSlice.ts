@@ -10,6 +10,7 @@ type PlayerType = {
   currentSongProgress: number | null;
   isVideoPlaying: boolean;
   currentVideo: VideoFileType | null;
+  trackToDelete: SongTrackType | null;
 };
 
 const initialState: PlayerType = {
@@ -19,6 +20,7 @@ const initialState: PlayerType = {
   currentSongProgress: null,
   isVideoPlaying: false,
   currentVideo: null,
+  trackToDelete: null,
 };
 
 const playerSlice = createSlice({
@@ -48,6 +50,10 @@ const playerSlice = createSlice({
     setCurrentVideo: (state, action: PayloadAction<VideoFileType | null>) => {
       state.currentVideo = action.payload;
     },
+
+    setTrackToDelete: (state, action: PayloadAction<SongTrackType | null>) => {
+      state.trackToDelete = action.payload;
+    },
   },
 });
 
@@ -59,4 +65,5 @@ export const {
   setCurrentSongIndex,
   setIsVideoPlaying,
   setCurrentVideo,
+  setTrackToDelete,
 } = playerSlice.actions;

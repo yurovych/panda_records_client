@@ -12,7 +12,7 @@ import { SimplePhoto } from '../../../types/SimplePhoto';
 import SwiperOptions from 'swiper';
 
 type ServicesSwiperProps = {
-  type: 'type1' | 'type2' | 'type3' | 'type4';
+  type: 'type1' | 'type2' | 'type3';
   equipmentCadrs?: EquipmentCardType[];
   servicesCards?: ServiceCardType[];
   servicesWideCards?: ServiceCardType[];
@@ -49,7 +49,7 @@ export const ServicesSwiper = ({
     switch (type) {
       case 'type1':
         return {
-          640: {
+          768: {
             slidesPerView: 2,
           },
           1200: {
@@ -83,13 +83,6 @@ export const ServicesSwiper = ({
           servicesCards.map((card) => (
             <SwiperSlide key={card.id}>
               <ServiceToRender card={card} visual='brief' />
-            </SwiperSlide>
-          ))}
-        {ServiceToRender &&
-          servicesWideCards &&
-          servicesWideCards.map((card) => (
-            <SwiperSlide key={card.id}>
-              <ServiceToRender card={card} visual='wide' />
             </SwiperSlide>
           ))}
         {EquipmentToRender &&

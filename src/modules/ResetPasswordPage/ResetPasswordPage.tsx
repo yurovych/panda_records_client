@@ -22,7 +22,7 @@ export const ResetPasswordPage = () => {
   if (changed) {
     return (
       <p className={styles.changed}>
-        {t('reset_password_succes_text')}
+        {t('reset_password_success_text')}
         <br />
         <Link to={'/login'}>{t('log_in')}</Link>
       </p>

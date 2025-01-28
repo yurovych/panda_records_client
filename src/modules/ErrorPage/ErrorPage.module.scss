@@ -1,0 +1,29 @@
+@import './../shared/main';
+
+.error {
+  height: 100vh;
+  width: 100vw;
+  padding-block: 100px;
+  background-color: $color-white4;
+
+  @include on-tablet {
+    padding-block: 200px;
+  }
+
+  @include on-desktop {
+    padding-block: 50px;
+  }
+
+  &__text {
+    color: $color-grey2;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 130%;
+    text-align: center;
+
+    @include on-tablet {
+      font-size: 72px;
+    }
+  }
+}
+

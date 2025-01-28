@@ -50,7 +50,7 @@ export const ContactUs = () => {
             className={styles.contactUs__infoBlock_text}
             rel='noreferrer'
           >
-            {t('adress_1')} <br /> {t('adress_2')}
+            {t('address_1')} <br /> {t('address_2')}
           </a>
         </div>
 

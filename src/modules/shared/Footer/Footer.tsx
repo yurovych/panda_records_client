@@ -36,16 +36,16 @@ export const Footer = () => {
               <MapPinIcon />
             </div>
 
-            <p className={styles.footer__adressPhone} rel='noreferrer'>
-              {t('adress_1')}
+            <p className={styles.footer__addressPhone} rel='noreferrer'>
+              {t('address_1')}
               <br />
-              {t('adress_2')}
+              {t('address_2')}
             </p>
 
-            <p className={styles.footer__adressTabletDesktop} rel='noreferrer'>
-              {t('adress_1')}
+            <p className={styles.footer__addressTabletDesktop} rel='noreferrer'>
+              {t('address_1')}
               ,&nbsp;&nbsp;
-              {t('adress_2')}
+              {t('address_2')}
             </p>
           </a>
           <a href={`tel:${PHONE_NUMBER}`} className={styles.footer__phone}>
