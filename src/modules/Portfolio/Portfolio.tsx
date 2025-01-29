@@ -1,5 +1,5 @@
 import styles from './Portfolio.module.scss';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Footer } from '../shared/Footer';
 import { useAppSelector } from '../../app/hooks';
 import { ServicesSwiper } from '../shared/ServicesSwiper';
@@ -9,6 +9,7 @@ import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
 import simplePhoto from './../../data/simplePhotos.json';
 import songsAll from './../../data/songsCards.json';
+import { Divider } from '@mui/material';
 
 export const Portfolio = () => {
   const { t } = useTranslation();
@@ -71,30 +72,9 @@ export const Portfolio = () => {
 
         <div className={styles.banner1Wrapper}>
           <section className={styles.banner1}>
-            <img
-              className={styles.banner1__star}
-              src='/images/baner-star.png'
-              alt='image-star'
-            />
-
-            <h2 className={`${styles.banner1__text} ${styles.banner1__text_1}`}>
-              {t('portfolio_banner1_text1')}
-            </h2>
-            <h2 className={`${styles.banner1__text} ${styles.banner1__text_2}`}>
-              {t('portfolio_banner1_text2')}
-            </h2>
-            <div className={styles.banner1__textBlock}>
-              <h2
-                className={`${styles.banner1__text} ${styles.banner1__text_3}`}
-              >
-                {t('portfolio_banner1_text3')}
-              </h2>
-              <h2
-                className={`${styles.banner1__text} ${styles.banner1__text_4}`}
-              >
-                {t('portfolio_banner1_text4')}
-              </h2>
-            </div>
+            <p className={styles.banner1__text}>
+              {t('portfolio_banner1_text')}
+            </p>
           </section>
         </div>
 

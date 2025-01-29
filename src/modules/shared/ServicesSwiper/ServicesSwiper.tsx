@@ -3,13 +3,15 @@ import styles from './ServicesSwiper.module.scss';
 import 'swiper/css';
 import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
-import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
+import { Autoplay, FreeMode, Pagination, Navigation } from 'swiper/modules';
 import { ServiceCardType } from '../../../types/Service';
 import { EquipmentCardType } from '../../../types/Equipment';
 import { VideoFileType } from '../../../types/Video';
 import { SongTrackType } from '../../../types/SongTrack';
 import { SimplePhoto } from '../../../types/SimplePhoto';
 import SwiperOptions from 'swiper';
+import { ArrowLeftIcon } from '../../../iconsMove/arrow-left';
+import { ArrowRightIcon } from '../../../iconsMove/arrow-right';
 
 type ServicesSwiperProps = {
   type: 'type1' | 'type2' | 'type3';
@@ -36,7 +38,6 @@ export const ServicesSwiper = ({
   type,
   equipmentCadrs,
   servicesCards,
-  servicesWideCards,
   videoCards,
   songsCards,
   ServiceToRender,
@@ -69,8 +70,14 @@ export const ServicesSwiper = ({
     <div className={styles.swiperContainer}>
       <Swiper
         style={type === 'type2' ? { paddingInline: '32px' } : undefined}
-        modules={[Pagination, FreeMode, Autoplay]}
+        modules={[Pagination, FreeMode, Autoplay, Navigation]}
         pagination={{ clickable: true }}
+        navigation={
+          type !== 'type3' && {
+            prevEl: '#slider-arrow-left',
+            nextEl: '#slider-arrow-right',
+          }
+        }
         autoplay={type === 'type3' ? { delay: 5000 } : false}
         loop={type === 'type3' ? true : false}
         spaceBetween={type === 'type2' ? 24 : 16}
@@ -121,6 +128,23 @@ export const ServicesSwiper = ({
             </SwiperSlide>
           ))}
       </Swiper>
+
+      {type !== 'type3' && (
+        <div className={styles.swiperNavigation}>
+          <button
+            className={`${styles.swiperButton} ${styles.swiperButton_left}`}
+            id='slider-arrow-left'
+          >
+            <ArrowLeftIcon />
+          </button>
+          <button
+            className={`${styles.swiperButton} ${styles.swiperButton_right}`}
+            id='slider-arrow-right'
+          >
+            <ArrowRightIcon />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

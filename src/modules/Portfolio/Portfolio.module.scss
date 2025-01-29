@@ -216,74 +216,26 @@
 }
 
 .banner1Wrapper {
-  display: none;
-
-  @include on-desktop {
-    display: block;
-    background: $gradient-black-violet;
-  }
+  background: $gradient-black-violet;
 }
 
 .banner1 {
   margin-inline: auto;
   max-width: $max-content-width;
-  position: relative;
-  height: 320px;
 
-  &__star {
-    z-index: 9;
-    position: absolute;
-    transform: scale(0.8);
-
-    @include on-tablet {
-      top: -100px;
-      left: -100px;
-    }
-
-    @include on-desktop {
-      transform: scale(1);
-      top: -40px;
-      left: 100px;
-    }
-  }
+  @include content-padding-inline;
 
   &__text {
-    white-space: nowrap;
-    z-index: 10;
-    position: absolute;
-    color: $color-white1;
-    font-size: 52px;
-    line-height: 130%;
-    font-weight: 500;
+    font-size: 10px;
+    color: $color-grey1;
 
-    &_1 {
-      left: 30%;
-      top: 40px;
+    @include on-tablet {
+      font-size: 14px;
     }
 
-    &_2 {
-      left: 45%;
-      top: 100px;
+    @include on-tablet {
+      font-size: 14px;
     }
-
-    &_3 {
-      font-weight: 400;
-      position: static;
-    }
-
-    &_4 {
-      font-weight: 400;
-      position: static;
-      color: $color-pink3;
-    }
-  }
-
-  &__textBlock {
-    position: absolute;
-    display: flex;
-    top: 180px;
-    left: 100px;
-    gap: 10px;
   }
 }
 

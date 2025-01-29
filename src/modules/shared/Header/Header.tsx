@@ -67,12 +67,30 @@ export const Header = () => {
   };
 
   useEffect(() => {
+    if (isHidenMenu) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+  }, [isHidenMenu]);
+
+  useEffect(() => {
     const disableScroll = (event: TouchEvent | MouseEvent) =>
       event.preventDefault();
 
     if (isDragging) {
-      document.addEventListener('touchmove', disableScroll, { passive: false });
-      document.addEventListener('mousemove', disableScroll, { passive: false });
+      document.addEventListener('touchmove', disableScroll, {
+        passive: false,
+        capture: true,
+      });
+      document.addEventListener('mousemove', disableScroll, {
+        passive: false,
+        capture: true,
+      });
     } else {
       document.removeEventListener('touchmove', disableScroll);
       document.removeEventListener('mousemove', disableScroll);

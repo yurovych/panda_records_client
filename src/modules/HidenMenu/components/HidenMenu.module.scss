@@ -81,10 +81,6 @@
   }
 }
 
-.hidenMenu:has(:target) {
-  overflow: hidden;
-}
-
 .showHidenMenu {
   opacity: 1;
   transform: translateX(0);

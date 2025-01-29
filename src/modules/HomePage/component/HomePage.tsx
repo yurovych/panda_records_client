@@ -268,12 +268,12 @@ export const HomePage = () => {
         <div className={styles.videosWrapper}>
           <section className={styles.videos}>
             <h2 className={styles.videos__title}>
-              {t('services_videos_title')}{' '}
+              {t('services_videos_title')}
             </h2>
 
             {videosList.length > 0 ? (
               <ServicesSwiper
-                type='type2'
+                type='type1'
                 videoCards={videosList}
                 VideoToRender={ProcessVideoCard}
               />

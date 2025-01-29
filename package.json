@@ -30,7 +30,7 @@
     "formik": "^2.4.6",
     "i18next": "^23.2.3",
     "i18next-http-backend": "^3.0.1",
-    "motion": "^11.18.1",
+    "motion": "^11.18.2",
     "postcss-loader": "^8.1.1",
     "pqoqubbw-icons": "github:pqoqubbw/icons",
     "react": "^18.3.1",
