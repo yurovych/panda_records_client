@@ -35,13 +35,13 @@ export const AdminPage: React.FC = () => {
     }
   }
 
-  // useEffect(() => {
-  //   checkAuth();
-  // }, []);
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   return (
     <>
-      {true ? (
+      {isAuthenticated ? (
         <div className={styles.adminPageWrapper}>
           {isMessageOpened && <OpenedMessage />}
 
