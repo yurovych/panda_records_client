@@ -1,5 +1,5 @@
 import styles from './Portfolio.module.scss';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Footer } from '../shared/Footer';
 import { useAppSelector } from '../../app/hooks';
 import { ServicesSwiper } from '../shared/ServicesSwiper';
@@ -9,7 +9,6 @@ import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
 import simplePhoto from './../../data/simplePhotos.json';
 import songsAll from './../../data/songsCards.json';
-import { Divider } from '@mui/material';
 
 export const Portfolio = () => {
   const { t } = useTranslation();
