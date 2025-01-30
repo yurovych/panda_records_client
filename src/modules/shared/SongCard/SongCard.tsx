@@ -7,12 +7,12 @@ import {
   setCurrentSongProgress,
   setCurrentSong,
   setIsSongPlaying,
+  setTrackToDelete,
 } from '../../../slices/playerSlice';
 import { Loader } from '../../Loader';
 import { DeleteIcon } from '../../../iconsMove/delete';
 import { DeleteSongModal } from '../../DeleteSongModal/DeleteSongModal';
 import { setIsDeleteModalOpened } from '../../../slices/booleanSlice';
-// import allSongs from './../../../data/songsCards.json';
 
 type SongTrackProps = {
   track: SongTrackType;
@@ -39,6 +39,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
   const isDeleteModalOpened = useAppSelector(
     (state) => state.boolean.isDeleteModalOpened
   );
+  const trackToDelete = useAppSelector((state) => state.player.trackToDelete);
 
   (function getCurrentIndex() {
     const index = allSongs.findIndex((song) => song.id === currentSong?.id);
@@ -143,7 +144,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
   }
 
   function handleDeleteSong() {
-    toggleTrack(track);
+    dispatch(setTrackToDelete(track));
     dispatch(setIsDeleteModalOpened(true));
   }
 
@@ -488,7 +489,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
 
   return (
     <>
-      {isDeleteModalOpened && <DeleteSongModal track={track} />}
+      {isDeleteModalOpened && <DeleteSongModal track={trackToDelete} />}
       {vizualisation()}
     </>
   );

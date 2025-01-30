@@ -1,27 +1,26 @@
 import styles from './ChangePassword.module.scss';
 import { Formik, Form, Field } from 'formik';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { adminServices } from '../../../services/adminService';
-import { useValidation } from '../../../app/hooks';
+import { useAppDispatch, useValidation } from '../../../app/hooks';
+import { setIsAuthenticated } from '../../../slices/booleanSlice';
 
 export const ChangePassword = () => {
   const { t } = useTranslation();
   const { validatePassword } = useValidation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [error, setError] = useState('');
-  const [changed, setChanged] = useState(false);
 
-  if (changed) {
-    return (
-      <p className={styles.changed}>
-        {t('reset_password_success_text')}
-        <br />
-        <Link to={'/login'}>{t('log_in')}</Link>
-      </p>
-    );
+  async function onSuccessfullyChanged() {
+    await adminServices.logout();
+    dispatch(setIsAuthenticated(false));
+    navigate('/login');
+    alert(`${t('reset_password_success_text')}`);
   }
 
   return (
@@ -49,7 +48,7 @@ export const ChangePassword = () => {
           adminServices
             .changePassword(new_password)
             .then(() => {
-              setChanged(true);
+              onSuccessfullyChanged();
             })
             .catch((error) => {
               if (error.message) {

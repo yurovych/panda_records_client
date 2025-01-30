@@ -158,7 +158,9 @@ export const LoginPage = () => {
                 {touched.password && errors.password ? (
                   <p className='help is-danger'>{errors.password}</p>
                 ) : (
-                  <p className='help'>{t('password_hint')} </p>
+                  <p className={`help ${styles.form__hint}`}>
+                    {t('password_hint')}
+                  </p>
                 )}
               </div>
               <div className={styles.form__element}>
@@ -173,10 +175,15 @@ export const LoginPage = () => {
                   {t('log_in')}
                 </button>
               </div>
-              <div className={styles.form__resetPassword}>
+              <div className={styles.form__forgotPassword}>
                 {t('forgot_password')}
                 &nbsp;&nbsp;&nbsp;
-                <Link to='/password-reset'>{t('reset_password')}</Link>
+                <Link
+                  className={styles.form__resetPassword}
+                  to='/password-reset'
+                >
+                  {t('reset_password')}
+                </Link>
               </div>
             </Form>
           </>

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { SongTrackType } from './../../types/SongTrack';
 import { adminServices } from '../../services/adminService';
 import { setTrackToDelete } from '../../slices/playerSlice';
+import { deleteTrack } from '../../slices/fetchSongs';
 
 type DeleteSongModalType = {
   track: SongTrackType | null;
@@ -22,6 +23,9 @@ export const DeleteSongModal: React.FC<DeleteSongModalType> = ({ track }) => {
   }
 
   function deletedSuccessfully() {
+    if (track) {
+      dispatch(deleteTrack(track));
+    }
     closeModal();
     dispatch(setTrackToDelete(null));
   }

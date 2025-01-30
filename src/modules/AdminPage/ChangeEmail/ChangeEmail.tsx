@@ -1,11 +1,10 @@
 import styles from './ChangeEmail.module.scss';
 import { Formik, Form, Field } from 'formik';
 import cn from 'classnames';
-import { useState} from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { adminServices } from '../../../services/adminService';
-import { useValidation} from '../../../app/hooks';
-
+import { useValidation } from '../../../app/hooks';
 
 export const ChangeEmail = () => {
   const { t } = useTranslation();
@@ -13,13 +12,8 @@ export const ChangeEmail = () => {
   const [error, setError] = useState('');
   const [changed, setChanged] = useState(false);
 
-
   if (changed) {
-    return (
-      <p className={styles.changed}>
-        {t('email_change_request_sent')}
-      </p>
-    );
+    return <p className={styles.changed}>{t('email_change_request_sent')}</p>;
   }
 
   return (
@@ -67,7 +61,6 @@ export const ChangeEmail = () => {
               if (detail) {
                 setError(detail);
               }
-
             })
             .finally(() => {
               formikHelpers.setSubmitting(false);

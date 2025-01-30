@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SongTrackType } from './../types/SongTrack';
 import { clientService } from '../services/clientService';
 
@@ -24,7 +24,13 @@ export const fetchSongsAsync = createAsyncThunk('songs/fetch', async () => {
 const getSongsSlice = createSlice({
   name: 'songs/fetch',
   initialState,
-  reducers: {},
+  reducers: {
+    deleteTrack: (state, action: PayloadAction<SongTrackType>) => {
+      state.objects = state.objects.filter(
+        (song) => song.id !== action.payload.id
+      );
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -45,3 +51,4 @@ const getSongsSlice = createSlice({
 });
 
 export default getSongsSlice.reducer;
+export const { deleteTrack } = getSongsSlice.actions;

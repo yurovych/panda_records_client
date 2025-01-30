@@ -9,7 +9,6 @@ import { getTime } from './../../../helpers/getTime';
 import { updateMessageStatusAsync } from '../../../slices/fetchMessages';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TablePagination } from '@mui/material';
 import { MyTablePagination } from './MessagesStyles';
 
 export const MessagesList = () => {
@@ -285,15 +284,13 @@ export const MessagesList = () => {
                             {getStatus(message)}
                           </div>
                         ))}
-                        <TablePagination
+                        <MyTablePagination
                           sx={{ color: '#5e5e5f' }}
-                          rowsPerPageOptions={[10, 25, 100]}
-                          component='div'
+                          rowsPerPageOptions={[]}
                           count={messages.length}
                           rowsPerPage={rowsPerPage}
                           page={page}
                           onPageChange={handleChangePage}
-                          onRowsPerPageChange={handleChangeRowsPerPage}
                         />
                       </>
                     ) : (

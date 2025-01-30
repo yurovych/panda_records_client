@@ -47,7 +47,7 @@ export const AddSong: React.FC = () => {
             }
 
             adminServices
-              .addSong({ title, artist, photo, audio_file, top })
+              .addSong({ title, artist, top })
               .then(() => {
                 formikHelpers.resetForm();
                 formikHelpers.validateForm(false);

@@ -8,7 +8,6 @@ import { Loader } from '../Loader';
 import { ContactUs } from '../shared/ContactUs';
 import { SongsList } from '../shared/SongsList';
 import simplePhoto from './../../data/simplePhotos.json';
-// import songsAll from './../../data/songsCards.json';
 
 export const Portfolio = () => {
   const { t } = useTranslation();

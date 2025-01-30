@@ -61,6 +61,20 @@
     color: $color-white2;
     border-radius: 5px;
   }
+
+  &__hint {
+    color: $color-grey1;
+  }
+
+  &__forgotPassword {
+    color: $color-grey1;
+  }
+
+  &__resetPassword {
+    cursor: pointer;
+    color: $color-grey1;
+    text-decoration: underline;
+  }
 }
 
 .disabled {

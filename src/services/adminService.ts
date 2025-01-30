@@ -3,8 +3,6 @@ import { adminClient } from './../http/adminClient.js';
 interface AddSong {
   title: string;
   artist: string;
-  photo: File | null;
-  audio_file: File | null;
   top: boolean;
 }
 
@@ -29,14 +27,27 @@ function changeEmail(new_email: string) {
   return adminClient.post('/users/change-email/', { new_email });
 }
 
-function addSong({ title, artist, photo, audio_file, top }: AddSong) {
-  return adminClient.post('/songs/', {
-    title,
-    artist,
-    photo,
-    audio_file,
-    top,
-  });
+function addSong({ title, artist, top }: AddSong) {
+  const formData = new FormData();
+
+  formData.append('artist', artist);
+  formData.append('title', title);
+
+  if (top) {
+    formData.append('top', 'true');
+  } else {
+    formData.append('top', 'false');
+  }
+
+  const photoInput = document.getElementById('photo') as HTMLInputElement;
+  const audioInput = document.getElementById('audio_file') as HTMLInputElement;
+
+  if (photoInput.files && audioInput.files) {
+    formData.append('photo', photoInput.files[0]);
+    formData.append('audio_file', audioInput.files[0]);
+  }
+
+  return adminClient.post('/songs/', formData);
 }
 
 function deleteSong(song_id: number) {
