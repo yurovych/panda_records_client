@@ -41,7 +41,7 @@ export const AdminPanel = () => {
         dispatch(setIsAuthenticated(false));
         accessTokenService.remove();
         localStorage.removeItem('telegram_bot');
-        navigate('./../login');
+        navigate('/login');
       })
       .catch((error) => {
         if (error.message) {
