@@ -31,7 +31,7 @@ export const AdminPage: React.FC = () => {
       dispatch(setIsAuthenticated(true));
       dispatch(fetchMessagesAsync());
     } catch (error) {
-      navigate('./../login');
+      navigate('/login');
     }
   }
 
