@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://pandarecordsapi-production.up.railway.app/api/';
+const BASE_URL =
+  'https://welcome-katharine-none-none-none-3a3e7c52.koyeb.app/api/';
 
 export function createClient() {
   return axios.create({

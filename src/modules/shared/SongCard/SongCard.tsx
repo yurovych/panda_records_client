@@ -12,7 +12,7 @@ import { Loader } from '../../Loader';
 import { DeleteIcon } from '../../../iconsMove/delete';
 import { DeleteSongModal } from '../../DeleteSongModal/DeleteSongModal';
 import { setIsDeleteModalOpened } from '../../../slices/booleanSlice';
-import allSongs from './../../../data/songsCards.json';
+// import allSongs from './../../../data/songsCards.json';
 
 type SongTrackProps = {
   track: SongTrackType;
@@ -32,7 +32,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
   const currentSongIndex = useAppSelector(
     (state) => state.player.currentSongIndex
   );
-  // const allSongs = useAppSelector((state) => state.songs.objects);
+  const allSongs = useAppSelector((state) => state.songs.objects);
   const isAuthenticated = useAppSelector(
     (state) => state.boolean.isAuthenticated
   );

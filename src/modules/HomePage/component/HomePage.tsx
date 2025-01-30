@@ -16,18 +16,18 @@ import { useAppSelector } from '../../../app/hooks';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VideoPlayer } from '../../shared/VideoPlayer';
-import servicesList from './../../../data/servicesCards.json'; // Temporary
-import videosList from './../../../data/videos.json'; // Temporary
 import { ProcessVideoCard } from '../../shared/ProcessVideoCard';
+// import videosList from './../../../data/videos.json';
+// import servicesList from './../../../data/servicesCards.json';
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  // const servicesList = useAppSelector((state) => state.sevrices.objects);
+  const servicesList = useAppSelector((state) => state.sevrices.objects);
   const songsList = useAppSelector((state) => state.songs.objects);
   const equipmentList = useAppSelector((state) => state.equipment.objects);
-  // const videosList = useAppSelector((state) => state.videos.objects);
+  const videosList = useAppSelector((state) => state.videos.objects);
   const currentSong = useAppSelector((state) => state.player.currentSong);
   const servicesFetchError = useAppSelector((state) => state.sevrices.error);
   const songsFetchError = useAppSelector((state) => state.songs.error);
