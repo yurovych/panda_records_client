@@ -85,11 +85,9 @@ export const Header = () => {
     if (isDragging) {
       document.addEventListener('touchmove', disableScroll, {
         passive: false,
-        capture: true,
       });
       document.addEventListener('mousemove', disableScroll, {
         passive: false,
-        capture: true,
       });
     } else {
       document.removeEventListener('touchmove', disableScroll);
