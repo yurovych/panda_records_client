@@ -190,9 +190,6 @@ export const MessagesList = () => {
                           .map((message: UserMessageType, index: number) => (
                             <div
                               onClick={() => handleClickOnMessage(message)}
-                              style={{
-                                backgroundColor: `${getBg(message.status)}`,
-                              }}
                               className={styles.list__strip}
                             >
                               {error && currentMessage?.id === message.id && (
@@ -202,7 +199,14 @@ export const MessagesList = () => {
                                   {error}
                                 </p>
                               )}
-                              <p className={styles.list__text}>{index + 1}</p>
+                              <p
+                                style={{
+                                  backgroundColor: `${getBg(message.status)}`,
+                                }}
+                                className={`${styles.list__text} ${styles.list__messageNumber}`}
+                              >
+                                {index + 1}
+                              </p>
                               <p className={styles.list__text}>
                                 {message.name}
                               </p>
@@ -221,12 +225,28 @@ export const MessagesList = () => {
 
                         <MyTablePagination
                           sx={{ color: '#5e5e5f' }}
-                          rowsPerPageOptions={[10, 25, 100]}
+                          rowsPerPageOptions={[
+                            10,
+                            25,
+                            50,
+                            {
+                              label: `${t('admin_panel_pagination_all')}`,
+                              value: -1,
+                            },
+                          ]}
                           count={messages.length}
                           rowsPerPage={rowsPerPage}
                           page={page}
                           onPageChange={handleChangePage}
                           onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage={t(
+                            'admin_panel_pagination_rows_per_page_desktop'
+                          )}
+                          labelDisplayedRows={({ from, to, count }) =>
+                            `${from}–${to} ${t('admin_panel_pagination_of')} ${
+                              count !== -1 ? count : '???'
+                            }`
+                          }
                         />
                       </>
                     ) : (
@@ -251,46 +271,73 @@ export const MessagesList = () => {
                   <>
                     {messages.length > 0 ? (
                       <>
-                        {messages.map((message: UserMessageType) => (
-                          <div
-                            onClick={() => handleClickOnMessage(message)}
-                            style={{
-                              backgroundColor: `${getBg(message.status)}`,
-                            }}
-                            className={styles.list__row}
-                          >
-                            <p
-                              className={`${styles.list__text} ${styles.list__name}`}
+                        {messages
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
+                          .map((message: UserMessageType, index: number) => (
+                            <div
+                              onClick={() => handleClickOnMessage(message)}
+                              className={styles.list__row}
                             >
-                              {message.name}
-                            </p>
-                            <p
-                              className={`${styles.list__text} ${styles.list__email}`}
-                            >
-                              {message.email}
-                            </p>
-                            <p
-                              className={`${styles.list__text} ${styles.list__message}`}
-                            >
-                              {message.message}
-                            </p>
+                              <p
+                                style={{
+                                  backgroundColor: `${getBg(message.status)}`,
+                                }}
+                                className={`${styles.list__text} ${styles.list__messageNumber}`}
+                              >
+                                {index + 1}
+                              </p>
+                              <p
+                                className={`${styles.list__text} ${styles.list__name}`}
+                              >
+                                {message.name}
+                              </p>
+                              <p
+                                className={`${styles.list__text} ${styles.list__email}`}
+                              >
+                                {message.email}
+                              </p>
+                              <p
+                                className={`${styles.list__text} ${styles.list__message}`}
+                              >
+                                {message.message}
+                              </p>
 
-                            <p
-                              className={`${styles.list__text} ${styles.list__date}`}
-                            >
-                              {getTime(message)}
-                            </p>
+                              <p
+                                className={`${styles.list__text} ${styles.list__date}`}
+                              >
+                                {getTime(message)}
+                              </p>
 
-                            {getStatus(message)}
-                          </div>
-                        ))}
+                              {getStatus(message)}
+                            </div>
+                          ))}
                         <MyTablePagination
                           sx={{ color: '#5e5e5f' }}
-                          rowsPerPageOptions={[]}
+                          rowsPerPageOptions={[
+                            10,
+                            25,
+                            50,
+                            {
+                              label: `${t('admin_panel_pagination_all')}`,
+                              value: -1,
+                            },
+                          ]}
                           count={messages.length}
                           rowsPerPage={rowsPerPage}
                           page={page}
                           onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage={t(
+                            'admin_panel_pagination_rows_per_page_mobile'
+                          )}
+                          labelDisplayedRows={({ from, to, count }) =>
+                            `${from}–${to} ${t('admin_panel_pagination_of')} ${
+                              count !== -1 ? count : '???'
+                            }`
+                          }
                         />
                       </>
                     ) : (

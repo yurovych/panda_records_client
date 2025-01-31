@@ -14,15 +14,20 @@ import { SongCard } from '../SongCard';
 import { InstagramIcon } from '../../../iconsMove/instagram';
 import { XIcon } from '../../../iconsMove/x';
 import { MenuIcon } from '../../../iconsMove/menu';
+import Draggable from 'react-draggable';
 
 export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const movedPlayer = useRef<HTMLDivElement | null>(null);
+  const playerRef = useRef<HTMLDivElement | null>(null);
+  const [bounds, setBounds] = useState({
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+  });
 
-  const [isDragging, setIsDragging] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [languageDisabled, setLanguageDisabled] = useState(false);
 
   const currentSong = useAppSelector((state) => state.player.currentSong);
@@ -79,125 +84,38 @@ export const Header = () => {
   }, [isHidenMenu]);
 
   useEffect(() => {
-    const disableScroll = (event: TouchEvent | MouseEvent) =>
-      event.preventDefault();
+    const updateBounds = () => {
+      if (playerRef.current) {
+        const rect = playerRef.current.getBoundingClientRect();
 
-    if (isDragging) {
-      document.addEventListener('touchmove', disableScroll, {
-        passive: false,
-      });
-      document.addEventListener('mousemove', disableScroll, {
-        passive: false,
-      });
-    } else {
-      document.removeEventListener('touchmove', disableScroll);
-      document.removeEventListener('mousemove', disableScroll);
-    }
-
-    return () => {
-      document.removeEventListener('touchmove', disableScroll);
-      document.removeEventListener('mousemove', disableScroll);
+        setBounds({
+          left: -200,
+          top: -30,
+          right: window.innerWidth - 300,
+          bottom: window.innerHeight - rect.height * 2,
+        });
+      }
     };
-  }, [isDragging]);
 
-  const paddingInline = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--global-padding');
-
-  const paddingInlineValue = parseFloat(paddingInline) || 0;
-
-  const startDragging = (startX: number, startY: number) => {
-    const rect = movedPlayer.current?.getBoundingClientRect();
-
-    if (rect) {
-      const offsetX = startX - rect.left;
-      const offsetY = startY - rect.top;
-      setOffset({ x: offsetX, y: offsetY });
-      setIsDragging(true);
-    }
-  };
-
-  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    const startX = event.clientX;
-    const startY = event.clientY;
-
-    startDragging(startX, startY);
-  };
-
-  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-    const touch = event.touches[0];
-    startDragging(touch.clientX, touch.clientY);
-  };
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-
-    event.preventDefault();
-
-    const newX = event.clientX;
-    const newY = event.clientY;
-
-    updatePosition(newX, newY);
-  };
-
-  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-
-    event.preventDefault();
-
-    const touch = event.touches[0];
-    updatePosition(touch.clientX, touch.clientY);
-  };
-
-  const updatePosition = (x: number, y: number) => {
-    if (movedPlayer.current) {
-      const playerRect = movedPlayer.current.getBoundingClientRect();
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-
-      const newX = Math.max(
-        paddingInlineValue - playerRect.width * 0.6,
-        Math.min(
-          x - offset.x + paddingInlineValue,
-          windowWidth - playerRect.width + playerRect.width * 0.6
-        )
-      );
-
-      const newY = Math.max(
-        70,
-        Math.min(y - offset.y, windowHeight - playerRect.height)
-      );
-
-      movedPlayer.current.style.left = `${newX}px`;
-      movedPlayer.current.style.top = `${newY}px`;
-    }
-  };
-
-  const stopDragging = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => stopDragging();
-  const handleTouchEnd = () => stopDragging();
+    updateBounds();
+    window.addEventListener('resize', updateBounds);
+    return () => window.removeEventListener('resize', updateBounds);
+  }, []);
 
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
         {currentSong && (
-          <div
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            ref={movedPlayer}
-            className={`${
-              currentSong ? styles.showPlayer : styles.hidePlayer
-            } ${styles.playerWrapper}`}
-          >
-            <SongCard visual='player' track={currentSong} />
-          </div>
+          <Draggable nodeRef={playerRef} bounds={bounds}>
+            <div
+              ref={playerRef}
+              className={`${
+                currentSong ? styles.showPlayer : styles.hidePlayer
+              } ${styles.playerWrapper}`}
+            >
+              <SongCard visual='player' track={currentSong} />
+            </div>
+          </Draggable>
         )}
         <div title='Home' onClick={handleLogoClick}>
           <Logo />

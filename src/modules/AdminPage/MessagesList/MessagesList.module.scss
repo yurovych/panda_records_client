@@ -51,7 +51,8 @@
     grid-auto-rows: min-content;
     row-gap: 8px;
     column-gap: 8px;
-    background-color: $color-white4;
+    background: $gradient-grey-white;
+    border-radius: 20px;
 
     &:hover {
       transform: scale(1.02);
@@ -67,6 +68,8 @@
     height: 48px;
     border-bottom: 1px solid $color-grey1;
     padding: 8px;
+    background: $gradient-grey-white;
+    border-radius: 20px;
 
     &:hover {
       transform: scale(1.02);
@@ -81,7 +84,7 @@
     align-self: flex-end;
     font-size: 16px;
     font-weight: 400;
-    line-height: 130%;
+    line-height: 20px;
     color: $color-grey3;
 
     @include on-desktop {
@@ -89,8 +92,18 @@
     }
   }
 
+  &__messageNumber {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-weight: 900;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+
   &__name {
-    padding-left: 8px;
+    margin-left: 50px;
     font-weight: 500;
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -110,7 +123,7 @@
   &__date {
     justify-self: end;
     font-size: 14px;
-    color: $color-white2;
+    color: $color-grey1;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
