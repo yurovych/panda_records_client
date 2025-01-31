@@ -67,6 +67,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
   function closePlayer() {
     dispatch(setIsSongPlaying(false));
     dispatch(setCurrentSong(null));
+    dispatch(setCurrentSongProgress(null));
   }
 
   function prevSong() {
@@ -144,6 +145,8 @@ export const SongCard: React.FC<SongTrackProps> = ({
   }
 
   function handleDeleteSong() {
+    dispatch(setCurrentSong(null));
+    dispatch(setIsSongPlaying(false));
     dispatch(setTrackToDelete(track));
     dispatch(setIsDeleteModalOpened(true));
   }

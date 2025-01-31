@@ -131,7 +131,7 @@
   "forgot_password": "Забули пароль?",
   "reset_password": "Скинути пароль",
   "change_password": "Змінити пароль",
-  "change_email": "Змінити електронну пошту",
+  "change_email": "Змінити емейл",
   "passwords_equality": "Паролі повинні бути однакові",
   "unknown_error": "Невідома помилка",
   "validate_name_error1": "Ім'я є обов'язковим",

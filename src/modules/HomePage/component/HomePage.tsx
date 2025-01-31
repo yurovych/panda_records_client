@@ -17,8 +17,6 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VideoPlayer } from '../../shared/VideoPlayer';
 import { ProcessVideoCard } from '../../shared/ProcessVideoCard';
-// import videosList from './../../../data/videos.json';
-// import servicesList from './../../../data/servicesCards.json';
 
 export const HomePage = () => {
   const navigate = useNavigate();
