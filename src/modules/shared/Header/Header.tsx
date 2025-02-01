@@ -14,19 +14,14 @@ import { SongCard } from '../SongCard';
 import { InstagramIcon } from '../../../iconsMove/instagram';
 import { XIcon } from '../../../iconsMove/x';
 import { MenuIcon } from '../../../iconsMove/menu';
-import Draggable from 'react-draggable';
+import { useDrag } from '@use-gesture/react';
+import { useSpring, animated } from '@react-spring/web';
 
 export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const playerRef = useRef<HTMLDivElement | null>(null);
-  const [bounds, setBounds] = useState({
-    left: 0,
-    top: 0,
-    right: 0,
-    bottom: 0,
-  });
 
   const [languageDisabled, setLanguageDisabled] = useState(false);
 
@@ -83,39 +78,26 @@ export const Header = () => {
     }
   }, [isHidenMenu]);
 
-  useEffect(() => {
-    const updateBounds = () => {
-      if (playerRef.current) {
-        const rect = playerRef.current.getBoundingClientRect();
+  const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
 
-        setBounds({
-          left: -200,
-          top: -30,
-          right: window.innerWidth - 300,
-          bottom: window.innerHeight - rect.height * 2,
-        });
-      }
-    };
-
-    updateBounds();
-    window.addEventListener('resize', updateBounds);
-    return () => window.removeEventListener('resize', updateBounds);
-  }, []);
+  const bind = useDrag(({ offset: [dx, dy] }) => {
+    api.start({ x: dx, y: dy });
+  });
 
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.header}>
         {currentSong && (
-          <Draggable nodeRef={playerRef} bounds={bounds}>
-            <div
-              ref={playerRef}
-              className={`${
-                currentSong ? styles.showPlayer : styles.hidePlayer
-              } ${styles.playerWrapper}`}
-            >
-              <SongCard visual='player' track={currentSong} />
-            </div>
-          </Draggable>
+          <animated.div
+            {...bind()}
+            ref={playerRef}
+            className={`${
+              currentSong ? styles.showPlayer : styles.hidePlayer
+            } ${styles.playerWrapper}`}
+            style={{ x, y, touchAction: 'none' }}
+          >
+            <SongCard visual='player' track={currentSong} />
+          </animated.div>
         )}
         <div title='Home' onClick={handleLogoClick}>
           <Logo />
