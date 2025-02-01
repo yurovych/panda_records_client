@@ -89,8 +89,8 @@ export const Header = () => {
 
     if (dy < -30) {
       newY = -30;
-    } else if (dy > window.innerHeight - 100) {
-      newY = window.innerHeight - 100;
+    } else if (dy > window.innerHeight - 150) {
+      newY = window.innerHeight - 150;
     } else {
       newY = dy;
     }
