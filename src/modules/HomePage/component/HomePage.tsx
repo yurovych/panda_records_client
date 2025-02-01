@@ -150,7 +150,7 @@ export const HomePage = () => {
               {servicesList.length > 0 ? (
                 <ServicesSwiper
                   type='type1'
-                  servicesCards={servicesList}
+                  servicesCards={[...servicesList].reverse()}
                   ServiceToRender={ServicesCard}
                 />
               ) : servicesFetchError ? (
@@ -166,7 +166,7 @@ export const HomePage = () => {
 
             <div className={styles.services__cardstabletDesktop}>
               {servicesList.length > 0 ? (
-                <ServicesList cards={servicesList} />
+                <ServicesList cards={[...servicesList].reverse()} />
               ) : servicesFetchError ? (
                 <p
                   className={`${styles.fetchError} notification is-danger is-light`}
