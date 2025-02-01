@@ -172,7 +172,7 @@ export const AddSong: React.FC = () => {
                     validate={validateSongData}
                     name='photo'
                     type='file'
-                    id='photo'
+                    id='photo_file_id'
                     accept='image/*'
                     className={`${cn({
                       'is-danger': touched.photo && errors.photo,
@@ -203,7 +203,7 @@ export const AddSong: React.FC = () => {
                     validate={validateSongData}
                     name='audio_file'
                     type='file'
-                    id='audio_file'
+                    id='audio_file_id'
                     accept='audio/*'
                     className={`${cn({
                       'is-danger': touched.audio_file && errors.audio_file,

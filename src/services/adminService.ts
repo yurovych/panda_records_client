@@ -32,15 +32,14 @@ function addSong({ title, artist, top }: AddSong) {
 
   formData.append('artist', artist);
   formData.append('title', title);
+  // formData.append('top', top ? '1' : '0');
 
-  if (top) {
-    formData.append('top', 'true');
-  } else {
-    formData.append('top', 'false');
-  }
-
-  const photoInput = document.getElementById('photo') as HTMLInputElement;
-  const audioInput = document.getElementById('audio_file') as HTMLInputElement;
+  const photoInput = document.getElementById(
+    'photo_file_id'
+  ) as HTMLInputElement;
+  const audioInput = document.getElementById(
+    'audio_file_id'
+  ) as HTMLInputElement;
 
   if (photoInput.files && audioInput.files) {
     formData.append('photo', photoInput.files[0]);

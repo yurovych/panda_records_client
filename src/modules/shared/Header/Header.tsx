@@ -78,10 +78,36 @@ export const Header = () => {
     }
   }, [isHidenMenu]);
 
-  const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
+  const [{ x, y }, api] = useSpring(() => ({
+    x: 0,
+    y: 0,
+  }));
 
   const bind = useDrag(({ offset: [dx, dy] }) => {
-    api.start({ x: dx, y: dy });
+    let newX: number | null = null;
+    let newY: number | null = null;
+
+    if (dy < -30) {
+      newY = -30;
+    } else if (dy > window.innerHeight - 100) {
+      newY = window.innerHeight - 100;
+    } else {
+      newY = dy;
+    }
+
+    if (dx < -250) {
+      newX = -250;
+    } else if (dx > window.innerWidth - 200) {
+      newX = window.innerWidth - 200;
+    } else {
+      newX = dx;
+    }
+
+    api.start({
+      x: newX,
+      y: newY,
+      config: { tension: 1000, friction: 30 },
+    });
   });
 
   return (

@@ -49,7 +49,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
 
   function toggleTrack(track: SongTrackType) {
     if (!track.audio_file) {
-      dispatch(setCurrentSong(track));
+      dispatch(setCurrentSong(null));
       dispatch(setIsSongPlaying(false));
       dispatch(setCurrentSongProgress(null));
     } else if (currentSong?.id === track.id) {
