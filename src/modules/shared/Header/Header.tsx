@@ -87,8 +87,8 @@ export const Header = () => {
     let newX: number | null = null;
     let newY: number | null = null;
 
-    if (dy < -30) {
-      newY = -30;
+    if (dy < 0) {
+      newY = 0;
     } else if (dy > window.innerHeight - 150) {
       newY = window.innerHeight - 150;
     } else {
