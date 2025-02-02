@@ -32,7 +32,7 @@ function addSong({ title, artist, top }: AddSong) {
 
   formData.append('artist', artist);
   formData.append('title', title);
-  // formData.append('top', top ? '1' : '0');
+  formData.append('top', top ? '1' : '0');
 
   const photoInput = document.getElementById(
     'photo_file_id'
