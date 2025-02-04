@@ -51,8 +51,7 @@
     grid-auto-rows: min-content;
     row-gap: 8px;
     column-gap: 8px;
-    background: $gradient-grey-white;
-    border-radius: 20px;
+    background-color: $color-white4;
 
     &:hover {
       transform: scale(1.02);
@@ -60,6 +59,7 @@
   }
 
   &__strip {
+    cursor: pointer;
     z-index: 1;
     display: grid;
     column-gap: 8px;
@@ -68,8 +68,7 @@
     height: 48px;
     border-bottom: 1px solid $color-grey1;
     padding: 8px;
-    background: $gradient-grey-white;
-    border-radius: 20px;
+    background-color: $color-white4;
 
     &:hover {
       transform: scale(1.02);
@@ -99,7 +98,6 @@
     text-align: center;
     width: 20px;
     height: 20px;
-    border-radius: 10px;
   }
 
   &__name {

@@ -191,6 +191,11 @@ export const MessagesList = () => {
                             <div
                               onClick={() => handleClickOnMessage(message)}
                               className={styles.list__strip}
+                              style={{
+                                borderLeft: `10px solid ${getBg(
+                                  message.status
+                                )}`,
+                              }}
                             >
                               {error && currentMessage?.id === message.id && (
                                 <p
@@ -200,9 +205,6 @@ export const MessagesList = () => {
                                 </p>
                               )}
                               <p
-                                style={{
-                                  backgroundColor: `${getBg(message.status)}`,
-                                }}
                                 className={`${styles.list__text} ${styles.list__messageNumber}`}
                               >
                                 {index + 1}
