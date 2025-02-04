@@ -1,41 +1,43 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { setIsDeleteModalOpened } from '../../slices/booleanSlice';
-import styles from './DeleteSongModal.module.scss';
+import styles from './DeleteMessageModal.module.scss';
 import { useTranslation } from 'react-i18next';
-import { SongTrackType } from './../../types/SongTrack';
 import { adminServices } from '../../services/adminService';
-import { setTrackToDelete } from '../../slices/playerSlice';
-import { deleteTrack } from '../../slices/fetchSongs';
+import { deleteMessage, setMessageToDelete } from '../../slices/fetchMessages';
+import { UserMessageType } from '../../types/UserMessage';
 
-type DeleteSongModalType = {
-  track: SongTrackType | null;
+type DeleteMessageModalType = {
+  message: UserMessageType | null;
 };
 
-export const DeleteSongModal: React.FC<DeleteSongModalType> = ({ track }) => {
+export const DeleteMessageModal: React.FC<DeleteMessageModalType> = ({
+  message,
+}) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [error, setError] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
   function closeModal() {
-    dispatch(setTrackToDelete(null));
+    dispatch(setMessageToDelete(null));
     dispatch(setIsDeleteModalOpened(false));
   }
 
   function deletedSuccessfully() {
-    if (track) {
-      dispatch(deleteTrack(track));
+    if (message) {
+      dispatch(deleteMessage(message));
     }
     closeModal();
+    dispatch(setMessageToDelete(null));
   }
 
-  function deleteSong() {
-    if (!track) return;
+  function handleDeleteMessage() {
+    if (!message) return;
     setIsDeleting(true);
 
     adminServices
-      .deleteSong(track.id)
+      .deleteMessage(message.id)
       .then(deletedSuccessfully)
       .catch((error) => {
         if (error.message) {
@@ -63,12 +65,12 @@ export const DeleteSongModal: React.FC<DeleteSongModalType> = ({ track }) => {
         {error && <h3 className={styles.error}>{error}</h3>}
 
         <h3 className={styles.content__text}>
-          {t('delete_song')} {`"${track?.artist} - ${track?.title}"?`}
+          {t('admin_panel_message_delete_confirmation')}
         </h3>
 
         <div className={styles.content__buttonsBlock}>
           <button
-            onClick={deleteSong}
+            onClick={handleDeleteMessage}
             className={`${styles.content__button} ${
               styles.content__deleteButton
             } ${isDeleting && styles.disabled}`}

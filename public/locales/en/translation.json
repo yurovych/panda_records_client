@@ -106,6 +106,7 @@
   "admin_page_message_close": "Close",
   "admin_page_no_messages": "You have no messages yet",
   "admin_panel_messages": "Messages",
+  "admin_panel_message_delete_confirmation": "Confirm deleting",
   "admin_panel_pagination_rows_per_page_desktop": "Rows per page",
   "admin_panel_pagination_rows_per_page_mobile": "Rows",
   "admin_panel_pagination_all": "All",

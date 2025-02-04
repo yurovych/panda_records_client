@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserMessageType } from '../types/UserMessage';
 import { adminServices } from '../services/adminService';
 
@@ -8,6 +8,7 @@ type MessagesType = {
   loading: boolean;
   error: string;
   statusError: string;
+  messageToDelete: UserMessageType | null;
 };
 
 const initialState: MessagesType = {
@@ -15,6 +16,7 @@ const initialState: MessagesType = {
   loading: false,
   error: '',
   statusError: '',
+  messageToDelete: null,
 };
 
 export const fetchMessagesAsync = createAsyncThunk(
@@ -38,7 +40,19 @@ export const updateMessageStatusAsync = createAsyncThunk(
 const getMessagesSlice = createSlice({
   name: 'messages',
   initialState,
-  reducers: {},
+  reducers: {
+    deleteMessage: (state, action: PayloadAction<UserMessageType>) => {
+      state.objects = state.objects.filter(
+        (message) => message.id !== action.payload.id
+      );
+    },
+    setMessageToDelete: (
+      state,
+      action: PayloadAction<UserMessageType | null>
+    ) => {
+      state.messageToDelete = action.payload;
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -72,3 +86,4 @@ const getMessagesSlice = createSlice({
 });
 
 export default getMessagesSlice.reducer;
+export const { deleteMessage, setMessageToDelete } = getMessagesSlice.actions;

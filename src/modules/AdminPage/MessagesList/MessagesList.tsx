@@ -1,15 +1,23 @@
 import styles from './MessagesList.module.scss';
 import { Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setIsMessageOpened } from '../../../slices/booleanSlice';
+import {
+  setIsDeleteModalOpened,
+  setIsMessageOpened,
+} from '../../../slices/booleanSlice';
 import { setCurrentMessage } from '../../../slices/current';
 import { UserMessageType } from '../../../types/UserMessage';
 import { Loader } from '../../Loader';
 import { getTime } from './../../../helpers/getTime';
-import { updateMessageStatusAsync } from '../../../slices/fetchMessages';
+import {
+  setMessageToDelete,
+  updateMessageStatusAsync,
+} from '../../../slices/fetchMessages';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MyTablePagination } from './MessagesStyles';
+import { DeleteIcon } from './../../../iconsMove/delete';
+import { DeleteMessageModal } from '../../DeleteMessageModal/DeleteMessageModal';
 
 export const MessagesList = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +30,12 @@ export const MessagesList = () => {
   const messagesLoading = useAppSelector((state) => state.messages.loading);
   const messagesError = useAppSelector((state) => state.messages.error);
   const statusError = useAppSelector((state) => state.messages.statusError);
+  const isDeleteModalOpened = useAppSelector(
+    (state) => state.boolean.isDeleteModalOpened
+  );
+  const messageToDelete = useAppSelector(
+    (state) => state.messages.messageToDelete
+  );
 
   const [error, setError] = useState('');
   const [page, setPage] = useState(0);
@@ -53,6 +67,11 @@ export const MessagesList = () => {
       default:
         return '#0ead61cc';
     }
+  }
+
+  function handleDeleteMessage(message: UserMessageType) {
+    dispatch(setMessageToDelete(message));
+    dispatch(setIsDeleteModalOpened(true));
   }
 
   function getStatus(message: UserMessageType) {
@@ -188,40 +207,48 @@ export const MessagesList = () => {
                             page * rowsPerPage + rowsPerPage
                           )
                           .map((message: UserMessageType, index: number) => (
-                            <div
-                              onClick={() => handleClickOnMessage(message)}
-                              className={styles.list__strip}
-                              style={{
-                                borderLeft: `10px solid ${getBg(
-                                  message.status
-                                )}`,
-                              }}
-                            >
-                              {error && currentMessage?.id === message.id && (
-                                <p
-                                  className={`${styles.statusError} notification is-danger is-light`}
-                                >
-                                  {error}
-                                </p>
-                              )}
-                              <p
-                                className={`${styles.list__text} ${styles.list__messageNumber}`}
+                            <div className={styles.list__stripWrapper}>
+                              <div
+                                onClick={() => handleDeleteMessage(message)}
+                                className={styles.list__delete}
                               >
-                                {index + 1}
-                              </p>
-                              <p className={styles.list__text}>
-                                {message.name}
-                              </p>
-                              <p className={styles.list__text}>
-                                {message.email}
-                              </p>
-                              <p className={styles.list__text}>
-                                {message.phone_number || '-'}
-                              </p>
-                              <p className={styles.list__text}>
-                                {getTime(message)}
-                              </p>
-                              {getStatus(message)}
+                                <DeleteIcon />
+                              </div>
+                              <div
+                                onClick={() => handleClickOnMessage(message)}
+                                className={styles.list__strip}
+                                style={{
+                                  borderLeft: `10px solid ${getBg(
+                                    message.status
+                                  )}`,
+                                }}
+                              >
+                                {error && currentMessage?.id === message.id && (
+                                  <p
+                                    className={`${styles.statusError} notification is-danger is-light`}
+                                  >
+                                    {error}
+                                  </p>
+                                )}
+                                <p
+                                  className={`${styles.list__text} ${styles.list__messageNumber}`}
+                                >
+                                  {index + 1}
+                                </p>
+                                <p className={styles.list__text}>
+                                  {message.name}
+                                </p>
+                                <p className={styles.list__text}>
+                                  {message.email}
+                                </p>
+                                <p className={styles.list__text}>
+                                  {message.phone_number || '-'}
+                                </p>
+                                <p className={styles.list__text}>
+                                  {getTime(message)}
+                                </p>
+                                {getStatus(message)}
+                              </div>
                             </div>
                           ))}
 
@@ -314,6 +341,18 @@ export const MessagesList = () => {
                               </p>
 
                               {getStatus(message)}
+
+                              <div
+                                onClick={(
+                                  event: React.MouseEvent<HTMLDivElement>
+                                ) => {
+                                  event.stopPropagation();
+                                  handleDeleteMessage(message);
+                                }}
+                                className={`${styles.list__delete} ${styles.list__deleteOnMobile}`}
+                              >
+                                <DeleteIcon />
+                              </div>
                             </div>
                           ))}
                         <MyTablePagination
@@ -354,6 +393,8 @@ export const MessagesList = () => {
           </div>
         </>
       </div>
+
+      {isDeleteModalOpened && <DeleteMessageModal message={messageToDelete} />}
     </>
   );
 };
