@@ -255,7 +255,9 @@ export const AddSong: React.FC = () => {
                     styles.disabled
                   }`}
                 >
-                  {t('form_button_send')}
+                  {isSubmitting
+                    ? t('form_button_sending')
+                    : t('form_button_send')}
                 </button>
               </div>
 

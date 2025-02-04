@@ -8,6 +8,7 @@ import {
   setCurrentSong,
   setIsSongPlaying,
   setTrackToDelete,
+  setPrevTrackId,
 } from '../../../slices/playerSlice';
 import { Loader } from '../../Loader';
 import { DeleteIcon } from '../../../iconsMove/delete';
@@ -68,6 +69,7 @@ export const SongCard: React.FC<SongTrackProps> = ({
     dispatch(setIsSongPlaying(false));
     dispatch(setCurrentSong(null));
     dispatch(setCurrentSongProgress(null));
+    dispatch(setPrevTrackId(null));
   }
 
   function prevSong() {

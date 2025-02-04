@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setCurrentSong } from '../../../slices/playerSlice';
+import { setCurrentSong, setPrevTrackId } from '../../../slices/playerSlice';
 
 export const Player: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,8 +15,7 @@ export const Player: React.FC = () => {
   const currentSongProgress = useAppSelector(
     (state) => state.player.currentSongProgress
   );
-
-  const [prevTrackId, setPrevTrackId] = useState<number | null>(null);
+  const prevTrackId = useAppSelector((state) => state.player.prevTrackId);
 
   const onPlaying = () => {
     const audio = audioElem.current;
@@ -50,7 +49,7 @@ export const Player: React.FC = () => {
     if (isSongPlaying && currentSong?.audio_file) {
       if (currentSong.id !== prevTrackId) {
         audio.src = currentSong.audio_file;
-        setPrevTrackId(currentSong.id);
+        dispatch(setPrevTrackId(currentSong.id));
       }
       audio.play().catch((error) => console.error('Error:', error));
     } else if (!isSongPlaying) {
@@ -63,7 +62,7 @@ export const Player: React.FC = () => {
         audio.src = '';
       }
     };
-  }, [isSongPlaying, currentSong, prevTrackId]);
+  }, [isSongPlaying, currentSong, prevTrackId, dispatch]);
 
   const handleEnded = () => {
     if (currentSongIndex === null) {
