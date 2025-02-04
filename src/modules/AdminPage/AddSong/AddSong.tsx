@@ -32,7 +32,7 @@ export const AddSong: React.FC = () => {
             formikHelpers.setSubmitting(true);
 
             const maxPhotoSize = 200 * 1024;
-            const maxAudioSize = 20 * 1024 * 1024;
+            const maxAudioSize = 9 * 1024 * 1024;
 
             if (photo && photo.size > maxPhotoSize) {
               setError(t('add_song_size_image_error'));
@@ -93,6 +93,7 @@ export const AddSong: React.FC = () => {
             isValid,
             resetForm,
             validateForm,
+            setFieldValue,
           }) => (
             <Form className={styles.form}>
               <h2 className={styles.form__title}>{t('add_song_title')}</h2>
@@ -166,14 +167,17 @@ export const AddSong: React.FC = () => {
                 </label>
 
                 <div className='control has-icons-left has-icons-right'>
-                  <Field
+                  <input
                     disabled={isSubmitting}
                     required
-                    validate={validateSongData}
                     name='photo'
                     type='file'
                     id='photo_file_id'
                     accept='image/*'
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      const file = event.currentTarget.files?.[0] || null;
+                      setFieldValue('photo', file);
+                    }}
                     className={`${cn({
                       'is-danger': touched.photo && errors.photo,
                     })}`}
@@ -197,14 +201,17 @@ export const AddSong: React.FC = () => {
                 </label>
 
                 <div className='control has-icons-left has-icons-right'>
-                  <Field
+                  <input
                     disabled={isSubmitting}
                     required
-                    validate={validateSongData}
                     name='audio_file'
                     type='file'
                     id='audio_file_id'
                     accept='audio/*'
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      const file = event.currentTarget.files?.[0] || null;
+                      setFieldValue('audio_file', file);
+                    }}
                     className={`${cn({
                       'is-danger': touched.audio_file && errors.audio_file,
                     })}`}
