@@ -200,6 +200,11 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    padding-left: 6px;
+
+    @include on-tablet {
+      padding-left: 0;
+    }
   }
 
   &__song {
