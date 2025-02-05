@@ -24,6 +24,7 @@ import { ThemeProvider } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 import { AddSong } from './modules/AdminPage/AddSong';
 import { ErrorPage } from './modules/ErrorPage/ErrorPage';
+import { AddVideo } from './modules/AdminPage/AddVideo/AddVideo';
 
 const theme = createTheme();
 
@@ -46,6 +47,7 @@ root.render(
                   <Route path='change-email' element={<ChangeEmail />} />
                   <Route path='change-password' element={<ChangePassword />} />
                   <Route path='add-song' element={<AddSong />} />
+                  <Route path='add-video' element={<AddVideo />} />
                 </Route>
                 <Route path='login' element={<LoginPage />} />
                 <Route

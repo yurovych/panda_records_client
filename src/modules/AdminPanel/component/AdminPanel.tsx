@@ -75,6 +75,7 @@ export const AdminPanel = () => {
     EMAIL = '/admin/change-email',
     PASSWORD = '/admin/change-password',
     ADD_SONG = '/admin/add-song',
+    ADD_VIDEO = '/admin/add-video',
   }
 
   return (
@@ -136,6 +137,18 @@ export const AdminPanel = () => {
             to='/admin/add-song'
           >
             {t('admin_panel_add_song')}
+          </Link>
+
+          <Link
+            onClick={handleAdminMenuButton}
+            className={`${styles.adminPanel__element} ${
+              styles.adminPanel__addVideo
+            } ${
+              NavPaths.ADD_VIDEO === location.pathname && styles.linkIsActive
+            }`}
+            to='/admin/add-video'
+          >
+            {t('admin_panel_add_video')}
           </Link>
 
           <div className={styles.adminPanel__links}>

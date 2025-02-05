@@ -1,6 +1,7 @@
 @import './../main';
 
 .pvc {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1.5;
   display: flex;
@@ -15,4 +16,23 @@
   @include on-tablet {
     aspect-ratio: 1 / 1.5;
   }
+}
+
+.deleteVideo {
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-white2;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  z-index: 100;
+}
+
+.pvc:hover .deleteVideo {
+  display: flex;
 }

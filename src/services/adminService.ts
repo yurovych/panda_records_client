@@ -6,6 +6,10 @@ interface AddSong {
   top: boolean;
 }
 
+interface AddVideo {
+  title: string;
+}
+
 function getAllMessages() {
   return adminClient.get('/notifications');
 }
@@ -49,6 +53,26 @@ function addSong({ title, artist, top }: AddSong) {
   return adminClient.post('/songs/', formData);
 }
 
+function addVideo({ title }: AddVideo) {
+  const formData = new FormData();
+
+  formData.append('title', title);
+
+  const posterInput = document.getElementById(
+    'poster_file_id'
+  ) as HTMLInputElement;
+  const videoInput = document.getElementById(
+    'video_file_id'
+  ) as HTMLInputElement;
+
+  if (posterInput.files && videoInput.files) {
+    formData.append('poster', posterInput.files[0]);
+    formData.append('video_file', videoInput.files[0]);
+  }
+
+  return adminClient.post('/videos/', formData);
+}
+
 function deleteSong(song_id: number) {
   return adminClient.delete(`/songs/${song_id}`);
 }
@@ -66,4 +90,5 @@ export const adminServices = {
   addSong,
   deleteSong,
   deleteMessage,
+  addVideo,
 };

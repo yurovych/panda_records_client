@@ -68,7 +68,13 @@ export const useValidation = () => {
 
   function validateSongData(value?: string | undefined) {
     if (!value) {
-      return `${t('validate_song_data')}`;
+      return `${t('validate_data')}`;
+    }
+  }
+
+  function validateVideoData(value?: string | undefined) {
+    if (!value) {
+      return `${t('validate_data')}`;
     }
   }
 
@@ -79,5 +85,6 @@ export const useValidation = () => {
     validatePhoneNumber,
     validateMessage,
     validateSongData,
+    validateVideoData,
   };
 };
