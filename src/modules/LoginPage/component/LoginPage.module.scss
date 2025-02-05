@@ -1,7 +1,7 @@
 @import './../../shared/main';
 
 .login {
-  height: 100vh;
+  height: calc(100vh - 80px);
   background-image: url('./../../../../public/images/login-image.jpg');
   background-repeat: no-repeat;
   background-position: left;
