@@ -77,6 +77,10 @@ function deleteSong(song_id: number) {
   return adminClient.delete(`/songs/${song_id}`);
 }
 
+function deleteVideo(video_id: number) {
+  return adminClient.delete(`/videos/${video_id}`);
+}
+
 function deleteMessage(message_id: number) {
   return adminClient.delete(`/notifications/${message_id}`);
 }
@@ -91,4 +95,5 @@ export const adminServices = {
   deleteSong,
   deleteMessage,
   addVideo,
+  deleteVideo,
 };

@@ -75,7 +75,7 @@ export const DeleteMessageModal: React.FC<DeleteMessageModalType> = ({
               styles.content__deleteButton
             } ${isDeleting && styles.disabled}`}
           >
-            {t('delete')}
+            {isDeleting ? t('deleting') : t('delete')}
           </button>
 
           <button

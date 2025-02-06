@@ -37,7 +37,7 @@ export const updateMessageStatusAsync = createAsyncThunk(
   }
 );
 
-const getMessagesSlice = createSlice({
+const messagesSlice = createSlice({
   name: 'messages',
   initialState,
   reducers: {
@@ -85,5 +85,5 @@ const getMessagesSlice = createSlice({
   },
 });
 
-export default getMessagesSlice.reducer;
-export const { deleteMessage, setMessageToDelete } = getMessagesSlice.actions;
+export default messagesSlice.reducer;
+export const { deleteMessage, setMessageToDelete } = messagesSlice.actions;

@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { VideoFileType } from './../types/Video';
 import { clientService } from '../services/clientService';
 
@@ -24,10 +24,16 @@ export const fetchVideosAsync = createAsyncThunk(
   }
 );
 
-const getVideosSlice = createSlice({
+const videosSlice = createSlice({
   name: 'videos/fetch',
   initialState,
-  reducers: {},
+  reducers: {
+    deleteVideo: (state, action: PayloadAction<VideoFileType>) => {
+      state.objects = state.objects.filter(
+        (video) => video.id !== action.payload.id
+      );
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -47,4 +53,5 @@ const getVideosSlice = createSlice({
   },
 });
 
-export default getVideosSlice.reducer;
+export default videosSlice.reducer;
+export const { deleteVideo } = videosSlice.actions;

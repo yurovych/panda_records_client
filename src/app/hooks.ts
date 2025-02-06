@@ -76,6 +76,10 @@ export const useValidation = () => {
     if (!value) {
       return `${t('validate_data')}`;
     }
+
+    if (value.length < 8) {
+      return `${t('validate_video_title')}`;
+    }
   }
 
   return {

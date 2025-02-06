@@ -73,7 +73,7 @@ export const DeleteSongModal: React.FC<DeleteSongModalType> = ({ track }) => {
               styles.content__deleteButton
             } ${isDeleting && styles.disabled}`}
           >
-            {t('delete')}
+            {isDeleting ? t('deleting') : t('delete')}
           </button>
 
           <button

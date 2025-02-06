@@ -21,7 +21,7 @@ export const fetchSongsAsync = createAsyncThunk('songs/fetch', async () => {
   return songsList;
 });
 
-const getSongsSlice = createSlice({
+const songsSlice = createSlice({
   name: 'songs/fetch',
   initialState,
   reducers: {
@@ -50,5 +50,5 @@ const getSongsSlice = createSlice({
   },
 });
 
-export default getSongsSlice.reducer;
-export const { deleteTrack } = getSongsSlice.actions;
+export default songsSlice.reducer;
+export const { deleteTrack } = songsSlice.actions;

@@ -24,7 +24,7 @@ export const fetchEquipmentAsync = createAsyncThunk(
   }
 );
 
-const geEquipmentSlice = createSlice({
+const equipmentSlice = createSlice({
   name: 'equipment',
   initialState,
   reducers: {},
@@ -47,4 +47,4 @@ const geEquipmentSlice = createSlice({
   },
 });
 
-export default geEquipmentSlice.reducer;
+export default equipmentSlice.reducer;

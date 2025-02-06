@@ -24,7 +24,7 @@ export const fetchServicesAsync = createAsyncThunk(
   }
 );
 
-const getServicesSlice = createSlice({
+const servicesSlice = createSlice({
   name: 'services',
   initialState,
   reducers: {},
@@ -47,4 +47,4 @@ const getServicesSlice = createSlice({
   },
 });
 
-export default getServicesSlice.reducer;
+export default servicesSlice.reducer;
