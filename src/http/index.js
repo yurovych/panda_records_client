@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL =
-  'https://welcome-katharine-none-none-none-3a3e7c52.koyeb.app/api/';
+  'https://colorful-cody-yurovych-production-63c7ab44.koyeb.app/api/';
 
 export function createClient() {
   return axios.create({
