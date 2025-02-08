@@ -114,10 +114,7 @@
 .strip {
   z-index: 1;
   background-color: $color-white1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px;
+  padding: 8px;
   box-shadow: $shadow;
   width: 100%;
   max-width: 100%;
@@ -130,8 +127,8 @@
 
   &__photo {
     clip-path: $clip-top-right;
-    aspect-ratio: 1;
     height: 80px;
+    width: 80px;
     object-fit: cover;
     margin-right: 16px;
   }
@@ -386,7 +383,7 @@
     gap: 10px;
     align-items: center;
     justify-content: end;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 
     &_element {
       color: $color-grey2;
@@ -404,7 +401,6 @@
     align-items: center;
     height: 3px;
     background-color: $color-grey2;
-    border: 3px solid $color-white3;
 
     &_runner {
       position: relative;

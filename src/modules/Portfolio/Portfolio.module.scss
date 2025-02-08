@@ -158,8 +158,8 @@
   &__listHeader {
     position: relative;
     margin-bottom: 16px;
-    min-height: 112px;
-    max-height: 112px;
+    min-height: 96px;
+    max-height: 96px;
   }
 
   &__listBanner {
@@ -169,8 +169,8 @@
     background-size: cover;
     box-shadow: $shadow;
     padding: 16px;
-    min-height: 112px;
-    max-height: 112px;
+    min-height: 96px;
+    max-height: 96px;
     display: flex;
     align-items: end;
   }
