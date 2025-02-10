@@ -150,7 +150,7 @@ export const HomePage = () => {
               {servicesList.length > 0 ? (
                 <ServicesSwiper
                   type='type1'
-                  servicesCards={[...servicesList].reverse()}
+                  servicesCards={servicesList}
                   ServiceToRender={ServicesCard}
                 />
               ) : servicesFetchError ? (
@@ -166,7 +166,7 @@ export const HomePage = () => {
 
             <div className={styles.services__cardstabletDesktop}>
               {servicesList.length > 0 ? (
-                <ServicesList cards={[...servicesList].reverse()} />
+                <ServicesList cards={servicesList} />
               ) : servicesFetchError ? (
                 <p
                   className={`${styles.fetchError} notification is-danger is-light`}
@@ -272,7 +272,7 @@ export const HomePage = () => {
             {videosList.length > 0 ? (
               <ServicesSwiper
                 type='type1'
-                videoCards={videosList}
+                videoCards={[...videosList].reverse()}
                 VideoToRender={ProcessVideoCard}
               />
             ) : videosFetchError ? (

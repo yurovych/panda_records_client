@@ -53,7 +53,9 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card }) => {
 
             <div className={styles.card__details}>
               <div className={styles.price}>
-                <h3 className={styles.price__priceText}>{`${card.price}₴`}</h3>
+                <h3 className={styles.price__priceText}>{`${Number(
+                  card.price
+                ).toFixed(0)}₴`}</h3>
                 {card.hourly && (
                   <>
                     <h3 className={styles.price__priceText}>
@@ -87,7 +89,9 @@ export const ServicesCard: React.FC<ServiceCardProps> = ({ card }) => {
 
           <div className={styles.details__bottom}>
             <div className={styles.price}>
-              <h3 className={styles.price__priceText}>{`${card.price}₴`}</h3>
+              <h3 className={styles.price__priceText}>{`${Number(
+                card.price
+              ).toFixed(0)}₴`}</h3>
               {card.hourly && (
                 <>
                   <h3 className={styles.price__priceText}>
