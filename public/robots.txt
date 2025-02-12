@@ -1,4 +1,3 @@
 User-agent: *
 Disallow: /admin/
-Allow: /public/
 Sitemap: https://panda-records.netlify.app/sitemap.xml
