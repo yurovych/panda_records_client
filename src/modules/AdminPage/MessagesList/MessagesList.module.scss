@@ -23,6 +23,13 @@
     color: $color-grey1;
   }
 
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+    color: $color-pink1;
+  }
+
   &__header {
     display: grid;
     column-gap: 8px;

@@ -148,30 +148,27 @@ export const MessagesList = () => {
   return (
     <>
       <div className={styles.list}>
-        {messages.length > 0 ? (
-          <div className={styles.stars}>
-            <img
-              className={`${styles.stars__star} ${styles.stars__star_star1}`}
-              src='/images/songs-star-big.png'
-              alt='star_ico'
-            />
-            <img
-              className={`${styles.stars__star} ${styles.stars__star_star2}`}
-              src='/images/songs-star-avarage.png'
-              alt='star_ico'
-            />
-            <img
-              className={`${styles.stars__star} ${styles.stars__star_star3}`}
-              src='/images/songs-star-small.png'
-              alt='star_ico'
-            />
-          </div>
-        ) : (
-          ''
-        )}
+        <div className={styles.stars}>
+          <img
+            className={`${styles.stars__star} ${styles.stars__star_star1}`}
+            src='/images/songs-star-big.png'
+            alt='star_ico'
+          />
+          <img
+            className={`${styles.stars__star} ${styles.stars__star_star2}`}
+            src='/images/songs-star-avarage.png'
+            alt='star_ico'
+          />
+          <img
+            className={`${styles.stars__star} ${styles.stars__star_star3}`}
+            src='/images/songs-star-small.png'
+            alt='star_ico'
+          />
+        </div>
 
         <>
           <div className={styles.isDesktop}>
+            <h2 className={styles.list__title}>{t('admin_panel_messages')}</h2>
             <div className={styles.list__header}>
               <h3 className={styles.list__headerTitle}>N</h3>
               <h3 className={styles.list__headerTitle}>
@@ -298,6 +295,7 @@ export const MessagesList = () => {
                   <p>{messagesError}</p>
                 ) : (
                   <>
+                    <h2 className={styles.list__title}>Incoming messages</h2>
                     {messages.length > 0 ? (
                       <>
                         {messages

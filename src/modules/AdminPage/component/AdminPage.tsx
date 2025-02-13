@@ -44,7 +44,6 @@ export const AdminPage: React.FC = () => {
       {isAuthenticated ? (
         <div className={styles.adminPageWrapper}>
           {isMessageOpened && <OpenedMessage />}
-
           <div id='AdminPage' className={styles.adminPage}>
             <div className={styles.adminPage__panel}>
               <AdminPanel />

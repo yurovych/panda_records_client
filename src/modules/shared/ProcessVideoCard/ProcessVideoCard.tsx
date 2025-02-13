@@ -54,7 +54,7 @@ export const ProcessVideoCard: React.FC<ProcessVideoCardProps> = ({ card }) => {
 
   return (
     <div className={styles.pvc}>
-      {isAuthenticated && (
+      {isAuthenticated && !card.description_block1 && (
         <Tooltip title={tooltipCopmonent()}>
           <div className={styles.deleteVideo}>
             <DeleteIcon />
