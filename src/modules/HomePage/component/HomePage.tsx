@@ -66,7 +66,7 @@ export const HomePage = () => {
       <div className={styles.home}>
         <div className={styles.topWrapper}>
           <section className={styles.top}>
-            <h3 className={styles.top__newSong}>{t('home_green_text')} </h3>
+            <h2 className={styles.top__newSong}>{t('home_green_text')} </h2>
 
             <div className={styles.top__photo}>
               <img

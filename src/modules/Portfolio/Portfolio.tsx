@@ -78,8 +78,6 @@ export const Portfolio = () => {
 
         <div className={styles.allSongsWrapper}>
           <section className={styles.allSongs}>
-            <h2 className={styles.allSongs__title}>{t('portfolio_all')}</h2>
-
             <div className={styles.allSongs__main}>
               <div className={styles.allSongs__sliderWrapper}>
                 <ServicesSwiper simplePhotos={simplePhoto} type='type3' />
