@@ -70,6 +70,12 @@ export const AdminPanel = () => {
     dispatch(setIsAdminPanel(!isAdminPanel));
   };
 
+  const handleClickTelegram = () => {
+    adminServices
+      .getTelegramNotifications()
+      .catch((error) => console.error(error));
+  };
+
   enum NavPaths {
     MESSAGES = '/admin',
     EMAIL = '/admin/change-email',
@@ -174,7 +180,12 @@ export const AdminPanel = () => {
                 alt='tiktok'
               />
             </a>
-            <a href={currentTelegram} target='_blank' rel='noreferrer'>
+            <a
+              onClick={handleClickTelegram}
+              href={currentTelegram}
+              target='_blank'
+              rel='noreferrer'
+            >
               <img
                 className={styles.adminPanel__linkIco}
                 src='/icons/telegram-color-ico.svg'

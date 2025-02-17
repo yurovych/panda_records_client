@@ -45,6 +45,8 @@ export const LoginPage = () => {
         }}
         validateOnMount={true}
         onSubmit={({ email, password }, formikHelpers) => {
+          formikHelpers.setSubmitting(true);
+
           return login({ email, password })
             .then(() => {
               navigate(location.state?.from?.pathname || '/admin');
@@ -71,6 +73,7 @@ export const LoginPage = () => {
               }
             })
             .finally(() => {
+              formikHelpers.setSubmitting(false);
               setTimeout(() => {
                 setError('');
               }, 5000);
@@ -94,6 +97,7 @@ export const LoginPage = () => {
 
                 <div className='control has-icons-left has-icons-right'>
                   <Field
+                    disabled={isSubmitting}
                     validate={validateEmail}
                     name='email'
                     type='email'
@@ -130,6 +134,7 @@ export const LoginPage = () => {
 
                 <div className='control has-icons-left has-icons-right'>
                   <Field
+                    disabled={isSubmitting}
                     validate={validatePassword}
                     name='password'
                     type='password'

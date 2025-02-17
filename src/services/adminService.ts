@@ -18,6 +18,10 @@ function logout() {
   return adminClient.post('/users/logout/');
 }
 
+function getTelegramNotifications() {
+  return adminClient.post('/notifications/connect_telegram_user/');
+}
+
 function changeStatus(status: string, id: number) {
   return adminClient.patch(`/notifications/${id}`, { status: status });
 }
@@ -96,4 +100,5 @@ export const adminServices = {
   deleteMessage,
   addVideo,
   deleteVideo,
+  getTelegramNotifications,
 };

@@ -27,7 +27,7 @@ export const AddVideo: React.FC = () => {
             formikHelpers.setSubmitting(true);
 
             const maxPosterSize = 200 * 1024;
-            const maxVideoSize = 90 * 1024 * 1024;
+            const maxVideoSize = 30 * 1024 * 1024;
 
             if (poster && poster.size > maxPosterSize) {
               setError(t('add_video_size_poster_error'));

@@ -63,7 +63,7 @@ export const MessagesList = () => {
       case 'processing':
         return '#c26f0f99';
       case 'completed':
-        return '#0e31ad60';
+        return '#e2e2e3';
       default:
         return '#0ead61cc';
     }
